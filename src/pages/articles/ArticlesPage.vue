@@ -1,12 +1,33 @@
 <script setup lang="ts">
-import { ref, computed } from 'vue'
-import { articles, type Article } from '../../data/articles'
+import { ref, computed, onMounted } from 'vue'
+import { articles as localArticles, type Article } from '../../data/articles'
+import { articlesAPI } from '../../services/supabase'
 
 const searchQuery = ref('')
 const selectedCategory = ref<'all' | 'seo' | 'geo' | 'aeo' | 'tools'>('all')
+const loading = ref(true)
+const allArticles = ref<Article[]>([])
+
+onMounted(async () => {
+  try {
+    const data = await articlesAPI.getAll()
+    if (data && data.length > 0) {
+      allArticles.value = data.map((item: any) => ({
+        ...item,
+        readTime: item.read_time ?? item.readTime ?? 5,
+      }))
+    } else {
+      allArticles.value = localArticles
+    }
+  } catch {
+    allArticles.value = localArticles
+  } finally {
+    loading.value = false
+  }
+})
 
 const filteredArticles = computed(() => {
-  let result = articles
+  let result = allArticles.value
 
   if (selectedCategory.value !== 'all') {
     result = result.filter((a) => a.category === selectedCategory.value)
@@ -26,7 +47,6 @@ const filteredArticles = computed(() => {
 })
 
 function openArticle(article: Article) {
-  // 实际应用中可以导航到文章详情页或在外部打开
   if (article.link) {
     window.open(article.link, '_blank', 'noopener,noreferrer')
   }
@@ -82,13 +102,18 @@ const categories = [
         >
           <VaIcon :name="cat.icon" size="16px" />
           <span>{{ cat.name }}</span>
-          <span class="count">{{ articles.filter((a) => cat.id === 'all' || a.category === cat.id).length }}</span>
+          <span class="count">{{ allArticles.filter((a) => cat.id === 'all' || a.category === cat.id).length }}</span>
         </button>
       </aside>
 
       <!-- Articles Grid -->
       <main class="articles-main">
-        <div v-if="filteredArticles.length === 0" class="empty-state">
+        <div v-if="loading" class="empty-state">
+          <VaIcon name="hourglass_empty" size="56px" color="secondary" />
+          <p>加载中...</p>
+        </div>
+
+        <div v-else-if="filteredArticles.length === 0" class="empty-state">
           <VaIcon name="search_off" size="56px" color="secondary" />
           <p>没有找到匹配的文章</p>
           <VaButton preset="secondary" size="small" @click="clearFilters"> 清除筛选 </VaButton>

@@ -1,13 +1,31 @@
 <script setup lang="ts">
-import { ref, computed } from 'vue'
-import { news } from '../../data/news'
+import { ref, computed, onMounted } from 'vue'
+import { news as localNews, type News } from '../../data/news'
+import { newsAPI } from '../../services/supabase'
 
 const searchQuery = ref('')
 const selectedCategory = ref<'all' | 'seo' | 'geo' | 'aeo' | 'ai' | 'industry'>('all')
 const selectedImpact = ref<'all' | 'high' | 'medium' | 'low'>('all')
+const loading = ref(true)
+const allNews = ref<News[]>([])
+
+onMounted(async () => {
+  try {
+    const data = await newsAPI.getAll()
+    if (data && data.length > 0) {
+      allNews.value = data as News[]
+    } else {
+      allNews.value = localNews
+    }
+  } catch {
+    allNews.value = localNews
+  } finally {
+    loading.value = false
+  }
+})
 
 const filteredNews = computed(() => {
-  let result = news
+  let result = allNews.value
 
   if (selectedCategory.value !== 'all') {
     result = result.filter((n) => n.category === selectedCategory.value)
@@ -99,7 +117,12 @@ const impactLabel = {
       </aside>
 
       <main class="main-content">
-        <div v-if="filteredNews.length === 0" class="empty-state">
+        <div v-if="loading" class="empty-state">
+          <VaIcon name="hourglass_empty" size="56px" color="secondary" />
+          <p>加载中...</p>
+        </div>
+
+        <div v-else-if="filteredNews.length === 0" class="empty-state">
           <VaIcon name="newspaper" size="56px" color="secondary" />
           <p>暂无匹配新闻</p>
         </div>
