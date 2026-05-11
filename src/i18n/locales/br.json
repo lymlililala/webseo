@@ -90,12 +90,12 @@
     "simplified_chinese": "Chinês Simplificado",
     "persian": "Persa"
   },
-"menu": {
-"seo-nav": "Navegador de Ferramentas SEO",
+  "menu": {
+    "seo-nav": "Navegador de Ferramentas SEO",
     "geo-nav": "Navegador GEO",
     "aeo-nav": "Navegador AEO",
     "llms-txt": "Gerador llms.txt",
-"auth": "Autenticação",
+    "auth": "Autenticação",
     "buttons": "Botões",
     "timelines": "Linhas do Tempo",
     "dashboard": "Painel de Controle",
