@@ -1,0 +1,302 @@
+AI SEO Glossary: 60+ Terms Explained (GEO, AEO, LLMO & More)
+Page slug: /glossary Target keywords: AI SEO glossary, GEO definition, what is AEO, LLMO meaning, AI search optimization terms Meta description: The complete AI SEO glossary for 2026. Learn what GEO, AEO, LLMO, E-E-A-T, MCP, RAG and 60+ other terms mean for modern search optimization. Word count target: 4000+
+
+Welcome to the definitive AI SEO glossary. As search evolves from keyword-matching to AI-powered answer generation, marketers and SEOs need a new vocabulary. This glossary covers 60+ essential terms — from classic SEO fundamentals to cutting-edge concepts like GEO, AEO, LLMO, MCP, and RAG — so you can speak the language of modern search optimization fluently.
+
+📖 How to Use This Glossary
+Each term includes a plain-English definition, real-world usage context, and links to related terms. Use the A–Z index below to jump directly to any term, or browse by category using the section headers.
+
+🔤 A–Z Quick Navigation
+A · B · C · D · E · F · G · H · I · J · K · L · M · N · O · P · Q · R · S · T · U · V · W · X · Y · Z
+
+📂 Browse by Category
+🤖 Category 1: AI Search Optimization Core Concepts
+🔍 Category 2: Traditional SEO Fundamentals
+🧠 Category 3: AI Agent & LLM Terms
+📄 Category 4: Content & Structured Data
+📊 Category 5: Measurement & Metrics
+🤖 Category 1: AI Search Optimization Core Concepts
+
+AEO (Answer Engine Optimization)
+中文名： 答案引擎优化
+定义： AEO（Answer Engine Optimization，答案引擎优化）是指将内容优化为可被 AI 搜索系统、语音助手和问答平台直接引用为"答案"的实践。与传统 SEO 争夺排名链接不同，"what is AEO" 的核心问题答案是：让你的内容成为搜索引擎直接展示的权威来源。
+使用场景： 当你希望内容出现在 Google Featured Snippet、Perplexity 引用框、Siri 语音回答或 ChatGPT 检索结果中时使用。
+相关术语： GEO SGE Featured Snippet Zero-Click Search
+
+AI Overview
+中文名： AI 概览（Google）
+定义： AI Overview 是 Google 在 SERP 顶部展示的 AI 生成摘要，由 Gemini 模型综合多个来源生成。它取代了早期的 SGE 实验功能，是 Google 将 AI 融入主搜索结果的核心产品。被 AI Overview 引用意味着品牌获得了极高曝光度。
+使用场景： 分析哪类内容结构更容易被 Google AI Overview 引用，是 2024–2026 年 SEO 的核心课题。
+相关术语： SGE GEO AEO SERP
+
+AI Search
+中文名： AI 搜索
+定义： AI Search 泛指以大语言模型（LLM）为核心驱动的新一代搜索引擎，包括 Perplexity AI、Google AI Overview、Bing Copilot、ChatGPT Search 等产品。与传统关键词匹配搜索不同，AI 搜索能理解语义、意图，并直接生成综合答案。
+使用场景： 当评估品牌在下一代搜索生态中的可见性时，必须将 AI Search 平台纳入监测范围。
+相关术语： LLM GEO LLMO Perplexity
+
+AI Snippet
+中文名： AI 摘要片段
+定义： AI Snippet 是指 AI 搜索引擎从第三方网页中提取并展示在结果界面的内容片段，通常附带来源链接。被选为 AI Snippet 的内容往往具备结构清晰、回答直接、权威性强等特征。
+使用场景： 优化内容段落结构，使其更容易被 Perplexity、ChatGPT 等 AI 系统提取为 AI Snippet。
+相关术语： AEO Featured Snippet Citation Rate
+
+
+GEO (Generative Engine Optimization)
+中文名： 生成式引擎优化
+定义： GEO（Generative Engine Optimization，生成式引擎优化）是专门针对 ChatGPT、Perplexity、Google AI Overview 等生成式 AI 搜索引擎的内容优化方法论。"What is GEO in SEO" 的答案是：GEO 研究如何让内容被 LLM 选择、引用并呈现给用户，是传统 SEO 在 AI 时代的进化。
+使用场景： 当目标是让品牌内容在 AI 生成答案中频繁被引用时，GEO 策略是核心工作。
+相关术语： AEO LLMO AI Overview RAG
+
+
+LLMO (Large Language Model Optimization)
+中文名： 大语言模型优化
+定义： LLMO（Large Language Model Optimization）是指针对 GPT-4、Claude、Gemini 等大语言模型的内容可见性优化策略。LLMO 的含义在于：让你的品牌、产品或内容在 LLM 的训练数据和实时检索中占据正面、准确的位置，从而在对话式 AI 交互中被推荐。
+使用场景： 品牌希望在用户向 AI 助手询问产品推荐时，确保自家品牌被准确提及。
+相关术语： GEO LLM AI Visibility Brand Mention
+
+SGE (Search Generative Experience)
+中文名： 搜索生成体验（Google 早期实验名）
+定义： SGE 是 Google 于 2023–2024 年推出的实验性 AI 搜索功能的早期名称，即在搜索结果页面顶部展示 AI 生成的综合回答。SGE 已于 2024 年正式演进为 Google AI Overview，成为 Google 主搜索的标配功能。
+使用场景： 理解 Google AI Overview 历史背景时常提及 SGE，也是评估早期 AI SEO 测试数据的参考坐标。
+相关术语： AI Overview GEO SERP
+
+LLM Training Data
+中文名： LLM 训练数据
+定义： LLM Training Data 是指用于训练大语言模型的文本语料库，包含网页内容、书籍、论文等。你的网站内容若被爬取并纳入训练数据，将影响模型对你品牌和产品的"认知"。优质、权威的内容更有机会进入高质量训练集。
+使用场景： 评估内容策略是否有助于提升品牌在未来 LLM 版本中的知名度和准确表达。
+相关术语： LLM LLMO Common Crawl
+
+Conversational Search
+中文名： 对话式搜索
+定义： Conversational Search 是指用户以自然语言多轮对话方式进行的搜索交互，区别于传统的单次关键词查询。ChatGPT、Bing Copilot 和 Google Gemini 均支持对话式搜索。理解这一范式对于内容创作的语气、结构和深度都有直接影响。
+使用场景： 撰写长尾问答内容、FAQ 页面时，需考虑对话式搜索的提问模式。
+相关术语： AEO Voice Search Intent Optimization
+
+Prompt Engineering (for SEO)
+中文名： 提示词工程（SEO 视角）
+定义： 在 SEO 语境下，Prompt Engineering 是指研究用户向 AI 系统发出的典型查询模式，并据此优化内容结构，使内容更匹配 AI 系统内部的"检索提示"。了解 AI 如何被提示去检索内容，是 GEO 实践的重要组成部分。
+使用场景： 分析用户在 ChatGPT 或 Perplexity 中输入的典型提问，并将相应答案结构嵌入内容中。
+相关术语： GEO AEO RAG
+
+Zero-Click Search
+中文名： 零点击搜索
+定义： Zero-Click Search 是指用户在搜索引擎结果页上直接获得答案而不点击任何链接的搜索行为。AI Overview、Featured Snippet 和知识图谱的普及显著提升了零点击搜索的比例。对于内容营销团队，这意味着品牌曝光不再等于流量。
+使用场景： 分析 AI 搜索对网站自然流量的影响时，零点击搜索率是核心参考指标。
+相关术语： AI Overview Featured Snippet SERP Click-Through Rate
+
+🔍 Category 2: Traditional SEO Fundamentals
+
+Backlink
+中文名： 外部链接 / 反向链接
+定义： Backlink 是指其他网站指向你网站的超链接。在传统 SEO 中，高质量的 Backlink 是搜索引擎评估网页权威性的核心信号之一。在 AI SEO 时代，被权威媒体链接引用同样有助于提升 LLM 对品牌的正面认知。
+使用场景： 构建链接建设策略时，以获取高 DA/DR 网站的 Backlink 为核心目标。
+相关术语： Domain Authority E-E-A-T PageRank
+
+
+Canonical URL
+中文名： 规范链接
+定义： Canonical URL 是通过 <link rel="canonical"> 标签指定的页面权威版本 URL，用于解决重复内容问题。当同一内容存在多个 URL 时，Canonical 告诉搜索引擎哪个版本应被索引和排名。
+使用场景： 电商网站存在大量筛选参数 URL、或同一文章发布于多个子域时必须设置 Canonical。
+相关术语： Technical SEO Crawlability Duplicate Content
+
+Core Web Vitals
+中文名： 核心网页指标
+定义： Core Web Vitals 是 Google 定义的一组衡量用户体验的页面性能指标，包括 LCP（最大内容绘制）、INP（下一次绘画交互）和 CLS（累积布局偏移）。这些指标是 Google 排名算法的直接因素，也影响 AI 爬虫对页面质量的判断。
+使用场景： 在技术 SEO 审计中，Core Web Vitals 是必查项，低分会直接影响排名和用户体验。
+相关术语： Technical SEO Page Experience LCP
+
+Crawlability
+中文名： 可爬取性
+定义： Crawlability 是指搜索引擎和 AI 爬虫能否顺利访问、读取并索引网站页面的能力。影响可爬取性的因素包括 robots.txt 配置、页面加载速度、JavaScript 渲染、内部链接结构等。
+使用场景： 进行技术 SEO 审计时，检查 robots.txt 和 Crawl Budget 是否阻碍了重要页面的爬取。
+相关术语： Robots.txt Sitemap Technical SEO Indexability
+
+CTR (Click-Through Rate)
+中文名： 点击率
+定义： CTR（Click-Through Rate，点击率）是指在搜索结果中展示后被用户点击的比例（点击次数 ÷ 展示次数）。在 AI 搜索时代，随着零点击搜索增加，CTR 优化的重要性与意义正在发生转变，但仍是衡量标题和元描述吸引力的核心指标。
+使用场景： 优化 Title Tag 和 Meta Description 时，以提升 CTR 为核心目标。
+相关术语： SERP Zero-Click Search Title Tag
+
+
+Domain Authority (DA)
+中文名： 域名权威度
+定义： Domain Authority（DA）是 Moz 开发的第三方评分指标（0–100），用于预测一个域名在搜索引擎中的排名潜力。DA 综合考量了链接数量、质量、域名历史等因素。高 DA 网站发布的内容也更容易被 AI 系统认为是权威来源。
+使用场景： 评估外链建设目标网站质量，或对比竞争对手的整体域名权威度。
+相关术语： Backlink E-E-A-T PageRank
+
+Duplicate Content
+中文名： 重复内容
+定义： Duplicate Content 是指在同一网站或跨站之间存在的相同或高度相似的内容。搜索引擎难以判断哪个版本应该排名，可能导致权重分散。AI 系统也倾向于引用内容独特性更高的来源。
+使用场景： 内容审计时识别并合并或规范化重复页面，避免 SEO 权重稀释。
+相关术语： Canonical URL Thin Content Content Audit
+
+
+E-E-A-T (Experience, Expertise, Authoritativeness, Trustworthiness)
+中文名： 经验、专业知识、权威性、可信度
+定义： E-E-A-T 是 Google 搜索质量评估框架的核心概念，代表 Experience（经验）、Expertise（专业知识）、Authoritativeness（权威性）和 Trustworthiness（可信度）。高 E-E-A-T 内容更受 Google 算法青睐，同时也更容易被 AI 系统选为权威引用来源。
+使用场景： 创作 YMYL（Your Money Your Life）类内容时，E-E-A-T 信号（作者简介、引用来源、实际案例）是排名的关键影响因素。
+相关术语： YMYL Author Authority Trust Signals
+
+
+Featured Snippet
+中文名： 精选摘要
+定义： Featured Snippet 是 Google 在搜索结果页最顶部展示的特殊内容框，直接摘录自某网页并以段落、列表或表格形式呈现。Featured Snippet 是"Position Zero"，通常具有极高的点击率，也是 AI 搜索引擎构建答案的重要数据来源。
+使用场景： 使用清晰的问题-答案结构、简洁的段落长度（40–60字）来优化 Featured Snippet 获取。
+相关术语： AI Snippet AEO SERP Zero-Click Search
+
+
+Indexability
+中文名： 可索引性
+定义： Indexability 是指搜索引擎爬取页面后是否会将其纳入索引的能力。通过 noindex 标签、密码保护或爬取错误阻止索引的页面无法出现在搜索结果中，也无法被 AI 搜索引擎引用。
+使用场景： 检查重要落地页是否被意外设置了 noindex，是 SEO 审计的基础步骤。
+相关术语： Crawlability Robots.txt Technical SEO
+
+Intent Optimization
+中文名： 搜索意图优化
+定义： Intent Optimization 是指根据用户搜索背后的真实需求（信息型、导航型、商业型、交易型）来优化内容的策略。AI 搜索引擎对意图的理解更加深入，这使得意图匹配成为内容排名的核心因素之一。
+使用场景： 进行关键词研究时，不仅分析搜索量，更要判断关键词背后的用户意图类型。
+相关术语： Keyword Research Conversational Search SERP
+
+
+Keyword Research
+中文名： 关键词研究
+定义： Keyword Research 是 SEO 的基础工作，通过分析用户在搜索引擎中使用的词汇和短语来指导内容策略。在 AI 搜索时代，Keyword Research 已扩展至分析用户在 ChatGPT、Perplexity 等平台中的自然语言提问模式。
+使用场景： 制定内容日历、优化页面标题和元标签时，Keyword Research 数据是核心输入。
+相关术语： Long-Tail Keywords Intent Optimization SERP
+
+
+LCP (Largest Contentful Paint)
+中文名： 最大内容绘制
+定义： LCP 是 Core Web Vitals 中的关键指标，衡量页面主要内容元素（如最大图片或文本块）完成渲染所需的时间。Google 建议 LCP 应在 2.5 秒内完成。LCP 慢的页面在排名竞争中处于劣势。
+使用场景： 使用 Google PageSpeed Insights 或 Lighthouse 检测并优化 LCP，重点关注图片压缩、懒加载和服务器响应时间。
+相关术语： Core Web Vitals Technical SEO Page Experience
+
+Long-Tail Keywords
+中文名： 长尾关键词
+定义： Long-Tail Keywords 是指更具体、搜索量相对较低但购买意图或信息需求更明确的搜索短语（通常 3 个词以上）。在 AI 搜索时代，用户以自然语言提问的习惯使得长尾关键词策略比以往更加重要。
+使用场景： 创作深度解答类内容、FAQ 页面时，围绕长尾关键词布局能有效提升 AI 引用概率。
+相关术语： Keyword Research AEO Conversational Search
+
+
+Meta Description
+中文名： 元描述
+定义： Meta Description 是出现在搜索结果标题下方的简短描述文本（通常 150–160 字符），不直接影响排名，但显著影响用户点击决策（CTR）。清晰、有吸引力的 Meta Description 也有助于 AI 系统理解页面主题。
+使用场景： 为每个重要页面撰写独特的 Meta Description，包含目标关键词和明确的价值主张。
+相关术语： CTR Title Tag SERP
+
+
+PageRank
+中文名： 网页排名算法
+定义： PageRank 是 Google 最早的核心排名算法，通过分析指向页面的链接数量和质量来评估页面重要性。虽然 PageRank 已演进为数百个信号的综合算法，但链接权威性仍是 Google 排名的核心基础之一。
+使用场景： 理解为什么高质量外链建设（Link Building）对 SEO 长期效果至关重要。
+相关术语： Backlink Domain Authority Link Building
+
+Page Experience
+中文名： 页面体验
+定义： Page Experience 是 Google 的综合评估框架，包含 Core Web Vitals、移动端友好性、HTTPS 安全性和无侵入式插屏广告等信号。良好的页面体验是 Google 排名的重要加分项，也影响 AI 爬虫对内容质量的评判。
+使用场景： 进行全面 SEO 审计时，Page Experience 指标应与内容质量指标并列检查。
+相关术语： Core Web Vitals Technical SEO Mobile-First Indexing
+
+🧠 Category 3: AI Agent & LLM Terms
+
+AI Agent
+中文名： AI 智能体 定义： AI Agent 是指能够感知环境、制定计划并自主执行多步骤任务的 AI 系统。与单轮问答不同，AI Agent 可以调用工具、访问外部数据、持续迭代，直至完成复杂目标。 使用场景： 构建自动化工作流（如自动写作、代码调试、数据分析）时，AI Agent 是核心架构。 相关术语： MCP Function Calling RAG
+
+
+Embedding
+中文名： 向量嵌入 定义： Embedding 是将文本、图像等内容转换为高维数字向量的技术，使语义相似的内容在向量空间中距离更近。Embedding 是 RAG、语义搜索和 AI 内容推荐的基础技术。 使用场景： 构建基于语义相似度的搜索系统或 RAG 知识库时使用。 相关术语： RAG Vector Database LLM
+
+
+Function Calling
+中文名： 函数调用 定义： Function Calling 是 LLM（如 GPT-4、Claude）的内置能力，允许模型在对话中识别需要调用外部函数的时机，并生成结构化的调用请求（函数名+参数）。它是让 AI 连接真实世界工具的轻量级方案。 使用场景： 需要 AI 查询实时数据（天气、股价）或执行简单动作（发邮件、查日历）时使用。 相关术语： MCP AI Agent Tool Use
+
+
+Hallucination
+中文名： 幻觉（AI 幻觉） 定义： Hallucination 指 LLM 生成看似合理但实际错误或虚构的内容。AI 幻觉是影响 AI 搜索可信度的核心问题，也是 GEO 优化需要通过高质量内容"纠正"模型认知的原因之一。 使用场景： 评估 AI 工具可靠性或制定内容策略以纠正 AI 对品牌的错误认知时。 相关术语： Grounding RAG E-E-A-T
+
+
+LLM (Large Language Model)
+中文名： 大语言模型 定义： LLM 是通过海量文本数据训练的大规模 AI 模型，能够理解和生成人类语言。代表产品包括 GPT-4、Claude、Gemini、DeepSeek 等。LLM 是现代 AI 搜索、AI Agent 和 GEO 优化的核心驱动力。 使用场景： 理解 AI 搜索引擎的底层机制，以及为什么内容质量和结构对 AI 引用至关重要。 相关术语： GEO RAG AI Agent LLMO
+
+
+MCP (Model Context Protocol)
+中文名： 模型上下文协议 定义： MCP 是 Anthropic 提出的开放标准协议，定义了 AI 模型与外部工具、数据源之间的标准化通信方式。MCP Server 是按照该协议暴露工具能力的服务端，Claude、Cursor 等 AI 工具可通过 MCP 连接文件系统、数据库、API 等。 使用场景： 为 AI Agent 添加可扩展工具能力时，MCP 是目前最主流的标准化方案。 相关术语： Function Calling AI Agent SKILL.md
+
+
+RAG (Retrieval-Augmented Generation)
+中文名： 检索增强生成 定义： RAG 是一种 AI 架构，在 LLM 生成回答前先从外部知识库中检索相关内容，将检索结果作为上下文注入模型。RAG 能有效减少幻觉、提升答案准确性，是企业 AI 应用的核心架构。 使用场景： 构建基于私有文档的 AI 问答系统（如企业知识库、客服机器人）时必用。 相关术语： Embedding Vector Database Hallucination LLM
+
+
+Tool Use
+中文名： 工具调用 定义： Tool Use 是 AI 模型使用外部工具（搜索引擎、计算器、代码执行器、API 等）完成任务的能力。Claude 和 GPT-4 均支持 Tool Use，是构建实用 AI Agent 的基础能力。 使用场景： 当 AI 需要访问实时数据或执行超出纯文本生成范围的操作时。 相关术语： Function Calling MCP AI Agent
+
+
+Vector Database
+中文名： 向量数据库 定义： Vector Database（向量数据库）专门存储和检索高维向量数据（Embedding），支持语义相似度搜索。代表产品包括 Pinecone、Weaviate、Chroma、pgvector 等。是构建 RAG 系统的核心基础设施。 使用场景： 构建 RAG 知识库或语义搜索系统时，需要选择合适的向量数据库存储文档 Embedding。 相关术语： RAG Embedding AI Agent
+
+📄 Category 4: Content & Structured Data
+
+Entity
+中文名： 实体 定义： Entity（实体）是搜索引擎和 AI 系统识别的真实世界对象——人物、地点、品牌、概念等。Google 的知识图谱和 AI 模型都基于实体理解内容，而非单纯匹配关键词。建立强实体关联是 GEO/SEO 的核心策略之一。 使用场景： 通过结构化数据标注品牌实体，帮助 Google 和 AI 系统正确识别你的品牌。 相关术语： Knowledge Graph Schema Markup E-E-A-T
+
+
+FAQ Schema
+中文名： FAQ 结构化数据 定义： FAQ Schema 是 Schema.org 定义的结构化数据类型，用于标注页面中的问答内容。正确实施 FAQ Schema 可以让 Google 在搜索结果中展示可展开的问答，同时也让 AI 模型更容易提取和引用你的内容。 使用场景： 在包含常见问题的页面添加 FAQ Schema，提升 SERP 展示面积和 AI 引用概率。 相关术语： Schema Markup AEO Featured Snippet
+
+
+Knowledge Graph
+中文名： 知识图谱 定义： Knowledge Graph 是 Google 维护的大型结构化知识库，存储实体及其关系。当 Google 在搜索结果右侧展示品牌信息卡时，就是从知识图谱中提取数据。进入 Google 知识图谱是品牌权威性的重要信号。 使用场景： 通过 Wikipedia 页面、Wikidata 词条、结构化数据等方式建立品牌知识图谱实体。 相关术语： Entity Schema Markup E-E-A-T
+
+
+llm.txt / llms.txt
+中文名： LLM 访问声明文件 定义： llm.txt（或 llms.txt）是网站根目录下的文本文件，类似 robots.txt，用于向 AI 爬虫声明网站内容摘要、关键页面和访问权限。它是 GEO 优化的基础配置，帮助 AI 模型更准确地理解和索引你的网站。 使用场景： 任何希望提升 AI 搜索可见度的网站都应配置 llm.txt，尤其是内容型网站。 相关术语： GEO Crawlability robots.txt
+
+
+robots.txt
+中文名： 爬虫协议文件 定义： robots.txt 是网站根目录下的文本文件，通过 Disallow/Allow 指令告知搜索引擎爬虫哪些页面可以抓取。错误配置 robots.txt 可能导致重要页面无法被索引，是技术 SEO 审计的必查项。 使用场景： 阻止爬虫访问后台页面、重复内容页，同时确保核心内容页对所有爬虫开放。 相关术语： Crawlability llm.txt Indexability
+
+
+Schema Markup
+中文名： 结构化数据标注 定义： Schema Markup 是按照 Schema.org 规范添加的结构化数据代码（通常为 JSON-LD 格式），帮助搜索引擎和 AI 理解页面内容的具体含义。正确使用 Schema 可以获得 Rich Results（富结果），提升点击率和 AI 引用概率。 使用场景： 为文章、产品、FAQ、评测、本地商家等页面类型添加对应的 Schema 标注。 相关术语： FAQ Schema Knowledge Graph AEO
+
+
+SKILL.md
+中文名： 技能描述文件 定义： SKILL.md 是 OpenClaw AI 平台中定义 AI Agent 技能（Skill）的 Markdown 格式说明文件，描述技能的功能、触发条件、工具调用方式和输出格式。它是 AI Agent 工具化生态的标准配置文件，类似于 AI 工具的"说明书"。 使用场景： 为 Claude、OpenClaw 等 AI 平台开发自定义技能模块时，必须创建 SKILL.md 文件。 相关术语： MCP AI Agent Function Calling
+
+📊 Category 5: Measurement & Metrics
+
+AI Share of Voice
+中文名： AI 声量占比 定义： AI Share of Voice（AI 声量占比）衡量在特定话题或品类的 AI 搜索结果中，你的品牌被提及的比例相对于竞品的份额。这是 GEO 效果评估的核心指标，类似传统 SEO 中的关键词排名份额。 使用场景： 定期监测品类相关问题中品牌 vs 竞品的 AI 提及比，评估 GEO 优化效果。 相关术语： GEO Brand Mention Rate AI Visibility
+
+
+AI Visibility
+中文名： AI 可见度 定义： AI Visibility（AI 可见度）是综合衡量品牌在各大 AI 搜索平台（ChatGPT、Perplexity、DeepSeek、豆包等）中被提及、引用和推荐程度的指标体系。高 AI 可见度意味着当用户向 AI 询问相关问题时，你的品牌会被主动提及。 使用场景： 进行 GEO 审计时，AI Visibility 是核心基准指标，需要跨多个 AI 平台同时监测。 相关术语： GEO AI Share of Voice Brand Mention Rate
+
+
+Brand Mention Rate
+中文名： 品牌提及率 定义： Brand Mention Rate 是指在针对特定关键词或话题的 AI 搜索结果中，品牌被提及的频率百分比。例如，询问"最好的项目管理工具"100 次，品牌被提及 30 次，则提及率为 30%。 使用场景： 作为 GEO 优化效果的核心 KPI，与历史数据和竞品对比分析。 相关术语： AI Visibility AI Share of Voice GEO
+
+
+Citation Rate
+中文名： 内容引用率 定义： Citation Rate 是指你的网站内容被 AI 搜索引擎（如 Perplexity、ChatGPT Search）作为来源引用的频率。高引用率表明你的内容被 AI 认为是权威来源，是 AEO/GEO 优化效果的直接体现。 使用场景： 监测哪些页面类型（教程、对比、Glossary）获得更高的 AI 引用率，指导内容策略。 相关术语： AEO GEO AI Visibility
+
+
+GEO Audit
+中文名： GEO 审计 定义： GEO Audit 是系统性评估网站在 AI 搜索引擎中可见度现状的过程，包括检查 AI 提及率、内容结构、llm.txt 配置、Schema 标注、竞品对比等维度。GEO 审计是制定 GEO 优化策略的起点。 使用场景： 每季度或重大内容更新前执行 GEO 审计，识别 AI 可见度差距并制定改进计划。 相关术语： GEO AI Visibility llm.txt
+
+
+Prompt Coverage
+中文名： 提示词覆盖率 定义： Prompt Coverage 衡量你的品牌在目标用户可能向 AI 提出的各类问题（Prompts）中出现的覆盖比例。例如，用户可能用 50 种不同方式询问"最好的 SEO 工具"，Prompt Coverage 追踪你在这 50 种变体中的总体出现率。 使用场景： 制定内容策略时，用 Prompt Coverage 矩阵识别哪些高频问题场景还未被覆盖。 相关术语： GEO Brand Mention Rate Topic Authority
+
+
+Topic Authority
+中文名： 话题权威性 定义： Topic Authority 是衡量网站在特定话题领域深度和广度覆盖程度的综合评估。拥有高 Topic Authority 的网站在该话题的所有相关问题上都有深度内容，更容易获得 Google 和 AI 的信任与引用。 使用场景： 通过构建话题集群（Topic Cluster）策略，系统性地建立某一细分领域的 Topic Authority。 相关术语： E-E-A-T Content Gap GEO AEO
+
+🔗 Related Resources
+AI Visibility Checker Tools Directory →
+GEO Optimization Guide 2026 →
+How to Write llm.txt for Your Website →
+MCP Server Directory →
+SKILL.md Complete Guide →
+Last updated: May 2026 | Total terms: 65 | Suggest a term →

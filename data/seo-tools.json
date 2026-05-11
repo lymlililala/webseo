@@ -1,0 +1,2026 @@
+[
+  {
+    "tool_id": "ahrefs",
+    "name": "Ahrefs",
+    "description": "行业领先的全能 SEO 套件，关键词研究、反链分析、内容挖掘、排名追踪一应俱全",
+    "url": "https://ahrefs.com/",
+    "category": "all-in-one",
+    "category_name": "综合 SEO 平台",
+    "tags": [
+      "反链分析",
+      "关键词研究",
+      "全能工具"
+    ],
+    "is_free": false,
+    "has_api": true,
+    "is_ai_friendly": false,
+    "price": "paid"
+  },
+  {
+    "tool_id": "semrush",
+    "name": "SEMrush",
+    "description": "集 SEO、内容营销、竞品分析、PPC 和社交媒体营销于一体的综合数字营销平台",
+    "url": "https://www.semrush.com/",
+    "category": "all-in-one",
+    "category_name": "综合 SEO 平台",
+    "tags": [
+      "全能平台",
+      "PPC分析",
+      "竞品研究"
+    ],
+    "is_free": false,
+    "has_api": true,
+    "is_ai_friendly": true,
+    "price": "paid"
+  },
+  {
+    "tool_id": "seodity",
+    "name": "Seodity",
+    "description": "完整的 SEO 工具套件，帮助企业在搜索引擎中获得更高排名和更多流量",
+    "url": "https://seodity.com/",
+    "category": "all-in-one",
+    "category_name": "综合 SEO 平台",
+    "tags": [
+      "全套工具",
+      "排名提升",
+      "流量增长"
+    ],
+    "is_free": false,
+    "has_api": false,
+    "is_ai_friendly": false,
+    "price": "paid"
+  },
+  {
+    "tool_id": "ubersuggest",
+    "name": "Ubersuggest",
+    "description": "Neil Patel 出品，提供关键词建议、搜索量、SEO 难度一站式分析，有免费版",
+    "url": "https://neilpatel.com/ubersuggest/",
+    "category": "all-in-one",
+    "category_name": "综合 SEO 平台",
+    "tags": [
+      "关键词建议",
+      "SEO难度",
+      "搜索量"
+    ],
+    "is_free": true,
+    "has_api": false,
+    "is_ai_friendly": false,
+    "price": "free"
+  },
+  {
+    "tool_id": "mangools",
+    "name": "Mangools",
+    "description": "界面友好的 SEO 工具套件，含 KWFinder 关键词研究和 SERPChecker 排名分析",
+    "url": "https://mangools.com/",
+    "category": "all-in-one",
+    "category_name": "综合 SEO 平台",
+    "tags": [
+      "用户友好",
+      "KWFinder",
+      "SERP分析"
+    ],
+    "is_free": false,
+    "has_api": true,
+    "is_ai_friendly": false,
+    "price": "paid"
+  },
+  {
+    "tool_id": "seranking",
+    "name": "SERanking",
+    "description": "专为 SEO 机构量身打造的全能平台，支持白标报告和完整客户管理",
+    "url": "https://seranking.com/",
+    "category": "all-in-one",
+    "category_name": "综合 SEO 平台",
+    "tags": [
+      "机构工具",
+      "白标报告",
+      "排名追踪"
+    ],
+    "is_free": false,
+    "has_api": true,
+    "is_ai_friendly": false,
+    "price": "paid"
+  },
+  {
+    "tool_id": "moz-pro",
+    "name": "Moz Pro",
+    "description": "SEO 老牌权威，提供网站权威评分 (DA)、关键词难度和页面优化建议",
+    "url": "https://moz.com/",
+    "category": "all-in-one",
+    "category_name": "综合 SEO 平台",
+    "tags": [
+      "DA评分",
+      "权威工具",
+      "全套SEO"
+    ],
+    "is_free": false,
+    "has_api": true,
+    "is_ai_friendly": false,
+    "price": "paid"
+  },
+  {
+    "tool_id": "serpstat",
+    "name": "Serpstat",
+    "description": "SEO 管理平台，涵盖关键词研究、竞品分析、网站审计、排名追踪四大核心模块",
+    "url": "https://serpstat.com/",
+    "category": "all-in-one",
+    "category_name": "综合 SEO 平台",
+    "tags": [
+      "竞品分析",
+      "网站审计",
+      "SEO管理"
+    ],
+    "is_free": false,
+    "has_api": true,
+    "is_ai_friendly": false,
+    "price": "paid"
+  },
+  {
+    "tool_id": "seo-powersuite",
+    "name": "SEO PowerSuite",
+    "description": "一套含排名追踪、页面分析、反链管理和报告生成的完整桌面 SEO 工具集",
+    "url": "https://www.link-assistant.com/",
+    "category": "all-in-one",
+    "category_name": "综合 SEO 平台",
+    "tags": [
+      "桌面工具",
+      "全套SEO",
+      "反链管理"
+    ],
+    "is_free": true,
+    "has_api": false,
+    "is_ai_friendly": false,
+    "price": "free"
+  },
+  {
+    "tool_id": "webceo",
+    "name": "WebCEO",
+    "description": "专为代理机构设计的 SEO 与数字营销工具平台，提供分析报告和线索生成",
+    "url": "https://www.webceo.com/",
+    "category": "all-in-one",
+    "category_name": "综合 SEO 平台",
+    "tags": [
+      "代理机构",
+      "营销工具",
+      "线索生成"
+    ],
+    "is_free": false,
+    "has_api": true,
+    "is_ai_friendly": false,
+    "price": "paid"
+  },
+  {
+    "tool_id": "spyfu",
+    "name": "SpyFu",
+    "description": "专注竞品关键词和广告策略分析，查看竞争对手多年 SEO/PPC 历史数据",
+    "url": "https://www.spyfu.com/",
+    "category": "all-in-one",
+    "category_name": "综合 SEO 平台",
+    "tags": [
+      "竞品关键词",
+      "PPC分析",
+      "SEO历史"
+    ],
+    "is_free": true,
+    "has_api": true,
+    "is_ai_friendly": false,
+    "price": "free"
+  },
+  {
+    "tool_id": "zutrix",
+    "name": "Zutrix",
+    "description": "以 AI 为核心的 SEO 工具，提供精准关键词排名追踪和竞争对手监控",
+    "url": "https://zutrix.com/",
+    "category": "all-in-one",
+    "category_name": "综合 SEO 平台",
+    "tags": [
+      "AI驱动",
+      "排名追踪",
+      "竞争监控"
+    ],
+    "is_free": false,
+    "has_api": true,
+    "is_ai_friendly": true,
+    "price": "paid"
+  },
+  {
+    "tool_id": "brightedge",
+    "name": "BrightEdge",
+    "description": "企业级 SEO 平台，专为大型企业提供数据驱动的内容优化和竞争分析",
+    "url": "https://www.brightedge.com/",
+    "category": "all-in-one",
+    "category_name": "综合 SEO 平台",
+    "tags": [
+      "企业级",
+      "内容优化",
+      "数据驱动"
+    ],
+    "is_free": false,
+    "has_api": true,
+    "is_ai_friendly": true,
+    "price": "paid"
+  },
+  {
+    "tool_id": "cognitiveseo",
+    "name": "CognitiveSEO",
+    "description": "提供深度反链分析和内容审计功能，全面提升网站 SEO 策略效果",
+    "url": "https://cognitiveseo.com/",
+    "category": "all-in-one",
+    "category_name": "综合 SEO 平台",
+    "tags": [
+      "反链分析",
+      "内容审计",
+      "策略优化"
+    ],
+    "is_free": false,
+    "has_api": true,
+    "is_ai_friendly": false,
+    "price": "paid"
+  },
+  {
+    "tool_id": "keyword-insights",
+    "name": "Keyword Insights",
+    "description": "利用 AI 技术加速内容创作，通过语义聚类和内容规划升级 SEO 策略",
+    "url": "https://www.keywordinsights.ai/",
+    "category": "all-in-one",
+    "category_name": "综合 SEO 平台",
+    "tags": [
+      "AI关键词",
+      "语义聚类",
+      "内容规划"
+    ],
+    "is_free": false,
+    "has_api": true,
+    "is_ai_friendly": true,
+    "price": "paid"
+  },
+  {
+    "tool_id": "clicks-so",
+    "name": "Clicks.so",
+    "description": "专为 SEO 初学者设计的友好工具，操作简单、价格亲民，快速上手优化",
+    "url": "https://www.clicks.so/",
+    "category": "all-in-one",
+    "category_name": "综合 SEO 平台",
+    "tags": [
+      "新手友好",
+      "简单易用",
+      "性价比高"
+    ],
+    "is_free": false,
+    "has_api": false,
+    "is_ai_friendly": false,
+    "price": "paid"
+  },
+  {
+    "tool_id": "seo-utils",
+    "name": "SEO Utils",
+    "description": "原生支持 macOS、Windows、Linux 三平台的桌面端 SEO 应用，无需浏览器",
+    "url": "https://seoutils.app/",
+    "category": "all-in-one",
+    "category_name": "综合 SEO 平台",
+    "tags": [
+      "桌面应用",
+      "跨平台",
+      "离线使用"
+    ],
+    "is_free": false,
+    "has_api": false,
+    "is_ai_friendly": false,
+    "price": "paid"
+  },
+  {
+    "tool_id": "diagnoseo",
+    "name": "DiagnoSEO",
+    "description": "AI 驱动的 SEO 和内容营销工具，含 WordPress SEO 插件，一站式优化方案",
+    "url": "https://diagnoseo.com/",
+    "category": "all-in-one",
+    "category_name": "综合 SEO 平台",
+    "tags": [
+      "AI诊断",
+      "WordPress插件",
+      "内容营销"
+    ],
+    "is_free": false,
+    "has_api": false,
+    "is_ai_friendly": true,
+    "price": "paid"
+  },
+  {
+    "tool_id": "telescope",
+    "name": "Telescope",
+    "description": "价格亲民的全能 SEO 工具，涵盖关键词研究、技术审计、排名追踪和内链优化",
+    "url": "https://withtelescope.com/",
+    "category": "all-in-one",
+    "category_name": "综合 SEO 平台",
+    "tags": [
+      "全能工具",
+      "性价比高",
+      "内链优化"
+    ],
+    "is_free": false,
+    "has_api": false,
+    "is_ai_friendly": false,
+    "price": "paid"
+  },
+  {
+    "tool_id": "daxrm",
+    "name": "DAXRM",
+    "description": "专为数字营销机构设计的全能 CRM，集 SEO、PPC、客户报告和团队协作于一体",
+    "url": "https://www.daxrm.com/",
+    "category": "all-in-one",
+    "category_name": "综合 SEO 平台",
+    "tags": [
+      "营销CRM",
+      "机构管理",
+      "团队协作"
+    ],
+    "is_free": false,
+    "has_api": true,
+    "is_ai_friendly": false,
+    "price": "paid"
+  },
+  {
+    "tool_id": "seotoolbox",
+    "name": "SEO Toolbox",
+    "description": "结合逐页分析、AI 洞察和深度报告的全能 SEO 平台，适合个人到大型机构",
+    "url": "https://seotoolbox.site",
+    "category": "all-in-one",
+    "category_name": "综合 SEO 平台",
+    "tags": [
+      "AI洞察",
+      "深度报告",
+      "页面分析"
+    ],
+    "is_free": false,
+    "has_api": false,
+    "is_ai_friendly": true,
+    "price": "paid"
+  },
+  {
+    "tool_id": "bishopi",
+    "name": "Bishopi.io",
+    "description": "企业级 SEO 与域名情报工具，提供全面的竞争分析和域名监控能力",
+    "url": "https://www.bishopi.io/",
+    "category": "all-in-one",
+    "category_name": "综合 SEO 平台",
+    "tags": [
+      "企业级",
+      "域名情报",
+      "竞争分析"
+    ],
+    "is_free": false,
+    "has_api": true,
+    "is_ai_friendly": false,
+    "price": "paid"
+  },
+  {
+    "tool_id": "google-keyword-planner",
+    "name": "Google Keyword Planner",
+    "description": "Google Ads 官方免费工具，提供精准搜索量和竞价建议，数据来源最权威",
+    "url": "https://ads.google.com/home/tools/keyword-planner/",
+    "category": "keyword-research",
+    "category_name": "关键词研究",
+    "tags": [
+      "Google官方",
+      "搜索量",
+      "免费工具"
+    ],
+    "is_free": true,
+    "has_api": false,
+    "is_ai_friendly": false,
+    "price": "free"
+  },
+  {
+    "tool_id": "keyword-tool",
+    "name": "Keyword Tool",
+    "description": "聚合 Google、YouTube、Amazon、Play Store 等多平台搜索联想词",
+    "url": "https://keywordtool.io/",
+    "category": "keyword-research",
+    "category_name": "关键词研究",
+    "tags": [
+      "多平台",
+      "搜索联想",
+      "YouTube",
+      "Amazon"
+    ],
+    "is_free": true,
+    "has_api": true,
+    "is_ai_friendly": false,
+    "price": "free"
+  },
+  {
+    "tool_id": "keysearch-lsi",
+    "name": "KeySearch LSI Keyword",
+    "description": "输入任意关键词，生成语义相关的 LSI 关键词，提升内容的语义覆盖度",
+    "url": "https://www.keysearch.co/tools/lsi-keywords-generator",
+    "category": "keyword-research",
+    "category_name": "关键词研究",
+    "tags": [
+      "LSI关键词",
+      "语义分析",
+      "内容覆盖"
+    ],
+    "is_free": true,
+    "has_api": false,
+    "is_ai_friendly": false,
+    "price": "free"
+  },
+  {
+    "tool_id": "wordstream",
+    "name": "WordStream",
+    "description": "一站式发现并优先排序最佳目标关键词，兼顾 SEO 和 PPC 双重用途",
+    "url": "https://www.wordstream.com/keywords",
+    "category": "keyword-research",
+    "category_name": "关键词研究",
+    "tags": [
+      "关键词优先级",
+      "SEO+PPC",
+      "关键词发现"
+    ],
+    "is_free": true,
+    "has_api": false,
+    "is_ai_friendly": false,
+    "price": "free"
+  },
+  {
+    "tool_id": "semrush-keyword-magic",
+    "name": "Semrush Keyword Magic Tool",
+    "description": "Semrush 旗舰关键词工具，从数以百万计的建议中找到最佳目标词",
+    "url": "https://www.semrush.com/analytics/keywordmagic/start",
+    "category": "keyword-research",
+    "category_name": "关键词研究",
+    "tags": [
+      "关键词库",
+      "搜索意图",
+      "Semrush"
+    ],
+    "is_free": false,
+    "has_api": true,
+    "is_ai_friendly": false,
+    "price": "paid"
+  },
+  {
+    "tool_id": "serp-miner",
+    "name": "Serp Miner",
+    "description": "利用 Google 自动补全挖掘长尾词，支持批量检查关键词精确搜索量",
+    "url": "https://serpminer.com/free-seo-tools",
+    "category": "keyword-research",
+    "category_name": "关键词研究",
+    "tags": [
+      "长尾词",
+      "批量检查",
+      "搜索量"
+    ],
+    "is_free": true,
+    "has_api": false,
+    "is_ai_friendly": false,
+    "price": "free"
+  },
+  {
+    "tool_id": "kwrds-ai",
+    "name": "kwrds.ai",
+    "description": "AI 驱动的关键词和问题发现工具，深入挖掘用户搜索意图和相关问题",
+    "url": "https://www.kwrds.ai",
+    "category": "keyword-research",
+    "category_name": "关键词研究",
+    "tags": [
+      "AI关键词",
+      "用户意图",
+      "问题挖掘"
+    ],
+    "is_free": false,
+    "has_api": false,
+    "is_ai_friendly": true,
+    "price": "paid"
+  },
+  {
+    "tool_id": "answerthepublic",
+    "name": "AnswerThePublic",
+    "description": "可视化呈现用户最常问的 5W1H 问题，是长尾词挖掘的经典利器",
+    "url": "https://answerthepublic.com/",
+    "category": "keyword-research",
+    "category_name": "关键词研究",
+    "tags": [
+      "长尾词",
+      "用户问题",
+      "内容创作"
+    ],
+    "is_free": true,
+    "has_api": false,
+    "is_ai_friendly": true,
+    "price": "free"
+  },
+  {
+    "tool_id": "keywordideas-xyz",
+    "name": "Keywordideas.xyz",
+    "description": "基于真实 Google 搜索数据，通过 URL 或示例关键词获取关键词建议",
+    "url": "https://keywordideas.xyz/",
+    "category": "keyword-research",
+    "category_name": "关键词研究",
+    "tags": [
+      "关键词建议",
+      "Google数据",
+      "URL分析"
+    ],
+    "is_free": true,
+    "has_api": false,
+    "is_ai_friendly": false,
+    "price": "free"
+  },
+  {
+    "tool_id": "exploding-topics",
+    "name": "Exploding Topics",
+    "description": "通过大数据监测爆发式增长的潜力词，UI 极简，提前发现下一个爆款话题",
+    "url": "https://explodingtopics.com",
+    "category": "keyword-research",
+    "category_name": "关键词研究",
+    "tags": [
+      "趋势发现",
+      "潜力词",
+      "大数据"
+    ],
+    "is_free": true,
+    "has_api": true,
+    "is_ai_friendly": true,
+    "price": "free"
+  },
+  {
+    "tool_id": "google-trends",
+    "name": "Google Trends",
+    "description": "Google 官方趋势工具，实时查看搜索热度变化趋势，支持地区和时间筛选",
+    "url": "https://trends.google.com",
+    "category": "keyword-research",
+    "category_name": "关键词研究",
+    "tags": [
+      "趋势",
+      "实时数据",
+      "Google官方"
+    ],
+    "is_free": true,
+    "has_api": true,
+    "is_ai_friendly": false,
+    "price": "free"
+  },
+  {
+    "tool_id": "majestic",
+    "name": "Majestic",
+    "description": "老牌反链分析权威，以庞大的链接数据库著称，提供信任流量和引用流量双指标",
+    "url": "https://majestic.com/",
+    "category": "backlink-analysis",
+    "category_name": "反链分析",
+    "tags": [
+      "反链数据库",
+      "信任流量",
+      "权威工具"
+    ],
+    "is_free": false,
+    "has_api": true,
+    "is_ai_friendly": false,
+    "price": "paid"
+  },
+  {
+    "tool_id": "monitor-backlinks",
+    "name": "Monitor Backlinks",
+    "description": "实时监控自己和竞争对手的反链变化，区分好坏链接并发出预警",
+    "url": "https://monitorbacklinks.com/",
+    "category": "backlink-analysis",
+    "category_name": "反链分析",
+    "tags": [
+      "实时监控",
+      "反链对比",
+      "链接预警"
+    ],
+    "is_free": false,
+    "has_api": false,
+    "is_ai_friendly": false,
+    "price": "paid"
+  },
+  {
+    "tool_id": "respona",
+    "name": "Respona",
+    "description": "集外链挖掘和邮件推广于一体的链接建设工具，AI 辅助撰写个性化推广邮件",
+    "url": "https://respona.com/",
+    "category": "backlink-analysis",
+    "category_name": "反链分析",
+    "tags": [
+      "链接建设",
+      "邮件推广",
+      "AI辅助"
+    ],
+    "is_free": false,
+    "has_api": true,
+    "is_ai_friendly": true,
+    "price": "paid"
+  },
+  {
+    "tool_id": "backlinkgpt",
+    "name": "BacklinkGPT",
+    "description": "AI 驱动的链接建设平台，智能发现高价值外链机会并自动生成个性化推广文案",
+    "url": "https://www.backlinkgpt.com/",
+    "category": "backlink-analysis",
+    "category_name": "反链分析",
+    "tags": [
+      "AI链接",
+      "推广邮件",
+      "自动化"
+    ],
+    "is_free": false,
+    "has_api": false,
+    "is_ai_friendly": true,
+    "price": "paid"
+  },
+  {
+    "tool_id": "backlinkscan",
+    "name": "BacklinkScan",
+    "description": "简单而强大的反链检查工具，快速分析任意网站的反链质量和来源分布",
+    "url": "https://backlinkscan.com/",
+    "category": "backlink-analysis",
+    "category_name": "反链分析",
+    "tags": [
+      "反链检查",
+      "链接质量",
+      "来源分析"
+    ],
+    "is_free": true,
+    "has_api": false,
+    "is_ai_friendly": false,
+    "price": "free"
+  },
+  {
+    "tool_id": "clearscope",
+    "name": "Clearscope",
+    "description": "业界最佳的 SEO 内容优化平台，通过词频分析和语义建议提升内容搜索排名",
+    "url": "https://www.clearscope.io/",
+    "category": "content-optimization",
+    "category_name": "内容优化",
+    "tags": [
+      "内容评分",
+      "语义优化",
+      "关键词密度"
+    ],
+    "is_free": false,
+    "has_api": true,
+    "is_ai_friendly": true,
+    "price": "paid"
+  },
+  {
+    "tool_id": "surfer-seo",
+    "name": "SurferSEO",
+    "description": "通过实时 SERP 分析提供内容评分和优化建议，系统化提升有机流量",
+    "url": "https://surferseo.com/",
+    "category": "content-optimization",
+    "category_name": "内容优化",
+    "tags": [
+      "内容优化",
+      "NLP分析",
+      "SERP对比"
+    ],
+    "is_free": false,
+    "has_api": true,
+    "is_ai_friendly": true,
+    "price": "paid"
+  },
+  {
+    "tool_id": "neuronwriter",
+    "name": "NeuronWriter",
+    "description": "基于 NLP 语义分析的内容优化工具，帮助创作 Google 喜爱的高质量内容",
+    "url": "https://neuronwriter.com/",
+    "category": "content-optimization",
+    "category_name": "内容优化",
+    "tags": [
+      "NLP语义",
+      "内容评分",
+      "AI写作"
+    ],
+    "is_free": false,
+    "has_api": false,
+    "is_ai_friendly": true,
+    "price": "paid"
+  },
+  {
+    "tool_id": "contentswift",
+    "name": "ContentSwift",
+    "description": "开源内容研究和 SEO 优化工具，完全免费，适合技术型 SEO 人员使用",
+    "url": "https://github.com/hilmanski/contentswift",
+    "category": "content-optimization",
+    "category_name": "内容优化",
+    "tags": [
+      "开源工具",
+      "内容研究",
+      "免费"
+    ],
+    "is_free": true,
+    "has_api": false,
+    "is_ai_friendly": false,
+    "price": "free"
+  },
+  {
+    "tool_id": "market-muse",
+    "name": "Market Muse",
+    "description": "AI 分析整个网站并给出个性化客观见解，帮助更快更好地规划内容战略",
+    "url": "https://www.marketmuse.com/",
+    "category": "content-optimization",
+    "category_name": "内容优化",
+    "tags": [
+      "AI内容规划",
+      "内容评分",
+      "主题权威"
+    ],
+    "is_free": false,
+    "has_api": true,
+    "is_ai_friendly": true,
+    "price": "paid"
+  },
+  {
+    "tool_id": "frase",
+    "name": "Frase.io",
+    "description": "最快捷高效的 Google 排名内容创作工具，AI 辅助研究和撰写高质量 SEO 文章",
+    "url": "https://www.frase.io/",
+    "category": "content-optimization",
+    "category_name": "内容优化",
+    "tags": [
+      "AI写作",
+      "内容创作",
+      "FAQ结构"
+    ],
+    "is_free": false,
+    "has_api": true,
+    "is_ai_friendly": true,
+    "price": "paid"
+  },
+  {
+    "tool_id": "growthbar",
+    "name": "GrowthBar",
+    "description": "AI 驱动的博客内容创作工具，以 10 倍速度撰写 SEO 友好的博客文章",
+    "url": "https://www.growthbarseo.com/",
+    "category": "content-optimization",
+    "category_name": "内容优化",
+    "tags": [
+      "AI博客",
+      "快速写作",
+      "内容优化"
+    ],
+    "is_free": false,
+    "has_api": false,
+    "is_ai_friendly": true,
+    "price": "paid"
+  },
+  {
+    "tool_id": "lsigraph",
+    "name": "LSIGraph",
+    "description": "通过 LSI 语义关键词优化内容，全面提升网站流量并增强内容主题权威性",
+    "url": "https://lsigraph.com/",
+    "category": "content-optimization",
+    "category_name": "内容优化",
+    "tags": [
+      "LSI语义",
+      "流量提升",
+      "内容权威"
+    ],
+    "is_free": true,
+    "has_api": false,
+    "is_ai_friendly": false,
+    "price": "free"
+  },
+  {
+    "tool_id": "yoast-seo",
+    "name": "Yoast SEO",
+    "description": "WordPress 最受欢迎的 SEO 插件，提供页面实时 SEO 建议和可读性评分",
+    "url": "https://yoast.com/",
+    "category": "content-optimization",
+    "category_name": "内容优化",
+    "tags": [
+      "WordPress插件",
+      "实时建议",
+      "可读性"
+    ],
+    "is_free": true,
+    "has_api": false,
+    "is_ai_friendly": false,
+    "price": "free"
+  },
+  {
+    "tool_id": "grackerai",
+    "name": "GrackerAI",
+    "description": "专为 B2B 网络安全 SaaS 企业打造的 AI 内容编辑和程序化 SEO 解决方案",
+    "url": "https://gracker.ai/",
+    "category": "content-optimization",
+    "category_name": "内容优化",
+    "tags": [
+      "B2B",
+      "程序化SEO",
+      "网络安全"
+    ],
+    "is_free": false,
+    "has_api": false,
+    "is_ai_friendly": true,
+    "price": "paid"
+  },
+  {
+    "tool_id": "tailortask",
+    "name": "TailorTask",
+    "description": "AI 智能体自动化完成内链优化、客座博客提案、博客创作等重复性 SEO 工作",
+    "url": "https://www.tailortask.ai/",
+    "category": "content-optimization",
+    "category_name": "内容优化",
+    "tags": [
+      "AI自动化",
+      "内链优化",
+      "智能体"
+    ],
+    "is_free": false,
+    "has_api": false,
+    "is_ai_friendly": true,
+    "price": "paid"
+  },
+  {
+    "tool_id": "searchattention",
+    "name": "SearchAttention",
+    "description": "优化内容以适应 AI 搜索引擎，如 Google AI Overview、Perplexity 和 SearchGPT",
+    "url": "https://searchattention.com",
+    "category": "content-optimization",
+    "category_name": "内容优化",
+    "tags": [
+      "AI搜索优化",
+      "AI Overview",
+      "GEO"
+    ],
+    "is_free": false,
+    "has_api": false,
+    "is_ai_friendly": true,
+    "price": "paid"
+  },
+  {
+    "tool_id": "koala-sh",
+    "name": "Koala AI",
+    "description": "AI 内容创作平台，支持 SEO 代理、内链优化、实体图谱生成等高级功能",
+    "url": "https://koala.sh",
+    "category": "content-optimization",
+    "category_name": "内容优化",
+    "tags": [
+      "AI平台",
+      "内链优化",
+      "实体图谱"
+    ],
+    "is_free": false,
+    "has_api": false,
+    "is_ai_friendly": true,
+    "price": "paid"
+  },
+  {
+    "tool_id": "alttextlab",
+    "name": "AltTextLab",
+    "description": "AI 生成 SEO 优化且无障碍的图片 Alt 文本，提升图片在搜索引擎中的可见度",
+    "url": "https://www.alttextlab.com/",
+    "category": "content-optimization",
+    "category_name": "内容优化",
+    "tags": [
+      "Alt文本",
+      "图片SEO",
+      "无障碍"
+    ],
+    "is_free": true,
+    "has_api": true,
+    "is_ai_friendly": true,
+    "price": "free"
+  },
+  {
+    "tool_id": "serprecon",
+    "name": "SERPrecon",
+    "description": "基于真实语义搜索指标进行竞争分析的内容优化工具，支持 AI 搜索份额追踪",
+    "url": "https://www.serprecon.com/",
+    "category": "content-optimization",
+    "category_name": "内容优化",
+    "tags": [
+      "语义分析",
+      "AI份额",
+      "竞争分析"
+    ],
+    "is_free": false,
+    "has_api": false,
+    "is_ai_friendly": true,
+    "price": "paid"
+  },
+  {
+    "tool_id": "tuxseo",
+    "name": "TuxSEO",
+    "description": "全自动 SEO 优化博客创作系统，为企业提供完全自动化的内容发布方案",
+    "url": "https://tuxseo.com/",
+    "category": "content-optimization",
+    "category_name": "内容优化",
+    "tags": [
+      "全自动",
+      "博客创作",
+      "企业工具"
+    ],
+    "is_free": false,
+    "has_api": false,
+    "is_ai_friendly": true,
+    "price": "paid"
+  },
+  {
+    "tool_id": "serpbear",
+    "name": "SerpBear",
+    "description": "开源搜索引擎排名追踪应用，支持自部署，完全免费，数据完全自主掌控",
+    "url": "https://docs.serpbear.com/",
+    "category": "rank-tracking",
+    "category_name": "排名追踪",
+    "tags": [
+      "开源",
+      "自部署",
+      "免费"
+    ],
+    "is_free": true,
+    "has_api": true,
+    "is_ai_friendly": false,
+    "price": "free"
+  },
+  {
+    "tool_id": "serpwatcher",
+    "name": "SERPWatcher",
+    "description": "面向营销人员和代理机构的最先进排名追踪器，提供自动报告和异常预警",
+    "url": "https://serpwatch.io/",
+    "category": "rank-tracking",
+    "category_name": "排名追踪",
+    "tags": [
+      "自动报告",
+      "代理机构",
+      "异常预警"
+    ],
+    "is_free": false,
+    "has_api": true,
+    "is_ai_friendly": false,
+    "price": "paid"
+  },
+  {
+    "tool_id": "accuranker",
+    "name": "AccuRanker",
+    "description": "全球速度最快、精度最高的关键词排名追踪工具，支持按需刷新排名数据",
+    "url": "https://www.accuranker.com/",
+    "category": "rank-tracking",
+    "category_name": "排名追踪",
+    "tags": [
+      "高精度",
+      "快速刷新",
+      "专业工具"
+    ],
+    "is_free": false,
+    "has_api": true,
+    "is_ai_friendly": false,
+    "price": "paid"
+  },
+  {
+    "tool_id": "nightwatch",
+    "name": "Nightwatch",
+    "description": "基于云端的 SEO 与分析工具，专注于排名追踪和可视化报告，数据直观易懂",
+    "url": "https://nightwatch.io/",
+    "category": "rank-tracking",
+    "category_name": "排名追踪",
+    "tags": [
+      "云端工具",
+      "可视化报告",
+      "排名监控"
+    ],
+    "is_free": false,
+    "has_api": true,
+    "is_ai_friendly": false,
+    "price": "paid"
+  },
+  {
+    "tool_id": "daxrm-rank",
+    "name": "DAXRM Rank Tracker",
+    "description": "实时关键词排名追踪，支持多地区、多设备组合追踪，适合本地 SEO 需求",
+    "url": "https://www.daxrm.com/integrations/rank-tracker/",
+    "category": "rank-tracking",
+    "category_name": "排名追踪",
+    "tags": [
+      "实时追踪",
+      "多地区",
+      "多设备"
+    ],
+    "is_free": false,
+    "has_api": true,
+    "is_ai_friendly": false,
+    "price": "paid"
+  },
+  {
+    "tool_id": "google-search-console",
+    "name": "Google Search Console",
+    "description": "Google 官方站长工具，免费监控索引状态、搜索表现和 Core Web Vitals",
+    "url": "https://search.google.com/search-console/about",
+    "category": "technical-seo",
+    "category_name": "技术 SEO",
+    "tags": [
+      "Google官方",
+      "索引监控",
+      "搜索表现"
+    ],
+    "is_free": true,
+    "has_api": true,
+    "is_ai_friendly": false,
+    "price": "free"
+  },
+  {
+    "tool_id": "bing-webmaster",
+    "name": "Bing Webmaster Tools",
+    "description": "微软 Bing 官方站长工具，含关键词研究和技术 SEO 建议，Copilot AI 整合",
+    "url": "https://www.bing.com/webmasters/about",
+    "category": "technical-seo",
+    "category_name": "技术 SEO",
+    "tags": [
+      "Bing官方",
+      "Copilot",
+      "AI搜索"
+    ],
+    "is_free": true,
+    "has_api": true,
+    "is_ai_friendly": true,
+    "price": "free"
+  },
+  {
+    "tool_id": "yandex-webmaster",
+    "name": "Yandex Webmaster",
+    "description": "俄罗斯 Yandex 官方站长工具，含索引状态、爬虫统计和技术 SEO 建议",
+    "url": "https://webmaster.yandex.com/",
+    "category": "technical-seo",
+    "category_name": "技术 SEO",
+    "tags": [
+      "Yandex",
+      "俄语SEO",
+      "国际市场"
+    ],
+    "is_free": true,
+    "has_api": false,
+    "is_ai_friendly": false,
+    "price": "free"
+  },
+  {
+    "tool_id": "screaming-frog",
+    "name": "Screaming Frog SEO Spider",
+    "description": "最权威的网站爬虫工具，抓取全站 URL 并系统分析断链、重复内容等技术问题",
+    "url": "https://www.screamingfrog.co.uk/seo-spider/",
+    "category": "technical-seo",
+    "category_name": "技术 SEO",
+    "tags": [
+      "爬虫",
+      "技术审计",
+      "本地工具"
+    ],
+    "is_free": true,
+    "has_api": false,
+    "is_ai_friendly": false,
+    "price": "free"
+  },
+  {
+    "tool_id": "site-analyzer",
+    "name": "SiteAnalyzer",
+    "description": "扫描整站并生成每个页面的详细 SEO 信息报告，快速发现页面级优化机会",
+    "url": "https://site-analyzer.pro/",
+    "category": "technical-seo",
+    "category_name": "技术 SEO",
+    "tags": [
+      "全站扫描",
+      "页面报告",
+      "SEO信息"
+    ],
+    "is_free": true,
+    "has_api": false,
+    "is_ai_friendly": false,
+    "price": "free"
+  },
+  {
+    "tool_id": "screpy",
+    "name": "Screpy",
+    "description": "一站式监控网站核心指标，无需切换多个平台，统一查看 SEO 与性能状态",
+    "url": "https://screpy.com/",
+    "category": "technical-seo",
+    "category_name": "技术 SEO",
+    "tags": [
+      "综合监控",
+      "多维指标",
+      "一站式"
+    ],
+    "is_free": false,
+    "has_api": false,
+    "is_ai_friendly": false,
+    "price": "paid"
+  },
+  {
+    "tool_id": "sitebulb",
+    "name": "Sitebulb",
+    "description": "专为 SEO 顾问和代理机构打造的可视化网站审计工具，图表清晰直观",
+    "url": "https://sitebulb.com/",
+    "category": "technical-seo",
+    "category_name": "技术 SEO",
+    "tags": [
+      "可视化审计",
+      "SEO顾问",
+      "代理机构"
+    ],
+    "is_free": false,
+    "has_api": false,
+    "is_ai_friendly": false,
+    "price": "paid"
+  },
+  {
+    "tool_id": "moz-onpage-grader",
+    "name": "Moz On-Page Grader",
+    "description": "Moz 出品的单页面优化分析，针对目标关键词给出详细页面优化评分",
+    "url": "https://moz.com/tools/onpage-grader",
+    "category": "technical-seo",
+    "category_name": "技术 SEO",
+    "tags": [
+      "页面评分",
+      "优化分析",
+      "Moz"
+    ],
+    "is_free": true,
+    "has_api": false,
+    "is_ai_friendly": false,
+    "price": "free"
+  },
+  {
+    "tool_id": "browseo",
+    "name": "BROWSEO",
+    "description": "用搜索引擎的视角查看网站，获得爬虫\"X 光透视\"效果，发现爬虫所见内容",
+    "url": "https://www.browseo.net",
+    "category": "technical-seo",
+    "category_name": "技术 SEO",
+    "tags": [
+      "搜索引擎视角",
+      "X光检测",
+      "爬虫视图"
+    ],
+    "is_free": true,
+    "has_api": false,
+    "is_ai_friendly": false,
+    "price": "free"
+  },
+  {
+    "tool_id": "linkok",
+    "name": "linkok.com",
+    "description": "现代化断链检查工具，界面友好，快速发现并修复网站中的无效链接",
+    "url": "https://linkok.com",
+    "category": "technical-seo",
+    "category_name": "技术 SEO",
+    "tags": [
+      "断链检查",
+      "链接修复",
+      "现代工具"
+    ],
+    "is_free": true,
+    "has_api": false,
+    "is_ai_friendly": false,
+    "price": "free"
+  },
+  {
+    "tool_id": "pressproxy",
+    "name": "PressProxy",
+    "description": "无代码工具，利用 Cloudflare Workers 将 blog.domain.tld 无缝部署到 domain.tld/blog",
+    "url": "https://pressproxy.io/",
+    "category": "technical-seo",
+    "category_name": "技术 SEO",
+    "tags": [
+      "Cloudflare",
+      "子域迁移",
+      "无代码"
+    ],
+    "is_free": true,
+    "has_api": false,
+    "is_ai_friendly": false,
+    "price": "free"
+  },
+  {
+    "tool_id": "wizardstool",
+    "name": "Wizardstool",
+    "description": "简洁易用的断链检查工具，快速扫描并列出网站上所有失效的链接",
+    "url": "https://wizardstool.com/",
+    "category": "technical-seo",
+    "category_name": "技术 SEO",
+    "tags": [
+      "断链扫描",
+      "简洁工具",
+      "链接修复"
+    ],
+    "is_free": true,
+    "has_api": false,
+    "is_ai_friendly": false,
+    "price": "free"
+  },
+  {
+    "tool_id": "seonaut",
+    "name": "SEOnaut",
+    "description": "开源的技术 SEO 审计工具，支持自部署，完全免费，适合有技术能力的站长",
+    "url": "https://seonaut.org",
+    "category": "technical-seo",
+    "category_name": "技术 SEO",
+    "tags": [
+      "开源",
+      "技术审计",
+      "自部署"
+    ],
+    "is_free": true,
+    "has_api": false,
+    "is_ai_friendly": false,
+    "price": "free"
+  },
+  {
+    "tool_id": "siteliner",
+    "name": "Siteliner",
+    "description": "免费识别重复内容、断链及其他影响网站质量和搜索排名问题的检测工具",
+    "url": "https://www.siteliner.com/",
+    "category": "technical-seo",
+    "category_name": "技术 SEO",
+    "tags": [
+      "重复内容",
+      "断链检测",
+      "免费工具"
+    ],
+    "is_free": true,
+    "has_api": false,
+    "is_ai_friendly": false,
+    "price": "free"
+  },
+  {
+    "tool_id": "black-seo-analyzer",
+    "name": "Black SEO Analyzer",
+    "description": "专业命令行 SEO 分析工具，同时优化传统搜索和 AI 答案引擎中的内容可见性",
+    "url": "https://github.com/sethblack/black-seo-analyzer",
+    "category": "technical-seo",
+    "category_name": "技术 SEO",
+    "tags": [
+      "命令行",
+      "AI答案引擎",
+      "开源工具"
+    ],
+    "is_free": true,
+    "has_api": false,
+    "is_ai_friendly": true,
+    "price": "free"
+  },
+  {
+    "tool_id": "python-seo-analyzer",
+    "name": "Python SEO Analyzer",
+    "description": "开源 SEO 分析工具，爬取网站并分析页面结构、词频统计，自动警告技术问题",
+    "url": "https://github.com/sethblack/python-seo-analyzer",
+    "category": "technical-seo",
+    "category_name": "技术 SEO",
+    "tags": [
+      "开源",
+      "Python工具",
+      "命令行"
+    ],
+    "is_free": true,
+    "has_api": false,
+    "is_ai_friendly": false,
+    "price": "free"
+  },
+  {
+    "tool_id": "increv-js-crawler",
+    "name": "IncRev JavaScript Crawler",
+    "description": "能渲染 JavaScript 的 SEO 爬虫，支持 React、Vue、Angular 等现代框架站点审计",
+    "url": "https://github.com/VesterlundCoder/SEO-JavaScript-Crawler-IncRev",
+    "category": "technical-seo",
+    "category_name": "技术 SEO",
+    "tags": [
+      "JS渲染",
+      "开源爬虫",
+      "现代框架"
+    ],
+    "is_free": true,
+    "has_api": false,
+    "is_ai_friendly": false,
+    "price": "free"
+  },
+  {
+    "tool_id": "ssr-checker",
+    "name": "SSR Checker",
+    "description": "通过视觉对比检测 URL 的服务端渲染状态，判断内容是否对爬虫可见",
+    "url": "https://www.crawlably.com/ssr-checker/",
+    "category": "technical-seo",
+    "category_name": "技术 SEO",
+    "tags": [
+      "SSR检测",
+      "爬虫可见性",
+      "渲染对比"
+    ],
+    "is_free": true,
+    "has_api": false,
+    "is_ai_friendly": false,
+    "price": "free"
+  },
+  {
+    "tool_id": "librecrawl",
+    "name": "LibreCrawl",
+    "description": "免费开源 SEO 爬虫，支持无限 URL 爬取、Playwright JS 渲染，适合企业级审计",
+    "url": "https://librecrawl.com/",
+    "category": "technical-seo",
+    "category_name": "技术 SEO",
+    "tags": [
+      "开源爬虫",
+      "JS渲染",
+      "企业级"
+    ],
+    "is_free": true,
+    "has_api": false,
+    "is_ai_friendly": false,
+    "price": "free"
+  },
+  {
+    "tool_id": "pagespeed-insights",
+    "name": "PageSpeed Insights",
+    "description": "Google 官方网页速度诊断，提供 Core Web Vitals 详细数据，SEO 技术的基石",
+    "url": "https://pagespeed.web.dev",
+    "category": "technical-seo",
+    "category_name": "技术 SEO",
+    "tags": [
+      "速度",
+      "Core Web Vitals",
+      "Google官方"
+    ],
+    "is_free": true,
+    "has_api": true,
+    "is_ai_friendly": false,
+    "price": "free"
+  },
+  {
+    "tool_id": "gtmetrix",
+    "name": "GTmetrix",
+    "description": "聚合多项性能指标的全面分析平台，提供瀑布图和可操作的详细优化建议",
+    "url": "https://gtmetrix.com",
+    "category": "technical-seo",
+    "category_name": "技术 SEO",
+    "tags": [
+      "性能分析",
+      "瀑布图",
+      "优化建议"
+    ],
+    "is_free": true,
+    "has_api": true,
+    "is_ai_friendly": false,
+    "price": "free"
+  },
+  {
+    "tool_id": "debugbear",
+    "name": "DebugBear",
+    "description": "专注于 Core Web Vitals 监控，提供实时性能数据、趋势追踪和 Google CrUX 数据",
+    "url": "https://www.debugbear.com/test/website-speed",
+    "category": "technical-seo",
+    "category_name": "技术 SEO",
+    "tags": [
+      "Core Web Vitals",
+      "实时监控",
+      "CrUX数据"
+    ],
+    "is_free": false,
+    "has_api": true,
+    "is_ai_friendly": false,
+    "price": "paid"
+  },
+  {
+    "tool_id": "brightlocal",
+    "name": "BrightLocal",
+    "description": "完整的本地 SEO 监控、审计和优化平台，专为本地商家和机构提供解决方案",
+    "url": "https://www.brightlocal.com/local-seo-tools/",
+    "category": "local-seo",
+    "category_name": "本地 SEO",
+    "tags": [
+      "本地SEO",
+      "审计工具",
+      "机构平台"
+    ],
+    "is_free": false,
+    "has_api": true,
+    "is_ai_friendly": false,
+    "price": "paid"
+  },
+  {
+    "tool_id": "whitespark",
+    "name": "Whitespark",
+    "description": "本地 SEO 全套工具，含本地引用查找器、排名追踪器和评价管理工具",
+    "url": "https://whitespark.ca/",
+    "category": "local-seo",
+    "category_name": "本地 SEO",
+    "tags": [
+      "本地引用",
+      "评价管理",
+      "排名追踪"
+    ],
+    "is_free": false,
+    "has_api": false,
+    "is_ai_friendly": false,
+    "price": "paid"
+  },
+  {
+    "tool_id": "localfalcon",
+    "name": "LocalFalcon",
+    "description": "最精准的本地关键词排名追踪工具，以地图网格可视化方式展示本地可见度",
+    "url": "https://www.localfalcon.com/",
+    "category": "local-seo",
+    "category_name": "本地 SEO",
+    "tags": [
+      "地图网格",
+      "本地排名",
+      "可视化追踪"
+    ],
+    "is_free": false,
+    "has_api": true,
+    "is_ai_friendly": false,
+    "price": "paid"
+  },
+  {
+    "tool_id": "grid-my-business",
+    "name": "Grid My Business",
+    "description": "快速发现本地业务在地图各区域的可见度分布，找出覆盖盲区并针对性优化",
+    "url": "https://gridmybusiness.com/",
+    "category": "local-seo",
+    "category_name": "本地 SEO",
+    "tags": [
+      "本地可见度",
+      "网格分析",
+      "快速检测"
+    ],
+    "is_free": true,
+    "has_api": false,
+    "is_ai_friendly": false,
+    "price": "free"
+  },
+  {
+    "tool_id": "moz-local",
+    "name": "Moz Local",
+    "description": "Moz 出品的本地 SEO 和口碑管理工具，自动同步商家信息到主要目录和地图平台",
+    "url": "https://moz.com/products/local",
+    "category": "local-seo",
+    "category_name": "本地 SEO",
+    "tags": [
+      "商家信息同步",
+      "口碑管理",
+      "Moz"
+    ],
+    "is_free": false,
+    "has_api": false,
+    "is_ai_friendly": false,
+    "price": "paid"
+  },
+  {
+    "tool_id": "gsc-analytics",
+    "name": "Google Search Console",
+    "description": "Google 官方工具，衡量搜索流量和性能，修复问题，让网站在 Google 中发光",
+    "url": "https://search.google.com/search-console/about",
+    "category": "seo-analytics",
+    "category_name": "SEO 数据分析",
+    "tags": [
+      "Google官方",
+      "流量分析",
+      "性能报告"
+    ],
+    "is_free": true,
+    "has_api": true,
+    "is_ai_friendly": false,
+    "price": "free"
+  },
+  {
+    "tool_id": "seo-gets",
+    "name": "SEO Gets",
+    "description": "注重隐私保护的分析工具，专为 SEO 机构和联盟营销人员打造，替代 GSC",
+    "url": "https://seogets.com/",
+    "category": "seo-analytics",
+    "category_name": "SEO 数据分析",
+    "tags": [
+      "隐私保护",
+      "机构工具",
+      "流量分析"
+    ],
+    "is_free": false,
+    "has_api": false,
+    "is_ai_friendly": false,
+    "price": "paid"
+  },
+  {
+    "tool_id": "similarweb",
+    "name": "Similarweb",
+    "description": "聚合全球流量趋势数据的最强平台，提供竞品流量来源、受众画像和渠道分析",
+    "url": "https://similarweb.com",
+    "category": "seo-analytics",
+    "category_name": "SEO 数据分析",
+    "tags": [
+      "流量分析",
+      "竞品研究",
+      "受众画像"
+    ],
+    "is_free": true,
+    "has_api": true,
+    "is_ai_friendly": false,
+    "price": "free"
+  },
+  {
+    "tool_id": "seo-minion",
+    "name": "SEO Minion",
+    "description": "助力日常 SEO 任务的全能扩展，支持页面分析、断链检测、SERP 预览等",
+    "url": "https://chrome.google.com/webstore/detail/seo-minion/giihipjfimkajhlcilipnjeohabimjhi",
+    "category": "browser-extensions",
+    "category_name": "SEO 浏览器扩展",
+    "tags": [
+      "Chrome扩展",
+      "页面分析",
+      "断链检测"
+    ],
+    "is_free": true,
+    "has_api": false,
+    "is_ai_friendly": false,
+    "price": "free"
+  },
+  {
+    "tool_id": "seoquake",
+    "name": "SEOquake",
+    "description": "功能强大的 SEO 工具箱浏览器扩展，实时显示页面各项 SEO 指标和 SERP 数据",
+    "url": "https://www.seoquake.com/index.html",
+    "category": "browser-extensions",
+    "category_name": "SEO 浏览器扩展",
+    "tags": [
+      "SEO指标",
+      "SERP分析",
+      "浏览器工具"
+    ],
+    "is_free": true,
+    "has_api": false,
+    "is_ai_friendly": false,
+    "price": "free"
+  },
+  {
+    "tool_id": "woorank",
+    "name": "Woorank",
+    "description": "即时生成网站综合审查报告，提供 SEO、可用性和安全性多维度改进建议",
+    "url": "https://www.woorank.com/en/privacy",
+    "category": "browser-extensions",
+    "category_name": "SEO 浏览器扩展",
+    "tags": [
+      "网站审查",
+      "综合报告",
+      "改进建议"
+    ],
+    "is_free": true,
+    "has_api": false,
+    "is_ai_friendly": false,
+    "price": "free"
+  },
+  {
+    "tool_id": "keyword-surfer",
+    "name": "Keyword Surfer",
+    "description": "SurferSEO 出品的 Chrome 扩展，在 Google 搜索页面直接显示关键词搜索量",
+    "url": "https://surferseo.com/keyword-surfer-extension/",
+    "category": "browser-extensions",
+    "category_name": "SEO 浏览器扩展",
+    "tags": [
+      "关键词数据",
+      "搜索量",
+      "SurferSEO"
+    ],
+    "is_free": true,
+    "has_api": false,
+    "is_ai_friendly": false,
+    "price": "free"
+  },
+  {
+    "tool_id": "mozbar",
+    "name": "MozBar",
+    "description": "Moz 官方 Chrome 扩展，浏览任意页面或 SERP 时即时显示 DA/PA 权威指标",
+    "url": "https://moz.com/products/pro/seo-toolbar",
+    "category": "browser-extensions",
+    "category_name": "SEO 浏览器扩展",
+    "tags": [
+      "DA/PA",
+      "即时指标",
+      "Moz扩展"
+    ],
+    "is_free": true,
+    "has_api": false,
+    "is_ai_friendly": false,
+    "price": "free"
+  },
+  {
+    "tool_id": "redirect-path",
+    "name": "Redirect Path",
+    "description": "专业的 HTTP 头和重定向检查扩展，快速诊断所有类型的网址跳转问题",
+    "url": "https://chrome.google.com/webstore/detail/redirect-path/aomidfkchockcldhbkggjokdkkebmdll",
+    "category": "browser-extensions",
+    "category_name": "SEO 浏览器扩展",
+    "tags": [
+      "重定向检查",
+      "HTTP头",
+      "跳转诊断"
+    ],
+    "is_free": true,
+    "has_api": false,
+    "is_ai_friendly": false,
+    "price": "free"
+  },
+  {
+    "tool_id": "meta-seo-inspector",
+    "name": "META SEO inspector",
+    "description": "轻松检查网页内部的 Meta 数据，发现问题并获得针对性修复建议",
+    "url": "https://chrome.google.com/webstore/detail/meta-seo-inspector/ibkclpciafdglkjkcibmohobjkcfkaef",
+    "category": "browser-extensions",
+    "category_name": "SEO 浏览器扩展",
+    "tags": [
+      "Meta检测",
+      "页面元数据",
+      "修复建议"
+    ],
+    "is_free": true,
+    "has_api": false,
+    "is_ai_friendly": false,
+    "price": "free"
+  },
+  {
+    "tool_id": "similarweb-ext",
+    "name": "Similarweb Extension",
+    "description": "浏览器扩展版本，即时显示任意网站的全球排名、流量来源和地域分布数据",
+    "url": "https://chrome.google.com/webstore/detail/similarweb-traffic-rank-w/hoklmmgfnpapgjgcpechhaamimifchmp",
+    "category": "browser-extensions",
+    "category_name": "SEO 浏览器扩展",
+    "tags": [
+      "流量排名",
+      "即时分析",
+      "Similarweb"
+    ],
+    "is_free": true,
+    "has_api": false,
+    "is_ai_friendly": false,
+    "price": "free"
+  },
+  {
+    "tool_id": "mst-serp-counter",
+    "name": "MST SERP Counter",
+    "description": "精确显示关键词搜索结果数量，查看搜索结果的排名位置和竞争程度",
+    "url": "https://chrome.google.com/webstore/detail/mst-serp-counter-seo-free/dgpekiojagcbjhgfpmmngnkchekcfifn",
+    "category": "browser-extensions",
+    "category_name": "SEO 浏览器扩展",
+    "tags": [
+      "SERP统计",
+      "排名位置",
+      "竞争分析"
+    ],
+    "is_free": true,
+    "has_api": false,
+    "is_ai_friendly": false,
+    "price": "free"
+  },
+  {
+    "tool_id": "textoptimizer-ext",
+    "name": "TextOptimizer",
+    "description": "分析搜索结果中的相关词汇，提取\"意图表格\"建议内容词汇，匹配搜索引擎期望",
+    "url": "https://chrome.google.com/webstore/detail/textoptimizer/fdbbkmpdjmpnebmdgbhcodhlafiicnkd",
+    "category": "browser-extensions",
+    "category_name": "SEO 浏览器扩展",
+    "tags": [
+      "内容词汇",
+      "意图分析",
+      "NLP优化"
+    ],
+    "is_free": true,
+    "has_api": false,
+    "is_ai_friendly": true,
+    "price": "free"
+  },
+  {
+    "tool_id": "seo-search-simulator",
+    "name": "SEO Search Simulator",
+    "description": "模拟任意地区的 Google 搜索，检查指定 URL 是否出现在前 100 名结果中",
+    "url": "https://chrome.google.com/webstore/detail/seo-search-simulator-by-n/edfjfgjklednkencfhnokmkajbgfhpon",
+    "category": "browser-extensions",
+    "category_name": "SEO 浏览器扩展",
+    "tags": [
+      "搜索模拟",
+      "地区检测",
+      "排名查询"
+    ],
+    "is_free": true,
+    "has_api": false,
+    "is_ai_friendly": false,
+    "price": "free"
+  },
+  {
+    "tool_id": "buzzsumo-ext",
+    "name": "BuzzSumo Extension",
+    "description": "浏览器扩展版 BuzzSumo，快速分析内容传播、链接和社交媒体影响力数据",
+    "url": "https://chrome.google.com/webstore/detail/buzzsumo/phpihcpfhciibkmlllgcjkbmhhpcaojc",
+    "category": "browser-extensions",
+    "category_name": "SEO 浏览器扩展",
+    "tags": [
+      "内容传播",
+      "社交影响力",
+      "链接分析"
+    ],
+    "is_free": true,
+    "has_api": false,
+    "is_ai_friendly": false,
+    "price": "free"
+  },
+  {
+    "tool_id": "google-lighthouse",
+    "name": "Google Lighthouse",
+    "description": "Google 官方性能审计扩展，提供页面加载速度、无障碍访问和 SEO 详细报告",
+    "url": "https://chrome.google.com/webstore/detail/lighthouse/blipmdconlkpinefehnmjammfjpmpbjk",
+    "category": "browser-extensions",
+    "category_name": "SEO 浏览器扩展",
+    "tags": [
+      "Google官方",
+      "性能审计",
+      "无障碍"
+    ],
+    "is_free": true,
+    "has_api": false,
+    "is_ai_friendly": false,
+    "price": "free"
+  },
+  {
+    "tool_id": "checkbot",
+    "name": "Checkbot SEO Checker",
+    "description": "同时爬取数百个页面，检查 50 多种常见网站 SEO、页面速度和安全问题",
+    "url": "https://www.checkbot.io/",
+    "category": "browser-extensions",
+    "category_name": "SEO 浏览器扩展",
+    "tags": [
+      "批量爬取",
+      "安全检查",
+      "页面速度"
+    ],
+    "is_free": true,
+    "has_api": false,
+    "is_ai_friendly": false,
+    "price": "free"
+  },
+  {
+    "tool_id": "seo-sidebar",
+    "name": "SEO Sidebar",
+    "description": "以侧边栏形式实时显示页面 SEO 数据，支持一键导出文本报告",
+    "url": "https://chromewebstore.google.com/detail/seo-sidebar/gmmiickdcmghfpliaiefhjafccapgmpp",
+    "category": "browser-extensions",
+    "category_name": "SEO 浏览器扩展",
+    "tags": [
+      "侧边栏",
+      "实时SEO",
+      "报告导出"
+    ],
+    "is_free": true,
+    "has_api": false,
+    "is_ai_friendly": false,
+    "price": "free"
+  },
+  {
+    "tool_id": "broken-link-checker",
+    "name": "Broken Link Checker",
+    "description": "自动检测并报告网站上所有损坏的外部和内部链接，网站维护的必备工具",
+    "url": "https://www.brokenlinkcheck.com/",
+    "category": "validator-checker",
+    "category_name": "验证检测工具",
+    "tags": [
+      "断链检测",
+      "链接报告",
+      "网站维护"
+    ],
+    "is_free": true,
+    "has_api": false,
+    "is_ai_friendly": false,
+    "price": "free"
+  },
+  {
+    "tool_id": "robots-txt-checker",
+    "name": "Robots.txt Checker",
+    "description": "Google 官方 Robots.txt 测试工具，检查文件语法和爬虫访问规则是否正确",
+    "url": "https://search.google.com/search-console",
+    "category": "validator-checker",
+    "category_name": "验证检测工具",
+    "tags": [
+      "Robots.txt",
+      "爬虫规则",
+      "Google官方"
+    ],
+    "is_free": true,
+    "has_api": false,
+    "is_ai_friendly": false,
+    "price": "free"
+  },
+  {
+    "tool_id": "rich-results-checker",
+    "name": "Rich Result Checker",
+    "description": "Google 官方富媒体结果测试，检测网站是否符合 Google 富摘要展示资格",
+    "url": "https://search.google.com/test/rich-results",
+    "category": "validator-checker",
+    "category_name": "验证检测工具",
+    "tags": [
+      "富媒体",
+      "结构化数据",
+      "资格测试"
+    ],
+    "is_free": true,
+    "has_api": false,
+    "is_ai_friendly": true,
+    "price": "free"
+  },
+  {
+    "tool_id": "xml-sitemap-checker",
+    "name": "XML Sitemap Checker",
+    "description": "XML 网站地图在线验证工具，检查 Sitemap 格式错误和 URL 有效性",
+    "url": "https://www.xml-sitemaps.com/validate-xml-sitemap.html",
+    "category": "validator-checker",
+    "category_name": "验证检测工具",
+    "tags": [
+      "Sitemap验证",
+      "XML格式",
+      "URL检查"
+    ],
+    "is_free": true,
+    "has_api": false,
+    "is_ai_friendly": false,
+    "price": "free"
+  },
+  {
+    "tool_id": "shotog",
+    "name": "ShotOG",
+    "description": "开源边缘原生 OG 图片生成 API，约 50 ms 超低延迟，提升社交媒体点击率",
+    "url": "https://github.com/nicepkg/shotog",
+    "category": "social-og",
+    "category_name": "社交媒体与 OG",
+    "tags": [
+      "OG图片",
+      "开源",
+      "边缘计算"
+    ],
+    "is_free": true,
+    "has_api": true,
+    "is_ai_friendly": false,
+    "price": "free"
+  },
+  {
+    "tool_id": "ogimg-xyz",
+    "name": "ogimg.xyz",
+    "description": "程序化生成 Open Graph 图片的 API 服务，10 种模板、自定义品牌、URL 自动抓取",
+    "url": "https://ogimg.xyz/",
+    "category": "social-og",
+    "category_name": "社交媒体与 OG",
+    "tags": [
+      "OG图片API",
+      "自定义模板",
+      "品牌定制"
+    ],
+    "is_free": true,
+    "has_api": true,
+    "is_ai_friendly": false,
+    "price": "free"
+  },
+  {
+    "tool_id": "pingdom",
+    "name": "Pingdom",
+    "description": "网站加载时间测试和性能分析工具，提供全球多地区速度测试和可用性监控",
+    "url": "https://tools.pingdom.com/",
+    "category": "miscellaneous",
+    "category_name": "其他实用工具",
+    "tags": [
+      "速度测试",
+      "可用性监控",
+      "全球测试"
+    ],
+    "is_free": true,
+    "has_api": true,
+    "is_ai_friendly": false,
+    "price": "free"
+  },
+  {
+    "tool_id": "geo-aeo-tracker",
+    "name": "GEO/AEO Tracker",
+    "description": "开源、本地优先的 AI 可见度仪表板，免费自托管追踪品牌在 AI 工具中的提及率",
+    "url": "https://github.com/danishashko/geo-aeo-tracker",
+    "category": "miscellaneous",
+    "category_name": "其他实用工具",
+    "tags": [
+      "开源",
+      "AI可见度",
+      "品牌监测"
+    ],
+    "is_free": true,
+    "has_api": false,
+    "is_ai_friendly": true,
+    "price": "free"
+  },
+  {
+    "tool_id": "mozcast",
+    "name": "MozCast",
+    "description": "实时监测 Google 搜索算法波动温度，今日算法变化情况一目了然",
+    "url": "https://moz.com/mozcast",
+    "category": "miscellaneous",
+    "category_name": "其他实用工具",
+    "tags": [
+      "算法波动",
+      "Google更新",
+      "实时监测"
+    ],
+    "is_free": true,
+    "has_api": false,
+    "is_ai_friendly": false,
+    "price": "free"
+  },
+  {
+    "tool_id": "indexnow",
+    "name": "IndexNow",
+    "description": "即时通知搜索引擎收录新页面的开放协议工具，加速 Bing/Yandex 等引擎收录",
+    "url": "https://www.indexnow.org",
+    "category": "miscellaneous",
+    "category_name": "其他实用工具",
+    "tags": [
+      "收录加速",
+      "IndexNow",
+      "即时收录"
+    ],
+    "is_free": true,
+    "has_api": true,
+    "is_ai_friendly": false,
+    "price": "free"
+  },
+  {
+    "tool_id": "ssl-shopper",
+    "name": "SSL Shopper",
+    "description": "SSL 证书检测和 HTTPS 安全诊断工具，检查证书有效性和 HTTPS 配置问题",
+    "url": "https://www.sslshopper.com/ssl-checker.html",
+    "category": "miscellaneous",
+    "category_name": "其他实用工具",
+    "tags": [
+      "SSL",
+      "HTTPS",
+      "安全检测"
+    ],
+    "is_free": true,
+    "has_api": false,
+    "is_ai_friendly": false,
+    "price": "free"
+  },
+  {
+    "tool_id": "dataforseo",
+    "name": "DataForSEO",
+    "description": "专业 SEO 数据 API 提供商，涵盖排名、关键词、反链等全套 SEO 数据接口",
+    "url": "https://dataforseo.com",
+    "category": "miscellaneous",
+    "category_name": "其他实用工具",
+    "tags": [
+      "API数据",
+      "开发者工具",
+      "SEO数据"
+    ],
+    "is_free": false,
+    "has_api": true,
+    "is_ai_friendly": true,
+    "price": "paid"
+  },
+  {
+    "tool_id": "serpapi",
+    "name": "SerpApi",
+    "description": "快速、简单、完整的搜索引擎结果 API，支持 Google、Bing 等多个引擎数据抓取",
+    "url": "https://serpapi.com",
+    "category": "miscellaneous",
+    "category_name": "其他实用工具",
+    "tags": [
+      "搜索结果API",
+      "多搜索引擎",
+      "开发者"
+    ],
+    "is_free": false,
+    "has_api": true,
+    "is_ai_friendly": false,
+    "price": "paid"
+  },
+  {
+    "tool_id": "alternativeto",
+    "name": "AlternativeTo",
+    "description": "寻找 SEO 工具替代品的最佳去处，用户评价系统完善，社区活跃",
+    "url": "https://alternativeto.net",
+    "category": "miscellaneous",
+    "category_name": "其他实用工具",
+    "tags": [
+      "工具替代",
+      "用户评价",
+      "软件对比"
+    ],
+    "is_free": true,
+    "has_api": false,
+    "is_ai_friendly": false,
+    "price": "free"
+  },
+  {
+    "tool_id": "product-hunt",
+    "name": "Product Hunt SEO",
+    "description": "获取最新最时髦 SEO 小工具的源头，每日更新最新发布工具，社区活跃",
+    "url": "https://www.producthunt.com/topics/seo",
+    "category": "miscellaneous",
+    "category_name": "其他实用工具",
+    "tags": [
+      "新工具",
+      "社区推荐",
+      "每日更新"
+    ],
+    "is_free": true,
+    "has_api": true,
+    "is_ai_friendly": false,
+    "price": "free"
+  }
+]

@@ -123,21 +123,6 @@ const cnSaasTools: GeoTool[] = [
     highlights: ['SHEEP五维评分体系', '检测9大AI模型', '支持免费使用'],
   },
   {
-    id: 'woi-geo',
-    name: 'WOI GEO 平台',
-    nameEn: 'WOI GEO',
-    description:
-      '提供 6 大 GEO 优化核心功能的一站式平台：AI 可见度监测、品牌提及分析、内容优化建议、竞品对标、效果追踪与报告中心，适合中大型企业使用。',
-    url: 'https://woi.com',
-    tags: ['6大功能', 'GEO优化中心', '一站式', '企业级'],
-    isFree: false,
-    hasFreeplan: false,
-    isOpenSource: false,
-    hasApi: true,
-    region: 'cn',
-    highlights: ['6大GEO核心功能', '企业级一站式平台', '品牌提及深度分析'],
-  },
-  {
     id: 'geo-multimodal',
     name: 'GEO 多模态系统',
     description:
@@ -150,20 +135,6 @@ const cnSaasTools: GeoTool[] = [
     hasApi: false,
     region: 'cn',
     highlights: ['多模态内容优化', '6大国产AI平台兼容', '图文内容可见度'],
-  },
-  {
-    id: 'shujie-ai',
-    name: '数阶智能',
-    description:
-      'GEO 排名系统与 AIGC 矩阵营销平台结合，通过 AI 内容矩阵扩大品牌在 AI 搜索中的覆盖面，同步提升自然搜索和生成式搜索的可见度。',
-    url: 'https://jinrikuaituan.com',
-    tags: ['GEO排名系统', 'AIGC矩阵', '内容营销', '矩阵扩散'],
-    isFree: false,
-    hasFreeplan: false,
-    isOpenSource: false,
-    hasApi: false,
-    region: 'cn',
-    highlights: ['GEO排名系统', 'AIGC内容矩阵营销', '搜索可见度双提升'],
   },
 ]
 
@@ -200,20 +171,6 @@ const cnServiceTools: GeoTool[] = [
     hasApi: false,
     region: 'cn',
     highlights: ['宝洁/联合利华背景', '网站雷达AI检测', 'AI建站工具'],
-  },
-  {
-    id: 'laver-ai',
-    name: 'Laver AI',
-    description:
-      '构建监测到优化的完整闭环服务，覆盖 ChatGPT、Perplexity、Claude、Gemini 及国内主流 AI 五大平台。提供定制化 GEO 优化方案与持续效果追踪。',
-    url: 'https://zicaiai.com',
-    tags: ['监测+优化闭环', '5大AI平台', '定制优化', '效果追踪'],
-    isFree: false,
-    hasFreeplan: false,
-    isOpenSource: false,
-    hasApi: false,
-    region: 'cn',
-    highlights: ['监测+优化完整闭环', '国内外5大平台覆盖', '定制化方案'],
   },
   {
     id: 'wanhuys',
@@ -258,20 +215,6 @@ const cnServiceTools: GeoTool[] = [
     highlights: ['128家央媒资源', '15万+自媒体矩阵', '内容投放型GEO'],
   },
   {
-    id: 'fengkuang-geo',
-    name: '疯狂 GEO',
-    description:
-      '提出 T-GEO 5 级结构化优化体系，号称可实现 95% 的 AI 内容收录率。通过系统化内容改造和知识图谱构建提升品牌在生成式搜索中的覆盖密度。',
-    url: 'https://fengkuanggeo.com',
-    tags: ['T-GEO五级结构', '95%AI收录率', '知识图谱', '内容结构化'],
-    isFree: false,
-    hasFreeplan: false,
-    isOpenSource: false,
-    hasApi: false,
-    region: 'cn',
-    highlights: ['T-GEO 5级结构化体系', '95% AI收录率目标', '知识图谱构建'],
-  },
-  {
     id: 'geo-zhida',
     name: 'GEO 智达',
     description:
@@ -284,34 +227,6 @@ const cnServiceTools: GeoTool[] = [
     hasApi: false,
     region: 'cn',
     highlights: ['品牌提及率平均+78%', '专注国内AI生态', '精准内容策略'],
-  },
-  {
-    id: 'aigcgeo',
-    name: 'AIGCGEO 导航',
-    description:
-      '专注 GEO 领域的内容博客与服务商导航站，已收录 32 家国内外 GEO 服务商信息，兼有 GEO 知识库、案例库和工具推荐，是了解 GEO 生态的入口站点。',
-    url: 'https://aigcgeo.com',
-    tags: ['服务商目录', '32家收录', 'GEO知识库', '导航站'],
-    isFree: true,
-    hasFreeplan: true,
-    isOpenSource: false,
-    hasApi: false,
-    region: 'cn',
-    highlights: ['收录32家GEO服务商', 'GEO知识库与案例', 'GEO生态全景地图'],
-  },
-  {
-    id: 'geo-suoyin',
-    name: 'GEO 索引未来',
-    description:
-      '多个国内 AI 搜索平台榜单 TOP1，专注品牌在 AI 生成答案中的高频稳定出现，以"内容索引结构"为核心优化方法论，在业内有较高知名度。',
-    url: 'https://geosuoyin.com',
-    tags: ['多榜单TOP1', '高频提及', '内容索引结构', '知名服务商'],
-    isFree: false,
-    hasFreeplan: false,
-    isOpenSource: false,
-    hasApi: false,
-    region: 'cn',
-    highlights: ['多榜单综合排名TOP1', '内容索引结构方法论', '高频稳定提及'],
   },
 ]
 
@@ -365,20 +280,6 @@ const globalGeoTools: GeoTool[] = [
     pricing: '$29/月起',
     highlights: ['每日自动追踪', '$29/月性价比优选', '15000+活跃用户'],
     featured: true,
-  },
-  {
-    id: 'scrunch-ai',
-    name: 'Scrunch AI',
-    description:
-      '覆盖 8 大 AI 引擎的综合监测平台，独特支持情感分析和错误信息标记功能。可识别 AI 答案中对品牌的负面描述或错误信息，帮助品牌主动纠偏。',
-    url: 'https://scrunch.ai',
-    tags: ['8引擎覆盖', '情感分析', '错误信息标记', '负面监测'],
-    isFree: false,
-    hasFreeplan: false,
-    isOpenSource: false,
-    hasApi: true,
-    region: 'global',
-    highlights: ['8大AI引擎覆盖', '情感+错误信息分析', '负面内容主动纠偏'],
   },
   {
     id: 'peec-ai',
@@ -526,20 +427,6 @@ const globalGeoTools: GeoTool[] = [
     region: 'global',
     highlights: ['引用来源深度追踪', '竞品被引因素分析', '内容差距定位'],
   },
-  {
-    id: 'geofast-ai',
-    name: 'GEOfast',
-    description:
-      '快速 GEO 洞察工具，专注于提供即时的 AI 搜索可见度快速扫描和核心指标概览，适合需要快速获得 GEO 现状快照的营销团队使用。',
-    url: 'https://geofast.ai',
-    tags: ['快速洞察', 'GEO快速扫描', '核心指标概览', '即时报告'],
-    isFree: false,
-    hasFreeplan: true,
-    isOpenSource: false,
-    hasApi: false,
-    region: 'global',
-    highlights: ['即时GEO快速扫描', '核心指标一览', '快速获取现状报告'],
-  },
 ]
 
 // ══════════════════════════════════════════════════════════
@@ -551,7 +438,7 @@ const seoToGeoTools: GeoTool[] = [
     name: 'Semrush AI Visibility',
     description:
       'Semrush 在其旗舰 SEO 平台中新增 AI Visibility 模块，追踪品牌关键词在 Google AI Overviews、ChatGPT、Perplexity 中的出现频次，与传统 SEO 数据无缝整合。',
-    url: 'https://www.semrush.com/features/ai-visibility/',
+    url: 'https://www.semrush.com',
     tags: ['Semrush', 'AI Visibility模块', 'SEO+GEO', 'Google AI概述'],
     isFree: false,
     hasFreeplan: false,
@@ -664,7 +551,7 @@ const seoToGeoTools: GeoTool[] = [
     name: 'Adobe LLM Optimizer',
     description:
       'Adobe 推出的企业级 LLM 内容优化工具，帮助品牌优化数字资产在 LLM 训练和推理中的权重，与 Adobe Experience Cloud 深度集成，适合大型品牌内容运营。',
-    url: 'https://business.adobe.com/products/experience-cloud/llm-optimizer.html',
+    url: 'https://business.adobe.com/products/experience-cloud.html',
     tags: ['Adobe', 'LLM优化', 'Experience Cloud', '企业内容运营'],
     isFree: false,
     hasFreeplan: false,
@@ -741,36 +628,6 @@ const freeGeoTools: GeoTool[] = [
     region: 'global',
     pricing: '完全免费',
     highlights: ['一键生成llms.txt', '自动扫描网站内容', 'AI爬虫可读性检测'],
-  },
-  {
-    id: 'ai-crawlability',
-    name: 'AI Crawlability Checker',
-    description:
-      '免费检测网站对 GPTBot、ClaudeBot、PerplexityBot 等主流 AI 爬虫的可爬取性，识别阻止 AI 索引的 robots.txt 配置问题和技术障碍。',
-    url: 'https://aicrawlability.com',
-    tags: ['免费', 'AI爬虫检测', 'GPTBot', 'robots.txt', '技术诊断'],
-    isFree: true,
-    hasFreeplan: true,
-    isOpenSource: false,
-    hasApi: false,
-    region: 'global',
-    pricing: '完全免费',
-    highlights: ['免费AI爬虫可达性检测', 'robots.txt问题识别', '技术障碍诊断'],
-  },
-  {
-    id: 'ai-content-optimizer-free',
-    name: 'AI Content Optimizer（免费版）',
-    description:
-      '基于 GEO 原则的内容结构优化工具免费版，检测内容是否符合 AI 引用标准：FAQ 覆盖、数据引用、权威来源标注、标题层级等关键指标。',
-    url: 'https://aicontentoptimizer.io',
-    tags: ['内容优化', 'GEO原则', 'FAQ检测', '权威来源', '免费版'],
-    isFree: true,
-    hasFreeplan: true,
-    isOpenSource: false,
-    hasApi: false,
-    region: 'global',
-    pricing: '有免费版',
-    highlights: ['基于GEO原则检测', 'FAQ与内容结构分析', '权威引用覆盖检查'],
   },
   {
     id: 'appearonai-free',

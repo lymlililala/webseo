@@ -1,0 +1,68 @@
+[
+  {
+    "title": "Google 推出 AI Overview 更新，网站流量影响深远",
+    "description": "Google 宣布在更多市场部署 AI Overview，预计对 10-64% 的查询产生影响。",
+    "content": "Google AI Overview 的大规模推出标志着搜索生态的重大转变。",
+    "category": "seo",
+    "source": "SearchEngineJournal",
+    "date": "2026-05-10",
+    "impact": "high",
+    "tags": ["Google", "AI Overview", "SEO", "搜索生态"],
+    "link": "https://example.com/google-ai-overview"
+  },
+  {
+    "title": "OpenAI ChatGPT 新增网络搜索功能",
+    "description": "ChatGPT 用户现在可以在对话中进行实时网络搜索。",
+    "content": "OpenAI 在 ChatGPT 中集成了网络搜索能力。",
+    "category": "geo",
+    "source": "OpenAI Blog",
+    "date": "2026-05-08",
+    "impact": "high",
+    "tags": ["ChatGPT", "GEO", "网络搜索", "OpenAI"],
+    "link": "https://example.com/chatgpt-search"
+  },
+  {
+    "title": "llms.txt 规范获得行业支持",
+    "description": "Perplexity、You.com 等 AI 搜索引擎宣布支持 llms.txt。",
+    "content": "llms.txt 规范获得了广泛支持。",
+    "category": "aeo",
+    "source": "TechCrunch",
+    "date": "2026-05-05",
+    "impact": "high",
+    "tags": ["llms.txt", "AEO", "行业标准"],
+    "link": "https://example.com/llms-txt"
+  },
+  {
+    "title": "Perplexity 推出企业 API",
+    "description": "B2B 平台可直接集成搜索功能。",
+    "content": "Perplexity 发布企业级 API。",
+    "category": "geo",
+    "source": "Perplexity",
+    "date": "2026-05-01",
+    "impact": "medium",
+    "tags": ["Perplexity", "API", "B2B"],
+    "link": "https://example.com/perplexity-api"
+  },
+  {
+    "title": "Google：页面体验信号下调",
+    "description": "内容质量优先级提升。",
+    "content": "Google 的最新算法更新反映了搜索行业的演变。",
+    "category": "seo",
+    "source": "Google SearchCentral",
+    "date": "2026-04-28",
+    "impact": "high",
+    "tags": ["Google", "算法更新", "E-E-A-T"],
+    "link": "https://example.com/google-update"
+  },
+  {
+    "title": "Copilot 新增企业搜索功能",
+    "description": "从企业内部数据源和公网进行搜索。",
+    "content": "Microsoft 扩展了 Copilot 的搜索能力。",
+    "category": "ai",
+    "source": "Microsoft Blog",
+    "date": "2026-04-25",
+    "impact": "medium",
+    "tags": ["Copilot", "企业搜索", "AI"],
+    "link": "https://example.com/copilot-search"
+  }
+]

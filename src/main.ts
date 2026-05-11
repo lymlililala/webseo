@@ -5,6 +5,7 @@ import App from './App.vue'
 import i18n from './i18n'
 import { createVuestic } from 'vuestic-ui'
 import { createGtm } from '@gtm-support/vue-gtm'
+import { inject } from '@vercel/analytics'
 
 import stores from './stores'
 import router from './router'
@@ -28,3 +29,5 @@ if (import.meta.env.VITE_APP_GTM_ENABLED) {
 }
 
 app.mount('#app')
+
+inject()
