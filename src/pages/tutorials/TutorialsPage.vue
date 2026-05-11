@@ -1,13 +1,35 @@
 <script setup lang="ts">
-import { ref, computed } from 'vue'
-import { tutorials } from '../../data/tutorials'
+import { ref, computed, onMounted } from 'vue'
+import { tutorials as localTutorials, type Tutorial } from '../../data/tutorials'
+import { tutorialsAPI } from '../../services/supabase'
 
 const searchQuery = ref('')
 const selectedCategory = ref<'all' | 'seo' | 'geo' | 'aeo'>('all')
 const selectedLevel = ref<'all' | 'beginner' | 'intermediate' | 'advanced'>('all')
+const loading = ref(true)
+const allTutorials = ref<Tutorial[]>([])
+
+onMounted(async () => {
+  try {
+    const data = await tutorialsAPI.getAll()
+    if (data && data.length > 0) {
+      allTutorials.value = data.map((item: any) => ({
+        ...item,
+        lessons: item.lessons ?? [],
+        duration: item.duration ?? 30,
+      })) as Tutorial[]
+    } else {
+      allTutorials.value = localTutorials
+    }
+  } catch {
+    allTutorials.value = localTutorials
+  } finally {
+    loading.value = false
+  }
+})
 
 const filteredTutorials = computed(() => {
-  let result = tutorials
+  let result = allTutorials.value
 
   if (selectedCategory.value !== 'all') {
     result = result.filter((t) => t.category === selectedCategory.value)
@@ -97,7 +119,12 @@ const difficultyLabel = {
       </aside>
 
       <main class="main-content">
-        <div v-if="filteredTutorials.length === 0" class="empty-state">
+        <div v-if="loading" class="empty-state">
+          <VaIcon name="hourglass_empty" size="56px" color="secondary" />
+          <p>加载中...</p>
+        </div>
+
+        <div v-else-if="filteredTutorials.length === 0" class="empty-state">
           <VaIcon name="school" size="56px" color="secondary" />
           <p>暂无匹配课程</p>
         </div>
