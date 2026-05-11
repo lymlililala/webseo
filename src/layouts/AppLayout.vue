@@ -44,7 +44,7 @@ const GlobalStore = useGlobalStore()
 
 const breakpoints = useBreakpoint()
 
-const sidebarWidth = ref('16rem')
+const sidebarWidth = ref('12.5rem')
 const sidebarMinimizedWidth = ref(undefined)
 
 const isMobile = ref(false)
@@ -56,7 +56,7 @@ const onResize = () => {
   isMobile.value = breakpoints.smDown
   isTablet.value = breakpoints.mdDown
   sidebarMinimizedWidth.value = isMobile.value ? '0' : '4.5rem'
-  sidebarWidth.value = isTablet.value ? '100%' : '16rem'
+  sidebarWidth.value = isTablet.value ? '100%' : '12.5rem'
 }
 
 onMounted(() => {

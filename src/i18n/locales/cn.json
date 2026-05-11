@@ -91,6 +91,10 @@
     "persian": "波斯语"
   },
   "menu": {
+    "seo-nav": "SEO 工具导航",
+    "geo-nav": "GEO 生成式优化",
+    "aeo-nav": "AEO 答案引擎优化",
+    "llms-txt": "llms.txt 生成器",
     "auth": "授权",
     "buttons": "按钮",
     "timelines": "时间线",
@@ -98,10 +102,17 @@
     "billing": "计费",
     "login": "登录",
     "signUp": "注册",
+    "signup": "注册",
     "preferences": "偏好",
     "payments": "支付",
     "pricing-plans": "定价计划",
+    "payment-methods": "支付方式",
     "login-singup": "登录/注册",
+    "recover-password": "找回密码",
+    "recover-password-email": "找回密码邮件",
+    "settings": "应用设置",
+    "users": "用户管理",
+    "projects": "项目",
     "404": "404 页面",
     "faq": "常见问题解答"
   },

@@ -1,5 +1,8 @@
 <template>
-  <VaSidebar v-model="writableVisible" :width="sidebarWidth" :color="color" minimized-width="0">
+  <VaSidebar v-model="writableVisible" :width="sidebarWidth" :color="color" minimized-width="0" class="app-sidebar">
+    <!-- 导航分组标题 -->
+    <div class="sidebar-section-label">导航</div>
+
     <VaAccordion v-model="value" multiple>
       <VaCollapse v-for="(route, index) in navigationRoutes.routes" :key="index">
         <template #header="{ value: isCollapsed }">
@@ -12,17 +15,17 @@
             role="button"
             hover-opacity="0.10"
           >
-            <VaSidebarItemContent class="py-3 pr-2 pl-4">
+            <VaSidebarItemContent class="py-2 pr-2 pl-4">
               <VaIcon
                 v-if="route.meta.icon"
                 aria-hidden="true"
                 :name="route.meta.icon"
-                size="20px"
+                size="16px"
                 :color="iconColor(route)"
               />
-              <VaSidebarItemTitle class="flex justify-between items-center leading-5 font-semibold">
+              <VaSidebarItemTitle class="flex justify-between items-center leading-5 font-medium sidebar-item-title">
                 {{ t(route.displayName) }}
-                <VaIcon v-if="route.children" :name="arrowDirection(isCollapsed)" size="20px" />
+                <VaIcon v-if="route.children" :name="arrowDirection(isCollapsed)" size="16px" />
               </VaSidebarItemTitle>
             </VaSidebarItemContent>
           </VaSidebarItem>
@@ -37,8 +40,8 @@
               :aria-label="`Visit ${t(route.displayName)}`"
               hover-opacity="0.10"
             >
-              <VaSidebarItemContent class="py-3 pr-2 pl-11">
-                <VaSidebarItemTitle class="leading-5 font-semibold">
+              <VaSidebarItemContent class="py-2 pr-2 pl-10">
+                <VaSidebarItemTitle class="leading-5 font-medium sidebar-item-title">
                   {{ t(childRoute.displayName) }}
                 </VaSidebarItemTitle>
               </VaSidebarItemContent>
@@ -49,6 +52,7 @@
     </VaAccordion>
   </VaSidebar>
 </template>
+
 <script lang="ts">
 import { defineComponent, watch, ref, computed } from 'vue'
 import { useRoute } from 'vue-router'
@@ -91,7 +95,7 @@ export default defineComponent({
     const setActiveExpand = () =>
       (value.value = navigationRoutes.routes.map((route: INavigationRoute) => routeHasActiveChild(route)))
 
-    const sidebarWidth = computed(() => (props.mobile ? '100vw' : '280px'))
+    const sidebarWidth = computed(() => (props.mobile ? '100vw' : '200px'))
     const color = computed(() => getColor('background-secondary'))
     const activeColor = computed(() => colorToRgba(getColor('focus'), 0.1))
 
@@ -118,3 +122,20 @@ export default defineComponent({
   },
 })
 </script>
+
+<style scoped>
+.sidebar-section-label {
+  padding: 16px 16px 6px;
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--va-text-secondary);
+  opacity: 0.6;
+  user-select: none;
+}
+
+.sidebar-item-title {
+  font-size: 13px !important;
+}
+</style>

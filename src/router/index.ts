@@ -1,6 +1,5 @@
 import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router'
 
-import AuthLayout from '../layouts/AuthLayout.vue'
 import AppLayout from '../layouts/AppLayout.vue'
 
 import RouteViewComponent from '../layouts/RouterBypass.vue'
@@ -8,14 +7,34 @@ import RouteViewComponent from '../layouts/RouterBypass.vue'
 const routes: Array<RouteRecordRaw> = [
   {
     path: '/:pathMatch(.*)*',
-    redirect: { name: 'dashboard' },
+    redirect: { name: 'seo-nav' },
   },
   {
     name: 'admin',
     path: '/',
     component: AppLayout,
-    redirect: { name: 'dashboard' },
+    redirect: { name: 'seo-nav' },
     children: [
+      {
+        name: 'seo-nav',
+        path: 'seo-nav',
+        component: () => import('../pages/seo-nav/SeoNavPage.vue'),
+      },
+      {
+        name: 'geo-nav',
+        path: 'geo-nav',
+        component: () => import('../pages/geo-nav/GeoNavPage.vue'),
+      },
+      {
+        name: 'aeo-nav',
+        path: 'aeo-nav',
+        component: () => import('../pages/aeo-nav/AeoNavPage.vue'),
+      },
+      {
+        name: 'llms-txt',
+        path: 'llms-txt',
+        component: () => import('../pages/llms-txt/LlmsTxtPage.vue'),
+      },
       {
         name: 'dashboard',
         path: 'dashboard',
@@ -71,36 +90,6 @@ const routes: Array<RouteRecordRaw> = [
     ],
   },
   {
-    path: '/auth',
-    component: AuthLayout,
-    children: [
-      {
-        name: 'login',
-        path: 'login',
-        component: () => import('../pages/auth/Login.vue'),
-      },
-      {
-        name: 'signup',
-        path: 'signup',
-        component: () => import('../pages/auth/Signup.vue'),
-      },
-      {
-        name: 'recover-password',
-        path: 'recover-password',
-        component: () => import('../pages/auth/RecoverPassword.vue'),
-      },
-      {
-        name: 'recover-password-email',
-        path: 'recover-password-email',
-        component: () => import('../pages/auth/CheckTheEmail.vue'),
-      },
-      {
-        path: '',
-        redirect: { name: 'login' },
-      },
-    ],
-  },
-  {
     name: '404',
     path: '/404',
     component: () => import('../pages/404.vue'),
@@ -113,7 +102,6 @@ const router = createRouter({
     if (savedPosition) {
       return savedPosition
     }
-    // For some reason using documentation example doesn't scroll on page navigation.
     if (to.hash) {
       return { el: to.hash, behavior: 'smooth' }
     } else {
