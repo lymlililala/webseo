@@ -4,23 +4,23 @@
 
 ## 核心工具导航
 
-- [SEO工具导航](https://www.sgaindex.com/seo-nav): 收录100+主流SEO工具，涵盖综合平台、关键词研究、外链分析、技术SEO、本地SEO等分类
-- [GEO工具导航](https://www.sgaindex.com/geo-nav): 生成式引擎优化工具集合，帮助网站内容被ChatGPT、Perplexity、Gemini等AI引用
-- [AEO工具导航](https://www.sgaindex.com/aeo-nav): 答案引擎优化工具，优化内容结构以获得精选摘要、AI直接答案展示
-- [Schema结构化数据工具](https://www.sgaindex.com/schema-generator): Schema标记生成器与验证工具，支持Article、FAQ、Product、HowTo等20+类型
+- [SEO工具导航](https://sgaindex.com/seo-nav): 收录100+主流SEO工具，涵盖综合平台、关键词研究、外链分析、技术SEO、本地SEO等分类
+- [GEO工具导航](https://sgaindex.com/geo-nav): 生成式引擎优化工具集合，帮助网站内容被ChatGPT、Perplexity、Gemini等AI引用
+- [AEO工具导航](https://sgaindex.com/aeo-nav): 答案引擎优化工具，优化内容结构以获得精选摘要、AI直接答案展示
+- [Schema结构化数据工具](https://sgaindex.com/schema-generator): Schema标记生成器与验证工具，支持Article、FAQ、Product、HowTo等20+类型
 
 ## AI优化专题
 
-- [AI可见性检测](https://www.sgaindex.com/ai-checker): 检测网站内容在主流AI大模型中的引用和可见性表现
-- [llms.txt工具导航](https://www.sgaindex.com/llms-txt): llms.txt生成器、验证器、模板库，帮助网站建立AI可读的语义索引文件
+- [AI可见性检测](https://sgaindex.com/ai-checker): 检测网站内容在主流AI大模型中的引用和可见性表现
+- [llms.txt工具导航](https://sgaindex.com/llms-txt): llms.txt生成器、验证器、模板库，帮助网站建立AI可读的语义索引文件
 
 ## 知识内容
 
-- [SEO文章](https://www.sgaindex.com/articles): AI时代SEO深度文章，涵盖GEO、AEO、LLM优化等前沿话题
-- [SEO教程](https://www.sgaindex.com/tutorials): 从基础到进阶的SEO操作教程，适合各层级从业者
-- [SEO资讯](https://www.sgaindex.com/news): 搜索引擎与AI引擎的最新动态和算法更新
-- [SEO词汇表](https://www.sgaindex.com/glossary): SEO/GEO/AEO专业术语中英对照解释
+- [SEO文章](https://sgaindex.com/articles): AI时代SEO深度文章，涵盖GEO、AEO、LLM优化等前沿话题
+- [SEO教程](https://sgaindex.com/tutorials): 从基础到进阶的SEO操作教程，适合各层级从业者
+- [SEO资讯](https://sgaindex.com/news): 搜索引擎与AI引擎的最新动态和算法更新
+- [SEO词汇表](https://sgaindex.com/glossary): SEO/GEO/AEO专业术语中英对照解释
 
 ## Optional
 
-- [常见问题](https://www.sgaindex.com/faq): SEO与AI优化常见问题解答
+- [常见问题](https://sgaindex.com/faq): SEO与AI优化常见问题解答
