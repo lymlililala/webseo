@@ -41,6 +41,11 @@ const routes: Array<RouteRecordRaw> = [
         component: () => import('../pages/ai-checker/AiCheckerPage.vue'),
       },
       {
+        name: 'glossary',
+        path: 'glossary',
+        component: () => import('../pages/glossary/GlossaryPage.vue'),
+      },
+      {
         name: 'articles',
         path: 'articles',
         component: () => import('../pages/articles/ArticlesPage.vue'),

@@ -47,6 +47,13 @@ export default {
       },
     },
     {
+      name: 'glossary',
+      displayName: 'menu.glossary',
+      meta: {
+        icon: 'menu_book',
+      },
+    },
+    {
       name: 'articles',
       displayName: 'menu.articles',
       meta: {
