@@ -95,6 +95,7 @@
     "geo-nav": "GEO 生成式优化",
     "aeo-nav": "AEO 答案引擎优化",
     "llms-txt": "llms.txt 生成器",
+    "ai-checker": "AI 可见度体检",
     "articles": "文章",
     "tutorials": "教程",
     "news": "新闻",
