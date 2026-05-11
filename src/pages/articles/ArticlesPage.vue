@@ -32,6 +32,11 @@ function openArticle(article: Article) {
   }
 }
 
+function clearFilters() {
+  searchQuery.value = ''
+  selectedCategory.value = 'all'
+}
+
 const categories = [
   { id: 'all', name: '全部文章', icon: 'article', color: '#6366F1' },
   { id: 'seo', name: 'SEO', icon: 'travel_explore', color: '#3B82F6' },
@@ -86,16 +91,7 @@ const categories = [
         <div v-if="filteredArticles.length === 0" class="empty-state">
           <VaIcon name="search_off" size="56px" color="secondary" />
           <p>没有找到匹配的文章</p>
-          <VaButton
-            preset="secondary"
-            size="small"
-            @click="
-              searchQuery = ''
-              selectedCategory = 'all'
-            "
-          >
-            清除筛选
-          </VaButton>
+          <VaButton preset="secondary" size="small" @click="clearFilters"> 清除筛选 </VaButton>
         </div>
 
         <div v-else class="articles-grid">
