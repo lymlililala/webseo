@@ -82,6 +82,13 @@ function selectCategory(catId: string) {
   if (el) el.scrollTo({ top: 0, behavior: 'smooth' })
 }
 
+function clearFilters() {
+  searchQuery.value = ''
+  showOpenSourceOnly.value = false
+  showFreeOnly.value = false
+  activeRegion.value = 'all'
+}
+
 function formatStars(stars: number): string {
   if (stars >= 1000) return (stars / 1000).toFixed(1) + 'k'
   return String(stars)
@@ -338,12 +345,7 @@ const activeSidebarItem = computed(() => (activeCategory.value === 'all' ? scrol
           <button
             v-if="searchQuery || showOpenSourceOnly || showFreeOnly || activeRegion !== 'all'"
             class="geo-clear-btn"
-            @click="
-              searchQuery = ''
-              showOpenSourceOnly = false
-              showFreeOnly = false
-              activeRegion = 'all'
-            "
+            @click="clearFilters"
           >
             <VaIcon name="close" size="12px" />
             清除筛选
@@ -354,18 +356,7 @@ const activeSidebarItem = computed(() => (activeCategory.value === 'all' ? scrol
         <div v-if="filteredTools.length === 0" class="geo-empty">
           <VaIcon name="search_off" size="50px" color="secondary" />
           <p>没有找到匹配的工具，试试其他关键词</p>
-          <VaButton
-            preset="secondary"
-            size="small"
-            @click="
-              searchQuery = ''
-              showOpenSourceOnly = false
-              showFreeOnly = false
-              activeRegion = 'all'
-            "
-          >
-            清除所有筛选
-          </VaButton>
+          <VaButton preset="secondary" size="small" @click="clearFilters"> 清除所有筛选 </VaButton>
         </div>
 
         <div v-for="group in groupedFilteredTools" :key="group.id" class="geo-category-group" :data-cat-id="group.id">

@@ -75,6 +75,12 @@ function selectCategory(catId: string) {
   if (el) el.scrollTo({ top: 0, behavior: 'smooth' })
 }
 
+function clearFilters() {
+  searchQuery.value = ''
+  showAiOnly.value = false
+  showFreeOnly.value = false
+}
+
 // track scroll to highlight active category in sidebar when showing "all"
 const scrollSpy = ref('all')
 let observer: IntersectionObserver | null = null
@@ -254,15 +260,7 @@ const activeSidebarItem = computed(() => (activeCategory.value === 'all' ? scrol
             <VaIcon name="format_list_bulleted" size="15px" />
             找到 <strong>{{ filteredTools.length }}</strong> 个工具
           </span>
-          <button
-            v-if="searchQuery || showAiOnly || showFreeOnly"
-            class="clear-btn"
-            @click="
-              searchQuery = ''
-              showAiOnly = false
-              showFreeOnly = false
-            "
-          >
+          <button v-if="searchQuery || showAiOnly || showFreeOnly" class="clear-btn" @click="clearFilters">
             <VaIcon name="close" size="13px" />
             清除筛选
           </button>
@@ -273,17 +271,7 @@ const activeSidebarItem = computed(() => (activeCategory.value === 'all' ? scrol
           <div v-if="filteredTools.length === 0" class="empty-state">
             <VaIcon name="search_off" size="56px" color="secondary" />
             <p class="empty-text">没有找到匹配的工具，试试其他关键词</p>
-            <VaButton
-              preset="secondary"
-              size="small"
-              @click="
-                searchQuery = ''
-                showAiOnly = false
-                showFreeOnly = false
-              "
-            >
-              清除筛选条件
-            </VaButton>
+            <VaButton preset="secondary" size="small" @click="clearFilters"> 清除筛选条件 </VaButton>
           </div>
 
           <div v-for="group in groupedFilteredTools" :key="group.id" class="category-group" :data-cat-id="group.id">

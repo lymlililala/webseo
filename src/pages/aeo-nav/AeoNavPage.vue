@@ -82,6 +82,12 @@ function selectCategory(catId: string) {
   if (el) el.scrollTo({ top: 0, behavior: 'smooth' })
 }
 
+function clearFilters() {
+  searchQuery.value = ''
+  showOpenSourceOnly.value = false
+  showFreeOnly.value = false
+}
+
 function formatStars(stars: number): string {
   if (stars >= 1000) return (stars / 1000).toFixed(1) + 'k'
   return String(stars)
@@ -319,15 +325,7 @@ const activeSidebarItem = computed(() => (activeCategory.value === 'all' ? scrol
             <VaIcon name="format_list_bulleted" size="13px" />
             找到 <strong>{{ filteredTools.length }}</strong> 个工具
           </span>
-          <button
-            v-if="searchQuery || showOpenSourceOnly || showFreeOnly"
-            class="aeo-clear-btn"
-            @click="
-              searchQuery = ''
-              showOpenSourceOnly = false
-              showFreeOnly = false
-            "
-          >
+          <button v-if="searchQuery || showOpenSourceOnly || showFreeOnly" class="aeo-clear-btn" @click="clearFilters">
             <VaIcon name="close" size="12px" />
             清除筛选
           </button>
@@ -337,17 +335,7 @@ const activeSidebarItem = computed(() => (activeCategory.value === 'all' ? scrol
         <div v-if="filteredTools.length === 0" class="aeo-empty">
           <VaIcon name="search_off" size="50px" color="secondary" />
           <p>没有找到匹配的工具，试试其他关键词</p>
-          <VaButton
-            preset="secondary"
-            size="small"
-            @click="
-              searchQuery = ''
-              showOpenSourceOnly = false
-              showFreeOnly = false
-            "
-          >
-            清除所有筛选
-          </VaButton>
+          <VaButton preset="secondary" size="small" @click="clearFilters"> 清除所有筛选 </VaButton>
         </div>
 
         <!-- Tools by Category -->
