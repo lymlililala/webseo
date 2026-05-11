@@ -8,25 +8,25 @@ export interface SchemaTool {
   isFree?: boolean
   hasFreeplan?: boolean
   pricing?: string
-  level: 'beginner' | 'advanced' | 'auto'  // 新手 / 进阶 / 全自动
+  level: 'beginner' | 'advanced' | 'auto' // 新手 / 进阶 / 全自动
   isOfficial?: boolean
   badge?: string
-  supportedTypes?: string[]  // 支持的 Schema 类型 ID
+  supportedTypes?: string[] // 支持的 Schema 类型 ID
 }
 
 export interface SchemaType {
   id: string
-  name: string           // 类型名 Article / FAQ ...
+  name: string // 类型名 Article / FAQ ...
   icon: string
   color: string
-  stars: number          // 站长需求频率 1-5
+  stars: number // 站长需求频率 1-5
   description: string
-  aeoTip?: string        // AEO/GEO 相关提示
-  internalLink?: string  // 站内内链
+  aeoTip?: string // AEO/GEO 相关提示
+  internalLink?: string // 站内内链
   internalLinkLabel?: string
-  jsonTemplate: string   // JSON-LD 模板代码
+  jsonTemplate: string // JSON-LD 模板代码
   requiredFields: { name: string; desc: string }[]
-  tools: string[]        // 推荐工具 id 列表
+  tools: string[] // 推荐工具 id 列表
 }
 
 // ── 工具数据 ──────────────────────────────────────────────────
@@ -42,13 +42,26 @@ export const schemaTools: SchemaTool[] = [
     isFree: true,
     level: 'beginner',
     badge: '站长首选',
-    supportedTypes: ['article', 'faq', 'product', 'breadcrumb', 'howto', 'video', 'localbusiness', 'event', 'review', 'person', 'organization'],
+    supportedTypes: [
+      'article',
+      'faq',
+      'product',
+      'breadcrumb',
+      'howto',
+      'video',
+      'localbusiness',
+      'event',
+      'review',
+      'person',
+      'organization',
+    ],
   },
   {
     id: 'google-rich-results',
     name: 'Google Rich Results Test',
     url: 'https://search.google.com/test/rich-results',
-    description: 'Google 官方出品的富结果验证工具，生成 Schema 代码后必须在此验证，确保符合 Google 索引标准并能获得富结果展示。',
+    description:
+      'Google 官方出品的富结果验证工具，生成 Schema 代码后必须在此验证，确保符合 Google 索引标准并能获得富结果展示。',
     highlights: ['Google官方', '验证富结果资格', '实时预览效果'],
     tags: ['官方验证', 'Google', '免费'],
     isFree: true,
@@ -68,13 +81,27 @@ export const schemaTools: SchemaTool[] = [
     isOfficial: true,
     level: 'advanced',
     badge: '权威验证',
-    supportedTypes: ['article', 'faq', 'product', 'breadcrumb', 'howto', 'video', 'recipe', 'localbusiness', 'event', 'review', 'person', 'organization'],
+    supportedTypes: [
+      'article',
+      'faq',
+      'product',
+      'breadcrumb',
+      'howto',
+      'video',
+      'recipe',
+      'localbusiness',
+      'event',
+      'review',
+      'person',
+      'organization',
+    ],
   },
   {
     id: 'saijo-george',
     name: 'Saijo George JSON-LD',
     url: 'https://saijogeorge.com/json-ld-schema-generator/',
-    description: '极简快速的 JSON-LD 生成器，界面简洁直观，无需注册，覆盖常用 Schema 类型，适合需要快速生成代码的场景。',
+    description:
+      '极简快速的 JSON-LD 生成器，界面简洁直观，无需注册，覆盖常用 Schema 类型，适合需要快速生成代码的场景。',
     highlights: ['极简快速', '无需注册', '界面直观'],
     tags: ['快速', '免费', '简洁'],
     isFree: true,
@@ -93,21 +120,11 @@ export const schemaTools: SchemaTool[] = [
     supportedTypes: ['article'],
   },
   {
-    id: 'seobility',
-    name: 'Seobility Schema Generator',
-    url: 'https://www.seobility.net/en/wiki/Schema_Markup',
-    description: 'Seobility 提供的产品和电商 Schema 生成工具，支持 Product、Offer 等电商相关类型，适合独立站和电商站长。',
-    highlights: ['电商类型专精', 'Product+Offer', '适合独立站'],
-    tags: ['Product专项', 'Offer', '电商'],
-    isFree: true,
-    level: 'beginner',
-    supportedTypes: ['product'],
-  },
-  {
     id: 'whitespark',
     name: 'Whitespark Local Schema',
-    url: 'https://whitespark.ca/local-business-json-ld-schema-generator/',
-    description: 'Whitespark 专为本地商家打造的 LocalBusiness Schema 生成器，字段覆盖全面，支持营业时间、服务区域、联系方式等本地 SEO 关键字段。',
+    url: 'https://whitespark.ca/',
+    description:
+      'Whitespark 专为本地商家打造的 LocalBusiness Schema 生成器，字段覆盖全面，支持营业时间、服务区域、联系方式等本地 SEO 关键字段。',
     highlights: ['本地商家专精', '营业时间支持', '本地SEO必备'],
     tags: ['LocalBusiness', '本地SEO', '免费'],
     isFree: true,
@@ -131,7 +148,8 @@ export const schemaTools: SchemaTool[] = [
     id: 'schema-app',
     name: 'Schema App',
     url: 'https://schemaapp.com/',
-    description: '全自动企业级 Schema 管理平台，AI 自动识别页面类型并生成结构化数据，支持大规模网站批量部署，提供持续监测。',
+    description:
+      '全自动企业级 Schema 管理平台，AI 自动识别页面类型并生成结构化数据，支持大规模网站批量部署，提供持续监测。',
     highlights: ['AI自动识别', '企业级管理', '批量部署监测'],
     tags: ['AI自动化', '企业级', '全自动'],
     hasFreeplan: false,
@@ -144,7 +162,8 @@ export const schemaTools: SchemaTool[] = [
     id: 'wordlift',
     name: 'WordLift',
     url: 'https://wordlift.io/',
-    description: 'AI 驱动的内容知识图谱和 Schema 自动标注平台，能自动识别内容实体并生成结构化数据，同时构建网站知识图谱。',
+    description:
+      'AI 驱动的内容知识图谱和 Schema 自动标注平台，能自动识别内容实体并生成结构化数据，同时构建网站知识图谱。',
     highlights: ['AI实体识别', '知识图谱构建', '内容语义分析'],
     tags: ['AI自动化', '知识图谱', '实体识别'],
     hasFreeplan: true,
@@ -156,7 +175,8 @@ export const schemaTools: SchemaTool[] = [
     id: 'rankmath',
     name: 'RankMath',
     url: 'https://rankmath.com/wordpress/plugin/seo-suite/',
-    description: 'WordPress 最流行的 SEO 插件，内置 Schema 自动生成模块，支持 20+ 类型，根据页面内容智能推荐 Schema 类型，设置一次持续生效。',
+    description:
+      'WordPress 最流行的 SEO 插件，内置 Schema 自动生成模块，支持 20+ 类型，根据页面内容智能推荐 Schema 类型，设置一次持续生效。',
     highlights: ['WordPress专属', '智能推荐类型', '设置一次持续'],
     tags: ['WordPress', 'AI辅助', '插件'],
     hasFreeplan: true,
@@ -169,7 +189,8 @@ export const schemaTools: SchemaTool[] = [
     id: 'yoast',
     name: 'Yoast SEO',
     url: 'https://yoast.com/wordpress/plugins/seo/',
-    description: 'WordPress 老牌 SEO 插件，支持 Schema 自动生成，与 RankMath 并列为 WordPress 站长的两大首选，稳定可靠。',
+    description:
+      'WordPress 老牌 SEO 插件，支持 Schema 自动生成，与 RankMath 并列为 WordPress 站长的两大首选，稳定可靠。',
     highlights: ['WordPress老牌', '稳定可靠', '自动生成'],
     tags: ['WordPress', 'Schema自动化', '插件'],
     hasFreeplan: true,
@@ -187,7 +208,8 @@ export const schemaTypes: SchemaType[] = [
     icon: 'article',
     color: '#6366F1',
     stars: 5,
-    description: '文章、博客文章、新闻资讯页面的结构化标注。帮助搜索引擎识别发布时间、作者、内容类型，是内容站 SEO 的基础配置。',
+    description:
+      '文章、博客文章、新闻资讯页面的结构化标注。帮助搜索引擎识别发布时间、作者、内容类型，是内容站 SEO 的基础配置。',
     jsonTemplate: `{
   "@context": "https://schema.org",
   "@type": "Article",
@@ -228,8 +250,10 @@ export const schemaTypes: SchemaType[] = [
     icon: 'quiz',
     color: '#10B981',
     stars: 5,
-    description: '常见问题页面的结构化标注，让 Google 在搜索结果中展示可展开的 Q&A，同时是 AI 引擎（ChatGPT、Perplexity）最容易直接引用的内容格式。',
-    aeoTip: 'FAQ Schema 是 AEO 优化最高效的手段之一，问答格式与 AI 搜索的"直接回答"需求完美匹配，能大幅提升被 AI 引用的概率。',
+    description:
+      '常见问题页面的结构化标注，让 Google 在搜索结果中展示可展开的 Q&A，同时是 AI 引擎（ChatGPT、Perplexity）最容易直接引用的内容格式。',
+    aeoTip:
+      'FAQ Schema 是 AEO 优化最高效的手段之一，问答格式与 AI 搜索的"直接回答"需求完美匹配，能大幅提升被 AI 引用的概率。',
     internalLink: '/aeo-nav',
     internalLinkLabel: '查看 AEO 优化工具 →',
     jsonTemplate: `{
@@ -297,7 +321,7 @@ export const schemaTypes: SchemaType[] = [
       { name: 'image', desc: '产品图片 URL' },
       { name: 'aggregateRating', desc: '评分数据，需有真实评论支撑' },
     ],
-    tools: ['merkle', 'seobility', 'google-rich-results'],
+    tools: ['merkle', 'google-rich-results'],
   },
   {
     id: 'breadcrumb',
@@ -305,7 +329,8 @@ export const schemaTypes: SchemaType[] = [
     icon: 'account_tree',
     color: '#8B5CF6',
     stars: 4,
-    description: '页面面包屑导航的结构化标注，让搜索结果中显示清晰的页面路径层级，提升用户对页面位置的认知，改善点击率。',
+    description:
+      '页面面包屑导航的结构化标注，让搜索结果中显示清晰的页面路径层级，提升用户对页面位置的认知，改善点击率。',
     jsonTemplate: `{
   "@context": "https://schema.org",
   "@type": "BreadcrumbList",
@@ -344,7 +369,8 @@ export const schemaTypes: SchemaType[] = [
     icon: 'checklist',
     color: '#06B6D4',
     stars: 4,
-    description: '教程、操作指南类内容的结构化标注，在搜索结果中展示步骤列表，适合"如何做XX"类内容，能获得特殊富结果展示。',
+    description:
+      '教程、操作指南类内容的结构化标注，在搜索结果中展示步骤列表，适合"如何做XX"类内容，能获得特殊富结果展示。',
     jsonTemplate: `{
   "@context": "https://schema.org",
   "@type": "HowTo",
@@ -385,7 +411,8 @@ export const schemaTypes: SchemaType[] = [
     icon: 'store',
     color: '#EF4444',
     stars: 4,
-    description: '本地商家信息的结构化标注，展示商家地址、电话、营业时间、评分等信息，是本地 SEO 的核心配置，影响 Google Maps 和本地搜索结果。',
+    description:
+      '本地商家信息的结构化标注，展示商家地址、电话、营业时间、评分等信息，是本地 SEO 的核心配置，影响 Google Maps 和本地搜索结果。',
     jsonTemplate: `{
   "@context": "https://schema.org",
   "@type": "LocalBusiness",
@@ -430,7 +457,8 @@ export const schemaTypes: SchemaType[] = [
     icon: 'play_circle',
     color: '#EC4899',
     stars: 3,
-    description: '视频内容的结构化标注，在 Google 搜索结果中展示视频缩略图、时长、上传时间等信息，适合有视频内容的媒体站和教育站。',
+    description:
+      '视频内容的结构化标注，在 Google 搜索结果中展示视频缩略图、时长、上传时间等信息，适合有视频内容的媒体站和教育站。',
     jsonTemplate: `{
   "@context": "https://schema.org",
   "@type": "VideoObject",
@@ -456,7 +484,8 @@ export const schemaTypes: SchemaType[] = [
     icon: 'restaurant',
     color: '#F97316',
     stars: 3,
-    description: '食谱内容的结构化标注，在搜索结果中展示烹饪时间、卡路里、评分等信息，是美食博客和食谱网站的必备 Schema。',
+    description:
+      '食谱内容的结构化标注，在搜索结果中展示烹饪时间、卡路里、评分等信息，是美食博客和食谱网站的必备 Schema。',
     jsonTemplate: `{
   "@context": "https://schema.org",
   "@type": "Recipe",

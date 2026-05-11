@@ -1,0 +1,346 @@
+[
+  {
+    "tool_id": "merkle",
+    "name": "Merkle Schema Generator",
+    "url": "https://technicalseo.com/tools/schema-markup-generator/",
+    "description": "最受站长欢迎的免费 Schema 生成器，支持 20+ 类型，界面清晰，无需注册即可生成标准 JSON-LD 代码。",
+    "highlights": [
+      "免费无需注册",
+      "20+ Schema类型",
+      "即时生成JSON-LD"
+    ],
+    "tags": [
+      "全能",
+      "免费",
+      "JSON-LD"
+    ],
+    "is_free": true,
+    "has_free_plan": false,
+    "pricing": null,
+    "level": "beginner",
+    "is_official": true,
+    "badge": "站长首选",
+    "supported_types": [
+      "article",
+      "faq",
+      "product",
+      "breadcrumb",
+      "howto",
+      "video",
+      "localbusiness",
+      "event",
+      "review",
+      "person",
+      "organization"
+    ],
+    "price": "free"
+  },
+  {
+    "tool_id": "google-rich-results",
+    "name": "Google Rich Results Test",
+    "url": "https://search.google.com/test/rich-results",
+    "description": "Google 官方出品的富结果验证工具，生成 Schema 代码后必须在此验证，确保符合 Google 索引标准并能获得富结果展示。",
+    "highlights": [
+      "Google官方",
+      "验证富结果资格",
+      "实时预览效果"
+    ],
+    "tags": [
+      "官方验证",
+      "Google",
+      "免费"
+    ],
+    "is_free": true,
+    "has_free_plan": false,
+    "pricing": null,
+    "level": "beginner",
+    "is_official": true,
+    "badge": "官方必备",
+    "supported_types": [
+      "article",
+      "faq",
+      "product",
+      "breadcrumb",
+      "howto",
+      "video",
+      "recipe",
+      "review",
+      "event"
+    ],
+    "price": "free"
+  },
+  {
+    "tool_id": "schema-org-validator",
+    "name": "Schema.org Validator",
+    "url": "https://validator.schema.org/",
+    "description": "Schema.org 官方权威验证器，检查结构化数据是否完全符合 Schema.org 规范，是合规性验证的最终标准。",
+    "highlights": [
+      "Schema.org官方",
+      "合规性权威验证",
+      "支持所有类型"
+    ],
+    "tags": [
+      "官方验证",
+      "Schema.org",
+      "免费"
+    ],
+    "is_free": true,
+    "has_free_plan": false,
+    "pricing": null,
+    "level": "advanced",
+    "is_official": true,
+    "badge": "权威验证",
+    "supported_types": [
+      "article",
+      "faq",
+      "product",
+      "breadcrumb",
+      "howto",
+      "video",
+      "recipe",
+      "localbusiness",
+      "event",
+      "review",
+      "person",
+      "organization"
+    ],
+    "price": "free"
+  },
+  {
+    "tool_id": "saijo-george",
+    "name": "Saijo George JSON-LD",
+    "url": "https://saijogeorge.com/json-ld-schema-generator/",
+    "description": "极简快速的 JSON-LD 生成器，界面简洁直观，无需注册，覆盖常用 Schema 类型，适合需要快速生成代码的场景。",
+    "highlights": [
+      "极简快速",
+      "无需注册",
+      "界面直观"
+    ],
+    "tags": [
+      "快速",
+      "免费",
+      "简洁"
+    ],
+    "is_free": true,
+    "has_free_plan": false,
+    "pricing": "$99/月起",
+    "level": "beginner",
+    "is_official": false,
+    "badge": "本地SEO推荐",
+    "supported_types": [
+      "article",
+      "faq",
+      "howto",
+      "product",
+      "localbusiness",
+      "review",
+      "event",
+      "person"
+    ],
+    "price": "free"
+  },
+  {
+    "tool_id": "hall-analysis",
+    "name": "Hall Analysis Article Schema",
+    "url": "https://hallanalysis.com/json-ld-generator/",
+    "description": "专注文章类 Schema 的精准生成器，字段覆盖完整，支持 Article、BlogPosting、NewsArticle 等文章子类型。",
+    "highlights": [
+      "文章类型专精",
+      "子类型支持",
+      "字段完整"
+    ],
+    "tags": [
+      "Article专项",
+      "免费",
+      "文章"
+    ],
+    "is_free": true,
+    "has_free_plan": false,
+    "pricing": "$99/月起",
+    "level": "beginner",
+    "is_official": false,
+    "badge": "本地SEO推荐",
+    "supported_types": [
+      "article"
+    ],
+    "price": "free"
+  },
+  {
+    "tool_id": "whitespark",
+    "name": "Whitespark Local Schema",
+    "url": "https://whitespark.ca/",
+    "description": "Whitespark 专为本地商家打造的 LocalBusiness Schema 生成器，字段覆盖全面，支持营业时间、服务区域、联系方式等本地 SEO 关键字段。",
+    "highlights": [
+      "本地商家专精",
+      "营业时间支持",
+      "本地SEO必备"
+    ],
+    "tags": [
+      "LocalBusiness",
+      "本地SEO",
+      "免费"
+    ],
+    "is_free": true,
+    "has_free_plan": false,
+    "pricing": "$99/月起",
+    "level": "beginner",
+    "is_official": false,
+    "badge": "本地SEO推荐",
+    "supported_types": [
+      "localbusiness"
+    ],
+    "price": "free"
+  },
+  {
+    "tool_id": "recipeschema",
+    "name": "RecipeSchema.org",
+    "url": "https://recipeschema.com/",
+    "description": "专为食谱网站设计的 Recipe Schema 生成器，支持食材、步骤、烹饪时间、营养信息等所有食谱相关字段。",
+    "highlights": [
+      "食谱专属",
+      "营养信息支持",
+      "步骤结构化"
+    ],
+    "tags": [
+      "Recipe专项",
+      "食谱",
+      "免费"
+    ],
+    "is_free": true,
+    "has_free_plan": false,
+    "pricing": "$99/月起",
+    "level": "beginner",
+    "is_official": false,
+    "badge": "全自动",
+    "supported_types": [
+      "recipe"
+    ],
+    "price": "free"
+  },
+  {
+    "tool_id": "schema-app",
+    "name": "Schema App",
+    "url": "https://schemaapp.com/",
+    "description": "全自动企业级 Schema 管理平台，AI 自动识别页面类型并生成结构化数据，支持大规模网站批量部署，提供持续监测。",
+    "highlights": [
+      "AI自动识别",
+      "企业级管理",
+      "批量部署监测"
+    ],
+    "tags": [
+      "AI自动化",
+      "企业级",
+      "全自动"
+    ],
+    "is_free": true,
+    "has_free_plan": false,
+    "pricing": "$99/月起",
+    "level": "auto",
+    "is_official": false,
+    "badge": "全自动",
+    "supported_types": [
+      "article",
+      "faq",
+      "product",
+      "breadcrumb",
+      "howto",
+      "video",
+      "localbusiness"
+    ],
+    "price": "free"
+  },
+  {
+    "tool_id": "wordlift",
+    "name": "WordLift",
+    "url": "https://wordlift.io/",
+    "description": "AI 驱动的内容知识图谱和 Schema 自动标注平台，能自动识别内容实体并生成结构化数据，同时构建网站知识图谱。",
+    "highlights": [
+      "AI实体识别",
+      "知识图谱构建",
+      "内容语义分析"
+    ],
+    "tags": [
+      "AI自动化",
+      "知识图谱",
+      "实体识别"
+    ],
+    "is_free": true,
+    "has_free_plan": true,
+    "pricing": "$49/月起",
+    "level": "auto",
+    "is_official": false,
+    "badge": "WordPress推荐",
+    "supported_types": [
+      "article",
+      "product",
+      "organization",
+      "person"
+    ],
+    "price": "free"
+  },
+  {
+    "tool_id": "rankmath",
+    "name": "RankMath",
+    "url": "https://rankmath.com/wordpress/plugin/seo-suite/",
+    "description": "WordPress 最流行的 SEO 插件，内置 Schema 自动生成模块，支持 20+ 类型，根据页面内容智能推荐 Schema 类型，设置一次持续生效。",
+    "highlights": [
+      "WordPress专属",
+      "智能推荐类型",
+      "设置一次持续"
+    ],
+    "tags": [
+      "WordPress",
+      "AI辅助",
+      "插件"
+    ],
+    "is_free": true,
+    "has_free_plan": true,
+    "pricing": "免费版 + Pro $59/年",
+    "level": "auto",
+    "is_official": false,
+    "badge": "WordPress推荐",
+    "supported_types": [
+      "article",
+      "faq",
+      "product",
+      "breadcrumb",
+      "howto",
+      "video",
+      "localbusiness",
+      "review",
+      "recipe"
+    ],
+    "price": "free"
+  },
+  {
+    "tool_id": "yoast",
+    "name": "Yoast SEO",
+    "url": "https://yoast.com/wordpress/plugins/seo/",
+    "description": "WordPress 老牌 SEO 插件，支持 Schema 自动生成，与 RankMath 并列为 WordPress 站长的两大首选，稳定可靠。",
+    "highlights": [
+      "WordPress老牌",
+      "稳定可靠",
+      "自动生成"
+    ],
+    "tags": [
+      "WordPress",
+      "Schema自动化",
+      "插件"
+    ],
+    "is_free": true,
+    "has_free_plan": true,
+    "pricing": "免费版 + Premium €99/年",
+    "level": "auto",
+    "is_official": false,
+    "badge": null,
+    "supported_types": [
+      "article",
+      "faq",
+      "product",
+      "breadcrumb",
+      "howto",
+      "localbusiness"
+    ],
+    "price": "free"
+  }
+]

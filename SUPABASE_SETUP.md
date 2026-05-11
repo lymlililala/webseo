@@ -65,75 +65,80 @@ npm install @supabase/supabase-js
 ## 📊 数据库表结构
 
 ### wseo_articles - 文章表
-| 字段 | 类型 | 说明 |
-|------|------|------|
-| id | UUID | 主键 |
-| title | VARCHAR(255) | 文章标题 |
-| description | TEXT | 简短描述 |
-| content | TEXT | 完整内容 |
-| author | VARCHAR(100) | 作者 |
-| date | DATE | 发布日期 |
-| category | VARCHAR(50) | 分类：seo\|geo\|aeo\|tools |
-| tags | JSONB | 标签数组 |
-| read_time | INTEGER | 阅读时间（分钟） |
-| created_at | TIMESTAMP | 创建时间 |
-| updated_at | TIMESTAMP | 更新时间 |
+
+| 字段        | 类型         | 说明                       |
+| ----------- | ------------ | -------------------------- |
+| id          | UUID         | 主键                       |
+| title       | VARCHAR(255) | 文章标题                   |
+| description | TEXT         | 简短描述                   |
+| content     | TEXT         | 完整内容                   |
+| author      | VARCHAR(100) | 作者                       |
+| date        | DATE         | 发布日期                   |
+| category    | VARCHAR(50)  | 分类：seo\|geo\|aeo\|tools |
+| tags        | JSONB        | 标签数组                   |
+| read_time   | INTEGER      | 阅读时间（分钟）           |
+| created_at  | TIMESTAMP    | 创建时间                   |
+| updated_at  | TIMESTAMP    | 更新时间                   |
 
 ### wseo_tutorials - 教程表
-| 字段 | 类型 | 说明 |
-|------|------|------|
-| id | UUID | 主键 |
-| title | VARCHAR(255) | 课程标题 |
-| description | TEXT | 课程描述 |
-| category | VARCHAR(50) | 分类：seo\|geo\|aeo |
-| instructor | VARCHAR(100) | 讲师名称 |
-| difficulty | VARCHAR(50) | 难度：beginner\|intermediate\|advanced |
-| duration | INTEGER | 总时长（分钟） |
-| students | INTEGER | 学生数 |
-| rating | NUMERIC(3,1) | 评分（1-5） |
-| tags | JSONB | 标签数组 |
-| created_at | TIMESTAMP | 创建时间 |
+
+| 字段        | 类型         | 说明                                   |
+| ----------- | ------------ | -------------------------------------- |
+| id          | UUID         | 主键                                   |
+| title       | VARCHAR(255) | 课程标题                               |
+| description | TEXT         | 课程描述                               |
+| category    | VARCHAR(50)  | 分类：seo\|geo\|aeo                    |
+| instructor  | VARCHAR(100) | 讲师名称                               |
+| difficulty  | VARCHAR(50)  | 难度：beginner\|intermediate\|advanced |
+| duration    | INTEGER      | 总时长（分钟）                         |
+| students    | INTEGER      | 学生数                                 |
+| rating      | NUMERIC(3,1) | 评分（1-5）                            |
+| tags        | JSONB        | 标签数组                               |
+| created_at  | TIMESTAMP    | 创建时间                               |
 
 ### wseo_tutorial_lessons - 课程课时表
-| 字段 | 类型 | 说明 |
-|------|------|------|
-| id | UUID | 主键 |
-| tutorial_id | UUID | 课程 ID（外键） |
-| lesson_number | INTEGER | 课节号 |
-| title | VARCHAR(255) | 课节标题 |
-| description | TEXT | 课节描述 |
-| duration | INTEGER | 课节时长（分钟） |
-| level | VARCHAR(50) | 难度级别 |
-| created_at | TIMESTAMP | 创建时间 |
+
+| 字段          | 类型         | 说明             |
+| ------------- | ------------ | ---------------- |
+| id            | UUID         | 主键             |
+| tutorial_id   | UUID         | 课程 ID（外键）  |
+| lesson_number | INTEGER      | 课节号           |
+| title         | VARCHAR(255) | 课节标题         |
+| description   | TEXT         | 课节描述         |
+| duration      | INTEGER      | 课节时长（分钟） |
+| level         | VARCHAR(50)  | 难度级别         |
+| created_at    | TIMESTAMP    | 创建时间         |
 
 ### wseo_news - 新闻表
-| 字段 | 类型 | 说明 |
-|------|------|------|
-| id | UUID | 主键 |
-| title | VARCHAR(255) | 新闻标题 |
-| description | TEXT | 简短描述 |
-| content | TEXT | 完整内容 |
-| category | VARCHAR(50) | 分类：seo\|geo\|aeo\|ai\|industry |
-| source | VARCHAR(100) | 新闻来源 |
-| date | DATE | 发布日期 |
-| impact | VARCHAR(50) | 影响程度：high\|medium\|low |
-| tags | JSONB | 标签数组 |
-| link | VARCHAR(500) | 外链 |
-| created_at | TIMESTAMP | 创建时间 |
-| updated_at | TIMESTAMP | 更新时间 |
+
+| 字段        | 类型         | 说明                              |
+| ----------- | ------------ | --------------------------------- |
+| id          | UUID         | 主键                              |
+| title       | VARCHAR(255) | 新闻标题                          |
+| description | TEXT         | 简短描述                          |
+| content     | TEXT         | 完整内容                          |
+| category    | VARCHAR(50)  | 分类：seo\|geo\|aeo\|ai\|industry |
+| source      | VARCHAR(100) | 新闻来源                          |
+| date        | DATE         | 发布日期                          |
+| impact      | VARCHAR(50)  | 影响程度：high\|medium\|low       |
+| tags        | JSONB        | 标签数组                          |
+| link        | VARCHAR(500) | 外链                              |
+| created_at  | TIMESTAMP    | 创建时间                          |
+| updated_at  | TIMESTAMP    | 更新时间                          |
 
 ### wseo_seo_tools, wseo_geo_tools, wseo_aeo_tools - 工具表
-| 字段 | 类型 | 说明 |
-|------|------|------|
-| id | UUID | 主键 |
-| name | VARCHAR(255) | 工具名称 |
-| description | TEXT | 工具描述 |
-| category | VARCHAR(100) | 工具分类 |
-| price | VARCHAR(50) | 价格：free\|paid\|freemium |
-| url | VARCHAR(500) | 工具链接 |
-| rating | NUMERIC(3,1) | 评分（1-5） |
-| tags | JSONB | 标签数组 |
-| created_at | TIMESTAMP | 创建时间 |
+
+| 字段        | 类型         | 说明                       |
+| ----------- | ------------ | -------------------------- |
+| id          | UUID         | 主键                       |
+| name        | VARCHAR(255) | 工具名称                   |
+| description | TEXT         | 工具描述                   |
+| category    | VARCHAR(100) | 工具分类                   |
+| price       | VARCHAR(50)  | 价格：free\|paid\|freemium |
+| url         | VARCHAR(500) | 工具链接                   |
+| rating      | NUMERIC(3,1) | 评分（1-5）                |
+| tags        | JSONB        | 标签数组                   |
+| created_at  | TIMESTAMP    | 创建时间                   |
 
 ---
 
@@ -162,13 +167,14 @@ await articlesAPI.create({
   date: new Date().toISOString().split('T')[0],
   category: 'seo',
   tags: JSON.stringify(['tag1', 'tag2']),
-  read_time: 10
+  read_time: 10,
 })
 ```
 
 ### 可用的 API 方法
 
 #### articlesAPI
+
 - `getAll()` - 获取所有文章
 - `getById(id)` - 按 ID 获取
 - `getByCategory(category)` - 按分类获取
@@ -178,6 +184,7 @@ await articlesAPI.create({
 - `delete(id)` - 删除
 
 #### tutorialsAPI
+
 - `getAll()` - 获取所有课程
 - `getById(id)` - 按 ID 获取（包含课时）
 - `getByCategory(category)` - 按分类获取
@@ -187,6 +194,7 @@ await articlesAPI.create({
 - `delete(id)` - 删除
 
 #### newsAPI
+
 - `getAll()` - 获取所有新闻
 - `getById(id)` - 按 ID 获取
 - `getByCategory(category)` - 按分类获取
@@ -197,6 +205,7 @@ await articlesAPI.create({
 - `delete(id)` - 删除
 
 #### seoToolsAPI, geoToolsAPI, aeoToolsAPI
+
 - `getAll()` - 获取所有工具
 - `search(query)` - 搜索
 - 工具表为只读（可根据需要添加写操作）
@@ -213,9 +222,9 @@ await articlesAPI.create({
 示例策略（允许认证用户创建文章）：
 
 ```sql
-CREATE POLICY "Authenticated users can insert articles" 
-ON wseo_articles 
-FOR INSERT 
+CREATE POLICY "Authenticated users can insert articles"
+ON wseo_articles
+FOR INSERT
 WITH CHECK (auth.role() = 'authenticated');
 ```
 
@@ -224,19 +233,22 @@ WITH CHECK (auth.role() = 'authenticated');
 ## 🐛 常见问题
 
 ### 问题 1：连接超时
+
 - 检查 `.env.local` 中的 URL 和 API Key 是否正确
 - 验证 Supabase 项目是否在线
 
 ### 问题 2：RLS 拒绝访问
+
 - 默认情况下，表是只读的
 - 需要创建相应的 RLS 策略来启用写操作
 
 ### 问题 3：JSON 字段查询
+
 使用 JSONB 操作符进行高级查询：
 
 ```sql
 -- 按标签搜索
-SELECT * FROM wseo_articles 
+SELECT * FROM wseo_articles
 WHERE tags @> '["AI"]'::jsonb;
 ```
 
@@ -257,12 +269,15 @@ npm run migrate:supabase
 ## 🔄 更新数据
 
 ### 方式 1：直接在 Supabase Dashboard 中编辑
+
 进入 Table Editor，直接修改数据
 
 ### 方式 2：使用 SQL
+
 在 SQL Editor 中执行 UPDATE 语句
 
 ### 方式 3：通过代码 API
+
 使用 `articlesAPI.update(id, updates)` 等方法
 
 ---

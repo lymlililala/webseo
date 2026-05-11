@@ -143,7 +143,37 @@ CREATE INDEX idx_wseo_aeo_tools_category ON wseo_aeo_tools(category);
 CREATE INDEX idx_wseo_aeo_tools_price ON wseo_aeo_tools(price);
 
 -- ============================================================================
--- 8. ENABLE ROW LEVEL SECURITY (RLS)
+-- 8. SCHEMA TOOLS TABLE
+-- ============================================================================
+CREATE TABLE IF NOT EXISTS wseo_schema_tools (
+  id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+  tool_id VARCHAR(100) NOT NULL UNIQUE,
+  name VARCHAR(255) NOT NULL,
+  url VARCHAR(500) NOT NULL,
+  description TEXT NOT NULL,
+  highlights JSONB DEFAULT '[]',
+  tags JSONB DEFAULT '[]',
+  is_free BOOLEAN DEFAULT FALSE,
+  has_freeplan BOOLEAN DEFAULT FALSE,
+  pricing VARCHAR(100),
+  level VARCHAR(50) NOT NULL CHECK (level IN ('beginner', 'advanced', 'auto')),
+  is_official BOOLEAN DEFAULT FALSE,
+  badge VARCHAR(100),
+  supported_types JSONB DEFAULT '[]',
+  created_at TIMESTAMP DEFAULT NOW(),
+  updated_at TIMESTAMP DEFAULT NOW()
+);
+
+CREATE INDEX idx_wseo_schema_tools_level ON wseo_schema_tools(level);
+CREATE INDEX idx_wseo_schema_tools_is_free ON wseo_schema_tools(is_free);
+
+-- ============================================================================
+-- 9. NEWS EXTENDED - Update news table to support link field (already exists)
+-- ============================================================================
+-- (wseo_news already has link column from table 4)
+
+-- ============================================================================
+-- 10. ENABLE ROW LEVEL SECURITY (RLS)
 -- ============================================================================
 ALTER TABLE wseo_articles ENABLE ROW LEVEL SECURITY;
 ALTER TABLE wseo_tutorials ENABLE ROW LEVEL SECURITY;
@@ -152,9 +182,10 @@ ALTER TABLE wseo_news ENABLE ROW LEVEL SECURITY;
 ALTER TABLE wseo_seo_tools ENABLE ROW LEVEL SECURITY;
 ALTER TABLE wseo_geo_tools ENABLE ROW LEVEL SECURITY;
 ALTER TABLE wseo_aeo_tools ENABLE ROW LEVEL SECURITY;
+ALTER TABLE wseo_schema_tools ENABLE ROW LEVEL SECURITY;
 
 -- ============================================================================
--- 9. RLS POLICIES - Allow Public Read Access
+-- 11. RLS POLICIES - Allow Public Read Access
 -- ============================================================================
 CREATE POLICY "Allow public read on articles" ON wseo_articles FOR SELECT USING (true);
 CREATE POLICY "Allow public read on tutorials" ON wseo_tutorials FOR SELECT USING (true);
@@ -163,3 +194,4 @@ CREATE POLICY "Allow public read on news" ON wseo_news FOR SELECT USING (true);
 CREATE POLICY "Allow public read on seo_tools" ON wseo_seo_tools FOR SELECT USING (true);
 CREATE POLICY "Allow public read on geo_tools" ON wseo_geo_tools FOR SELECT USING (true);
 CREATE POLICY "Allow public read on aeo_tools" ON wseo_aeo_tools FOR SELECT USING (true);
+CREATE POLICY "Allow public read on schema_tools" ON wseo_schema_tools FOR SELECT USING (true);

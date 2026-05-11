@@ -371,3 +371,82 @@ export const aeoToolsAPI = {
     return data
   },
 }
+
+// ============================================================================
+// SCHEMA TOOLS API
+// ============================================================================
+export const schemaToolsAPI = {
+  async getAll() {
+    const { data, error } = await supabase.from('wseo_schema_tools').select('*').order('name', { ascending: true })
+
+    if (error) throw error
+    return data
+  },
+
+  async getById(id: string) {
+    const { data, error } = await supabase.from('wseo_schema_tools').select('*').eq('id', id).single()
+
+    if (error) throw error
+    return data
+  },
+
+  async getByToolId(toolId: string) {
+    const { data, error } = await supabase.from('wseo_schema_tools').select('*').eq('tool_id', toolId).single()
+
+    if (error) throw error
+    return data
+  },
+
+  async getByLevel(level: string) {
+    const { data, error } = await supabase
+      .from('wseo_schema_tools')
+      .select('*')
+      .eq('level', level)
+      .order('name', { ascending: true })
+
+    if (error) throw error
+    return data
+  },
+
+  async getFreeTools() {
+    const { data, error } = await supabase
+      .from('wseo_schema_tools')
+      .select('*')
+      .eq('is_free', true)
+      .order('name', { ascending: true })
+
+    if (error) throw error
+    return data
+  },
+
+  async getOfficialTools() {
+    const { data, error } = await supabase
+      .from('wseo_schema_tools')
+      .select('*')
+      .eq('is_official', true)
+      .order('name', { ascending: true })
+
+    if (error) throw error
+    return data
+  },
+
+  async getBySchemaType(schemaType: string) {
+    const { data, error } = await supabase
+      .from('wseo_schema_tools')
+      .select('*')
+      .contains('supported_types', JSON.stringify([schemaType]))
+
+    if (error) throw error
+    return data
+  },
+
+  async search(query: string) {
+    const { data, error } = await supabase
+      .from('wseo_schema_tools')
+      .select('*')
+      .or(`name.ilike.%${query}%,description.ilike.%${query}%`)
+
+    if (error) throw error
+    return data
+  },
+}

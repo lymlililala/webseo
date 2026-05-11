@@ -1,0 +1,42 @@
+[
+  {
+    "title": "2026 年 SEO 趋势：AI 搜索对传统 SEO 的冲击",
+    "description": "AI 搜索引擎的崛起正在改变整个搜索生态。",
+    "content": "AI 搜索引擎的崛起正在改变整个搜索生态。\n\n## 关键变化\n\n1. **答案驱动优化**：用户不再需要点击链接查看搜索结果，AI 会直接给出答案。\n2. **E-E-A-T 重要性上升**：Experience、Expertise、Authoritativeness、Trustworthiness 成为核心指标。\n3. **结构化数据与 JSON-LD**：AI 引擎更依赖机器可读的数据格式。",
+    "author": "张三",
+    "date": "2026-05-10",
+    "category": "seo",
+    "tags": ["AI搜索", "GEO", "AEO", "2026趋势"],
+    "read_time": 8
+  },
+  {
+    "title": "GEO（生成式引擎优化）完全指南",
+    "description": "详解什么是 GEO，如何针对 ChatGPT、Perplexity 进行网站优化。",
+    "content": "GEO 是 Generative Engine Optimization 的缩写。",
+    "author": "李四",
+    "date": "2026-05-08",
+    "category": "geo",
+    "tags": ["GEO指南", "生成式搜索", "品牌可见度"],
+    "read_time": 12
+  },
+  {
+    "title": "AEO 答案引擎优化：为 AI 对话设计内容",
+    "description": "深度解析 AEO 的定义、应用场景和实战优化技巧。",
+    "content": "AEO（Answer Engine Optimization）专注于优化内容以适应对话式 AI。",
+    "author": "王五",
+    "date": "2026-05-05",
+    "category": "aeo",
+    "tags": ["AEO", "对话AI", "答案优化", "结构化数据"],
+    "read_time": 10
+  },
+  {
+    "title": "使用 llms.txt 让 AI 更了解你的网站",
+    "description": "详解 llms.txt 文件规范和实现方式，提升网站在 AI 系统中的可见度。",
+    "content": "llms.txt 是一个新兴的标准文件。",
+    "author": "赵六",
+    "date": "2026-05-01",
+    "category": "tools",
+    "tags": ["llms.txt", "AI元数据", "网站优化"],
+    "read_time": 6
+  }
+]

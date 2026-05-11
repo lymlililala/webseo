@@ -1,0 +1,46 @@
+[
+  {
+    "title": "SEO 基础入门：从 0 到 1",
+    "description": "适合完全入门者的 SEO 课程。",
+    "category": "seo",
+    "instructor": "张三",
+    "difficulty": "beginner",
+    "duration": 240,
+    "students": 5230,
+    "rating": 4.8,
+    "tags": ["SEO基础", "关键词", "页面优化", "技术SEO"]
+  },
+  {
+    "title": "GEO 生成式引擎优化实战课程",
+    "description": "学习如何针对 ChatGPT、Perplexity 等生成式引擎进行网站优化。",
+    "category": "geo",
+    "instructor": "李四",
+    "difficulty": "intermediate",
+    "duration": 180,
+    "students": 2840,
+    "rating": 4.9,
+    "tags": ["GEO", "AI搜索", "品牌可见度", "结构化数据"]
+  },
+  {
+    "title": "AEO 答案引擎优化与对话 AI",
+    "description": "掌握 AEO 核心技能。",
+    "category": "aeo",
+    "instructor": "王五",
+    "difficulty": "advanced",
+    "duration": 195,
+    "students": 1920,
+    "rating": 4.7,
+    "tags": ["AEO", "对话AI", "结构化数据", "llms.txt"]
+  },
+  {
+    "title": "高级 SEO：数据分析与实验驱动优化",
+    "description": "深入学习如何用数据和 A/B 测试驱动 SEO 决策。",
+    "category": "seo",
+    "instructor": "赵六",
+    "difficulty": "advanced",
+    "duration": 220,
+    "students": 1560,
+    "rating": 4.9,
+    "tags": ["高级SEO", "数据分析", "GA4", "实验驱动"]
+  }
+]

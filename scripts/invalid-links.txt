@@ -1,0 +1,60 @@
+# 无效链接列表 - 生成时间: 2026-05-11T08:27:54.148Z
+# 格式: URL	状态	来源文件
+
+https://neilpatel.com/ubersuggest/	状态:403	来源:seo-tools.ts
+https://moz.com/	状态:403	来源:seo-tools.ts
+https://zutrix.com/	状态:403	来源:seo-tools.ts
+https://www.clicks.so/	状态:TIMEOUT	来源:seo-tools.ts
+https://getspexia.com	状态:404	来源:seo-tools.ts
+https://www.wordstream.com/keywords	状态:403	来源:seo-tools.ts
+https://www.seoformulas.com	状态:503	来源:seo-tools.ts
+https://answerthepublic.com/	状态:403	来源:seo-tools.ts
+https://keywordideas.xyz/	状态:TIMEOUT	来源:seo-tools.ts
+https://monitorbacklinks.com/	状态:403	来源:seo-tools.ts
+https://youlinker.pro/	状态:fetch failed	来源:seo-tools.ts
+https://www.growthbarseo.com/	状态:403	来源:seo-tools.ts
+https://searchsocket.com/	状态:fetch failed	来源:seo-tools.ts
+https://blogbud.ai	状态:fetch failed	来源:seo-tools.ts
+https://www.tailortask.ai/solutions/for-seo	状态:fetch failed	来源:seo-tools.ts
+https://www.alttextlab.com/	状态:TIMEOUT	来源:seo-tools.ts
+https://hypertxt.ai	状态:fetch failed	来源:seo-tools.ts
+https://moz.com/tools/onpage-grader	状态:403	来源:seo-tools.ts
+https://pressproxy.io/	状态:403	来源:seo-tools.ts
+https://gtmetrix.com	状态:403	来源:seo-tools.ts
+https://moz.com/products/local	状态:403	来源:seo-tools.ts
+https://www.similarweb.com	状态:404	来源:seo-tools.ts
+https://moz.com/products/pro/seo-toolbar	状态:403	来源:seo-tools.ts
+https://support.google.com/webmasters/answer/6062598	状态:404	来源:seo-tools.ts
+https://moz.com/mozcast	状态:403	来源:seo-tools.ts
+https://alternativeto.net	状态:403	来源:seo-tools.ts
+https://www.producthunt.com/topics/seo	状态:403	来源:seo-tools.ts
+https://woi.com	状态:fetch failed	来源:geo-tools.ts
+https://jinrikuaituan.com	状态:fetch failed	来源:geo-tools.ts
+https://zicaiai.com	状态:fetch failed	来源:geo-tools.ts,aeo-tools.ts
+https://fengkuanggeo.com	状态:fetch failed	来源:geo-tools.ts
+https://aigcgeo.com	状态:fetch failed	来源:geo-tools.ts
+https://geosuoyin.com	状态:fetch failed	来源:geo-tools.ts
+https://scrunch.ai	状态:fetch failed	来源:geo-tools.ts,aeo-tools.ts
+https://appearonai.com	状态:TIMEOUT	来源:geo-tools.ts
+https://brandlight.ai	状态:TIMEOUT	来源:geo-tools.ts
+https://geofast.ai	状态:fetch failed	来源:geo-tools.ts
+https://www.semrush.com/features/ai-visibility/	状态:404	来源:geo-tools.ts
+https://business.adobe.com/products/experience-cloud/llm-optimizer.html	状态:404	来源:geo-tools.ts
+https://aicrawlability.com	状态:fetch failed	来源:geo-tools.ts
+https://aicontentoptimizer.io	状态:fetch failed	来源:geo-tools.ts
+https://heyamos.com	状态:TIMEOUT	来源:aeo-tools.ts
+https://semrush.com/ai-visibility	状态:404	来源:aeo-tools.ts
+https://authoritas.com	状态:TIMEOUT	来源:aeo-tools.ts
+https://semai.ai	状态:404	来源:aeo-tools.ts
+https://writesonic.com	状态:TIMEOUT	来源:aeo-tools.ts
+https://answerthepublic.com	状态:403	来源:aeo-tools.ts
+https://www.xinbang.com	状态:fetch failed	来源:aeo-tools.ts
+https://www.seobility.net/en/wiki/Schema_Markup	状态:404	来源:schema-tools.ts
+https://whitespark.ca/local-business-json-ld-schema-generator/	状态:404	来源:schema-tools.ts
+https://recipeschema.com/	状态:TIMEOUT	来源:schema-tools.ts
+https://example.com/google-ai-overview-update	状态:404	来源:news.ts
+https://example.com/chatgpt-search	状态:404	来源:news.ts
+https://example.com/llms-txt-support	状态:404	来源:news.ts
+https://example.com/perplexity-api	状态:404	来源:news.ts
+https://example.com/google-algorithm-update	状态:404	来源:news.ts
+https://example.com/copilot-enterprise-search	状态:404	来源:news.ts

@@ -43,7 +43,7 @@ export const news: News[] = [
     category: 'seo',
     tags: ['Google', 'AI Overview', 'SEO', '搜索生态'],
     impact: 'high',
-    link: 'https://example.com/google-ai-overview-update',
+    link: undefined,
   },
   {
     id: 'news-2',
@@ -73,7 +73,7 @@ export const news: News[] = [
     category: 'geo',
     tags: ['ChatGPT', 'GEO', '网络搜索', 'OpenAI'],
     impact: 'high',
-    link: 'https://example.com/chatgpt-search',
+    link: undefined,
   },
   {
     id: 'news-3',
@@ -106,7 +106,7 @@ export const news: News[] = [
     category: 'aeo',
     tags: ['llms.txt', 'AEO', '行业标准', '网站元数据'],
     impact: 'high',
-    link: 'https://example.com/llms-txt-support',
+    link: undefined,
   },
   {
     id: 'news-4',
@@ -137,7 +137,7 @@ export const news: News[] = [
     category: 'geo',
     tags: ['Perplexity', 'API', 'B2B', '企业搜索'],
     impact: 'medium',
-    link: 'https://example.com/perplexity-api',
+    link: undefined,
   },
   {
     id: 'news-5',
@@ -165,7 +165,7 @@ export const news: News[] = [
     category: 'seo',
     tags: ['Google', '算法更新', 'E-E-A-T', '排名因素'],
     impact: 'high',
-    link: 'https://example.com/google-algorithm-update',
+    link: undefined,
   },
   {
     id: 'news-6',
@@ -189,6 +189,6 @@ export const news: News[] = [
     category: 'ai',
     tags: ['Microsoft', 'Copilot', '企业搜索', 'AI'],
     impact: 'medium',
-    link: 'https://example.com/copilot-enterprise-search',
+    link: undefined,
   },
 ]
