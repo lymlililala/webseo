@@ -90,8 +90,12 @@
     "simplified_chinese": "چینی ساده شده",
     "persian": "فارسی"
   },
-  "menu": {
-    "auth": "احراز هویت",
+"menu": {
+"seo-nav": "ناوبر ابزارهای SEO",
+    "geo-nav": "ناوبر GEO",
+    "aeo-nav": "ناوبر AEO",
+    "llms-txt": "سازنده llms.txt",
+"auth": "احراز هویت",
     "buttons": "دکمه ها",
     "timelines": "جدول زمانی",
     "dashboard": "داشبورد",
