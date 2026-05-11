@@ -36,6 +36,11 @@ const routes: Array<RouteRecordRaw> = [
         component: () => import('../pages/llms-txt/LlmsTxtPage.vue'),
       },
       {
+        name: 'ai-checker',
+        path: 'ai-checker',
+        component: () => import('../pages/ai-checker/AiCheckerPage.vue'),
+      },
+      {
         name: 'articles',
         path: 'articles',
         component: () => import('../pages/articles/ArticlesPage.vue'),

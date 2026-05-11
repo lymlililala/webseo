@@ -40,6 +40,13 @@ export default {
       },
     },
     {
+      name: 'ai-checker',
+      displayName: 'menu.ai-checker',
+      meta: {
+        icon: 'health_and_safety',
+      },
+    },
+    {
       name: 'articles',
       displayName: 'menu.articles',
       meta: {
