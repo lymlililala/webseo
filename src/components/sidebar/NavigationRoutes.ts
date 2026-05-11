@@ -39,5 +39,26 @@ export default {
         icon: 'description',
       },
     },
+    {
+      name: 'articles',
+      displayName: 'menu.articles',
+      meta: {
+        icon: 'article',
+      },
+    },
+    {
+      name: 'tutorials',
+      displayName: 'menu.tutorials',
+      meta: {
+        icon: 'school',
+      },
+    },
+    {
+      name: 'news',
+      displayName: 'menu.news',
+      meta: {
+        icon: 'newspaper',
+      },
+    },
   ] as INavigationRoute[],
 }
