@@ -2,3 +2,4 @@ User-agent: *
 Allow: /
 
 Sitemap: https://www.sgaindex.com/sitemap.xml
+LLMs: https://www.sgaindex.com/llms.txt
