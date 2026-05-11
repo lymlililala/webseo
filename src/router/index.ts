@@ -46,6 +46,11 @@ const routes: Array<RouteRecordRaw> = [
         component: () => import('../pages/glossary/GlossaryPage.vue'),
       },
       {
+        name: 'schema-generator',
+        path: 'schema-generator',
+        component: () => import('../pages/schema-generator/SchemaGeneratorPage.vue'),
+      },
+      {
         name: 'articles',
         path: 'articles',
         component: () => import('../pages/articles/ArticlesPage.vue'),

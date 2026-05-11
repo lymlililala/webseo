@@ -54,6 +54,13 @@ export default {
       },
     },
     {
+      name: 'schema-generator',
+      displayName: 'menu.schema-generator',
+      meta: {
+        icon: 'data_object',
+      },
+    },
+    {
       name: 'articles',
       displayName: 'menu.articles',
       meta: {
