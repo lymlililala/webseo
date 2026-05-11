@@ -36,11 +36,14 @@
     "simplified_chinese": "Simplified Chinese",
     "persian": "Persian"
   },
-  "menu": {
-    "seo-nav": "SEO Tools Navigator",
-    "geo-nav": "GEO Navigator",
+"menu": {
+"seo-nav": "SEO Tools Navigator",
+"geo-nav": "GEO Navigator",
     "aeo-nav": "AEO Navigator",
     "llms-txt": "llms.txt Generator",
+    "articles": "Articles",
+    "tutorials": "Tutorials",
+    "news": "News",
     "auth": "Auth",
     "buttons": "Buttons",
     "timelines": "Timelines",
