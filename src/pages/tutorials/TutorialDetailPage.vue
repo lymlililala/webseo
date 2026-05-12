@@ -1,8 +1,8 @@
 <script setup lang="ts">
 import { ref, onMounted } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
-import { tutorials as localTutorials, type Tutorial } from '../../data/tutorials'
-import { tutorialsAPI, SUPABASE_CONFIGURED } from '../../services/supabase'
+import { type Tutorial } from '../../data/tutorials'
+import { tutorialsAPI } from '../../services/supabase'
 
 const route = useRoute()
 const router = useRouter()
@@ -14,22 +14,16 @@ const notFound = ref(false)
 onMounted(async () => {
   const id = route.params.id as string
   try {
-    if (SUPABASE_CONFIGURED) {
-      const data = await tutorialsAPI.getById(id)
-      if (data) {
-        tutorial.value = {
-          ...data,
-          lessons: data.lessons ?? [],
-          duration: data.duration ?? 30,
-        } as Tutorial
-      } else {
-        tutorial.value = localTutorials.find((t) => t.id === id) ?? null
-      }
-    } else {
-      tutorial.value = localTutorials.find((t) => t.id === id) ?? null
+    const data = await tutorialsAPI.getById(id)
+    if (data) {
+      tutorial.value = {
+        ...data,
+        lessons: data.lessons ?? [],
+        duration: data.duration ?? 30,
+      } as Tutorial
     }
-  } catch {
-    tutorial.value = localTutorials.find((t) => t.id === id) ?? null
+  } catch (e) {
+    console.error('加载教程失败', e)
   } finally {
     loading.value = false
     if (!tutorial.value) notFound.value = true

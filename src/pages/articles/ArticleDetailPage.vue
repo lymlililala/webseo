@@ -2,8 +2,8 @@
 import { ref, computed, onMounted } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 import { marked } from 'marked'
-import { articles as localArticles, type Article } from '../../data/articles'
-import { articlesAPI, SUPABASE_CONFIGURED } from '../../services/supabase'
+import { type Article } from '../../data/articles'
+import { articlesAPI } from '../../services/supabase'
 
 const route = useRoute()
 const router = useRouter()
@@ -32,19 +32,12 @@ const renderedContent = computed(() => {
 onMounted(async () => {
   const id = route.params.id as string
   try {
-    if (SUPABASE_CONFIGURED) {
-      const data = await articlesAPI.getById(id)
-      if (data) {
-        article.value = { ...data, readTime: data.read_time ?? data.readTime ?? 5 }
-      } else {
-        // 降级到本地数据
-        article.value = localArticles.find((a) => a.id === id) ?? null
-      }
-    } else {
-      article.value = localArticles.find((a) => a.id === id) ?? null
+    const data = await articlesAPI.getById(id)
+    if (data) {
+      article.value = { ...data, readTime: data.read_time ?? data.readTime ?? 5 }
     }
-  } catch {
-    article.value = localArticles.find((a) => a.id === id) ?? null
+  } catch (e) {
+    console.error('加载文章失败', e)
   } finally {
     loading.value = false
     if (!article.value) notFound.value = true

@@ -1,8 +1,8 @@
 <script setup lang="ts">
 import { ref, computed, onMounted } from 'vue'
 import { useRouter } from 'vue-router'
-import { tutorials as localTutorials, type Tutorial } from '../../data/tutorials'
-import { tutorialsAPI, SUPABASE_CONFIGURED } from '../../services/supabase'
+import { type Tutorial } from '../../data/tutorials'
+import { tutorialsAPI } from '../../services/supabase'
 
 const router = useRouter()
 
@@ -13,11 +13,6 @@ const loading = ref(true)
 const allTutorials = ref<Tutorial[]>([])
 
 onMounted(async () => {
-  if (!SUPABASE_CONFIGURED) {
-    allTutorials.value = localTutorials
-    loading.value = false
-    return
-  }
   try {
     const data = await tutorialsAPI.getAll()
     if (data && data.length > 0) {
@@ -26,11 +21,9 @@ onMounted(async () => {
         lessons: item.lessons ?? [],
         duration: item.duration ?? 30,
       })) as Tutorial[]
-    } else {
-      allTutorials.value = localTutorials
     }
-  } catch {
-    allTutorials.value = localTutorials
+  } catch (e) {
+    console.error('加载教程失败', e)
   } finally {
     loading.value = false
   }
