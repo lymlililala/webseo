@@ -1,7 +1,10 @@
 <script setup lang="ts">
 import { ref, computed, onMounted } from 'vue'
+import { useRouter } from 'vue-router'
 import { articles as localArticles, type Article } from '../../data/articles'
 import { articlesAPI, SUPABASE_CONFIGURED } from '../../services/supabase'
+
+const router = useRouter()
 
 const searchQuery = ref('')
 const selectedCategory = ref<'all' | 'seo' | 'geo' | 'aeo' | 'tools'>('all')
@@ -52,9 +55,7 @@ const filteredArticles = computed(() => {
 })
 
 function openArticle(article: Article) {
-  if (article.link) {
-    window.open(article.link, '_blank', 'noopener,noreferrer')
-  }
+  router.push({ name: 'article-detail', params: { id: article.id } })
 }
 
 function clearFilters() {
@@ -129,7 +130,6 @@ const categories = [
             v-for="article in filteredArticles"
             :key="article.id"
             class="article-card"
-            :class="{ 'has-link': !!article.link }"
             @click="openArticle(article)"
           >
             <div class="article-header">
@@ -170,7 +170,7 @@ const categories = [
 
             <div class="article-footer">
               <span class="author">作者：{{ article.author }}</span>
-              <VaIcon v-if="article.link" name="open_in_new" size="16px" color="secondary" />
+              <VaIcon name="open_in_new" size="16px" color="secondary" />
             </div>
           </article>
         </div>
@@ -349,12 +349,8 @@ const categories = [
   background: var(--va-background-secondary);
   border: 1px solid var(--va-background-border);
   border-radius: 12px;
-  cursor: default;
-  transition: all 0.2s ease;
-}
-
-.article-card.has-link {
   cursor: pointer;
+  transition: all 0.2s ease;
 }
 
 .article-card:hover {
