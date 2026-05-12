@@ -16,3 +16,13 @@ dist/**
 
 # Check subdirectories too
 !*/
+
+# Upload scripts and data files (contain raw content with special chars)
+scripts/articles-data.json
+scripts/news-data.json
+scripts/upload-final.py
+scripts/upload-new-content.py
+scripts/fix-and-upload.py
+scripts/new-articles-batch.py
+scripts/upload-neirong.py
+neirong/

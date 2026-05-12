@@ -6,11 +6,7 @@
     "url": "https://ahrefs.com/",
     "category": "all-in-one",
     "category_name": "综合 SEO 平台",
-    "tags": [
-      "反链分析",
-      "关键词研究",
-      "全能工具"
-    ],
+    "tags": ["反链分析", "关键词研究", "全能工具"],
     "is_free": false,
     "has_api": true,
     "is_ai_friendly": false,
@@ -23,11 +19,7 @@
     "url": "https://www.semrush.com/",
     "category": "all-in-one",
     "category_name": "综合 SEO 平台",
-    "tags": [
-      "全能平台",
-      "PPC分析",
-      "竞品研究"
-    ],
+    "tags": ["全能平台", "PPC分析", "竞品研究"],
     "is_free": false,
     "has_api": true,
     "is_ai_friendly": true,
@@ -40,11 +32,7 @@
     "url": "https://seodity.com/",
     "category": "all-in-one",
     "category_name": "综合 SEO 平台",
-    "tags": [
-      "全套工具",
-      "排名提升",
-      "流量增长"
-    ],
+    "tags": ["全套工具", "排名提升", "流量增长"],
     "is_free": false,
     "has_api": false,
     "is_ai_friendly": false,
@@ -57,11 +45,7 @@
     "url": "https://neilpatel.com/ubersuggest/",
     "category": "all-in-one",
     "category_name": "综合 SEO 平台",
-    "tags": [
-      "关键词建议",
-      "SEO难度",
-      "搜索量"
-    ],
+    "tags": ["关键词建议", "SEO难度", "搜索量"],
     "is_free": true,
     "has_api": false,
     "is_ai_friendly": false,
@@ -74,11 +58,7 @@
     "url": "https://mangools.com/",
     "category": "all-in-one",
     "category_name": "综合 SEO 平台",
-    "tags": [
-      "用户友好",
-      "KWFinder",
-      "SERP分析"
-    ],
+    "tags": ["用户友好", "KWFinder", "SERP分析"],
     "is_free": false,
     "has_api": true,
     "is_ai_friendly": false,
@@ -91,11 +71,7 @@
     "url": "https://seranking.com/",
     "category": "all-in-one",
     "category_name": "综合 SEO 平台",
-    "tags": [
-      "机构工具",
-      "白标报告",
-      "排名追踪"
-    ],
+    "tags": ["机构工具", "白标报告", "排名追踪"],
     "is_free": false,
     "has_api": true,
     "is_ai_friendly": false,
@@ -108,11 +84,7 @@
     "url": "https://moz.com/",
     "category": "all-in-one",
     "category_name": "综合 SEO 平台",
-    "tags": [
-      "DA评分",
-      "权威工具",
-      "全套SEO"
-    ],
+    "tags": ["DA评分", "权威工具", "全套SEO"],
     "is_free": false,
     "has_api": true,
     "is_ai_friendly": false,
@@ -125,11 +97,7 @@
     "url": "https://serpstat.com/",
     "category": "all-in-one",
     "category_name": "综合 SEO 平台",
-    "tags": [
-      "竞品分析",
-      "网站审计",
-      "SEO管理"
-    ],
+    "tags": ["竞品分析", "网站审计", "SEO管理"],
     "is_free": false,
     "has_api": true,
     "is_ai_friendly": false,
@@ -142,11 +110,7 @@
     "url": "https://www.link-assistant.com/",
     "category": "all-in-one",
     "category_name": "综合 SEO 平台",
-    "tags": [
-      "桌面工具",
-      "全套SEO",
-      "反链管理"
-    ],
+    "tags": ["桌面工具", "全套SEO", "反链管理"],
     "is_free": true,
     "has_api": false,
     "is_ai_friendly": false,
@@ -159,11 +123,7 @@
     "url": "https://www.webceo.com/",
     "category": "all-in-one",
     "category_name": "综合 SEO 平台",
-    "tags": [
-      "代理机构",
-      "营销工具",
-      "线索生成"
-    ],
+    "tags": ["代理机构", "营销工具", "线索生成"],
     "is_free": false,
     "has_api": true,
     "is_ai_friendly": false,
@@ -176,11 +136,7 @@
     "url": "https://www.spyfu.com/",
     "category": "all-in-one",
     "category_name": "综合 SEO 平台",
-    "tags": [
-      "竞品关键词",
-      "PPC分析",
-      "SEO历史"
-    ],
+    "tags": ["竞品关键词", "PPC分析", "SEO历史"],
     "is_free": true,
     "has_api": true,
     "is_ai_friendly": false,
@@ -193,11 +149,7 @@
     "url": "https://zutrix.com/",
     "category": "all-in-one",
     "category_name": "综合 SEO 平台",
-    "tags": [
-      "AI驱动",
-      "排名追踪",
-      "竞争监控"
-    ],
+    "tags": ["AI驱动", "排名追踪", "竞争监控"],
     "is_free": false,
     "has_api": true,
     "is_ai_friendly": true,
@@ -210,11 +162,7 @@
     "url": "https://www.brightedge.com/",
     "category": "all-in-one",
     "category_name": "综合 SEO 平台",
-    "tags": [
-      "企业级",
-      "内容优化",
-      "数据驱动"
-    ],
+    "tags": ["企业级", "内容优化", "数据驱动"],
     "is_free": false,
     "has_api": true,
     "is_ai_friendly": true,
@@ -227,11 +175,7 @@
     "url": "https://cognitiveseo.com/",
     "category": "all-in-one",
     "category_name": "综合 SEO 平台",
-    "tags": [
-      "反链分析",
-      "内容审计",
-      "策略优化"
-    ],
+    "tags": ["反链分析", "内容审计", "策略优化"],
     "is_free": false,
     "has_api": true,
     "is_ai_friendly": false,
@@ -244,11 +188,7 @@
     "url": "https://www.keywordinsights.ai/",
     "category": "all-in-one",
     "category_name": "综合 SEO 平台",
-    "tags": [
-      "AI关键词",
-      "语义聚类",
-      "内容规划"
-    ],
+    "tags": ["AI关键词", "语义聚类", "内容规划"],
     "is_free": false,
     "has_api": true,
     "is_ai_friendly": true,
@@ -261,11 +201,7 @@
     "url": "https://www.clicks.so/",
     "category": "all-in-one",
     "category_name": "综合 SEO 平台",
-    "tags": [
-      "新手友好",
-      "简单易用",
-      "性价比高"
-    ],
+    "tags": ["新手友好", "简单易用", "性价比高"],
     "is_free": false,
     "has_api": false,
     "is_ai_friendly": false,
@@ -278,11 +214,7 @@
     "url": "https://seoutils.app/",
     "category": "all-in-one",
     "category_name": "综合 SEO 平台",
-    "tags": [
-      "桌面应用",
-      "跨平台",
-      "离线使用"
-    ],
+    "tags": ["桌面应用", "跨平台", "离线使用"],
     "is_free": false,
     "has_api": false,
     "is_ai_friendly": false,
@@ -295,11 +227,7 @@
     "url": "https://diagnoseo.com/",
     "category": "all-in-one",
     "category_name": "综合 SEO 平台",
-    "tags": [
-      "AI诊断",
-      "WordPress插件",
-      "内容营销"
-    ],
+    "tags": ["AI诊断", "WordPress插件", "内容营销"],
     "is_free": false,
     "has_api": false,
     "is_ai_friendly": true,
@@ -312,11 +240,7 @@
     "url": "https://withtelescope.com/",
     "category": "all-in-one",
     "category_name": "综合 SEO 平台",
-    "tags": [
-      "全能工具",
-      "性价比高",
-      "内链优化"
-    ],
+    "tags": ["全能工具", "性价比高", "内链优化"],
     "is_free": false,
     "has_api": false,
     "is_ai_friendly": false,
@@ -329,11 +253,7 @@
     "url": "https://www.daxrm.com/",
     "category": "all-in-one",
     "category_name": "综合 SEO 平台",
-    "tags": [
-      "营销CRM",
-      "机构管理",
-      "团队协作"
-    ],
+    "tags": ["营销CRM", "机构管理", "团队协作"],
     "is_free": false,
     "has_api": true,
     "is_ai_friendly": false,
@@ -346,11 +266,7 @@
     "url": "https://seotoolbox.site",
     "category": "all-in-one",
     "category_name": "综合 SEO 平台",
-    "tags": [
-      "AI洞察",
-      "深度报告",
-      "页面分析"
-    ],
+    "tags": ["AI洞察", "深度报告", "页面分析"],
     "is_free": false,
     "has_api": false,
     "is_ai_friendly": true,
@@ -363,11 +279,7 @@
     "url": "https://www.bishopi.io/",
     "category": "all-in-one",
     "category_name": "综合 SEO 平台",
-    "tags": [
-      "企业级",
-      "域名情报",
-      "竞争分析"
-    ],
+    "tags": ["企业级", "域名情报", "竞争分析"],
     "is_free": false,
     "has_api": true,
     "is_ai_friendly": false,
@@ -380,11 +292,7 @@
     "url": "https://ads.google.com/home/tools/keyword-planner/",
     "category": "keyword-research",
     "category_name": "关键词研究",
-    "tags": [
-      "Google官方",
-      "搜索量",
-      "免费工具"
-    ],
+    "tags": ["Google官方", "搜索量", "免费工具"],
     "is_free": true,
     "has_api": false,
     "is_ai_friendly": false,
@@ -397,12 +305,7 @@
     "url": "https://keywordtool.io/",
     "category": "keyword-research",
     "category_name": "关键词研究",
-    "tags": [
-      "多平台",
-      "搜索联想",
-      "YouTube",
-      "Amazon"
-    ],
+    "tags": ["多平台", "搜索联想", "YouTube", "Amazon"],
     "is_free": true,
     "has_api": true,
     "is_ai_friendly": false,
@@ -415,11 +318,7 @@
     "url": "https://www.keysearch.co/tools/lsi-keywords-generator",
     "category": "keyword-research",
     "category_name": "关键词研究",
-    "tags": [
-      "LSI关键词",
-      "语义分析",
-      "内容覆盖"
-    ],
+    "tags": ["LSI关键词", "语义分析", "内容覆盖"],
     "is_free": true,
     "has_api": false,
     "is_ai_friendly": false,
@@ -432,11 +331,7 @@
     "url": "https://www.wordstream.com/keywords",
     "category": "keyword-research",
     "category_name": "关键词研究",
-    "tags": [
-      "关键词优先级",
-      "SEO+PPC",
-      "关键词发现"
-    ],
+    "tags": ["关键词优先级", "SEO+PPC", "关键词发现"],
     "is_free": true,
     "has_api": false,
     "is_ai_friendly": false,
@@ -449,11 +344,7 @@
     "url": "https://www.semrush.com/analytics/keywordmagic/start",
     "category": "keyword-research",
     "category_name": "关键词研究",
-    "tags": [
-      "关键词库",
-      "搜索意图",
-      "Semrush"
-    ],
+    "tags": ["关键词库", "搜索意图", "Semrush"],
     "is_free": false,
     "has_api": true,
     "is_ai_friendly": false,
@@ -466,11 +357,7 @@
     "url": "https://serpminer.com/free-seo-tools",
     "category": "keyword-research",
     "category_name": "关键词研究",
-    "tags": [
-      "长尾词",
-      "批量检查",
-      "搜索量"
-    ],
+    "tags": ["长尾词", "批量检查", "搜索量"],
     "is_free": true,
     "has_api": false,
     "is_ai_friendly": false,
@@ -483,11 +370,7 @@
     "url": "https://www.kwrds.ai",
     "category": "keyword-research",
     "category_name": "关键词研究",
-    "tags": [
-      "AI关键词",
-      "用户意图",
-      "问题挖掘"
-    ],
+    "tags": ["AI关键词", "用户意图", "问题挖掘"],
     "is_free": false,
     "has_api": false,
     "is_ai_friendly": true,
@@ -500,11 +383,7 @@
     "url": "https://answerthepublic.com/",
     "category": "keyword-research",
     "category_name": "关键词研究",
-    "tags": [
-      "长尾词",
-      "用户问题",
-      "内容创作"
-    ],
+    "tags": ["长尾词", "用户问题", "内容创作"],
     "is_free": true,
     "has_api": false,
     "is_ai_friendly": true,
@@ -517,11 +396,7 @@
     "url": "https://keywordideas.xyz/",
     "category": "keyword-research",
     "category_name": "关键词研究",
-    "tags": [
-      "关键词建议",
-      "Google数据",
-      "URL分析"
-    ],
+    "tags": ["关键词建议", "Google数据", "URL分析"],
     "is_free": true,
     "has_api": false,
     "is_ai_friendly": false,
@@ -534,11 +409,7 @@
     "url": "https://explodingtopics.com",
     "category": "keyword-research",
     "category_name": "关键词研究",
-    "tags": [
-      "趋势发现",
-      "潜力词",
-      "大数据"
-    ],
+    "tags": ["趋势发现", "潜力词", "大数据"],
     "is_free": true,
     "has_api": true,
     "is_ai_friendly": true,
@@ -551,11 +422,7 @@
     "url": "https://trends.google.com",
     "category": "keyword-research",
     "category_name": "关键词研究",
-    "tags": [
-      "趋势",
-      "实时数据",
-      "Google官方"
-    ],
+    "tags": ["趋势", "实时数据", "Google官方"],
     "is_free": true,
     "has_api": true,
     "is_ai_friendly": false,
@@ -568,11 +435,7 @@
     "url": "https://majestic.com/",
     "category": "backlink-analysis",
     "category_name": "反链分析",
-    "tags": [
-      "反链数据库",
-      "信任流量",
-      "权威工具"
-    ],
+    "tags": ["反链数据库", "信任流量", "权威工具"],
     "is_free": false,
     "has_api": true,
     "is_ai_friendly": false,
@@ -585,11 +448,7 @@
     "url": "https://monitorbacklinks.com/",
     "category": "backlink-analysis",
     "category_name": "反链分析",
-    "tags": [
-      "实时监控",
-      "反链对比",
-      "链接预警"
-    ],
+    "tags": ["实时监控", "反链对比", "链接预警"],
     "is_free": false,
     "has_api": false,
     "is_ai_friendly": false,
@@ -602,11 +461,7 @@
     "url": "https://respona.com/",
     "category": "backlink-analysis",
     "category_name": "反链分析",
-    "tags": [
-      "链接建设",
-      "邮件推广",
-      "AI辅助"
-    ],
+    "tags": ["链接建设", "邮件推广", "AI辅助"],
     "is_free": false,
     "has_api": true,
     "is_ai_friendly": true,
@@ -619,11 +474,7 @@
     "url": "https://www.backlinkgpt.com/",
     "category": "backlink-analysis",
     "category_name": "反链分析",
-    "tags": [
-      "AI链接",
-      "推广邮件",
-      "自动化"
-    ],
+    "tags": ["AI链接", "推广邮件", "自动化"],
     "is_free": false,
     "has_api": false,
     "is_ai_friendly": true,
@@ -636,11 +487,7 @@
     "url": "https://backlinkscan.com/",
     "category": "backlink-analysis",
     "category_name": "反链分析",
-    "tags": [
-      "反链检查",
-      "链接质量",
-      "来源分析"
-    ],
+    "tags": ["反链检查", "链接质量", "来源分析"],
     "is_free": true,
     "has_api": false,
     "is_ai_friendly": false,
@@ -653,11 +500,7 @@
     "url": "https://www.clearscope.io/",
     "category": "content-optimization",
     "category_name": "内容优化",
-    "tags": [
-      "内容评分",
-      "语义优化",
-      "关键词密度"
-    ],
+    "tags": ["内容评分", "语义优化", "关键词密度"],
     "is_free": false,
     "has_api": true,
     "is_ai_friendly": true,
@@ -670,11 +513,7 @@
     "url": "https://surferseo.com/",
     "category": "content-optimization",
     "category_name": "内容优化",
-    "tags": [
-      "内容优化",
-      "NLP分析",
-      "SERP对比"
-    ],
+    "tags": ["内容优化", "NLP分析", "SERP对比"],
     "is_free": false,
     "has_api": true,
     "is_ai_friendly": true,
@@ -687,11 +526,7 @@
     "url": "https://neuronwriter.com/",
     "category": "content-optimization",
     "category_name": "内容优化",
-    "tags": [
-      "NLP语义",
-      "内容评分",
-      "AI写作"
-    ],
+    "tags": ["NLP语义", "内容评分", "AI写作"],
     "is_free": false,
     "has_api": false,
     "is_ai_friendly": true,
@@ -704,11 +539,7 @@
     "url": "https://github.com/hilmanski/contentswift",
     "category": "content-optimization",
     "category_name": "内容优化",
-    "tags": [
-      "开源工具",
-      "内容研究",
-      "免费"
-    ],
+    "tags": ["开源工具", "内容研究", "免费"],
     "is_free": true,
     "has_api": false,
     "is_ai_friendly": false,
@@ -721,11 +552,7 @@
     "url": "https://www.marketmuse.com/",
     "category": "content-optimization",
     "category_name": "内容优化",
-    "tags": [
-      "AI内容规划",
-      "内容评分",
-      "主题权威"
-    ],
+    "tags": ["AI内容规划", "内容评分", "主题权威"],
     "is_free": false,
     "has_api": true,
     "is_ai_friendly": true,
@@ -738,11 +565,7 @@
     "url": "https://www.frase.io/",
     "category": "content-optimization",
     "category_name": "内容优化",
-    "tags": [
-      "AI写作",
-      "内容创作",
-      "FAQ结构"
-    ],
+    "tags": ["AI写作", "内容创作", "FAQ结构"],
     "is_free": false,
     "has_api": true,
     "is_ai_friendly": true,
@@ -755,11 +578,7 @@
     "url": "https://www.growthbarseo.com/",
     "category": "content-optimization",
     "category_name": "内容优化",
-    "tags": [
-      "AI博客",
-      "快速写作",
-      "内容优化"
-    ],
+    "tags": ["AI博客", "快速写作", "内容优化"],
     "is_free": false,
     "has_api": false,
     "is_ai_friendly": true,
@@ -772,11 +591,7 @@
     "url": "https://lsigraph.com/",
     "category": "content-optimization",
     "category_name": "内容优化",
-    "tags": [
-      "LSI语义",
-      "流量提升",
-      "内容权威"
-    ],
+    "tags": ["LSI语义", "流量提升", "内容权威"],
     "is_free": true,
     "has_api": false,
     "is_ai_friendly": false,
@@ -789,11 +604,7 @@
     "url": "https://yoast.com/",
     "category": "content-optimization",
     "category_name": "内容优化",
-    "tags": [
-      "WordPress插件",
-      "实时建议",
-      "可读性"
-    ],
+    "tags": ["WordPress插件", "实时建议", "可读性"],
     "is_free": true,
     "has_api": false,
     "is_ai_friendly": false,
@@ -806,11 +617,7 @@
     "url": "https://gracker.ai/",
     "category": "content-optimization",
     "category_name": "内容优化",
-    "tags": [
-      "B2B",
-      "程序化SEO",
-      "网络安全"
-    ],
+    "tags": ["B2B", "程序化SEO", "网络安全"],
     "is_free": false,
     "has_api": false,
     "is_ai_friendly": true,
@@ -823,11 +630,7 @@
     "url": "https://www.tailortask.ai/",
     "category": "content-optimization",
     "category_name": "内容优化",
-    "tags": [
-      "AI自动化",
-      "内链优化",
-      "智能体"
-    ],
+    "tags": ["AI自动化", "内链优化", "智能体"],
     "is_free": false,
     "has_api": false,
     "is_ai_friendly": true,
@@ -840,11 +643,7 @@
     "url": "https://searchattention.com",
     "category": "content-optimization",
     "category_name": "内容优化",
-    "tags": [
-      "AI搜索优化",
-      "AI Overview",
-      "GEO"
-    ],
+    "tags": ["AI搜索优化", "AI Overview", "GEO"],
     "is_free": false,
     "has_api": false,
     "is_ai_friendly": true,
@@ -857,11 +656,7 @@
     "url": "https://koala.sh",
     "category": "content-optimization",
     "category_name": "内容优化",
-    "tags": [
-      "AI平台",
-      "内链优化",
-      "实体图谱"
-    ],
+    "tags": ["AI平台", "内链优化", "实体图谱"],
     "is_free": false,
     "has_api": false,
     "is_ai_friendly": true,
@@ -874,11 +669,7 @@
     "url": "https://www.alttextlab.com/",
     "category": "content-optimization",
     "category_name": "内容优化",
-    "tags": [
-      "Alt文本",
-      "图片SEO",
-      "无障碍"
-    ],
+    "tags": ["Alt文本", "图片SEO", "无障碍"],
     "is_free": true,
     "has_api": true,
     "is_ai_friendly": true,
@@ -891,11 +682,7 @@
     "url": "https://www.serprecon.com/",
     "category": "content-optimization",
     "category_name": "内容优化",
-    "tags": [
-      "语义分析",
-      "AI份额",
-      "竞争分析"
-    ],
+    "tags": ["语义分析", "AI份额", "竞争分析"],
     "is_free": false,
     "has_api": false,
     "is_ai_friendly": true,
@@ -908,11 +695,7 @@
     "url": "https://tuxseo.com/",
     "category": "content-optimization",
     "category_name": "内容优化",
-    "tags": [
-      "全自动",
-      "博客创作",
-      "企业工具"
-    ],
+    "tags": ["全自动", "博客创作", "企业工具"],
     "is_free": false,
     "has_api": false,
     "is_ai_friendly": true,
@@ -925,11 +708,7 @@
     "url": "https://docs.serpbear.com/",
     "category": "rank-tracking",
     "category_name": "排名追踪",
-    "tags": [
-      "开源",
-      "自部署",
-      "免费"
-    ],
+    "tags": ["开源", "自部署", "免费"],
     "is_free": true,
     "has_api": true,
     "is_ai_friendly": false,
@@ -942,11 +721,7 @@
     "url": "https://serpwatch.io/",
     "category": "rank-tracking",
     "category_name": "排名追踪",
-    "tags": [
-      "自动报告",
-      "代理机构",
-      "异常预警"
-    ],
+    "tags": ["自动报告", "代理机构", "异常预警"],
     "is_free": false,
     "has_api": true,
     "is_ai_friendly": false,
@@ -959,11 +734,7 @@
     "url": "https://www.accuranker.com/",
     "category": "rank-tracking",
     "category_name": "排名追踪",
-    "tags": [
-      "高精度",
-      "快速刷新",
-      "专业工具"
-    ],
+    "tags": ["高精度", "快速刷新", "专业工具"],
     "is_free": false,
     "has_api": true,
     "is_ai_friendly": false,
@@ -976,11 +747,7 @@
     "url": "https://nightwatch.io/",
     "category": "rank-tracking",
     "category_name": "排名追踪",
-    "tags": [
-      "云端工具",
-      "可视化报告",
-      "排名监控"
-    ],
+    "tags": ["云端工具", "可视化报告", "排名监控"],
     "is_free": false,
     "has_api": true,
     "is_ai_friendly": false,
@@ -993,11 +760,7 @@
     "url": "https://www.daxrm.com/integrations/rank-tracker/",
     "category": "rank-tracking",
     "category_name": "排名追踪",
-    "tags": [
-      "实时追踪",
-      "多地区",
-      "多设备"
-    ],
+    "tags": ["实时追踪", "多地区", "多设备"],
     "is_free": false,
     "has_api": true,
     "is_ai_friendly": false,
@@ -1010,11 +773,7 @@
     "url": "https://search.google.com/search-console/about",
     "category": "technical-seo",
     "category_name": "技术 SEO",
-    "tags": [
-      "Google官方",
-      "索引监控",
-      "搜索表现"
-    ],
+    "tags": ["Google官方", "索引监控", "搜索表现"],
     "is_free": true,
     "has_api": true,
     "is_ai_friendly": false,
@@ -1027,11 +786,7 @@
     "url": "https://www.bing.com/webmasters/about",
     "category": "technical-seo",
     "category_name": "技术 SEO",
-    "tags": [
-      "Bing官方",
-      "Copilot",
-      "AI搜索"
-    ],
+    "tags": ["Bing官方", "Copilot", "AI搜索"],
     "is_free": true,
     "has_api": true,
     "is_ai_friendly": true,
@@ -1044,11 +799,7 @@
     "url": "https://webmaster.yandex.com/",
     "category": "technical-seo",
     "category_name": "技术 SEO",
-    "tags": [
-      "Yandex",
-      "俄语SEO",
-      "国际市场"
-    ],
+    "tags": ["Yandex", "俄语SEO", "国际市场"],
     "is_free": true,
     "has_api": false,
     "is_ai_friendly": false,
@@ -1061,11 +812,7 @@
     "url": "https://www.screamingfrog.co.uk/seo-spider/",
     "category": "technical-seo",
     "category_name": "技术 SEO",
-    "tags": [
-      "爬虫",
-      "技术审计",
-      "本地工具"
-    ],
+    "tags": ["爬虫", "技术审计", "本地工具"],
     "is_free": true,
     "has_api": false,
     "is_ai_friendly": false,
@@ -1078,11 +825,7 @@
     "url": "https://site-analyzer.pro/",
     "category": "technical-seo",
     "category_name": "技术 SEO",
-    "tags": [
-      "全站扫描",
-      "页面报告",
-      "SEO信息"
-    ],
+    "tags": ["全站扫描", "页面报告", "SEO信息"],
     "is_free": true,
     "has_api": false,
     "is_ai_friendly": false,
@@ -1095,11 +838,7 @@
     "url": "https://screpy.com/",
     "category": "technical-seo",
     "category_name": "技术 SEO",
-    "tags": [
-      "综合监控",
-      "多维指标",
-      "一站式"
-    ],
+    "tags": ["综合监控", "多维指标", "一站式"],
     "is_free": false,
     "has_api": false,
     "is_ai_friendly": false,
@@ -1112,11 +851,7 @@
     "url": "https://sitebulb.com/",
     "category": "technical-seo",
     "category_name": "技术 SEO",
-    "tags": [
-      "可视化审计",
-      "SEO顾问",
-      "代理机构"
-    ],
+    "tags": ["可视化审计", "SEO顾问", "代理机构"],
     "is_free": false,
     "has_api": false,
     "is_ai_friendly": false,
@@ -1129,11 +864,7 @@
     "url": "https://moz.com/tools/onpage-grader",
     "category": "technical-seo",
     "category_name": "技术 SEO",
-    "tags": [
-      "页面评分",
-      "优化分析",
-      "Moz"
-    ],
+    "tags": ["页面评分", "优化分析", "Moz"],
     "is_free": true,
     "has_api": false,
     "is_ai_friendly": false,
@@ -1146,11 +877,7 @@
     "url": "https://www.browseo.net",
     "category": "technical-seo",
     "category_name": "技术 SEO",
-    "tags": [
-      "搜索引擎视角",
-      "X光检测",
-      "爬虫视图"
-    ],
+    "tags": ["搜索引擎视角", "X光检测", "爬虫视图"],
     "is_free": true,
     "has_api": false,
     "is_ai_friendly": false,
@@ -1163,11 +890,7 @@
     "url": "https://linkok.com",
     "category": "technical-seo",
     "category_name": "技术 SEO",
-    "tags": [
-      "断链检查",
-      "链接修复",
-      "现代工具"
-    ],
+    "tags": ["断链检查", "链接修复", "现代工具"],
     "is_free": true,
     "has_api": false,
     "is_ai_friendly": false,
@@ -1180,11 +903,7 @@
     "url": "https://pressproxy.io/",
     "category": "technical-seo",
     "category_name": "技术 SEO",
-    "tags": [
-      "Cloudflare",
-      "子域迁移",
-      "无代码"
-    ],
+    "tags": ["Cloudflare", "子域迁移", "无代码"],
     "is_free": true,
     "has_api": false,
     "is_ai_friendly": false,
@@ -1197,11 +916,7 @@
     "url": "https://wizardstool.com/",
     "category": "technical-seo",
     "category_name": "技术 SEO",
-    "tags": [
-      "断链扫描",
-      "简洁工具",
-      "链接修复"
-    ],
+    "tags": ["断链扫描", "简洁工具", "链接修复"],
     "is_free": true,
     "has_api": false,
     "is_ai_friendly": false,
@@ -1214,11 +929,7 @@
     "url": "https://seonaut.org",
     "category": "technical-seo",
     "category_name": "技术 SEO",
-    "tags": [
-      "开源",
-      "技术审计",
-      "自部署"
-    ],
+    "tags": ["开源", "技术审计", "自部署"],
     "is_free": true,
     "has_api": false,
     "is_ai_friendly": false,
@@ -1231,11 +942,7 @@
     "url": "https://www.siteliner.com/",
     "category": "technical-seo",
     "category_name": "技术 SEO",
-    "tags": [
-      "重复内容",
-      "断链检测",
-      "免费工具"
-    ],
+    "tags": ["重复内容", "断链检测", "免费工具"],
     "is_free": true,
     "has_api": false,
     "is_ai_friendly": false,
@@ -1248,11 +955,7 @@
     "url": "https://github.com/sethblack/black-seo-analyzer",
     "category": "technical-seo",
     "category_name": "技术 SEO",
-    "tags": [
-      "命令行",
-      "AI答案引擎",
-      "开源工具"
-    ],
+    "tags": ["命令行", "AI答案引擎", "开源工具"],
     "is_free": true,
     "has_api": false,
     "is_ai_friendly": true,
@@ -1265,11 +968,7 @@
     "url": "https://github.com/sethblack/python-seo-analyzer",
     "category": "technical-seo",
     "category_name": "技术 SEO",
-    "tags": [
-      "开源",
-      "Python工具",
-      "命令行"
-    ],
+    "tags": ["开源", "Python工具", "命令行"],
     "is_free": true,
     "has_api": false,
     "is_ai_friendly": false,
@@ -1282,11 +981,7 @@
     "url": "https://github.com/VesterlundCoder/SEO-JavaScript-Crawler-IncRev",
     "category": "technical-seo",
     "category_name": "技术 SEO",
-    "tags": [
-      "JS渲染",
-      "开源爬虫",
-      "现代框架"
-    ],
+    "tags": ["JS渲染", "开源爬虫", "现代框架"],
     "is_free": true,
     "has_api": false,
     "is_ai_friendly": false,
@@ -1299,11 +994,7 @@
     "url": "https://www.crawlably.com/ssr-checker/",
     "category": "technical-seo",
     "category_name": "技术 SEO",
-    "tags": [
-      "SSR检测",
-      "爬虫可见性",
-      "渲染对比"
-    ],
+    "tags": ["SSR检测", "爬虫可见性", "渲染对比"],
     "is_free": true,
     "has_api": false,
     "is_ai_friendly": false,
@@ -1316,11 +1007,7 @@
     "url": "https://librecrawl.com/",
     "category": "technical-seo",
     "category_name": "技术 SEO",
-    "tags": [
-      "开源爬虫",
-      "JS渲染",
-      "企业级"
-    ],
+    "tags": ["开源爬虫", "JS渲染", "企业级"],
     "is_free": true,
     "has_api": false,
     "is_ai_friendly": false,
@@ -1333,11 +1020,7 @@
     "url": "https://pagespeed.web.dev",
     "category": "technical-seo",
     "category_name": "技术 SEO",
-    "tags": [
-      "速度",
-      "Core Web Vitals",
-      "Google官方"
-    ],
+    "tags": ["速度", "Core Web Vitals", "Google官方"],
     "is_free": true,
     "has_api": true,
     "is_ai_friendly": false,
@@ -1350,11 +1033,7 @@
     "url": "https://gtmetrix.com",
     "category": "technical-seo",
     "category_name": "技术 SEO",
-    "tags": [
-      "性能分析",
-      "瀑布图",
-      "优化建议"
-    ],
+    "tags": ["性能分析", "瀑布图", "优化建议"],
     "is_free": true,
     "has_api": true,
     "is_ai_friendly": false,
@@ -1367,11 +1046,7 @@
     "url": "https://www.debugbear.com/test/website-speed",
     "category": "technical-seo",
     "category_name": "技术 SEO",
-    "tags": [
-      "Core Web Vitals",
-      "实时监控",
-      "CrUX数据"
-    ],
+    "tags": ["Core Web Vitals", "实时监控", "CrUX数据"],
     "is_free": false,
     "has_api": true,
     "is_ai_friendly": false,
@@ -1384,11 +1059,7 @@
     "url": "https://www.brightlocal.com/local-seo-tools/",
     "category": "local-seo",
     "category_name": "本地 SEO",
-    "tags": [
-      "本地SEO",
-      "审计工具",
-      "机构平台"
-    ],
+    "tags": ["本地SEO", "审计工具", "机构平台"],
     "is_free": false,
     "has_api": true,
     "is_ai_friendly": false,
@@ -1401,11 +1072,7 @@
     "url": "https://whitespark.ca/",
     "category": "local-seo",
     "category_name": "本地 SEO",
-    "tags": [
-      "本地引用",
-      "评价管理",
-      "排名追踪"
-    ],
+    "tags": ["本地引用", "评价管理", "排名追踪"],
     "is_free": false,
     "has_api": false,
     "is_ai_friendly": false,
@@ -1418,11 +1085,7 @@
     "url": "https://www.localfalcon.com/",
     "category": "local-seo",
     "category_name": "本地 SEO",
-    "tags": [
-      "地图网格",
-      "本地排名",
-      "可视化追踪"
-    ],
+    "tags": ["地图网格", "本地排名", "可视化追踪"],
     "is_free": false,
     "has_api": true,
     "is_ai_friendly": false,
@@ -1435,11 +1098,7 @@
     "url": "https://gridmybusiness.com/",
     "category": "local-seo",
     "category_name": "本地 SEO",
-    "tags": [
-      "本地可见度",
-      "网格分析",
-      "快速检测"
-    ],
+    "tags": ["本地可见度", "网格分析", "快速检测"],
     "is_free": true,
     "has_api": false,
     "is_ai_friendly": false,
@@ -1452,11 +1111,7 @@
     "url": "https://moz.com/products/local",
     "category": "local-seo",
     "category_name": "本地 SEO",
-    "tags": [
-      "商家信息同步",
-      "口碑管理",
-      "Moz"
-    ],
+    "tags": ["商家信息同步", "口碑管理", "Moz"],
     "is_free": false,
     "has_api": false,
     "is_ai_friendly": false,
@@ -1469,11 +1124,7 @@
     "url": "https://search.google.com/search-console/about",
     "category": "seo-analytics",
     "category_name": "SEO 数据分析",
-    "tags": [
-      "Google官方",
-      "流量分析",
-      "性能报告"
-    ],
+    "tags": ["Google官方", "流量分析", "性能报告"],
     "is_free": true,
     "has_api": true,
     "is_ai_friendly": false,
@@ -1486,11 +1137,7 @@
     "url": "https://seogets.com/",
     "category": "seo-analytics",
     "category_name": "SEO 数据分析",
-    "tags": [
-      "隐私保护",
-      "机构工具",
-      "流量分析"
-    ],
+    "tags": ["隐私保护", "机构工具", "流量分析"],
     "is_free": false,
     "has_api": false,
     "is_ai_friendly": false,
@@ -1503,11 +1150,7 @@
     "url": "https://similarweb.com",
     "category": "seo-analytics",
     "category_name": "SEO 数据分析",
-    "tags": [
-      "流量分析",
-      "竞品研究",
-      "受众画像"
-    ],
+    "tags": ["流量分析", "竞品研究", "受众画像"],
     "is_free": true,
     "has_api": true,
     "is_ai_friendly": false,
@@ -1520,11 +1163,7 @@
     "url": "https://chrome.google.com/webstore/detail/seo-minion/giihipjfimkajhlcilipnjeohabimjhi",
     "category": "browser-extensions",
     "category_name": "SEO 浏览器扩展",
-    "tags": [
-      "Chrome扩展",
-      "页面分析",
-      "断链检测"
-    ],
+    "tags": ["Chrome扩展", "页面分析", "断链检测"],
     "is_free": true,
     "has_api": false,
     "is_ai_friendly": false,
@@ -1537,11 +1176,7 @@
     "url": "https://www.seoquake.com/index.html",
     "category": "browser-extensions",
     "category_name": "SEO 浏览器扩展",
-    "tags": [
-      "SEO指标",
-      "SERP分析",
-      "浏览器工具"
-    ],
+    "tags": ["SEO指标", "SERP分析", "浏览器工具"],
     "is_free": true,
     "has_api": false,
     "is_ai_friendly": false,
@@ -1554,11 +1189,7 @@
     "url": "https://www.woorank.com/en/privacy",
     "category": "browser-extensions",
     "category_name": "SEO 浏览器扩展",
-    "tags": [
-      "网站审查",
-      "综合报告",
-      "改进建议"
-    ],
+    "tags": ["网站审查", "综合报告", "改进建议"],
     "is_free": true,
     "has_api": false,
     "is_ai_friendly": false,
@@ -1571,11 +1202,7 @@
     "url": "https://surferseo.com/keyword-surfer-extension/",
     "category": "browser-extensions",
     "category_name": "SEO 浏览器扩展",
-    "tags": [
-      "关键词数据",
-      "搜索量",
-      "SurferSEO"
-    ],
+    "tags": ["关键词数据", "搜索量", "SurferSEO"],
     "is_free": true,
     "has_api": false,
     "is_ai_friendly": false,
@@ -1588,11 +1215,7 @@
     "url": "https://moz.com/products/pro/seo-toolbar",
     "category": "browser-extensions",
     "category_name": "SEO 浏览器扩展",
-    "tags": [
-      "DA/PA",
-      "即时指标",
-      "Moz扩展"
-    ],
+    "tags": ["DA/PA", "即时指标", "Moz扩展"],
     "is_free": true,
     "has_api": false,
     "is_ai_friendly": false,
@@ -1605,11 +1228,7 @@
     "url": "https://chrome.google.com/webstore/detail/redirect-path/aomidfkchockcldhbkggjokdkkebmdll",
     "category": "browser-extensions",
     "category_name": "SEO 浏览器扩展",
-    "tags": [
-      "重定向检查",
-      "HTTP头",
-      "跳转诊断"
-    ],
+    "tags": ["重定向检查", "HTTP头", "跳转诊断"],
     "is_free": true,
     "has_api": false,
     "is_ai_friendly": false,
@@ -1622,11 +1241,7 @@
     "url": "https://chrome.google.com/webstore/detail/meta-seo-inspector/ibkclpciafdglkjkcibmohobjkcfkaef",
     "category": "browser-extensions",
     "category_name": "SEO 浏览器扩展",
-    "tags": [
-      "Meta检测",
-      "页面元数据",
-      "修复建议"
-    ],
+    "tags": ["Meta检测", "页面元数据", "修复建议"],
     "is_free": true,
     "has_api": false,
     "is_ai_friendly": false,
@@ -1639,11 +1254,7 @@
     "url": "https://chrome.google.com/webstore/detail/similarweb-traffic-rank-w/hoklmmgfnpapgjgcpechhaamimifchmp",
     "category": "browser-extensions",
     "category_name": "SEO 浏览器扩展",
-    "tags": [
-      "流量排名",
-      "即时分析",
-      "Similarweb"
-    ],
+    "tags": ["流量排名", "即时分析", "Similarweb"],
     "is_free": true,
     "has_api": false,
     "is_ai_friendly": false,
@@ -1656,11 +1267,7 @@
     "url": "https://chrome.google.com/webstore/detail/mst-serp-counter-seo-free/dgpekiojagcbjhgfpmmngnkchekcfifn",
     "category": "browser-extensions",
     "category_name": "SEO 浏览器扩展",
-    "tags": [
-      "SERP统计",
-      "排名位置",
-      "竞争分析"
-    ],
+    "tags": ["SERP统计", "排名位置", "竞争分析"],
     "is_free": true,
     "has_api": false,
     "is_ai_friendly": false,
@@ -1673,11 +1280,7 @@
     "url": "https://chrome.google.com/webstore/detail/textoptimizer/fdbbkmpdjmpnebmdgbhcodhlafiicnkd",
     "category": "browser-extensions",
     "category_name": "SEO 浏览器扩展",
-    "tags": [
-      "内容词汇",
-      "意图分析",
-      "NLP优化"
-    ],
+    "tags": ["内容词汇", "意图分析", "NLP优化"],
     "is_free": true,
     "has_api": false,
     "is_ai_friendly": true,
@@ -1690,11 +1293,7 @@
     "url": "https://chrome.google.com/webstore/detail/seo-search-simulator-by-n/edfjfgjklednkencfhnokmkajbgfhpon",
     "category": "browser-extensions",
     "category_name": "SEO 浏览器扩展",
-    "tags": [
-      "搜索模拟",
-      "地区检测",
-      "排名查询"
-    ],
+    "tags": ["搜索模拟", "地区检测", "排名查询"],
     "is_free": true,
     "has_api": false,
     "is_ai_friendly": false,
@@ -1707,11 +1306,7 @@
     "url": "https://chrome.google.com/webstore/detail/buzzsumo/phpihcpfhciibkmlllgcjkbmhhpcaojc",
     "category": "browser-extensions",
     "category_name": "SEO 浏览器扩展",
-    "tags": [
-      "内容传播",
-      "社交影响力",
-      "链接分析"
-    ],
+    "tags": ["内容传播", "社交影响力", "链接分析"],
     "is_free": true,
     "has_api": false,
     "is_ai_friendly": false,
@@ -1724,11 +1319,7 @@
     "url": "https://chrome.google.com/webstore/detail/lighthouse/blipmdconlkpinefehnmjammfjpmpbjk",
     "category": "browser-extensions",
     "category_name": "SEO 浏览器扩展",
-    "tags": [
-      "Google官方",
-      "性能审计",
-      "无障碍"
-    ],
+    "tags": ["Google官方", "性能审计", "无障碍"],
     "is_free": true,
     "has_api": false,
     "is_ai_friendly": false,
@@ -1741,11 +1332,7 @@
     "url": "https://www.checkbot.io/",
     "category": "browser-extensions",
     "category_name": "SEO 浏览器扩展",
-    "tags": [
-      "批量爬取",
-      "安全检查",
-      "页面速度"
-    ],
+    "tags": ["批量爬取", "安全检查", "页面速度"],
     "is_free": true,
     "has_api": false,
     "is_ai_friendly": false,
@@ -1758,11 +1345,7 @@
     "url": "https://chromewebstore.google.com/detail/seo-sidebar/gmmiickdcmghfpliaiefhjafccapgmpp",
     "category": "browser-extensions",
     "category_name": "SEO 浏览器扩展",
-    "tags": [
-      "侧边栏",
-      "实时SEO",
-      "报告导出"
-    ],
+    "tags": ["侧边栏", "实时SEO", "报告导出"],
     "is_free": true,
     "has_api": false,
     "is_ai_friendly": false,
@@ -1775,11 +1358,7 @@
     "url": "https://www.brokenlinkcheck.com/",
     "category": "validator-checker",
     "category_name": "验证检测工具",
-    "tags": [
-      "断链检测",
-      "链接报告",
-      "网站维护"
-    ],
+    "tags": ["断链检测", "链接报告", "网站维护"],
     "is_free": true,
     "has_api": false,
     "is_ai_friendly": false,
@@ -1792,11 +1371,7 @@
     "url": "https://search.google.com/search-console",
     "category": "validator-checker",
     "category_name": "验证检测工具",
-    "tags": [
-      "Robots.txt",
-      "爬虫规则",
-      "Google官方"
-    ],
+    "tags": ["Robots.txt", "爬虫规则", "Google官方"],
     "is_free": true,
     "has_api": false,
     "is_ai_friendly": false,
@@ -1809,11 +1384,7 @@
     "url": "https://search.google.com/test/rich-results",
     "category": "validator-checker",
     "category_name": "验证检测工具",
-    "tags": [
-      "富媒体",
-      "结构化数据",
-      "资格测试"
-    ],
+    "tags": ["富媒体", "结构化数据", "资格测试"],
     "is_free": true,
     "has_api": false,
     "is_ai_friendly": true,
@@ -1826,11 +1397,7 @@
     "url": "https://www.xml-sitemaps.com/validate-xml-sitemap.html",
     "category": "validator-checker",
     "category_name": "验证检测工具",
-    "tags": [
-      "Sitemap验证",
-      "XML格式",
-      "URL检查"
-    ],
+    "tags": ["Sitemap验证", "XML格式", "URL检查"],
     "is_free": true,
     "has_api": false,
     "is_ai_friendly": false,
@@ -1843,11 +1410,7 @@
     "url": "https://github.com/nicepkg/shotog",
     "category": "social-og",
     "category_name": "社交媒体与 OG",
-    "tags": [
-      "OG图片",
-      "开源",
-      "边缘计算"
-    ],
+    "tags": ["OG图片", "开源", "边缘计算"],
     "is_free": true,
     "has_api": true,
     "is_ai_friendly": false,
@@ -1860,11 +1423,7 @@
     "url": "https://ogimg.xyz/",
     "category": "social-og",
     "category_name": "社交媒体与 OG",
-    "tags": [
-      "OG图片API",
-      "自定义模板",
-      "品牌定制"
-    ],
+    "tags": ["OG图片API", "自定义模板", "品牌定制"],
     "is_free": true,
     "has_api": true,
     "is_ai_friendly": false,
@@ -1877,11 +1436,7 @@
     "url": "https://tools.pingdom.com/",
     "category": "miscellaneous",
     "category_name": "其他实用工具",
-    "tags": [
-      "速度测试",
-      "可用性监控",
-      "全球测试"
-    ],
+    "tags": ["速度测试", "可用性监控", "全球测试"],
     "is_free": true,
     "has_api": true,
     "is_ai_friendly": false,
@@ -1894,11 +1449,7 @@
     "url": "https://github.com/danishashko/geo-aeo-tracker",
     "category": "miscellaneous",
     "category_name": "其他实用工具",
-    "tags": [
-      "开源",
-      "AI可见度",
-      "品牌监测"
-    ],
+    "tags": ["开源", "AI可见度", "品牌监测"],
     "is_free": true,
     "has_api": false,
     "is_ai_friendly": true,
@@ -1911,11 +1462,7 @@
     "url": "https://moz.com/mozcast",
     "category": "miscellaneous",
     "category_name": "其他实用工具",
-    "tags": [
-      "算法波动",
-      "Google更新",
-      "实时监测"
-    ],
+    "tags": ["算法波动", "Google更新", "实时监测"],
     "is_free": true,
     "has_api": false,
     "is_ai_friendly": false,
@@ -1928,11 +1475,7 @@
     "url": "https://www.indexnow.org",
     "category": "miscellaneous",
     "category_name": "其他实用工具",
-    "tags": [
-      "收录加速",
-      "IndexNow",
-      "即时收录"
-    ],
+    "tags": ["收录加速", "IndexNow", "即时收录"],
     "is_free": true,
     "has_api": true,
     "is_ai_friendly": false,
@@ -1945,11 +1488,7 @@
     "url": "https://www.sslshopper.com/ssl-checker.html",
     "category": "miscellaneous",
     "category_name": "其他实用工具",
-    "tags": [
-      "SSL",
-      "HTTPS",
-      "安全检测"
-    ],
+    "tags": ["SSL", "HTTPS", "安全检测"],
     "is_free": true,
     "has_api": false,
     "is_ai_friendly": false,
@@ -1962,11 +1501,7 @@
     "url": "https://dataforseo.com",
     "category": "miscellaneous",
     "category_name": "其他实用工具",
-    "tags": [
-      "API数据",
-      "开发者工具",
-      "SEO数据"
-    ],
+    "tags": ["API数据", "开发者工具", "SEO数据"],
     "is_free": false,
     "has_api": true,
     "is_ai_friendly": true,
@@ -1979,11 +1514,7 @@
     "url": "https://serpapi.com",
     "category": "miscellaneous",
     "category_name": "其他实用工具",
-    "tags": [
-      "搜索结果API",
-      "多搜索引擎",
-      "开发者"
-    ],
+    "tags": ["搜索结果API", "多搜索引擎", "开发者"],
     "is_free": false,
     "has_api": true,
     "is_ai_friendly": false,
@@ -1996,11 +1527,7 @@
     "url": "https://alternativeto.net",
     "category": "miscellaneous",
     "category_name": "其他实用工具",
-    "tags": [
-      "工具替代",
-      "用户评价",
-      "软件对比"
-    ],
+    "tags": ["工具替代", "用户评价", "软件对比"],
     "is_free": true,
     "has_api": false,
     "is_ai_friendly": false,
@@ -2013,11 +1540,7 @@
     "url": "https://www.producthunt.com/topics/seo",
     "category": "miscellaneous",
     "category_name": "其他实用工具",
-    "tags": [
-      "新工具",
-      "社区推荐",
-      "每日更新"
-    ],
+    "tags": ["新工具", "社区推荐", "每日更新"],
     "is_free": true,
     "has_api": true,
     "is_ai_friendly": false,

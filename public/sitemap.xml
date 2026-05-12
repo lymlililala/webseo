@@ -37,8 +37,70 @@
   </url>
   <url>
     <loc>https://sgaindex.com/articles</loc>
+    <lastmod>2026-05-12</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.8</priority>
+  </url>
+  <!-- 文章详情页 -->
+  <url>
+    <loc>https://sgaindex.com/articles/9a023a1f-05b2-4c66-b8af-33746cef4475</loc>
+    <lastmod>2026-05-01</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://sgaindex.com/articles/22c8b2ea-db3f-4aa5-89cf-ad7158bae1b9</loc>
+    <lastmod>2026-04-28</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://sgaindex.com/articles/d3e1bc6e-b6a3-44a9-a1b7-d9e2977be5af</loc>
+    <lastmod>2026-04-25</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://sgaindex.com/articles/a2fa150f-e1cb-4c89-91a5-a1fa86f829f5</loc>
+    <lastmod>2026-04-20</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://sgaindex.com/articles/c49e9bc0-0286-4d3d-9970-19dada9d5c1b</loc>
+    <lastmod>2026-04-15</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://sgaindex.com/articles/54967cf0-3502-498a-ae31-b183b1af9e85</loc>
+    <lastmod>2026-04-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://sgaindex.com/articles/1720d2bc-92ee-4180-ab29-989ed8f2981b</loc>
+    <lastmod>2026-04-05</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://sgaindex.com/articles/e656771e-6964-4aec-939a-e2f1c90ad45d</loc>
+    <lastmod>2026-03-30</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://sgaindex.com/articles/f7709f82-0d3f-4150-aacb-b0342c4a49eb</loc>
+    <lastmod>2026-03-25</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://sgaindex.com/articles/f2ced40e-a68f-4672-9811-027ad74accc2</loc>
+    <lastmod>2026-03-20</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
   </url>
   <url>
     <loc>https://sgaindex.com/tutorials</loc>

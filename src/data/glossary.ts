@@ -1,12 +1,12 @@
 export interface GlossaryTerm {
-  id: string           // slug，用于锚点 #geo
-  term: string         // 英文术语名
-  termZh: string       // 中文名
+  id: string // slug，用于锚点 #geo
+  term: string // 英文术语名
+  termZh: string // 中文名
   category: 'ai-core' | 'seo-basics' | 'llm-tech' | 'content-data' | 'metrics'
-  definition: string   // 定义（中文）
-  usage: string        // 使用场景
-  related: string[]    // 相关术语 id 列表
-  link?: string        // 站内跳转链接（内链枢纽）
+  definition: string // 定义（中文）
+  usage: string // 使用场景
+  related: string[] // 相关术语 id 列表
+  link?: string // 站内跳转链接（内链枢纽）
 }
 
 export interface GlossaryCategory {
@@ -254,7 +254,8 @@ export const glossaryTerms: GlossaryTerm[] = [
     category: 'seo-basics',
     definition:
       'E-E-A-T 是 Google 搜索质量评估框架的核心概念，代表 Experience（经验）、Expertise（专业知识）、Authoritativeness（权威性）和 Trustworthiness（可信度）。高 E-E-A-T 内容更受 Google 算法青睐，同时也更容易被 AI 系统选为权威引用来源。',
-    usage: '创作 YMYL（Your Money Your Life）类内容时，E-E-A-T 信号（作者简介、引用来源、实际案例）是排名的关键影响因素。',
+    usage:
+      '创作 YMYL（Your Money Your Life）类内容时，E-E-A-T 信号（作者简介、引用来源、实际案例）是排名的关键影响因素。',
     related: ['domain-authority', 'knowledge-graph', 'backlink'],
   },
   {
