@@ -1,7 +1,10 @@
 <script setup lang="ts">
 import { ref, computed, onMounted } from 'vue'
+import { useRouter } from 'vue-router'
 import { tutorials as localTutorials, type Tutorial } from '../../data/tutorials'
 import { tutorialsAPI, SUPABASE_CONFIGURED } from '../../services/supabase'
+
+const router = useRouter()
 
 const searchQuery = ref('')
 const selectedCategory = ref<'all' | 'seo' | 'geo' | 'aeo'>('all')
@@ -98,7 +101,7 @@ const difficultyLabel = {
             :key="cat.id"
             class="filter-btn"
             :class="{ active: selectedCategory === cat.id }"
-            @click="selectedCategory = cat.id"
+            @click="selectedCategory = cat.id as typeof selectedCategory"
           >
             {{ cat.label }}
           </button>
@@ -116,7 +119,7 @@ const difficultyLabel = {
             :key="level.id"
             class="filter-btn"
             :class="{ active: selectedLevel === level.id }"
-            @click="selectedLevel = level.id"
+            @click="selectedLevel = level.id as typeof selectedLevel"
           >
             {{ level.label }}
           </button>
@@ -135,7 +138,12 @@ const difficultyLabel = {
         </div>
 
         <div v-else class="tutorials-grid">
-          <div v-for="tutorial in filteredTutorials" :key="tutorial.id" class="tutorial-card">
+          <div
+            v-for="tutorial in filteredTutorials"
+            :key="tutorial.id"
+            class="tutorial-card"
+            @click="router.push({ name: 'tutorial-detail', params: { id: tutorial.id } })"
+          >
             <div class="tutorial-header">
               <div class="difficulty-badge" :class="tutorial.difficulty">
                 {{ difficultyLabel[tutorial.difficulty] }}
@@ -333,6 +341,7 @@ const difficultyLabel = {
   border: 1px solid var(--va-background-border);
   border-radius: 12px;
   transition: all 0.2s;
+  cursor: pointer;
 }
 
 .tutorial-card:hover {

@@ -1,7 +1,10 @@
 <script setup lang="ts">
 import { ref, computed, onMounted } from 'vue'
+import { useRouter } from 'vue-router'
 import { news as localNews, type News } from '../../data/news'
 import { newsAPI, SUPABASE_CONFIGURED } from '../../services/supabase'
+
+const router = useRouter()
 
 const searchQuery = ref('')
 const selectedCategory = ref<'all' | 'seo' | 'geo' | 'aeo' | 'ai' | 'industry'>('all')
@@ -102,7 +105,7 @@ function openNewsLink(link?: string) {
             :key="cat.id"
             class="filter-btn"
             :class="{ active: selectedCategory === cat.id }"
-            @click="selectedCategory = cat.id"
+            @click="selectedCategory = cat.id as typeof selectedCategory"
           >
             {{ cat.label }}
           </button>
@@ -120,7 +123,7 @@ function openNewsLink(link?: string) {
             :key="impact.id"
             class="filter-btn"
             :class="{ active: selectedImpact === impact.id }"
-            @click="selectedImpact = impact.id"
+            @click="selectedImpact = impact.id as typeof selectedImpact"
           >
             {{ impact.label }}
           </button>
@@ -139,7 +142,12 @@ function openNewsLink(link?: string) {
         </div>
 
         <div v-else class="news-list">
-          <article v-for="item in filteredNews" :key="item.id" class="news-item">
+          <article
+            v-for="item in filteredNews"
+            :key="item.id"
+            class="news-item"
+            @click="router.push({ name: 'news-detail', params: { id: item.id } })"
+          >
             <div class="news-header">
               <div class="news-meta">
                 <span class="category-tag">{{ item.category.toUpperCase() }}</span>
@@ -335,6 +343,7 @@ function openNewsLink(link?: string) {
   border: 1px solid var(--va-background-border);
   border-radius: 12px;
   transition: all 0.2s;
+  cursor: pointer;
 }
 
 .news-item:hover {

@@ -61,7 +61,8 @@ const groupedTerms = computed(() => {
 
 // ── 出现过的字母 ──────────────────────────────────────────────
 const usedLetters = computed(() => {
-  const terms = activeCategory.value === 'all' ? glossaryTerms : glossaryTerms.filter((t) => t.category === activeCategory.value)
+  const terms =
+    activeCategory.value === 'all' ? glossaryTerms : glossaryTerms.filter((t) => t.category === activeCategory.value)
   return new Set(terms.map((t) => t.term[0].toUpperCase()))
 })
 
@@ -113,6 +114,11 @@ function clearFilters() {
   activeLetter.value = ''
 }
 
+function selectCategory(id: string) {
+  activeCategory.value = id
+  activeLetter.value = ''
+}
+
 const hasFilter = computed(() => searchQuery.value || activeCategory.value !== 'all' || activeLetter.value)
 </script>
 
@@ -131,8 +137,10 @@ const hasFilter = computed(() => searchQuery.value || activeCategory.value !== '
           <span class="glossary-hero-accent">GEO · AEO · LLMO & 更多</span>
         </h1>
         <p class="glossary-hero-subtitle">
-          涵盖 <strong>{{ totalCount }}+</strong> 个核心术语，5 大分类覆盖
-          <strong>AI 搜索优化</strong>、<strong>传统 SEO 基础</strong>、<strong>LLM 技术</strong>、<strong>结构化数据</strong>和<strong>监测指标</strong>，是全站文章内链的中转枢纽。
+          涵盖 <strong>{{ totalCount }}+</strong> 个核心术语，5 大分类覆盖 <strong>AI 搜索优化</strong>、<strong
+            >传统 SEO 基础</strong
+          >、<strong>LLM 技术</strong
+          >、<strong>结构化数据</strong>和<strong>监测指标</strong>，是全站文章内链的中转枢纽。
         </p>
 
         <!-- 搜索框 -->
@@ -142,7 +150,7 @@ const hasFilter = computed(() => searchQuery.value || activeCategory.value !== '
             placeholder="搜索术语、中文名、定义关键词..."
             class="glossary-search-input"
             clearable
-            @update:model-value="activeLetter = ''"
+            @update:modelValue="activeLetter = ''"
           >
             <template #prepend>
               <VaIcon name="search" size="20px" color="secondary" />
@@ -168,11 +176,7 @@ const hasFilter = computed(() => searchQuery.value || activeCategory.value !== '
           <!-- 分类 -->
           <div class="glossary-sidebar-section-title">按分类浏览</div>
 
-          <button
-            class="glossary-cat-btn"
-            :class="{ active: activeCategory === 'all' }"
-            @click="activeCategory = 'all'; activeLetter = ''"
-          >
+          <button class="glossary-cat-btn" :class="{ active: activeCategory === 'all' }" @click="selectCategory('all')">
             <VaIcon name="apps" size="14px" />
             <span>全部术语</span>
             <span class="glossary-cat-count">{{ totalCount }}</span>
@@ -184,7 +188,7 @@ const hasFilter = computed(() => searchQuery.value || activeCategory.value !== '
             class="glossary-cat-btn"
             :class="{ active: activeCategory === cat.id }"
             :style="{ '--cat-color': cat.color }"
-            @click="activeCategory = cat.id; activeLetter = ''"
+            @click="selectCategory(cat.id)"
           >
             <VaIcon :name="cat.icon" size="14px" :style="{ color: activeCategory === cat.id ? cat.color : '' }" />
             <span>{{ cat.name }}</span>
@@ -286,11 +290,7 @@ const hasFilter = computed(() => searchQuery.value || activeCategory.value !== '
                 </div>
 
                 <!-- 内链跳转按钮 -->
-                <button
-                  v-if="term.link"
-                  class="glossary-term-link-btn"
-                  @click.stop="navigateTo(term.link!)"
-                >
+                <button v-if="term.link" class="glossary-term-link-btn" @click.stop="navigateTo(term.link!)">
                   <VaIcon name="open_in_new" size="12px" />
                   查看工具
                 </button>
@@ -325,12 +325,7 @@ const hasFilter = computed(() => searchQuery.value || activeCategory.value !== '
         <div class="glossary-footer-cta">
           <VaIcon name="add_circle_outline" size="18px" color="primary" />
           <span>没找到你要的术语？</span>
-          <a
-            href="mailto:suggest@aiskillnav.com?subject=建议添加术语"
-            class="glossary-submit-link"
-          >
-            提交新词 →
-          </a>
+          <a href="mailto:suggest@aiskillnav.com?subject=建议添加术语" class="glossary-submit-link"> 提交新词 → </a>
           <span class="glossary-footer-meta">最后更新：2026年5月 · 共 {{ totalCount }} 个术语</span>
         </div>
       </main>
