@@ -55,6 +55,12 @@ const impactLabel = {
   medium: '中影响',
   low: '低影响',
 }
+
+function openNewsLink(link?: string) {
+  if (link) {
+    window.open(link, '_blank', 'noopener,noreferrer')
+  }
+}
 </script>
 
 <template>
@@ -156,10 +162,18 @@ const impactLabel = {
                 <VaIcon name="source" size="14px" />
                 {{ item.source }}
               </span>
-              <VaButton preset="plain" size="small" border class="read-more">
+              <VaButton
+                v-if="item.link"
+                preset="plain"
+                size="small"
+                border
+                class="read-more"
+                @click.stop="openNewsLink(item.link)"
+              >
                 <VaIcon name="open_in_new" size="14px" />
                 阅读全文
               </VaButton>
+              <span v-else class="no-link">暂无原文链接</span>
             </div>
           </article>
         </div>
@@ -423,6 +437,12 @@ const impactLabel = {
   align-items: center;
   gap: 4px;
   color: var(--va-text-secondary);
+}
+
+.no-link {
+  font-size: 12px;
+  color: var(--va-text-secondary);
+  opacity: 0.5;
 }
 
 .read-more {
