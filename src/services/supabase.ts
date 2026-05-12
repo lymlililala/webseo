@@ -87,10 +87,32 @@ export const articlesAPI = {
 // ============================================================================
 export const tutorialsAPI = {
   async getAll() {
-    const { data, error } = await supabase.from('wseo_tutorials').select('*').order('created_at', { ascending: false })
+    // 1. 查询所有教程
+    const { data: tutorials, error } = await supabase
+      .from('wseo_tutorials')
+      .select('*')
+      .order('created_at', { ascending: false })
 
     if (error) throw error
-    return data
+    if (!tutorials || tutorials.length === 0) return []
+
+    // 2. 查询所有 lessons（仅 id + tutorial_id 用于计数）
+    const { data: allLessons } = await supabase
+      .from('wseo_tutorial_lessons')
+      .select('id, tutorial_id, lesson_number, title, description, level, duration')
+      .order('lesson_number', { ascending: true })
+
+    // 3. 将 lessons 按 tutorial_id 分组后合并
+    const lessonMap: Record<string, any[]> = {}
+    for (const l of allLessons || []) {
+      if (!lessonMap[l.tutorial_id]) lessonMap[l.tutorial_id] = []
+      lessonMap[l.tutorial_id].push({ ...l, number: l.lesson_number })
+    }
+
+    return tutorials.map((t: any) => ({
+      ...t,
+      lessons: lessonMap[t.id] || [],
+    }))
   },
 
   async getById(id: string) {
@@ -110,7 +132,13 @@ export const tutorialsAPI = {
 
     if (lessonsError) throw lessonsError
 
-    return { ...tutorial, lessons }
+    // 将数据库字段 lesson_number 映射为前端接口字段 number
+    const mappedLessons = (lessons || []).map((l: any) => ({
+      ...l,
+      number: l.lesson_number,
+    }))
+
+    return { ...tutorial, lessons: mappedLessons }
   },
 
   async getByCategory(category: string) {

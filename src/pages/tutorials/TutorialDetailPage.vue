@@ -1,8 +1,9 @@
 <script setup lang="ts">
-import { ref, onMounted } from 'vue'
+import { ref, computed, onMounted } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 import { type Tutorial } from '../../data/tutorials'
 import { tutorialsAPI } from '../../services/supabase'
+import { marked } from 'marked'
 
 const route = useRoute()
 const router = useRouter()
@@ -28,6 +29,12 @@ onMounted(async () => {
     loading.value = false
     if (!tutorial.value) notFound.value = true
   }
+})
+
+// 将 description 渲染为 HTML（支持 markdown 格式）
+const descriptionHtml = computed(() => {
+  if (!tutorial.value?.description) return ''
+  return marked(tutorial.value.description) as string
 })
 
 const categoryMeta: Record<string, { label: string; color: string; icon: string }> = {
@@ -133,8 +140,18 @@ function formatDuration(minutes: number) {
         </div>
       </div>
 
-      <!-- 课程大纲 -->
+      <!-- 课程内容 -->
       <div class="content-wrapper">
+        <!-- 课程概述 -->
+        <div v-if="tutorial.description" class="tutorial-body overview-section">
+          <div class="section-header">
+            <VaIcon name="info_outline" size="20px" color="primary" />
+            <h2>课程概述</h2>
+          </div>
+          <div class="description-content" v-html="descriptionHtml"></div>
+        </div>
+
+        <!-- 课程大纲 -->
         <div class="tutorial-body">
           <!-- 有课程列表时展示大纲 -->
           <template v-if="tutorial.lessons && tutorial.lessons.length > 0">
@@ -326,6 +343,9 @@ function formatDuration(minutes: number) {
   padding: 2.4rem 1.5rem 3rem;
   width: 100%;
   box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
 }
 
 .tutorial-body {
@@ -333,6 +353,77 @@ function formatDuration(minutes: number) {
   border: 1px solid var(--va-background-border);
   border-radius: 16px;
   padding: 2rem 2.4rem;
+}
+
+/* 课程概述区块的 markdown 样式 */
+.overview-section .description-content {
+  font-size: 14px;
+  line-height: 1.75;
+  color: var(--va-text-primary);
+}
+
+.overview-section .description-content :deep(p) {
+  margin: 0 0 0.8em;
+}
+
+.overview-section .description-content :deep(strong) {
+  color: var(--va-primary);
+  font-weight: 600;
+}
+
+.overview-section .description-content :deep(ul),
+.overview-section .description-content :deep(ol) {
+  padding-left: 1.4em;
+  margin: 0.4em 0 0.8em;
+}
+
+.overview-section .description-content :deep(li) {
+  margin-bottom: 0.3em;
+}
+
+.overview-section .description-content :deep(table) {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 0.8em 0;
+  font-size: 13px;
+}
+
+.overview-section .description-content :deep(th) {
+  background: var(--va-background-element);
+  padding: 8px 12px;
+  text-align: left;
+  font-weight: 600;
+  border: 1px solid var(--va-background-border);
+}
+
+.overview-section .description-content :deep(td) {
+  padding: 8px 12px;
+  border: 1px solid var(--va-background-border);
+}
+
+.overview-section .description-content :deep(code) {
+  background: var(--va-background-element);
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-size: 12px;
+  font-family: 'JetBrains Mono', 'Fira Code', monospace;
+}
+
+.overview-section .description-content :deep(pre) {
+  background: var(--va-background-element);
+  padding: 1em;
+  border-radius: 8px;
+  overflow-x: auto;
+  margin: 0.8em 0;
+}
+
+.overview-section .description-content :deep(blockquote) {
+  border-left: 3px solid var(--va-primary);
+  margin: 0.8em 0;
+  padding: 0.4em 1em;
+  color: var(--va-text-secondary);
+  background: rgba(99, 102, 241, 0.05);
+  border-radius: 0 8px 8px 0;
 }
 
 .section-header {
