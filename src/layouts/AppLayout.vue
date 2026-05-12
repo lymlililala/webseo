@@ -18,8 +18,7 @@
           <VaButton class="px-4 py-4" icon="md_close" preset="plain" @click="onCloseSidebarButtonClick" />
         </div>
       </div>
-      <AppLayoutNavigation v-if="!isMobile" class="p-4" />
-      <main class="p-4 pt-0">
+      <main class="p-4 pt-4">
         <article>
           <RouterView />
         </article>
@@ -36,7 +35,6 @@ import { useBreakpoint } from 'vuestic-ui'
 
 import { useGlobalStore } from '../stores/global-store'
 
-import AppLayoutNavigation from '../components/app-layout-navigation/AppLayoutNavigation.vue'
 import AppNavbar from '../components/navbar/AppNavbar.vue'
 import AppSidebar from '../components/sidebar/AppSidebar.vue'
 
@@ -52,7 +50,8 @@ const isTablet = ref(false)
 const { isSidebarMinimized } = storeToRefs(GlobalStore)
 
 const onResize = () => {
-  isSidebarMinimized.value = breakpoints.mdDown
+  // 桌面端（md 以上）保持侧边栏固定展开，仅移动端可折叠
+  isSidebarMinimized.value = breakpoints.smDown
   isMobile.value = breakpoints.smDown
   isTablet.value = breakpoints.mdDown
   sidebarMinimizedWidth.value = isMobile.value ? '0' : '4.5rem'
@@ -69,8 +68,8 @@ onBeforeUnmount(() => {
 })
 
 onBeforeRouteUpdate(() => {
-  if (breakpoints.mdDown) {
-    // Collapse sidebar after route change for Mobile
+  if (breakpoints.smDown) {
+    // Collapse sidebar after route change for Mobile only
     isSidebarMinimized.value = true
   }
 })
