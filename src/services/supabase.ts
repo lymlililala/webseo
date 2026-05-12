@@ -3,11 +3,19 @@ import { createClient } from '@supabase/supabase-js'
 const supabaseUrl = import.meta.env.VITE_SUPABASE_URL || ''
 const supabaseAnonKey = import.meta.env.VITE_SUPABASE_ANON_KEY || ''
 
-if (!supabaseUrl || !supabaseAnonKey) {
-  console.warn('⚠️ Supabase credentials not configured. Some features may not work.')
+const SUPABASE_CONFIGURED = !!(supabaseUrl && supabaseAnonKey)
+
+if (!SUPABASE_CONFIGURED) {
+  console.warn('⚠️ Supabase credentials not configured. Pages will use local data fallback.')
 }
 
-export const supabase = createClient(supabaseUrl, supabaseAnonKey)
+// 使用占位符避免 createClient 在环境变量缺失时直接抛出异常导致页面崩溃
+export const supabase = createClient(
+  supabaseUrl || 'https://placeholder.supabase.co',
+  supabaseAnonKey || 'placeholder-key',
+)
+
+export { SUPABASE_CONFIGURED }
 
 // ============================================================================
 // ARTICLES API

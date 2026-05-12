@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { ref, computed, onMounted } from 'vue'
 import { news as localNews, type News } from '../../data/news'
-import { newsAPI } from '../../services/supabase'
+import { newsAPI, SUPABASE_CONFIGURED } from '../../services/supabase'
 
 const searchQuery = ref('')
 const selectedCategory = ref<'all' | 'seo' | 'geo' | 'aeo' | 'ai' | 'industry'>('all')
@@ -10,6 +10,11 @@ const loading = ref(true)
 const allNews = ref<News[]>([])
 
 onMounted(async () => {
+  if (!SUPABASE_CONFIGURED) {
+    allNews.value = localNews
+    loading.value = false
+    return
+  }
   try {
     const data = await newsAPI.getAll()
     if (data && data.length > 0) {
