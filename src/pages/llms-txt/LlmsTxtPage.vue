@@ -17,20 +17,6 @@ const toolGroups = [
         badge: '推荐',
         badgeColor: '#6366F1',
       },
-      {
-        name: 'Firecrawl llms.txt',
-        url: 'https://www.firecrawl.dev/llmstxt',
-        desc: '基于 Firecrawl 爬虫引擎，支持复杂 SPA 网站，生成质量高',
-        badge: '技术向',
-        badgeColor: '#F59E0B',
-      },
-      {
-        name: 'WordLift llms.txt Generator',
-        url: 'https://wordlift.io/llms-txt-generator/',
-        desc: '面向 SEO/内容营销从业者，结合结构化数据生成',
-        badge: '',
-        badgeColor: '',
-      },
     ],
   },
   {
@@ -66,13 +52,6 @@ const toolGroups = [
     color: '#0EA5E9',
     icon: 'send',
     tools: [
-      {
-        name: 'LLMrefs 提交',
-        url: 'https://llmrefs.com/submit',
-        desc: '将你的 llms.txt 提交到 LLMrefs 索引，增加被 AI 引用的曝光',
-        badge: '推荐',
-        badgeColor: '#6366F1',
-      },
       {
         name: 'llms-txt.com 示例库',
         url: 'https://llms-txt.com/directory',
@@ -402,7 +381,7 @@ async function copyTemplate(tpl: (typeof templates)[0]) {
             <li>
               <span class="llms-step-n">3</span><span>验证可访问：<code>https://yoursite.com/llms.txt</code></span>
             </li>
-            <li><span class="llms-step-n">4</span><span>提交到 LLMrefs 等平台收录索引</span></li>
+            <li><span class="llms-step-n">4</span><span>提交到 AI 索引平台增加曝光</span></li>
           </ol>
         </div>
 
