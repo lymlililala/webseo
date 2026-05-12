@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { ref, computed, onMounted } from 'vue'
 import { tutorials as localTutorials, type Tutorial } from '../../data/tutorials'
-import { tutorialsAPI } from '../../services/supabase'
+import { tutorialsAPI, SUPABASE_CONFIGURED } from '../../services/supabase'
 
 const searchQuery = ref('')
 const selectedCategory = ref<'all' | 'seo' | 'geo' | 'aeo'>('all')
@@ -10,6 +10,11 @@ const loading = ref(true)
 const allTutorials = ref<Tutorial[]>([])
 
 onMounted(async () => {
+  if (!SUPABASE_CONFIGURED) {
+    allTutorials.value = localTutorials
+    loading.value = false
+    return
+  }
   try {
     const data = await tutorialsAPI.getAll()
     if (data && data.length > 0) {
