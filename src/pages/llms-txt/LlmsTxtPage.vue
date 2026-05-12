@@ -25,13 +25,6 @@ const toolGroups = [
     icon: 'edit_note',
     tools: [
       {
-        name: 'llms-txt.com 生成器',
-        url: 'https://llms-txt.com/generator',
-        desc: '规范官网自带生成器，手动填写各字段，直接复制下载',
-        badge: '规范源',
-        badgeColor: '#10B981',
-      },
-      {
         name: 'Geordy.ai',
         url: 'https://geordy.ai',
         desc: 'GEO 优化平台内置 llms.txt 编辑器，配合 AI 内容策略使用',
@@ -42,34 +35,6 @@ const toolGroups = [
         name: 'SiteSpeakAI llms.txt',
         url: 'https://sitespeak.ai/tools/llms-txt-generator',
         desc: '在线表单式生成，填写网站信息后一键导出',
-        badge: '',
-        badgeColor: '',
-      },
-    ],
-  },
-  {
-    label: '提交 & 索引平台',
-    color: '#0EA5E9',
-    icon: 'send',
-    tools: [
-      {
-        name: 'llms-txt.com 示例库',
-        url: 'https://llms-txt.com/directory',
-        desc: '规范官网维护的真实案例目录，涵盖各类网站类型',
-        badge: '',
-        badgeColor: '',
-      },
-    ],
-  },
-  {
-    label: '验证 & 检查工具',
-    color: '#EC4899',
-    icon: 'verified',
-    tools: [
-      {
-        name: 'llms-txt.com Checker',
-        url: 'https://llms-txt.com/checker',
-        desc: '官方格式检查器，同时给出优化建议',
         badge: '',
         badgeColor: '',
       },
