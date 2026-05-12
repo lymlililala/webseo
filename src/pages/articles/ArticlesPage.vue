@@ -1,8 +1,8 @@
 <script setup lang="ts">
 import { ref, computed, onMounted } from 'vue'
 import { useRouter } from 'vue-router'
-import { articles as localArticles, type Article } from '../../data/articles'
-import { articlesAPI, SUPABASE_CONFIGURED } from '../../services/supabase'
+import { type Article } from '../../data/articles'
+import { articlesAPI } from '../../services/supabase'
 
 const router = useRouter()
 
@@ -12,11 +12,6 @@ const loading = ref(true)
 const allArticles = ref<Article[]>([])
 
 onMounted(async () => {
-  if (!SUPABASE_CONFIGURED) {
-    allArticles.value = localArticles
-    loading.value = false
-    return
-  }
   try {
     const data = await articlesAPI.getAll()
     if (data && data.length > 0) {
@@ -24,11 +19,9 @@ onMounted(async () => {
         ...item,
         readTime: item.read_time ?? item.readTime ?? 5,
       }))
-    } else {
-      allArticles.value = localArticles
     }
-  } catch {
-    allArticles.value = localArticles
+  } catch (e) {
+    console.error('加载文章失败', e)
   } finally {
     loading.value = false
   }

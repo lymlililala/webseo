@@ -2,8 +2,8 @@
 import { ref, computed, onMounted } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 import { marked } from 'marked'
-import { news as localNews, type News } from '../../data/news'
-import { newsAPI, SUPABASE_CONFIGURED } from '../../services/supabase'
+import { type News } from '../../data/news'
+import { newsAPI } from '../../services/supabase'
 
 const route = useRoute()
 const router = useRouter()
@@ -31,14 +31,10 @@ const renderedContent = computed(() => {
 onMounted(async () => {
   const id = route.params.id as string
   try {
-    if (SUPABASE_CONFIGURED) {
-      const data = await newsAPI.getById(id)
-      newsItem.value = data ?? localNews.find((n) => n.id === id) ?? null
-    } else {
-      newsItem.value = localNews.find((n) => n.id === id) ?? null
-    }
-  } catch {
-    newsItem.value = localNews.find((n) => n.id === id) ?? null
+    const data = await newsAPI.getById(id)
+    newsItem.value = data ?? null
+  } catch (e) {
+    console.error('加载新闻失败', e)
   } finally {
     loading.value = false
     if (!newsItem.value) notFound.value = true

@@ -1,8 +1,8 @@
 <script setup lang="ts">
 import { ref, computed, onMounted } from 'vue'
 import { useRouter } from 'vue-router'
-import { news as localNews, type News } from '../../data/news'
-import { newsAPI, SUPABASE_CONFIGURED } from '../../services/supabase'
+import { type News } from '../../data/news'
+import { newsAPI } from '../../services/supabase'
 
 const router = useRouter()
 
@@ -13,20 +13,13 @@ const loading = ref(true)
 const allNews = ref<News[]>([])
 
 onMounted(async () => {
-  if (!SUPABASE_CONFIGURED) {
-    allNews.value = localNews
-    loading.value = false
-    return
-  }
   try {
     const data = await newsAPI.getAll()
     if (data && data.length > 0) {
       allNews.value = data as News[]
-    } else {
-      allNews.value = localNews
     }
-  } catch {
-    allNews.value = localNews
+  } catch (e) {
+    console.error('加载新闻失败', e)
   } finally {
     loading.value = false
   }
