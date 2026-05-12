@@ -18,13 +18,6 @@ const toolGroups = [
         badgeColor: '#6366F1',
       },
       {
-        name: 'llmstxt.io',
-        url: 'https://llmstxt.io',
-        desc: '输入 URL 自动爬取生成，支持在线编辑后下载，操作简单',
-        badge: '',
-        badgeColor: '',
-      },
-      {
         name: 'Firecrawl llms.txt',
         url: 'https://www.firecrawl.dev/llmstxt',
         desc: '基于 Firecrawl 爬虫引擎，支持复杂 SPA 网站，生成质量高',
@@ -81,13 +74,6 @@ const toolGroups = [
         badgeColor: '#6366F1',
       },
       {
-        name: 'llmstxt.io 目录',
-        url: 'https://llmstxt.io/directory',
-        desc: '收录已部署 llms.txt 的网站目录，可查看他人实例参考',
-        badge: '',
-        badgeColor: '',
-      },
-      {
         name: 'llms-txt.com 示例库',
         url: 'https://llms-txt.com/directory',
         desc: '规范官网维护的真实案例目录，涵盖各类网站类型',
@@ -101,13 +87,6 @@ const toolGroups = [
     color: '#EC4899',
     icon: 'verified',
     tools: [
-      {
-        name: 'llms.txt Validator',
-        url: 'https://llmstxt.io/validate',
-        desc: '输入 URL 或粘贴内容，检查 llms.txt 格式是否符合规范',
-        badge: '',
-        badgeColor: '',
-      },
       {
         name: 'llms-txt.com Checker',
         url: 'https://llms-txt.com/checker',
@@ -423,7 +402,7 @@ async function copyTemplate(tpl: (typeof templates)[0]) {
             <li>
               <span class="llms-step-n">3</span><span>验证可访问：<code>https://yoursite.com/llms.txt</code></span>
             </li>
-            <li><span class="llms-step-n">4</span><span>提交到 LLMrefs、llmstxt.io 等平台收录索引</span></li>
+            <li><span class="llms-step-n">4</span><span>提交到 LLMrefs 等平台收录索引</span></li>
           </ol>
         </div>
 

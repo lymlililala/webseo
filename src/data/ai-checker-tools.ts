@@ -259,7 +259,7 @@ const tier5Tools: AiCheckerTool[] = [
   {
     id: 'llmstxt-gen',
     name: 'LLMs.txt 生成器',
-    url: 'https://llmstxt.io',
+    url: 'https://llmrefs.com/llms-txt-generator',
     description:
       '自动扫描网站结构并生成符合规范的 llms.txt 文件，让 AI 爬虫更好地理解网站内容，提升 AI 搜索可见度基础。',
     highlights: ['自动扫描', 'llms.txt规范', 'AI可爬性'],
