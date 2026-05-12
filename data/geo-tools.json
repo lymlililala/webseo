@@ -7,13 +7,7 @@
     "url": "https://geo.aidso.com",
     "category": "unknown",
     "category_name": "Unknown",
-    "tags": [
-      "DSO",
-      "GEO双引擎",
-      "品牌监测",
-      "关键词追踪",
-      "国内标杆"
-    ],
+    "tags": ["DSO", "GEO双引擎", "品牌监测", "关键词追踪", "国内标杆"],
     "is_free": false,
     "has_free_plan": true,
     "is_open_source": false,
@@ -31,13 +25,7 @@
     "url": "https://geo.timus.cn",
     "category": "unknown",
     "category_name": "Unknown",
-    "tags": [
-      "永久免费",
-      "国产AI覆盖",
-      "豆包",
-      "DeepSeek",
-      "快速上手"
-    ],
+    "tags": ["永久免费", "国产AI覆盖", "豆包", "DeepSeek", "快速上手"],
     "is_free": true,
     "has_free_plan": true,
     "is_open_source": false,
@@ -55,13 +43,7 @@
     "url": "https://impetaai.hcr.com.cn",
     "category": "unknown",
     "category_name": "Unknown",
-    "tags": [
-      "上市公司",
-      "50+指标",
-      "5大国产AI",
-      "竞品对比",
-      "慧辰股份"
-    ],
+    "tags": ["上市公司", "50+指标", "5大国产AI", "竞品对比", "慧辰股份"],
     "is_free": false,
     "has_free_plan": true,
     "is_open_source": false,
@@ -79,12 +61,7 @@
     "url": "https://www.newrank.cn",
     "category": "unknown",
     "category_name": "Unknown",
-    "tags": [
-      "新榜旗下",
-      "内容+分发+监测",
-      "12款AI平台",
-      "全链路布局"
-    ],
+    "tags": ["新榜旗下", "内容+分发+监测", "12款AI平台", "全链路布局"],
     "is_free": false,
     "has_free_plan": false,
     "is_open_source": false,
@@ -102,13 +79,7 @@
     "url": "https://sheepgeo.com",
     "category": "unknown",
     "category_name": "Unknown",
-    "tags": [
-      "SHEEP五维评分",
-      "9大AI模型",
-      "免费版",
-      "定时巡检",
-      "报告导出"
-    ],
+    "tags": ["SHEEP五维评分", "9大AI模型", "免费版", "定时巡检", "报告导出"],
     "is_free": false,
     "has_free_plan": true,
     "is_open_source": false,
@@ -126,14 +97,7 @@
     "url": "https://tp10.ymyhn.com",
     "category": "unknown",
     "category_name": "Unknown",
-    "tags": [
-      "多模态",
-      "DeepSeek",
-      "豆包",
-      "元宝",
-      "文心一言",
-      "国产全覆盖"
-    ],
+    "tags": ["多模态", "DeepSeek", "豆包", "元宝", "文心一言", "国产全覆盖"],
     "is_free": false,
     "has_free_plan": true,
     "is_open_source": false,
@@ -151,12 +115,7 @@
     "url": "https://geokeji.com",
     "category": "unknown",
     "category_name": "Unknown",
-    "tags": [
-      "GEO技术标杆",
-      "7套自研系统",
-      "技术白皮书",
-      "战略咨询"
-    ],
+    "tags": ["GEO技术标杆", "7套自研系统", "技术白皮书", "战略咨询"],
     "is_free": false,
     "has_free_plan": false,
     "is_open_source": false,
@@ -174,12 +133,7 @@
     "url": "https://suproai.com",
     "category": "unknown",
     "category_name": "Unknown",
-    "tags": [
-      "宝洁背景",
-      "网站雷达",
-      "AI建站",
-      "品牌内容策略"
-    ],
+    "tags": ["宝洁背景", "网站雷达", "AI建站", "品牌内容策略"],
     "is_free": false,
     "has_free_plan": true,
     "is_open_source": false,
@@ -197,12 +151,7 @@
     "url": "https://wanhuys.com",
     "category": "unknown",
     "category_name": "Unknown",
-    "tags": [
-      "专利技术",
-      "500+行业",
-      "72h见效",
-      "免费诊断"
-    ],
+    "tags": ["专利技术", "500+行业", "72h见效", "免费诊断"],
     "is_free": false,
     "has_free_plan": true,
     "is_open_source": false,
@@ -220,12 +169,7 @@
     "url": "https://starlinkgeo.cn",
     "category": "unknown",
     "category_name": "Unknown",
-    "tags": [
-      "基于Princeton研究",
-      "垂直行业",
-      "智能体集成",
-      "技术派"
-    ],
+    "tags": ["基于Princeton研究", "垂直行业", "智能体集成", "技术派"],
     "is_free": false,
     "has_free_plan": false,
     "is_open_source": false,
@@ -243,12 +187,7 @@
     "url": "https://chuanshenggang.com",
     "category": "unknown",
     "category_name": "Unknown",
-    "tags": [
-      "128家央媒",
-      "15万+自媒体",
-      "内容投放型",
-      "E-E-A-T建设"
-    ],
+    "tags": ["128家央媒", "15万+自媒体", "内容投放型", "E-E-A-T建设"],
     "is_free": false,
     "has_free_plan": false,
     "is_open_source": false,
@@ -266,12 +205,7 @@
     "url": "https://geozhida.com",
     "category": "unknown",
     "category_name": "Unknown",
-    "tags": [
-      "国内AI生态",
-      "品牌提及率+78%",
-      "多平台分发",
-      "增长服务"
-    ],
+    "tags": ["国内AI生态", "品牌提及率+78%", "多平台分发", "增长服务"],
     "is_free": false,
     "has_free_plan": false,
     "is_open_source": false,
@@ -289,12 +223,7 @@
     "url": "https://llmrefs.com",
     "category": "unknown",
     "category_name": "Unknown",
-    "tags": [
-      "关键词模式追踪",
-      "200+工具目录",
-      "$13.5/mo起",
-      "国际知名"
-    ],
+    "tags": ["关键词模式追踪", "200+工具目录", "$13.5/mo起", "国际知名"],
     "is_free": false,
     "has_free_plan": true,
     "is_open_source": false,
@@ -312,12 +241,7 @@
     "url": "https://tryprofound.com",
     "category": "unknown",
     "category_name": "Unknown",
-    "tags": [
-      "Sequoia $55M融资",
-      "G2企业级领导者",
-      "企业级",
-      "竞品分析"
-    ],
+    "tags": ["Sequoia $55M融资", "G2企业级领导者", "企业级", "竞品分析"],
     "is_free": false,
     "has_free_plan": false,
     "is_open_source": false,
@@ -335,12 +259,7 @@
     "url": "https://otterly.ai",
     "category": "unknown",
     "category_name": "Unknown",
-    "tags": [
-      "每日追踪",
-      "$29/月",
-      "15000+用户",
-      "多平台监测"
-    ],
+    "tags": ["每日追踪", "$29/月", "15000+用户", "多平台监测"],
     "is_free": false,
     "has_free_plan": true,
     "is_open_source": false,
@@ -358,13 +277,7 @@
     "url": "https://peec.ai",
     "category": "unknown",
     "category_name": "Unknown",
-    "tags": [
-      "德国团队",
-      "€89/月",
-      "代理商友好",
-      "白标报告",
-      "Share of Voice"
-    ],
+    "tags": ["德国团队", "€89/月", "代理商友好", "白标报告", "Share of Voice"],
     "is_free": false,
     "has_free_plan": false,
     "is_open_source": false,
@@ -382,12 +295,7 @@
     "url": "https://athenahq.ai",
     "category": "unknown",
     "category_name": "Unknown",
-    "tags": [
-      "QVEM查询量模型",
-      "$295/月",
-      "AI流量预测",
-      "高端定位"
-    ],
+    "tags": ["QVEM查询量模型", "$295/月", "AI流量预测", "高端定位"],
     "is_free": false,
     "has_free_plan": false,
     "is_open_source": false,
@@ -405,12 +313,7 @@
     "url": "https://rankscale.io",
     "category": "unknown",
     "category_name": "Unknown",
-    "tags": [
-      "积分制灵活计费",
-      "~$20/月",
-      "按需购买",
-      "中小企业友好"
-    ],
+    "tags": ["积分制灵活计费", "~$20/月", "按需购买", "中小企业友好"],
     "is_free": false,
     "has_free_plan": true,
     "is_open_source": false,
@@ -428,12 +331,7 @@
     "url": "https://aiclicks.io",
     "category": "unknown",
     "category_name": "Unknown",
-    "tags": [
-      "~$39/月",
-      "追踪+优化建议",
-      "内容改进指导",
-      "监测转化行动"
-    ],
+    "tags": ["~$39/月", "追踪+优化建议", "内容改进指导", "监测转化行动"],
     "is_free": false,
     "has_free_plan": true,
     "is_open_source": false,
@@ -451,12 +349,7 @@
     "url": "https://appearonai.com",
     "category": "unknown",
     "category_name": "Unknown",
-    "tags": [
-      "免费扫描",
-      "4大AI引擎审计",
-      "可视化报告",
-      "GEO入门"
-    ],
+    "tags": ["免费扫描", "4大AI引擎审计", "可视化报告", "GEO入门"],
     "is_free": true,
     "has_free_plan": true,
     "is_open_source": false,
@@ -474,12 +367,7 @@
     "url": "https://geneo.app",
     "category": "unknown",
     "category_name": "Unknown",
-    "tags": [
-      "Prompt级追踪",
-      "历史记录",
-      "AI描述演变",
-      "精细化分析"
-    ],
+    "tags": ["Prompt级追踪", "历史记录", "AI描述演变", "精细化分析"],
     "is_free": false,
     "has_free_plan": true,
     "is_open_source": false,
@@ -497,12 +385,7 @@
     "url": "https://getpassionfruit.com",
     "category": "unknown",
     "category_name": "Unknown",
-    "tags": [
-      "可见度+收入归因",
-      "商业价值量化",
-      "转化关联",
-      "ROI分析"
-    ],
+    "tags": ["可见度+收入归因", "商业价值量化", "转化关联", "ROI分析"],
     "is_free": false,
     "has_free_plan": false,
     "is_open_source": false,
@@ -520,12 +403,7 @@
     "url": "https://brandlight.ai",
     "category": "unknown",
     "category_name": "Unknown",
-    "tags": [
-      "品牌监测",
-      "内置AI优化工具",
-      "内容生成",
-      "闭环优化"
-    ],
+    "tags": ["品牌监测", "内置AI优化工具", "内容生成", "闭环优化"],
     "is_free": false,
     "has_free_plan": true,
     "is_open_source": false,
@@ -543,12 +421,7 @@
     "url": "https://goodie.ai",
     "category": "unknown",
     "category_name": "Unknown",
-    "tags": [
-      "AEO",
-      "AI购物可见度",
-      "电商场景",
-      "内容缺口识别"
-    ],
+    "tags": ["AEO", "AI购物可见度", "电商场景", "内容缺口识别"],
     "is_free": false,
     "has_free_plan": true,
     "is_open_source": false,
@@ -566,12 +439,7 @@
     "url": "https://knowatoa.com",
     "category": "unknown",
     "category_name": "Unknown",
-    "tags": [
-      "引用来源分析",
-      "竞品被引原因",
-      "内容建设指导",
-      "来源追踪"
-    ],
+    "tags": ["引用来源分析", "竞品被引原因", "内容建设指导", "来源追踪"],
     "is_free": false,
     "has_free_plan": true,
     "is_open_source": false,
@@ -589,12 +457,7 @@
     "url": "https://www.semrush.com",
     "category": "unknown",
     "category_name": "Unknown",
-    "tags": [
-      "Semrush",
-      "AI Visibility模块",
-      "SEO+GEO",
-      "Google AI概述"
-    ],
+    "tags": ["Semrush", "AI Visibility模块", "SEO+GEO", "Google AI概述"],
     "is_free": false,
     "has_free_plan": false,
     "is_open_source": false,
@@ -612,12 +475,7 @@
     "url": "https://ahrefs.com/brand-radar",
     "category": "unknown",
     "category_name": "Unknown",
-    "tags": [
-      "Ahrefs",
-      "Brand Radar",
-      "品牌追踪",
-      "反链联动"
-    ],
+    "tags": ["Ahrefs", "Brand Radar", "品牌追踪", "反链联动"],
     "is_free": false,
     "has_free_plan": false,
     "is_open_source": false,
@@ -635,12 +493,7 @@
     "url": "https://seranking.com",
     "category": "unknown",
     "category_name": "Unknown",
-    "tags": [
-      "SE Ranking",
-      "AI Overview追踪",
-      "Google优化",
-      "内容引用分析"
-    ],
+    "tags": ["SE Ranking", "AI Overview追踪", "Google优化", "内容引用分析"],
     "is_free": false,
     "has_free_plan": false,
     "is_open_source": false,
@@ -658,12 +511,7 @@
     "url": "https://nightwatch.io",
     "category": "unknown",
     "category_name": "Unknown",
-    "tags": [
-      "Nightwatch",
-      "AI Snippets",
-      "排名追踪",
-      "SERP特征"
-    ],
+    "tags": ["Nightwatch", "AI Snippets", "排名追踪", "SERP特征"],
     "is_free": false,
     "has_free_plan": false,
     "is_open_source": false,
@@ -681,12 +529,7 @@
     "url": "https://accuranker.com",
     "category": "unknown",
     "category_name": "Unknown",
-    "tags": [
-      "AccuRanker",
-      "AccuLLM",
-      "LLM可见度",
-      "SEO+GEO对比"
-    ],
+    "tags": ["AccuRanker", "AccuLLM", "LLM可见度", "SEO+GEO对比"],
     "is_free": false,
     "has_free_plan": false,
     "is_open_source": false,
@@ -704,12 +547,7 @@
     "url": "https://www.frase.io",
     "category": "unknown",
     "category_name": "Unknown",
-    "tags": [
-      "Frase",
-      "AI内容优化",
-      "FAQ结构",
-      "How-to优化"
-    ],
+    "tags": ["Frase", "AI内容优化", "FAQ结构", "How-to优化"],
     "is_free": false,
     "has_free_plan": false,
     "is_open_source": false,
@@ -727,12 +565,7 @@
     "url": "https://www.brightedge.com",
     "category": "unknown",
     "category_name": "Unknown",
-    "tags": [
-      "BrightEdge",
-      "企业级",
-      "Generative Parser",
-      "AI概述解析"
-    ],
+    "tags": ["BrightEdge", "企业级", "Generative Parser", "AI概述解析"],
     "is_free": false,
     "has_free_plan": false,
     "is_open_source": false,
@@ -750,12 +583,7 @@
     "url": "https://www.seoclarity.net",
     "category": "unknown",
     "category_name": "Unknown",
-    "tags": [
-      "seoClarity",
-      "企业级",
-      "AI搜索市场份额",
-      "竞品对比"
-    ],
+    "tags": ["seoClarity", "企业级", "AI搜索市场份额", "竞品对比"],
     "is_free": false,
     "has_free_plan": false,
     "is_open_source": false,
@@ -773,12 +601,7 @@
     "url": "https://business.adobe.com/products/experience-cloud.html",
     "category": "unknown",
     "category_name": "Unknown",
-    "tags": [
-      "Adobe",
-      "LLM优化",
-      "Experience Cloud",
-      "企业内容运营"
-    ],
+    "tags": ["Adobe", "LLM优化", "Experience Cloud", "企业内容运营"],
     "is_free": false,
     "has_free_plan": false,
     "is_open_source": false,
@@ -796,12 +619,7 @@
     "url": "https://geo.timus.cn",
     "category": "unknown",
     "category_name": "Unknown",
-    "tags": [
-      "永久免费",
-      "无需注册",
-      "国产AI检测",
-      "个人首选"
-    ],
+    "tags": ["永久免费", "无需注册", "国产AI检测", "个人首选"],
     "is_free": true,
     "has_free_plan": true,
     "is_open_source": false,
@@ -819,12 +637,7 @@
     "url": "https://sheepgeo.com",
     "category": "unknown",
     "category_name": "Unknown",
-    "tags": [
-      "免费检测",
-      "SHEEP五维",
-      "9大AI模型",
-      "基础报告"
-    ],
+    "tags": ["免费检测", "SHEEP五维", "9大AI模型", "基础报告"],
     "is_free": true,
     "has_free_plan": true,
     "is_open_source": false,
@@ -842,13 +655,7 @@
     "url": "https://www.hubspot.com/ai-search-grader",
     "category": "unknown",
     "category_name": "Unknown",
-    "tags": [
-      "HubSpot",
-      "完全免费",
-      "品牌评分",
-      "情感分析",
-      "无需注册"
-    ],
+    "tags": ["HubSpot", "完全免费", "品牌评分", "情感分析", "无需注册"],
     "is_free": true,
     "has_free_plan": true,
     "is_open_source": false,
@@ -866,12 +673,7 @@
     "url": "https://llmrefs.com/tools/llms-txt-generator",
     "category": "unknown",
     "category_name": "Unknown",
-    "tags": [
-      "llms.txt生成",
-      "免费工具",
-      "AI爬虫",
-      "自动扫描"
-    ],
+    "tags": ["llms.txt生成", "免费工具", "AI爬虫", "自动扫描"],
     "is_free": true,
     "has_free_plan": true,
     "is_open_source": false,
@@ -889,12 +691,7 @@
     "url": "https://appearonai.com",
     "category": "unknown",
     "category_name": "Unknown",
-    "tags": [
-      "完全免费",
-      "4大AI引擎",
-      "可视化报告",
-      "GEO入门"
-    ],
+    "tags": ["完全免费", "4大AI引擎", "可视化报告", "GEO入门"],
     "is_free": true,
     "has_free_plan": true,
     "is_open_source": false,
@@ -912,13 +709,7 @@
     "url": "https://github.com/onvoyage-ai/gtm-engineer-skills",
     "category": "unknown",
     "category_name": "Unknown",
-    "tags": [
-      "AEO",
-      "GEO",
-      "Claude Code",
-      "llms.txt",
-      "结构化数据"
-    ],
+    "tags": ["AEO", "GEO", "Claude Code", "llms.txt", "结构化数据"],
     "is_free": true,
     "has_free_plan": true,
     "is_open_source": true,
@@ -936,14 +727,7 @@
     "url": "https://github.com/Auriti-Labs/geo-optimizer-skill",
     "category": "unknown",
     "category_name": "Unknown",
-    "tags": [
-      "Python",
-      "CLI",
-      "AI可见度",
-      "Schema标记",
-      "Princeton研究",
-      "MCP"
-    ],
+    "tags": ["Python", "CLI", "AI可见度", "Schema标记", "Princeton研究", "MCP"],
     "is_free": true,
     "has_free_plan": true,
     "is_open_source": true,
@@ -961,12 +745,7 @@
     "url": "https://github.com/amplifying-ai/awesome-generative-engine-optimization",
     "category": "unknown",
     "category_name": "Unknown",
-    "tags": [
-      "Awesome List",
-      "GEO资源",
-      "研究论文",
-      "工具合集"
-    ],
+    "tags": ["Awesome List", "GEO资源", "研究论文", "工具合集"],
     "is_free": true,
     "has_free_plan": true,
     "is_open_source": true,
@@ -984,14 +763,7 @@
     "url": "https://github.com/multivmlabs/aeo.js",
     "category": "unknown",
     "category_name": "Unknown",
-    "tags": [
-      "TypeScript",
-      "Next.js",
-      "Nuxt",
-      "llms.txt",
-      "JSON-LD",
-      "npm包"
-    ],
+    "tags": ["TypeScript", "Next.js", "Nuxt", "llms.txt", "JSON-LD", "npm包"],
     "is_free": true,
     "has_free_plan": true,
     "is_open_source": true,
@@ -1009,13 +781,7 @@
     "url": "https://github.com/alexpospekhov/searchstack-aeo",
     "category": "unknown",
     "category_name": "Unknown",
-    "tags": [
-      "Python",
-      "CLI",
-      "22条命令",
-      "9个API",
-      "llms.txt"
-    ],
+    "tags": ["Python", "CLI", "22条命令", "9个API", "llms.txt"],
     "is_free": true,
     "has_free_plan": true,
     "is_open_source": true,
@@ -1033,13 +799,7 @@
     "url": "https://github.com/danishashko/geo-aeo-tracker",
     "category": "unknown",
     "category_name": "Unknown",
-    "tags": [
-      "开源",
-      "AI可见度",
-      "品牌监测",
-      "自托管",
-      "仪表板"
-    ],
+    "tags": ["开源", "AI可见度", "品牌监测", "自托管", "仪表板"],
     "is_free": true,
     "has_free_plan": true,
     "is_open_source": true,

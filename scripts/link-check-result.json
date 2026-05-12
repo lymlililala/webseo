@@ -10,2109 +10,1624 @@
       "status": 200,
       "ok": true,
       "redirectUrl": null,
-      "sources": [
-        "seo-tools.ts"
-      ]
+      "sources": ["seo-tools.ts"]
     },
     {
       "url": "https://www.semrush.com/",
       "status": 200,
       "ok": true,
       "redirectUrl": null,
-      "sources": [
-        "seo-tools.ts"
-      ]
+      "sources": ["seo-tools.ts"]
     },
     {
       "url": "https://seodity.com/",
       "status": 200,
       "ok": true,
       "redirectUrl": null,
-      "sources": [
-        "seo-tools.ts"
-      ]
+      "sources": ["seo-tools.ts"]
     },
     {
       "url": "https://neilpatel.com/ubersuggest/",
       "status": 403,
       "ok": false,
       "redirectUrl": null,
-      "sources": [
-        "seo-tools.ts"
-      ]
+      "sources": ["seo-tools.ts"]
     },
     {
       "url": "https://mangools.com/",
       "status": 200,
       "ok": true,
       "redirectUrl": null,
-      "sources": [
-        "seo-tools.ts"
-      ]
+      "sources": ["seo-tools.ts"]
     },
     {
       "url": "https://seranking.com/",
       "status": 200,
       "ok": true,
       "redirectUrl": null,
-      "sources": [
-        "seo-tools.ts"
-      ]
+      "sources": ["seo-tools.ts"]
     },
     {
       "url": "https://moz.com/",
       "status": 403,
       "ok": false,
       "redirectUrl": null,
-      "sources": [
-        "seo-tools.ts"
-      ]
+      "sources": ["seo-tools.ts"]
     },
     {
       "url": "https://serpstat.com/",
       "status": 200,
       "ok": true,
       "redirectUrl": null,
-      "sources": [
-        "seo-tools.ts"
-      ]
+      "sources": ["seo-tools.ts"]
     },
     {
       "url": "https://www.link-assistant.com/",
       "status": 200,
       "ok": true,
       "redirectUrl": null,
-      "sources": [
-        "seo-tools.ts"
-      ]
+      "sources": ["seo-tools.ts"]
     },
     {
       "url": "https://www.webceo.com/",
       "status": 200,
       "ok": true,
       "redirectUrl": null,
-      "sources": [
-        "seo-tools.ts"
-      ]
+      "sources": ["seo-tools.ts"]
     },
     {
       "url": "https://www.spyfu.com/",
       "status": 200,
       "ok": true,
       "redirectUrl": null,
-      "sources": [
-        "seo-tools.ts"
-      ]
+      "sources": ["seo-tools.ts"]
     },
     {
       "url": "https://zutrix.com/",
       "status": 403,
       "ok": false,
       "redirectUrl": null,
-      "sources": [
-        "seo-tools.ts"
-      ]
+      "sources": ["seo-tools.ts"]
     },
     {
       "url": "https://www.brightedge.com/",
       "status": 200,
       "ok": true,
       "redirectUrl": null,
-      "sources": [
-        "seo-tools.ts"
-      ]
+      "sources": ["seo-tools.ts"]
     },
     {
       "url": "https://cognitiveseo.com/",
       "status": 200,
       "ok": true,
       "redirectUrl": null,
-      "sources": [
-        "seo-tools.ts"
-      ]
+      "sources": ["seo-tools.ts"]
     },
     {
       "url": "https://www.keywordinsights.ai/",
       "status": 200,
       "ok": true,
       "redirectUrl": null,
-      "sources": [
-        "seo-tools.ts"
-      ]
+      "sources": ["seo-tools.ts"]
     },
     {
       "url": "https://www.clicks.so/",
       "status": 0,
       "ok": false,
       "error": "TIMEOUT",
-      "sources": [
-        "seo-tools.ts"
-      ]
+      "sources": ["seo-tools.ts"]
     },
     {
       "url": "https://seoutils.app/",
       "status": 200,
       "ok": true,
       "redirectUrl": null,
-      "sources": [
-        "seo-tools.ts"
-      ]
+      "sources": ["seo-tools.ts"]
     },
     {
       "url": "https://getspexia.com",
       "status": 404,
       "ok": false,
       "redirectUrl": "https://getspexia.com/",
-      "sources": [
-        "seo-tools.ts"
-      ]
+      "sources": ["seo-tools.ts"]
     },
     {
       "url": "https://diagnoseo.com/",
       "status": 200,
       "ok": true,
       "redirectUrl": null,
-      "sources": [
-        "seo-tools.ts"
-      ]
+      "sources": ["seo-tools.ts"]
     },
     {
       "url": "https://withtelescope.com/",
       "status": 200,
       "ok": true,
       "redirectUrl": null,
-      "sources": [
-        "seo-tools.ts"
-      ]
+      "sources": ["seo-tools.ts"]
     },
     {
       "url": "https://www.daxrm.com/",
       "status": 200,
       "ok": true,
       "redirectUrl": null,
-      "sources": [
-        "seo-tools.ts"
-      ]
+      "sources": ["seo-tools.ts"]
     },
     {
       "url": "https://seotoolbox.site",
       "status": 200,
       "ok": true,
       "redirectUrl": "https://seotoolbox.site/",
-      "sources": [
-        "seo-tools.ts"
-      ]
+      "sources": ["seo-tools.ts"]
     },
     {
       "url": "https://www.bishopi.io/",
       "status": 200,
       "ok": true,
       "redirectUrl": null,
-      "sources": [
-        "seo-tools.ts"
-      ]
+      "sources": ["seo-tools.ts"]
     },
     {
       "url": "https://ads.google.com/home/tools/keyword-planner/",
       "status": 200,
       "ok": true,
       "redirectUrl": "https://business.google.com/en-all/ad-tools/keyword-planner/",
-      "sources": [
-        "seo-tools.ts"
-      ]
+      "sources": ["seo-tools.ts"]
     },
     {
       "url": "https://keywordtool.io/",
       "status": 200,
       "ok": true,
       "redirectUrl": null,
-      "sources": [
-        "seo-tools.ts"
-      ]
+      "sources": ["seo-tools.ts"]
     },
     {
       "url": "https://www.keysearch.co/tools/lsi-keywords-generator",
       "status": 200,
       "ok": true,
       "redirectUrl": null,
-      "sources": [
-        "seo-tools.ts"
-      ]
+      "sources": ["seo-tools.ts"]
     },
     {
       "url": "https://www.wordstream.com/keywords",
       "status": 403,
       "ok": false,
       "redirectUrl": null,
-      "sources": [
-        "seo-tools.ts"
-      ]
+      "sources": ["seo-tools.ts"]
     },
     {
       "url": "https://ahrefs.com/keyword-generator",
       "status": 200,
       "ok": true,
       "redirectUrl": null,
-      "sources": [
-        "seo-tools.ts"
-      ]
+      "sources": ["seo-tools.ts"]
     },
     {
       "url": "https://www.semrush.com/analytics/keywordmagic/start",
       "status": 200,
       "ok": true,
       "redirectUrl": "https://www.semrush.com/analytics/keywordmagic/",
-      "sources": [
-        "seo-tools.ts"
-      ]
+      "sources": ["seo-tools.ts"]
     },
     {
       "url": "https://www.seoformulas.com",
       "status": 503,
       "ok": false,
       "redirectUrl": "https://www.wiser.so/",
-      "sources": [
-        "seo-tools.ts"
-      ]
+      "sources": ["seo-tools.ts"]
     },
     {
       "url": "https://serpminer.com/free-seo-tools",
       "status": 200,
       "ok": true,
       "redirectUrl": null,
-      "sources": [
-        "seo-tools.ts"
-      ]
+      "sources": ["seo-tools.ts"]
     },
     {
       "url": "https://www.kwrds.ai",
       "status": 200,
       "ok": true,
       "redirectUrl": "https://www.kwrds.ai/",
-      "sources": [
-        "seo-tools.ts"
-      ]
+      "sources": ["seo-tools.ts"]
     },
     {
       "url": "https://answerthepublic.com/",
       "status": 403,
       "ok": false,
       "redirectUrl": null,
-      "sources": [
-        "seo-tools.ts"
-      ]
+      "sources": ["seo-tools.ts"]
     },
     {
       "url": "https://keywordideas.xyz/",
       "status": 0,
       "ok": false,
       "error": "TIMEOUT",
-      "sources": [
-        "seo-tools.ts"
-      ]
+      "sources": ["seo-tools.ts"]
     },
     {
       "url": "https://explodingtopics.com",
       "status": 200,
       "ok": true,
       "redirectUrl": "https://explodingtopics.com/",
-      "sources": [
-        "seo-tools.ts",
-        "aeo-tools.ts"
-      ]
+      "sources": ["seo-tools.ts", "aeo-tools.ts"]
     },
     {
       "url": "https://trends.google.com",
       "status": 200,
       "ok": true,
       "redirectUrl": "https://trends.google.com/trends/",
-      "sources": [
-        "seo-tools.ts"
-      ]
+      "sources": ["seo-tools.ts"]
     },
     {
       "url": "https://majestic.com/",
       "status": 200,
       "ok": true,
       "redirectUrl": null,
-      "sources": [
-        "seo-tools.ts"
-      ]
+      "sources": ["seo-tools.ts"]
     },
     {
       "url": "https://monitorbacklinks.com/",
       "status": 403,
       "ok": false,
       "redirectUrl": "https://www.seoptimer.com/monitor-backlinks/",
-      "sources": [
-        "seo-tools.ts"
-      ]
+      "sources": ["seo-tools.ts"]
     },
     {
       "url": "https://respona.com/",
       "status": 200,
       "ok": true,
       "redirectUrl": null,
-      "sources": [
-        "seo-tools.ts"
-      ]
+      "sources": ["seo-tools.ts"]
     },
     {
       "url": "https://www.backlinkgpt.com/",
       "status": 200,
       "ok": true,
       "redirectUrl": "https://backlinkgpt.com/en",
-      "sources": [
-        "seo-tools.ts"
-      ]
+      "sources": ["seo-tools.ts"]
     },
     {
       "url": "https://youlinker.pro/",
       "status": 0,
       "ok": false,
       "error": "fetch failed",
-      "sources": [
-        "seo-tools.ts"
-      ]
+      "sources": ["seo-tools.ts"]
     },
     {
       "url": "https://backlinkscan.com/",
       "status": 200,
       "ok": true,
       "redirectUrl": null,
-      "sources": [
-        "seo-tools.ts"
-      ]
+      "sources": ["seo-tools.ts"]
     },
     {
       "url": "https://www.clearscope.io/",
       "status": 200,
       "ok": true,
       "redirectUrl": null,
-      "sources": [
-        "seo-tools.ts"
-      ]
+      "sources": ["seo-tools.ts"]
     },
     {
       "url": "https://surferseo.com/",
       "status": 200,
       "ok": true,
       "redirectUrl": null,
-      "sources": [
-        "seo-tools.ts"
-      ]
+      "sources": ["seo-tools.ts"]
     },
     {
       "url": "https://neuronwriter.com/",
       "status": 200,
       "ok": true,
       "redirectUrl": null,
-      "sources": [
-        "seo-tools.ts"
-      ]
+      "sources": ["seo-tools.ts"]
     },
     {
       "url": "https://github.com/hilmanski/contentswift",
       "status": 200,
       "ok": true,
       "redirectUrl": null,
-      "sources": [
-        "seo-tools.ts"
-      ]
+      "sources": ["seo-tools.ts"]
     },
     {
       "url": "https://www.marketmuse.com/",
       "status": 200,
       "ok": true,
       "redirectUrl": null,
-      "sources": [
-        "seo-tools.ts"
-      ]
+      "sources": ["seo-tools.ts"]
     },
     {
       "url": "https://www.frase.io/",
       "status": 200,
       "ok": true,
       "redirectUrl": null,
-      "sources": [
-        "seo-tools.ts"
-      ]
+      "sources": ["seo-tools.ts"]
     },
     {
       "url": "https://www.growthbarseo.com/",
       "status": 403,
       "ok": false,
       "redirectUrl": "https://www.seoptimer.com/growthbar/",
-      "sources": [
-        "seo-tools.ts"
-      ]
+      "sources": ["seo-tools.ts"]
     },
     {
       "url": "https://lsigraph.com/",
       "status": 200,
       "ok": true,
       "redirectUrl": null,
-      "sources": [
-        "seo-tools.ts"
-      ]
+      "sources": ["seo-tools.ts"]
     },
     {
       "url": "https://yoast.com/",
       "status": 200,
       "ok": true,
       "redirectUrl": null,
-      "sources": [
-        "seo-tools.ts"
-      ]
+      "sources": ["seo-tools.ts"]
     },
     {
       "url": "https://searchsocket.com/",
       "status": 0,
       "ok": false,
       "error": "fetch failed",
-      "sources": [
-        "seo-tools.ts"
-      ]
+      "sources": ["seo-tools.ts"]
     },
     {
       "url": "https://blogbud.ai",
       "status": 0,
       "ok": false,
       "error": "fetch failed",
-      "sources": [
-        "seo-tools.ts"
-      ]
+      "sources": ["seo-tools.ts"]
     },
     {
       "url": "https://gracker.ai/",
       "status": 200,
       "ok": true,
       "redirectUrl": null,
-      "sources": [
-        "seo-tools.ts"
-      ]
+      "sources": ["seo-tools.ts"]
     },
     {
       "url": "https://www.tailortask.ai/solutions/for-seo",
       "status": 0,
       "ok": false,
       "error": "fetch failed",
-      "sources": [
-        "seo-tools.ts"
-      ]
+      "sources": ["seo-tools.ts"]
     },
     {
       "url": "https://searchattention.com",
       "status": 200,
       "ok": true,
       "redirectUrl": "https://searchattention.com/",
-      "sources": [
-        "seo-tools.ts"
-      ]
+      "sources": ["seo-tools.ts"]
     },
     {
       "url": "https://koala.sh",
       "status": 200,
       "ok": true,
       "redirectUrl": "https://koala.sh/",
-      "sources": [
-        "seo-tools.ts"
-      ]
+      "sources": ["seo-tools.ts"]
     },
     {
       "url": "https://www.alttextlab.com/",
       "status": 0,
       "ok": false,
       "error": "TIMEOUT",
-      "sources": [
-        "seo-tools.ts"
-      ]
+      "sources": ["seo-tools.ts"]
     },
     {
       "url": "https://www.serprecon.com/",
       "status": 200,
       "ok": true,
       "redirectUrl": null,
-      "sources": [
-        "seo-tools.ts"
-      ]
+      "sources": ["seo-tools.ts"]
     },
     {
       "url": "https://hypertxt.ai",
       "status": 0,
       "ok": false,
       "error": "fetch failed",
-      "sources": [
-        "seo-tools.ts"
-      ]
+      "sources": ["seo-tools.ts"]
     },
     {
       "url": "https://tuxseo.com/",
       "status": 200,
       "ok": true,
       "redirectUrl": null,
-      "sources": [
-        "seo-tools.ts"
-      ]
+      "sources": ["seo-tools.ts"]
     },
     {
       "url": "https://docs.serpbear.com/",
       "status": 200,
       "ok": true,
       "redirectUrl": null,
-      "sources": [
-        "seo-tools.ts"
-      ]
+      "sources": ["seo-tools.ts"]
     },
     {
       "url": "https://serpwatch.io/",
       "status": 200,
       "ok": true,
       "redirectUrl": null,
-      "sources": [
-        "seo-tools.ts"
-      ]
+      "sources": ["seo-tools.ts"]
     },
     {
       "url": "https://www.accuranker.com/",
       "status": 200,
       "ok": true,
       "redirectUrl": null,
-      "sources": [
-        "seo-tools.ts"
-      ]
+      "sources": ["seo-tools.ts"]
     },
     {
       "url": "https://nightwatch.io/",
       "status": 200,
       "ok": true,
       "redirectUrl": null,
-      "sources": [
-        "seo-tools.ts"
-      ]
+      "sources": ["seo-tools.ts"]
     },
     {
       "url": "https://www.daxrm.com/integrations/rank-tracker/",
       "status": 200,
       "ok": true,
       "redirectUrl": "https://www.daxrm.com/rank-tracker/",
-      "sources": [
-        "seo-tools.ts"
-      ]
+      "sources": ["seo-tools.ts"]
     },
     {
       "url": "https://www.thatisrank.com/",
       "status": 200,
       "ok": true,
       "redirectUrl": "https://thatisrank.com/",
-      "sources": [
-        "seo-tools.ts"
-      ]
+      "sources": ["seo-tools.ts"]
     },
     {
       "url": "https://search.google.com/search-console/about",
       "status": 200,
       "ok": true,
       "redirectUrl": null,
-      "sources": [
-        "seo-tools.ts"
-      ]
+      "sources": ["seo-tools.ts"]
     },
     {
       "url": "https://www.bing.com/webmasters/about",
       "status": 200,
       "ok": true,
       "redirectUrl": null,
-      "sources": [
-        "seo-tools.ts"
-      ]
+      "sources": ["seo-tools.ts"]
     },
     {
       "url": "https://webmaster.yandex.com/",
       "status": 200,
       "ok": true,
       "redirectUrl": null,
-      "sources": [
-        "seo-tools.ts"
-      ]
+      "sources": ["seo-tools.ts"]
     },
     {
       "url": "https://www.screamingfrog.co.uk/seo-spider/",
       "status": 200,
       "ok": true,
       "redirectUrl": null,
-      "sources": [
-        "seo-tools.ts"
-      ]
+      "sources": ["seo-tools.ts"]
     },
     {
       "url": "https://site-analyzer.pro/",
       "status": 200,
       "ok": true,
       "redirectUrl": null,
-      "sources": [
-        "seo-tools.ts"
-      ]
+      "sources": ["seo-tools.ts"]
     },
     {
       "url": "https://screpy.com/",
       "status": 200,
       "ok": true,
       "redirectUrl": null,
-      "sources": [
-        "seo-tools.ts"
-      ]
+      "sources": ["seo-tools.ts"]
     },
     {
       "url": "https://sitebulb.com/",
       "status": 200,
       "ok": true,
       "redirectUrl": null,
-      "sources": [
-        "seo-tools.ts"
-      ]
+      "sources": ["seo-tools.ts"]
     },
     {
       "url": "https://moz.com/tools/onpage-grader",
       "status": 403,
       "ok": false,
       "redirectUrl": null,
-      "sources": [
-        "seo-tools.ts"
-      ]
+      "sources": ["seo-tools.ts"]
     },
     {
       "url": "https://www.browseo.net",
       "status": 200,
       "ok": true,
       "redirectUrl": "https://www.browseo.net/",
-      "sources": [
-        "seo-tools.ts"
-      ]
+      "sources": ["seo-tools.ts"]
     },
     {
       "url": "https://linkok.com",
       "status": 200,
       "ok": true,
       "redirectUrl": "https://linkok.com/",
-      "sources": [
-        "seo-tools.ts"
-      ]
+      "sources": ["seo-tools.ts"]
     },
     {
       "url": "https://pressproxy.io/",
       "status": 403,
       "ok": false,
       "redirectUrl": "https://niteo.co/projects/",
-      "sources": [
-        "seo-tools.ts"
-      ]
+      "sources": ["seo-tools.ts"]
     },
     {
       "url": "https://wizardstool.com/",
       "status": 200,
       "ok": true,
       "redirectUrl": null,
-      "sources": [
-        "seo-tools.ts"
-      ]
+      "sources": ["seo-tools.ts"]
     },
     {
       "url": "https://seonaut.org",
       "status": 200,
       "ok": true,
       "redirectUrl": "https://seonaut.org/",
-      "sources": [
-        "seo-tools.ts"
-      ]
+      "sources": ["seo-tools.ts"]
     },
     {
       "url": "https://www.siteliner.com/",
       "status": 200,
       "ok": true,
       "redirectUrl": null,
-      "sources": [
-        "seo-tools.ts"
-      ]
+      "sources": ["seo-tools.ts"]
     },
     {
       "url": "https://github.com/sethblack/black-seo-analyzer",
       "status": 200,
       "ok": true,
       "redirectUrl": null,
-      "sources": [
-        "seo-tools.ts"
-      ]
+      "sources": ["seo-tools.ts"]
     },
     {
       "url": "https://github.com/sethblack/python-seo-analyzer",
       "status": 200,
       "ok": true,
       "redirectUrl": null,
-      "sources": [
-        "seo-tools.ts"
-      ]
+      "sources": ["seo-tools.ts"]
     },
     {
       "url": "https://github.com/VesterlundCoder/SEO-JavaScript-Crawler-IncRev",
       "status": 200,
       "ok": true,
       "redirectUrl": null,
-      "sources": [
-        "seo-tools.ts"
-      ]
+      "sources": ["seo-tools.ts"]
     },
     {
       "url": "https://www.crawlably.com/ssr-checker/",
       "status": 200,
       "ok": true,
       "redirectUrl": "https://www.crawlably.com/check-ssr/",
-      "sources": [
-        "seo-tools.ts"
-      ]
+      "sources": ["seo-tools.ts"]
     },
     {
       "url": "https://librecrawl.com/",
       "status": 200,
       "ok": true,
       "redirectUrl": null,
-      "sources": [
-        "seo-tools.ts"
-      ]
+      "sources": ["seo-tools.ts"]
     },
     {
       "url": "https://pagespeed.web.dev",
       "status": 200,
       "ok": true,
       "redirectUrl": "https://pagespeed.web.dev/",
-      "sources": [
-        "seo-tools.ts"
-      ]
+      "sources": ["seo-tools.ts"]
     },
     {
       "url": "https://gtmetrix.com",
       "status": 403,
       "ok": false,
       "redirectUrl": "https://gtmetrix.com/",
-      "sources": [
-        "seo-tools.ts"
-      ]
+      "sources": ["seo-tools.ts"]
     },
     {
       "url": "https://www.debugbear.com/test/website-speed",
       "status": 200,
       "ok": true,
       "redirectUrl": null,
-      "sources": [
-        "seo-tools.ts"
-      ]
+      "sources": ["seo-tools.ts"]
     },
     {
       "url": "https://www.brightlocal.com/local-seo-tools/",
       "status": 200,
       "ok": true,
       "redirectUrl": null,
-      "sources": [
-        "seo-tools.ts"
-      ]
+      "sources": ["seo-tools.ts"]
     },
     {
       "url": "https://whitespark.ca/",
       "status": 200,
       "ok": true,
       "redirectUrl": null,
-      "sources": [
-        "seo-tools.ts"
-      ]
+      "sources": ["seo-tools.ts"]
     },
     {
       "url": "https://www.localfalcon.com/",
       "status": 200,
       "ok": true,
       "redirectUrl": null,
-      "sources": [
-        "seo-tools.ts"
-      ]
+      "sources": ["seo-tools.ts"]
     },
     {
       "url": "https://gridmybusiness.com/",
       "status": 200,
       "ok": true,
       "redirectUrl": null,
-      "sources": [
-        "seo-tools.ts"
-      ]
+      "sources": ["seo-tools.ts"]
     },
     {
       "url": "https://moz.com/products/local",
       "status": 403,
       "ok": false,
       "redirectUrl": null,
-      "sources": [
-        "seo-tools.ts"
-      ]
+      "sources": ["seo-tools.ts"]
     },
     {
       "url": "https://seogets.com/",
       "status": 200,
       "ok": true,
       "redirectUrl": null,
-      "sources": [
-        "seo-tools.ts"
-      ]
+      "sources": ["seo-tools.ts"]
     },
     {
       "url": "https://www.similarweb.com",
       "status": 404,
       "ok": false,
       "redirectUrl": "https://www.similarweb.com/",
-      "sources": [
-        "seo-tools.ts"
-      ]
+      "sources": ["seo-tools.ts"]
     },
     {
       "url": "https://chrome.google.com/webstore/detail/seo-minion/giihipjfimkajhlcilipnjeohabimjhi",
       "status": 200,
       "ok": true,
       "redirectUrl": "https://chromewebstore.google.com/detail/seo-minion/giihipjfimkajhlcilipnjeohabimjhi",
-      "sources": [
-        "seo-tools.ts"
-      ]
+      "sources": ["seo-tools.ts"]
     },
     {
       "url": "https://www.seoquake.com/index.html",
       "status": 200,
       "ok": true,
       "redirectUrl": "https://backlinko.com/tools/seo-checker",
-      "sources": [
-        "seo-tools.ts"
-      ]
+      "sources": ["seo-tools.ts"]
     },
     {
       "url": "https://www.woorank.com/en/privacy",
       "status": 200,
       "ok": true,
       "redirectUrl": null,
-      "sources": [
-        "seo-tools.ts"
-      ]
+      "sources": ["seo-tools.ts"]
     },
     {
       "url": "https://surferseo.com/keyword-surfer-extension/",
       "status": 200,
       "ok": true,
       "redirectUrl": null,
-      "sources": [
-        "seo-tools.ts"
-      ]
+      "sources": ["seo-tools.ts"]
     },
     {
       "url": "https://moz.com/products/pro/seo-toolbar",
       "status": 403,
       "ok": false,
       "redirectUrl": null,
-      "sources": [
-        "seo-tools.ts"
-      ]
+      "sources": ["seo-tools.ts"]
     },
     {
       "url": "https://chrome.google.com/webstore/detail/ahrefs-seo-toolbar-on-pag/hgmoccdbjhknikckedaaebbpdeebhiei",
       "status": 200,
       "ok": true,
       "redirectUrl": "https://chromewebstore.google.com/detail/ahrefs-seo-toolbar/hgmoccdbjhknikckedaaebbpdeebhiei",
-      "sources": [
-        "seo-tools.ts"
-      ]
+      "sources": ["seo-tools.ts"]
     },
     {
       "url": "https://chrome.google.com/webstore/detail/redirect-path/aomidfkchockcldhbkggjokdkkebmdll",
       "status": 200,
       "ok": true,
       "redirectUrl": "https://chromewebstore.google.com/detail/redirect-path/aomidfkchockcldhbkggjokdkkebmdll",
-      "sources": [
-        "seo-tools.ts"
-      ]
+      "sources": ["seo-tools.ts"]
     },
     {
       "url": "https://chrome.google.com/webstore/detail/meta-seo-inspector/ibkclpciafdglkjkcibmohobjkcfkaef",
       "status": 200,
       "ok": true,
       "redirectUrl": "https://chromewebstore.google.com/detail/meta-seo-inspector/ibkclpciafdglkjkcibmohobjkcfkaef",
-      "sources": [
-        "seo-tools.ts"
-      ]
+      "sources": ["seo-tools.ts"]
     },
     {
       "url": "https://chrome.google.com/webstore/detail/similarweb-traffic-rank-w/hoklmmgfnpapgjgcpechhaamimifchmp",
       "status": 200,
       "ok": true,
       "redirectUrl": "https://chromewebstore.google.com/detail/similarweb-website-traffi/hoklmmgfnpapgjgcpechhaamimifchmp",
-      "sources": [
-        "seo-tools.ts"
-      ]
+      "sources": ["seo-tools.ts"]
     },
     {
       "url": "https://chrome.google.com/webstore/detail/mst-serp-counter-seo-free/dgpekiojagcbjhgfpmmngnkchekcfifn",
       "status": 200,
       "ok": true,
       "redirectUrl": "https://chromewebstore.google.com/detail/mst-serp-counter-seo-free/dgpekiojagcbjhgfpmmngnkchekcfifn",
-      "sources": [
-        "seo-tools.ts"
-      ]
+      "sources": ["seo-tools.ts"]
     },
     {
       "url": "https://chrome.google.com/webstore/detail/textoptimizer/fdbbkmpdjmpnebmdgbhcodhlafiicnkd",
       "status": 200,
       "ok": true,
       "redirectUrl": "https://chromewebstore.google.com/detail/textoptimizer/fdbbkmpdjmpnebmdgbhcodhlafiicnkd",
-      "sources": [
-        "seo-tools.ts"
-      ]
+      "sources": ["seo-tools.ts"]
     },
     {
       "url": "https://chrome.google.com/webstore/detail/seo-search-simulator-by-n/edfjfgjklednkencfhnokmkajbgfhpon",
       "status": 200,
       "ok": true,
       "redirectUrl": "https://chromewebstore.google.com/detail/seo-search-simulator-by-n/edfjfgjklednkencfhnokmkajbgfhpon",
-      "sources": [
-        "seo-tools.ts"
-      ]
+      "sources": ["seo-tools.ts"]
     },
     {
       "url": "https://chrome.google.com/webstore/detail/buzzsumo/phpihcpfhciibkmlllgcjkbmhhpcaojc",
       "status": 200,
       "ok": true,
       "redirectUrl": "https://chromewebstore.google.com/detail/empty-title/phpihcpfhciibkmlllgcjkbmhhpcaojc",
-      "sources": [
-        "seo-tools.ts"
-      ]
+      "sources": ["seo-tools.ts"]
     },
     {
       "url": "https://chrome.google.com/webstore/detail/lighthouse/blipmdconlkpinefehnmjammfjpmpbjk",
       "status": 200,
       "ok": true,
       "redirectUrl": "https://chromewebstore.google.com/detail/lighthouse/blipmdconlkpinefehnmjammfjpmpbjk",
-      "sources": [
-        "seo-tools.ts"
-      ]
+      "sources": ["seo-tools.ts"]
     },
     {
       "url": "https://www.checkbot.io/",
       "status": 200,
       "ok": true,
       "redirectUrl": null,
-      "sources": [
-        "seo-tools.ts"
-      ]
+      "sources": ["seo-tools.ts"]
     },
     {
       "url": "https://chromewebstore.google.com/detail/seo-sidebar/gmmiickdcmghfpliaiefhjafccapgmpp",
       "status": 200,
       "ok": true,
       "redirectUrl": null,
-      "sources": [
-        "seo-tools.ts"
-      ]
+      "sources": ["seo-tools.ts"]
     },
     {
       "url": "https://www.brokenlinkcheck.com/",
       "status": 200,
       "ok": true,
       "redirectUrl": null,
-      "sources": [
-        "seo-tools.ts"
-      ]
+      "sources": ["seo-tools.ts"]
     },
     {
       "url": "https://support.google.com/webmasters/answer/6062598",
       "status": 404,
       "ok": false,
       "redirectUrl": null,
-      "sources": [
-        "seo-tools.ts"
-      ]
+      "sources": ["seo-tools.ts"]
     },
     {
       "url": "https://search.google.com/test/rich-results",
       "status": 200,
       "ok": true,
       "redirectUrl": null,
-      "sources": [
-        "seo-tools.ts",
-        "aeo-tools.ts",
-        "schema-tools.ts"
-      ]
+      "sources": ["seo-tools.ts", "aeo-tools.ts", "schema-tools.ts"]
     },
     {
       "url": "https://www.xml-sitemaps.com/validate-xml-sitemap.html",
       "status": 200,
       "ok": true,
       "redirectUrl": null,
-      "sources": [
-        "seo-tools.ts"
-      ]
+      "sources": ["seo-tools.ts"]
     },
     {
       "url": "https://github.com/nicepkg/shotog",
       "status": 200,
       "ok": true,
       "redirectUrl": null,
-      "sources": [
-        "seo-tools.ts"
-      ]
+      "sources": ["seo-tools.ts"]
     },
     {
       "url": "https://ogimg.xyz/",
       "status": 200,
       "ok": true,
       "redirectUrl": null,
-      "sources": [
-        "seo-tools.ts"
-      ]
+      "sources": ["seo-tools.ts"]
     },
     {
       "url": "https://tools.pingdom.com/",
       "status": 200,
       "ok": true,
       "redirectUrl": null,
-      "sources": [
-        "seo-tools.ts"
-      ]
+      "sources": ["seo-tools.ts"]
     },
     {
       "url": "https://github.com/danishashko/geo-aeo-tracker",
       "status": 200,
       "ok": true,
       "redirectUrl": null,
-      "sources": [
-        "seo-tools.ts",
-        "geo-tools.ts"
-      ]
+      "sources": ["seo-tools.ts", "geo-tools.ts"]
     },
     {
       "url": "https://moz.com/mozcast",
       "status": 403,
       "ok": false,
       "redirectUrl": null,
-      "sources": [
-        "seo-tools.ts"
-      ]
+      "sources": ["seo-tools.ts"]
     },
     {
       "url": "https://www.indexnow.org",
       "status": 200,
       "ok": true,
       "redirectUrl": "https://www.indexnow.org/",
-      "sources": [
-        "seo-tools.ts"
-      ]
+      "sources": ["seo-tools.ts"]
     },
     {
       "url": "https://www.sslshopper.com/ssl-checker.html",
       "status": 200,
       "ok": true,
       "redirectUrl": null,
-      "sources": [
-        "seo-tools.ts"
-      ]
+      "sources": ["seo-tools.ts"]
     },
     {
       "url": "https://dataforseo.com",
       "status": 200,
       "ok": true,
       "redirectUrl": "https://dataforseo.com/",
-      "sources": [
-        "seo-tools.ts"
-      ]
+      "sources": ["seo-tools.ts"]
     },
     {
       "url": "https://serpapi.com",
       "status": 200,
       "ok": true,
       "redirectUrl": "https://serpapi.com/",
-      "sources": [
-        "seo-tools.ts"
-      ]
+      "sources": ["seo-tools.ts"]
     },
     {
       "url": "https://alternativeto.net",
       "status": 403,
       "ok": false,
       "redirectUrl": "https://alternativeto.net/",
-      "sources": [
-        "seo-tools.ts"
-      ]
+      "sources": ["seo-tools.ts"]
     },
     {
       "url": "https://www.producthunt.com/topics/seo",
       "status": 403,
       "ok": false,
       "redirectUrl": null,
-      "sources": [
-        "seo-tools.ts"
-      ]
+      "sources": ["seo-tools.ts"]
     },
     {
       "url": "https://geo.aidso.com",
       "status": 200,
       "ok": true,
       "redirectUrl": "https://geo.aidso.com/",
-      "sources": [
-        "geo-tools.ts",
-        "aeo-tools.ts"
-      ]
+      "sources": ["geo-tools.ts", "aeo-tools.ts"]
     },
     {
       "url": "https://geo.timus.cn",
       "status": 200,
       "ok": true,
       "redirectUrl": "https://geo.timus.cn/",
-      "sources": [
-        "geo-tools.ts",
-        "aeo-tools.ts"
-      ]
+      "sources": ["geo-tools.ts", "aeo-tools.ts"]
     },
     {
       "url": "https://impetaai.hcr.com.cn",
       "status": 200,
       "ok": true,
       "redirectUrl": "https://impetaai.hcr.com.cn/",
-      "sources": [
-        "geo-tools.ts",
-        "aeo-tools.ts"
-      ]
+      "sources": ["geo-tools.ts", "aeo-tools.ts"]
     },
     {
       "url": "https://www.newrank.cn",
       "status": 200,
       "ok": true,
       "redirectUrl": "https://www.newrank.cn/",
-      "sources": [
-        "geo-tools.ts"
-      ]
+      "sources": ["geo-tools.ts"]
     },
     {
       "url": "https://sheepgeo.com",
       "status": 200,
       "ok": true,
       "redirectUrl": "https://sheepgeo.com/",
-      "sources": [
-        "geo-tools.ts",
-        "aeo-tools.ts"
-      ]
+      "sources": ["geo-tools.ts", "aeo-tools.ts"]
     },
     {
       "url": "https://woi.com",
       "status": 0,
       "ok": false,
       "error": "fetch failed",
-      "sources": [
-        "geo-tools.ts"
-      ]
+      "sources": ["geo-tools.ts"]
     },
     {
       "url": "https://tp10.ymyhn.com",
       "status": 200,
       "ok": true,
       "redirectUrl": "https://tp10.ymyhn.com/",
-      "sources": [
-        "geo-tools.ts"
-      ]
+      "sources": ["geo-tools.ts"]
     },
     {
       "url": "https://jinrikuaituan.com",
       "status": 0,
       "ok": false,
       "error": "fetch failed",
-      "sources": [
-        "geo-tools.ts"
-      ]
+      "sources": ["geo-tools.ts"]
     },
     {
       "url": "https://geokeji.com",
       "status": 200,
       "ok": true,
       "redirectUrl": "https://www.geokeji.com/",
-      "sources": [
-        "geo-tools.ts",
-        "aeo-tools.ts"
-      ]
+      "sources": ["geo-tools.ts", "aeo-tools.ts"]
     },
     {
       "url": "https://suproai.com",
       "status": 200,
       "ok": true,
       "redirectUrl": "https://www.suproai.com/",
-      "sources": [
-        "geo-tools.ts",
-        "aeo-tools.ts"
-      ]
+      "sources": ["geo-tools.ts", "aeo-tools.ts"]
     },
     {
       "url": "https://zicaiai.com",
       "status": 0,
       "ok": false,
       "error": "fetch failed",
-      "sources": [
-        "geo-tools.ts",
-        "aeo-tools.ts"
-      ]
+      "sources": ["geo-tools.ts", "aeo-tools.ts"]
     },
     {
       "url": "https://wanhuys.com",
       "status": 200,
       "ok": true,
       "redirectUrl": "https://www.wanhuys.com/",
-      "sources": [
-        "geo-tools.ts"
-      ]
+      "sources": ["geo-tools.ts"]
     },
     {
       "url": "https://starlinkgeo.cn",
       "status": 200,
       "ok": true,
       "redirectUrl": "https://starlinkgeo.cn/",
-      "sources": [
-        "geo-tools.ts"
-      ]
+      "sources": ["geo-tools.ts"]
     },
     {
       "url": "https://chuanshenggang.com",
       "status": 200,
       "ok": true,
       "redirectUrl": "https://chuanshenggang.com/",
-      "sources": [
-        "geo-tools.ts"
-      ]
+      "sources": ["geo-tools.ts"]
     },
     {
       "url": "https://fengkuanggeo.com",
       "status": 0,
       "ok": false,
       "error": "fetch failed",
-      "sources": [
-        "geo-tools.ts"
-      ]
+      "sources": ["geo-tools.ts"]
     },
     {
       "url": "https://geozhida.com",
       "status": 200,
       "ok": true,
       "redirectUrl": "https://geozhida.com/",
-      "sources": [
-        "geo-tools.ts"
-      ]
+      "sources": ["geo-tools.ts"]
     },
     {
       "url": "https://aigcgeo.com",
       "status": 0,
       "ok": false,
       "error": "fetch failed",
-      "sources": [
-        "geo-tools.ts"
-      ]
+      "sources": ["geo-tools.ts"]
     },
     {
       "url": "https://geosuoyin.com",
       "status": 0,
       "ok": false,
       "error": "fetch failed",
-      "sources": [
-        "geo-tools.ts"
-      ]
+      "sources": ["geo-tools.ts"]
     },
     {
       "url": "https://llmrefs.com",
       "status": 200,
       "ok": true,
       "redirectUrl": "https://llmrefs.com/",
-      "sources": [
-        "geo-tools.ts"
-      ]
+      "sources": ["geo-tools.ts"]
     },
     {
       "url": "https://tryprofound.com",
       "status": 200,
       "ok": true,
       "redirectUrl": "https://www.tryprofound.com/",
-      "sources": [
-        "geo-tools.ts",
-        "aeo-tools.ts"
-      ]
+      "sources": ["geo-tools.ts", "aeo-tools.ts"]
     },
     {
       "url": "https://otterly.ai",
       "status": 200,
       "ok": true,
       "redirectUrl": "https://otterly.ai/",
-      "sources": [
-        "geo-tools.ts",
-        "aeo-tools.ts"
-      ]
+      "sources": ["geo-tools.ts", "aeo-tools.ts"]
     },
     {
       "url": "https://scrunch.ai",
       "status": 0,
       "ok": false,
       "error": "fetch failed",
-      "sources": [
-        "geo-tools.ts",
-        "aeo-tools.ts"
-      ]
+      "sources": ["geo-tools.ts", "aeo-tools.ts"]
     },
     {
       "url": "https://peec.ai",
       "status": 200,
       "ok": true,
       "redirectUrl": "https://peec.ai/",
-      "sources": [
-        "geo-tools.ts",
-        "aeo-tools.ts"
-      ]
+      "sources": ["geo-tools.ts", "aeo-tools.ts"]
     },
     {
       "url": "https://athenahq.ai",
       "status": 200,
       "ok": true,
       "redirectUrl": "https://athenahq.ai/",
-      "sources": [
-        "geo-tools.ts",
-        "aeo-tools.ts"
-      ]
+      "sources": ["geo-tools.ts", "aeo-tools.ts"]
     },
     {
       "url": "https://rankscale.io",
       "status": 200,
       "ok": true,
       "redirectUrl": "https://rankscale.ai/",
-      "sources": [
-        "geo-tools.ts",
-        "aeo-tools.ts"
-      ]
+      "sources": ["geo-tools.ts", "aeo-tools.ts"]
     },
     {
       "url": "https://aiclicks.io",
       "status": 200,
       "ok": true,
       "redirectUrl": "https://aiclicks.io/",
-      "sources": [
-        "geo-tools.ts",
-        "aeo-tools.ts"
-      ]
+      "sources": ["geo-tools.ts", "aeo-tools.ts"]
     },
     {
       "url": "https://appearonai.com",
       "status": 0,
       "ok": false,
       "error": "TIMEOUT",
-      "sources": [
-        "geo-tools.ts"
-      ]
+      "sources": ["geo-tools.ts"]
     },
     {
       "url": "https://geneo.app",
       "status": 200,
       "ok": true,
       "redirectUrl": "https://geneo.app/",
-      "sources": [
-        "geo-tools.ts"
-      ]
+      "sources": ["geo-tools.ts"]
     },
     {
       "url": "https://getpassionfruit.com",
       "status": 200,
       "ok": true,
       "redirectUrl": "https://www.getpassionfruit.com/",
-      "sources": [
-        "geo-tools.ts"
-      ]
+      "sources": ["geo-tools.ts"]
     },
     {
       "url": "https://brandlight.ai",
       "status": 0,
       "ok": false,
       "error": "TIMEOUT",
-      "sources": [
-        "geo-tools.ts"
-      ]
+      "sources": ["geo-tools.ts"]
     },
     {
       "url": "https://goodie.ai",
       "status": 200,
       "ok": true,
       "redirectUrl": "https://goodie.ai/",
-      "sources": [
-        "geo-tools.ts"
-      ]
+      "sources": ["geo-tools.ts"]
     },
     {
       "url": "https://knowatoa.com",
       "status": 200,
       "ok": true,
       "redirectUrl": "https://knowatoa.com/",
-      "sources": [
-        "geo-tools.ts"
-      ]
+      "sources": ["geo-tools.ts"]
     },
     {
       "url": "https://geofast.ai",
       "status": 0,
       "ok": false,
       "error": "fetch failed",
-      "sources": [
-        "geo-tools.ts"
-      ]
+      "sources": ["geo-tools.ts"]
     },
     {
       "url": "https://www.semrush.com/features/ai-visibility/",
       "status": 404,
       "ok": false,
       "redirectUrl": null,
-      "sources": [
-        "geo-tools.ts"
-      ]
+      "sources": ["geo-tools.ts"]
     },
     {
       "url": "https://ahrefs.com/brand-radar",
       "status": 200,
       "ok": true,
       "redirectUrl": null,
-      "sources": [
-        "geo-tools.ts",
-        "aeo-tools.ts"
-      ]
+      "sources": ["geo-tools.ts", "aeo-tools.ts"]
     },
     {
       "url": "https://seranking.com",
       "status": 200,
       "ok": true,
       "redirectUrl": "https://seranking.com/",
-      "sources": [
-        "geo-tools.ts",
-        "aeo-tools.ts"
-      ]
+      "sources": ["geo-tools.ts", "aeo-tools.ts"]
     },
     {
       "url": "https://nightwatch.io",
       "status": 200,
       "ok": true,
       "redirectUrl": "https://nightwatch.io/",
-      "sources": [
-        "geo-tools.ts"
-      ]
+      "sources": ["geo-tools.ts"]
     },
     {
       "url": "https://accuranker.com",
       "status": 200,
       "ok": true,
       "redirectUrl": "https://www.accuranker.com/",
-      "sources": [
-        "geo-tools.ts"
-      ]
+      "sources": ["geo-tools.ts"]
     },
     {
       "url": "https://www.frase.io",
       "status": 200,
       "ok": true,
       "redirectUrl": "https://www.frase.io/",
-      "sources": [
-        "geo-tools.ts"
-      ]
+      "sources": ["geo-tools.ts"]
     },
     {
       "url": "https://www.brightedge.com",
       "status": 200,
       "ok": true,
       "redirectUrl": "https://www.brightedge.com/",
-      "sources": [
-        "geo-tools.ts"
-      ]
+      "sources": ["geo-tools.ts"]
     },
     {
       "url": "https://www.seoclarity.net",
       "status": 200,
       "ok": true,
       "redirectUrl": "https://www.seoclarity.net/",
-      "sources": [
-        "geo-tools.ts"
-      ]
+      "sources": ["geo-tools.ts"]
     },
     {
       "url": "https://business.adobe.com/products/experience-cloud/llm-optimizer.html",
       "status": 404,
       "ok": false,
       "redirectUrl": null,
-      "sources": [
-        "geo-tools.ts"
-      ]
+      "sources": ["geo-tools.ts"]
     },
     {
       "url": "https://www.hubspot.com/ai-search-grader",
       "status": 200,
       "ok": true,
       "redirectUrl": "https://www.hubspot.com/aeo-grader",
-      "sources": [
-        "geo-tools.ts"
-      ]
+      "sources": ["geo-tools.ts"]
     },
     {
       "url": "https://llmrefs.com/tools/llms-txt-generator",
       "status": 200,
       "ok": true,
       "redirectUrl": null,
-      "sources": [
-        "geo-tools.ts"
-      ]
+      "sources": ["geo-tools.ts"]
     },
     {
       "url": "https://aicrawlability.com",
       "status": 0,
       "ok": false,
       "error": "fetch failed",
-      "sources": [
-        "geo-tools.ts"
-      ]
+      "sources": ["geo-tools.ts"]
     },
     {
       "url": "https://aicontentoptimizer.io",
       "status": 0,
       "ok": false,
       "error": "fetch failed",
-      "sources": [
-        "geo-tools.ts"
-      ]
+      "sources": ["geo-tools.ts"]
     },
     {
       "url": "https://github.com/onvoyage-ai/gtm-engineer-skills",
       "status": 200,
       "ok": true,
       "redirectUrl": null,
-      "sources": [
-        "geo-tools.ts"
-      ]
+      "sources": ["geo-tools.ts"]
     },
     {
       "url": "https://github.com/Auriti-Labs/geo-optimizer-skill",
       "status": 200,
       "ok": true,
       "redirectUrl": null,
-      "sources": [
-        "geo-tools.ts"
-      ]
+      "sources": ["geo-tools.ts"]
     },
     {
       "url": "https://github.com/amplifying-ai/awesome-generative-engine-optimization",
       "status": 200,
       "ok": true,
       "redirectUrl": null,
-      "sources": [
-        "geo-tools.ts"
-      ]
+      "sources": ["geo-tools.ts"]
     },
     {
       "url": "https://github.com/multivmlabs/aeo.js",
       "status": 200,
       "ok": true,
       "redirectUrl": null,
-      "sources": [
-        "geo-tools.ts",
-        "aeo-tools.ts"
-      ]
+      "sources": ["geo-tools.ts", "aeo-tools.ts"]
     },
     {
       "url": "https://github.com/alexpospekhov/searchstack-aeo",
       "status": 200,
       "ok": true,
       "redirectUrl": null,
-      "sources": [
-        "geo-tools.ts"
-      ]
+      "sources": ["geo-tools.ts"]
     },
     {
       "url": "https://heyamos.com",
       "status": 0,
       "ok": false,
       "error": "TIMEOUT",
-      "sources": [
-        "aeo-tools.ts"
-      ]
+      "sources": ["aeo-tools.ts"]
     },
     {
       "url": "https://higoodie.com",
       "status": 200,
       "ok": true,
       "redirectUrl": "https://higoodie.com/",
-      "sources": [
-        "aeo-tools.ts"
-      ]
+      "sources": ["aeo-tools.ts"]
     },
     {
       "url": "https://evertune.ai",
       "status": 200,
       "ok": true,
       "redirectUrl": "https://www.evertune.ai/",
-      "sources": [
-        "aeo-tools.ts"
-      ]
+      "sources": ["aeo-tools.ts"]
     },
     {
       "url": "https://omnibound.ai",
       "status": 200,
       "ok": true,
       "redirectUrl": "https://www.omnibound.ai/",
-      "sources": [
-        "aeo-tools.ts"
-      ]
+      "sources": ["aeo-tools.ts"]
     },
     {
       "url": "https://getcito.com/dashboard",
       "status": 200,
       "ok": true,
       "redirectUrl": "https://app.getcito.com/dashboard",
-      "sources": [
-        "aeo-tools.ts"
-      ]
+      "sources": ["aeo-tools.ts"]
     },
     {
       "url": "https://www.elmohq.com",
       "status": 200,
       "ok": true,
       "redirectUrl": "https://www.elmohq.com/",
-      "sources": [
-        "aeo-tools.ts"
-      ]
+      "sources": ["aeo-tools.ts"]
     },
     {
       "url": "https://github.com/anyin-ai/aperture",
       "status": 200,
       "ok": true,
       "redirectUrl": null,
-      "sources": [
-        "aeo-tools.ts"
-      ]
+      "sources": ["aeo-tools.ts"]
     },
     {
       "url": "https://github.com/hellowalt/aeo-radar",
       "status": 200,
       "ok": true,
       "redirectUrl": null,
-      "sources": [
-        "aeo-tools.ts"
-      ]
+      "sources": ["aeo-tools.ts"]
     },
     {
       "url": "https://github.com/AINYC/canonry",
       "status": 200,
       "ok": true,
       "redirectUrl": null,
-      "sources": [
-        "aeo-tools.ts"
-      ]
+      "sources": ["aeo-tools.ts"]
     },
     {
       "url": "https://conductor.com",
       "status": 200,
       "ok": true,
       "redirectUrl": "https://www.conductor.com/",
-      "sources": [
-        "aeo-tools.ts"
-      ]
+      "sources": ["aeo-tools.ts"]
     },
     {
       "url": "https://semrush.com/ai-visibility",
       "status": 404,
       "ok": false,
       "redirectUrl": "https://www.semrush.com/ai-visibility",
-      "sources": [
-        "aeo-tools.ts"
-      ]
+      "sources": ["aeo-tools.ts"]
     },
     {
       "url": "https://brightedge.com",
       "status": 200,
       "ok": true,
       "redirectUrl": "https://www.brightedge.com/",
-      "sources": [
-        "aeo-tools.ts"
-      ]
+      "sources": ["aeo-tools.ts"]
     },
     {
       "url": "https://seoclarity.net",
       "status": 200,
       "ok": true,
       "redirectUrl": "https://www.seoclarity.net/",
-      "sources": [
-        "aeo-tools.ts"
-      ]
+      "sources": ["aeo-tools.ts"]
     },
     {
       "url": "https://authoritas.com",
       "status": 0,
       "ok": false,
       "error": "TIMEOUT",
-      "sources": [
-        "aeo-tools.ts"
-      ]
+      "sources": ["aeo-tools.ts"]
     },
     {
       "url": "https://frase.io",
       "status": 200,
       "ok": true,
       "redirectUrl": "https://www.frase.io/",
-      "sources": [
-        "aeo-tools.ts"
-      ]
+      "sources": ["aeo-tools.ts"]
     },
     {
       "url": "https://surferseo.com",
       "status": 200,
       "ok": true,
       "redirectUrl": "https://surferseo.com/",
-      "sources": [
-        "aeo-tools.ts"
-      ]
+      "sources": ["aeo-tools.ts"]
     },
     {
       "url": "https://clearscope.io",
       "status": 200,
       "ok": true,
       "redirectUrl": "https://www.clearscope.io/",
-      "sources": [
-        "aeo-tools.ts"
-      ]
+      "sources": ["aeo-tools.ts"]
     },
     {
       "url": "https://marketmuse.com",
       "status": 200,
       "ok": true,
       "redirectUrl": "https://www.marketmuse.com/",
-      "sources": [
-        "aeo-tools.ts"
-      ]
+      "sources": ["aeo-tools.ts"]
     },
     {
       "url": "https://neuronwriter.com",
       "status": 200,
       "ok": true,
       "redirectUrl": "https://neuronwriter.com/",
-      "sources": [
-        "aeo-tools.ts"
-      ]
+      "sources": ["aeo-tools.ts"]
     },
     {
       "url": "https://semai.ai",
       "status": 404,
       "ok": false,
       "redirectUrl": "https://semai.ai/",
-      "sources": [
-        "aeo-tools.ts"
-      ]
+      "sources": ["aeo-tools.ts"]
     },
     {
       "url": "https://inlinks.com",
       "status": 200,
       "ok": true,
       "redirectUrl": "https://inlinks.com/",
-      "sources": [
-        "aeo-tools.ts"
-      ]
+      "sources": ["aeo-tools.ts"]
     },
     {
       "url": "https://writesonic.com",
       "status": 0,
       "ok": false,
       "error": "TIMEOUT",
-      "sources": [
-        "aeo-tools.ts"
-      ]
+      "sources": ["aeo-tools.ts"]
     },
     {
       "url": "https://github.com/gbessoni/seobuild-onpage",
       "status": 200,
       "ok": true,
       "redirectUrl": null,
-      "sources": [
-        "aeo-tools.ts"
-      ]
+      "sources": ["aeo-tools.ts"]
     },
     {
       "url": "https://alsoasked.com",
       "status": 200,
       "ok": true,
       "redirectUrl": "https://alsoasked.com/",
-      "sources": [
-        "aeo-tools.ts"
-      ]
+      "sources": ["aeo-tools.ts"]
     },
     {
       "url": "https://answerthepublic.com",
       "status": 403,
       "ok": false,
       "redirectUrl": "https://answerthepublic.com/",
-      "sources": [
-        "aeo-tools.ts"
-      ]
+      "sources": ["aeo-tools.ts"]
     },
     {
       "url": "https://google.com",
       "status": 200,
       "ok": true,
       "redirectUrl": "https://www.google.com/",
-      "sources": [
-        "aeo-tools.ts"
-      ]
+      "sources": ["aeo-tools.ts"]
     },
     {
       "url": "https://questiondb.io",
       "status": 200,
       "ok": true,
       "redirectUrl": "https://questiondb.io/",
-      "sources": [
-        "aeo-tools.ts"
-      ]
+      "sources": ["aeo-tools.ts"]
     },
     {
       "url": "https://keywordtool.io",
       "status": 200,
       "ok": true,
       "redirectUrl": "https://keywordtool.io/",
-      "sources": [
-        "aeo-tools.ts"
-      ]
+      "sources": ["aeo-tools.ts"]
     },
     {
       "url": "https://geordy.ai",
       "status": 200,
       "ok": true,
       "redirectUrl": "https://geordy.ai/",
-      "sources": [
-        "aeo-tools.ts"
-      ]
+      "sources": ["aeo-tools.ts"]
     },
     {
       "url": "https://schemaapp.com",
       "status": 200,
       "ok": true,
       "redirectUrl": "https://www.schemaapp.com/",
-      "sources": [
-        "aeo-tools.ts"
-      ]
+      "sources": ["aeo-tools.ts"]
     },
     {
       "url": "https://technicalseo.com/tools/schema-markup-generator",
       "status": 200,
       "ok": true,
       "redirectUrl": "https://technicalseo.com/tools/schema-markup-generator/",
-      "sources": [
-        "aeo-tools.ts"
-      ]
+      "sources": ["aeo-tools.ts"]
     },
     {
       "url": "https://rankmath.com",
       "status": 200,
       "ok": true,
       "redirectUrl": "https://rankmath.com/",
-      "sources": [
-        "aeo-tools.ts"
-      ]
+      "sources": ["aeo-tools.ts"]
     },
     {
       "url": "https://yoast.com",
       "status": 200,
       "ok": true,
       "redirectUrl": "https://yoast.com/",
-      "sources": [
-        "aeo-tools.ts"
-      ]
+      "sources": ["aeo-tools.ts"]
     },
     {
       "url": "https://github.com/yulia-glukhova/aeo-schema-skill",
       "status": 200,
       "ok": true,
       "redirectUrl": null,
-      "sources": [
-        "aeo-tools.ts"
-      ]
+      "sources": ["aeo-tools.ts"]
     },
     {
       "url": "https://pallasai.net",
       "status": 200,
       "ok": true,
       "redirectUrl": "https://www.pallasai.net/",
-      "sources": [
-        "aeo-tools.ts"
-      ]
+      "sources": ["aeo-tools.ts"]
     },
     {
       "url": "https://csygeo.cn",
       "status": 200,
       "ok": true,
       "redirectUrl": "https://www.csygeo.cn/",
-      "sources": [
-        "aeo-tools.ts"
-      ]
+      "sources": ["aeo-tools.ts"]
     },
     {
       "url": "https://www.xinbang.com",
       "status": 0,
       "ok": false,
       "error": "fetch failed",
-      "sources": [
-        "aeo-tools.ts"
-      ]
+      "sources": ["aeo-tools.ts"]
     },
     {
       "url": "https://technicalseo.com/tools/schema-markup-generator/",
       "status": 200,
       "ok": true,
       "redirectUrl": null,
-      "sources": [
-        "schema-tools.ts"
-      ]
+      "sources": ["schema-tools.ts"]
     },
     {
       "url": "https://validator.schema.org/",
       "status": 200,
       "ok": true,
       "redirectUrl": null,
-      "sources": [
-        "schema-tools.ts"
-      ]
+      "sources": ["schema-tools.ts"]
     },
     {
       "url": "https://saijogeorge.com/json-ld-schema-generator/",
       "status": 200,
       "ok": true,
       "redirectUrl": null,
-      "sources": [
-        "schema-tools.ts"
-      ]
+      "sources": ["schema-tools.ts"]
     },
     {
       "url": "https://hallanalysis.com/json-ld-generator/",
       "status": 200,
       "ok": true,
       "redirectUrl": "https://cloud22.com/json-ld-generator",
-      "sources": [
-        "schema-tools.ts"
-      ]
+      "sources": ["schema-tools.ts"]
     },
     {
       "url": "https://www.seobility.net/en/wiki/Schema_Markup",
       "status": 404,
       "ok": false,
       "redirectUrl": null,
-      "sources": [
-        "schema-tools.ts"
-      ]
+      "sources": ["schema-tools.ts"]
     },
     {
       "url": "https://whitespark.ca/local-business-json-ld-schema-generator/",
       "status": 404,
       "ok": false,
       "redirectUrl": null,
-      "sources": [
-        "schema-tools.ts"
-      ]
+      "sources": ["schema-tools.ts"]
     },
     {
       "url": "https://recipeschema.com/",
       "status": 0,
       "ok": false,
       "error": "TIMEOUT",
-      "sources": [
-        "schema-tools.ts"
-      ]
+      "sources": ["schema-tools.ts"]
     },
     {
       "url": "https://schemaapp.com/",
       "status": 200,
       "ok": true,
       "redirectUrl": "https://www.schemaapp.com/",
-      "sources": [
-        "schema-tools.ts"
-      ]
+      "sources": ["schema-tools.ts"]
     },
     {
       "url": "https://wordlift.io/",
       "status": 200,
       "ok": true,
       "redirectUrl": null,
-      "sources": [
-        "schema-tools.ts"
-      ]
+      "sources": ["schema-tools.ts"]
     },
     {
       "url": "https://rankmath.com/wordpress/plugin/seo-suite/",
       "status": 200,
       "ok": true,
       "redirectUrl": null,
-      "sources": [
-        "schema-tools.ts"
-      ]
+      "sources": ["schema-tools.ts"]
     },
     {
       "url": "https://yoast.com/wordpress/plugins/seo/",
       "status": 200,
       "ok": true,
       "redirectUrl": "https://yoast.com/product/yoast-seo-premium-wordpress/",
-      "sources": [
-        "schema-tools.ts"
-      ]
+      "sources": ["schema-tools.ts"]
     },
     {
       "url": "https://example.com/google-ai-overview-update",
       "status": 404,
       "ok": false,
       "redirectUrl": null,
-      "sources": [
-        "news.ts"
-      ]
+      "sources": ["news.ts"]
     },
     {
       "url": "https://example.com/chatgpt-search",
       "status": 404,
       "ok": false,
       "redirectUrl": null,
-      "sources": [
-        "news.ts"
-      ]
+      "sources": ["news.ts"]
     },
     {
       "url": "https://example.com/llms-txt-support",
       "status": 404,
       "ok": false,
       "redirectUrl": null,
-      "sources": [
-        "news.ts"
-      ]
+      "sources": ["news.ts"]
     },
     {
       "url": "https://example.com/perplexity-api",
       "status": 404,
       "ok": false,
       "redirectUrl": null,
-      "sources": [
-        "news.ts"
-      ]
+      "sources": ["news.ts"]
     },
     {
       "url": "https://example.com/google-algorithm-update",
       "status": 404,
       "ok": false,
       "redirectUrl": null,
-      "sources": [
-        "news.ts"
-      ]
+      "sources": ["news.ts"]
     },
     {
       "url": "https://example.com/copilot-enterprise-search",
       "status": 404,
       "ok": false,
       "redirectUrl": null,
-      "sources": [
-        "news.ts"
-      ]
+      "sources": ["news.ts"]
     }
   ]
 }

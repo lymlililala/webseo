@@ -33,7 +33,8 @@ const tier1Tools: AiCheckerTool[] = [
     name: '透镜 GEO',
     nameEn: 'Lens GEO',
     url: 'https://geo.timus.cn',
-    description: '永久免费的国内 AI 可见度体检工具，同时检测豆包、DeepSeek、Kimi 三大国内 AI 引擎，快速获取品牌被提及情况。',
+    description:
+      '永久免费的国内 AI 可见度体检工具，同时检测豆包、DeepSeek、Kimi 三大国内 AI 引擎，快速获取品牌被提及情况。',
     highlights: ['永久免费', '豆包+DS+Kimi', '🇨🇳 国内专属'],
     tags: ['免费', '国内AI', '快速体检'],
     region: 'cn',
@@ -45,7 +46,8 @@ const tier1Tools: AiCheckerTool[] = [
     id: 'sheepgeo',
     name: 'SheepGeo',
     url: 'https://sheepgeo.com',
-    description: '覆盖 9 大主流 AI 引擎的可见度检测平台，含国内外模型，提供品牌提及率、情感分析、竞品对比等功能，有永久免费版。',
+    description:
+      '覆盖 9 大主流 AI 引擎的可见度检测平台，含国内外模型，提供品牌提及率、情感分析、竞品对比等功能，有永久免费版。',
     highlights: ['9大AI模型', '情感分析', '竞品对比'],
     tags: ['国内外AI', '竞品对比', '情感分析'],
     region: 'cn',
@@ -58,7 +60,8 @@ const tier1Tools: AiCheckerTool[] = [
     id: 'appearonai',
     name: 'AppearOnAI',
     url: 'https://appearonai.com',
-    description: '国际免费 AI 可见度扫描工具，同时检测 ChatGPT、Claude、Gemini、Perplexity 四大主流 AI 引擎，一键生成可见度报告。',
+    description:
+      '国际免费 AI 可见度扫描工具，同时检测 ChatGPT、Claude、Gemini、Perplexity 四大主流 AI 引擎，一键生成可见度报告。',
     highlights: ['4大AI引擎', '免费扫描', '快速报告'],
     tags: ['ChatGPT', 'Claude', 'Gemini', 'Perplexity'],
     region: 'global',
@@ -84,7 +87,8 @@ const tier2Tools: AiCheckerTool[] = [
     id: 'aidso',
     name: 'AIDSO 爱搜',
     url: 'https://www.aidso.cn',
-    description: '专注国内市场的 AI 搜索可见度监测平台，覆盖国内主流 AI 引擎，提供品牌关键词监测、AI 引用溯源和内容优化建议。',
+    description:
+      '专注国内市场的 AI 搜索可见度监测平台，覆盖国内主流 AI 引擎，提供品牌关键词监测、AI 引用溯源和内容优化建议。',
     highlights: ['国内市场专注', 'AI引用溯源', '内容优化'],
     tags: ['国内监测', '品牌关键词', '引用溯源'],
     region: 'cn',
@@ -118,7 +122,8 @@ const tier2Tools: AiCheckerTool[] = [
     id: 'csygeo',
     name: '潮树渔 CSYGEO',
     url: 'https://csygeo.com',
-    description: '覆盖 85+ AI 平台的全量监测服务，包括国内外主流 AI 引擎，提供品牌声誉管理、AI 内容策略咨询等企业服务。',
+    description:
+      '覆盖 85+ AI 平台的全量监测服务，包括国内外主流 AI 引擎，提供品牌声誉管理、AI 内容策略咨询等企业服务。',
     highlights: ['85+平台覆盖', '品牌声誉管理', '企业服务'],
     tags: ['全量监测', '企业级', '85+平台'],
     region: 'cn',
@@ -134,7 +139,8 @@ const tier3Tools: AiCheckerTool[] = [
     id: 'llmrefs',
     name: 'LLMrefs',
     url: 'https://llmrefs.com',
-    description: '专注追踪品牌在 LLM 中被引用情况的国际平台，支持 ChatGPT、Claude、Gemini 等，提供 llms.txt 生成器和引用监测。',
+    description:
+      '专注追踪品牌在 LLM 中被引用情况的国际平台，支持 ChatGPT、Claude、Gemini 等，提供 llms.txt 生成器和引用监测。',
     highlights: ['LLM引用追踪', 'llms.txt生成器', '多模型监测'],
     tags: ['LLM引用', 'llms.txt', '引用追踪'],
     region: 'global',
@@ -145,7 +151,8 @@ const tier3Tools: AiCheckerTool[] = [
     id: 'otterly',
     name: 'Otterly.AI',
     url: 'https://otterly.ai',
-    description: '专业的 AI 搜索可见度监测工具，自动追踪品牌在 ChatGPT、Perplexity、Gemini 中的表现，提供竞品对比和趋势分析。',
+    description:
+      '专业的 AI 搜索可见度监测工具，自动追踪品牌在 ChatGPT、Perplexity、Gemini 中的表现，提供竞品对比和趋势分析。',
     highlights: ['自动追踪', '竞品对比', '趋势分析'],
     tags: ['自动监测', '竞品对比', '趋势'],
     region: 'global',
@@ -158,7 +165,8 @@ const tier3Tools: AiCheckerTool[] = [
     id: 'profound',
     name: 'Profound',
     url: 'https://profound.io',
-    description: '企业级 AI 可见度分析平台，为大型品牌提供全面的 AI 搜索情报，支持多品牌管理、市场份额分析和 AI 引用来源追溯。',
+    description:
+      '企业级 AI 可见度分析平台，为大型品牌提供全面的 AI 搜索情报，支持多品牌管理、市场份额分析和 AI 引用来源追溯。',
     highlights: ['企业级', '多品牌管理', 'AI引用溯源'],
     tags: ['企业级', 'AI情报', '市场份额'],
     region: 'global',
@@ -182,7 +190,8 @@ const tier3Tools: AiCheckerTool[] = [
     id: 'peec-ai',
     name: 'Peec AI',
     url: 'https://peec.ai',
-    description: '专注欧洲市场的 AI 搜索监测工具，支持 Perplexity、ChatGPT、Google AI Overview 等，提供多语言品牌监测。',
+    description:
+      '专注欧洲市场的 AI 搜索监测工具，支持 Perplexity、ChatGPT、Google AI Overview 等，提供多语言品牌监测。',
     highlights: ['多语言支持', 'Google AI Overview', 'Perplexity'],
     tags: ['多语言', '欧洲市场', 'AI监测'],
     region: 'global',
@@ -210,7 +219,8 @@ const tier4Tools: AiCheckerTool[] = [
     id: 'semrush-ai',
     name: 'Semrush AI Visibility',
     url: 'https://www.semrush.com/ai-overview-tracker/',
-    description: 'SEMrush 在传统 SEO 工具中新增的 AI 可见度模块，追踪品牌在 Google AI Overview 中的出现频率和关键词覆盖。',
+    description:
+      'SEMrush 在传统 SEO 工具中新增的 AI 可见度模块，追踪品牌在 Google AI Overview 中的出现频率和关键词覆盖。',
     highlights: ['Google AI Overview', 'SEO一体化', '关键词覆盖'],
     tags: ['Semrush', 'AI Overview', 'Google'],
     region: 'global',
@@ -234,7 +244,8 @@ const tier4Tools: AiCheckerTool[] = [
     id: 'adobe-llm',
     name: 'Adobe LLM Optimizer',
     url: 'https://business.adobe.com/products/experience-platform/llm-optimizer.html',
-    description: 'Adobe 推出的企业级 LLM 优化工具，帮助大型企业优化内容以在 AI 引擎中获得更好的可见度，与 AEM 深度集成。',
+    description:
+      'Adobe 推出的企业级 LLM 优化工具，帮助大型企业优化内容以在 AI 引擎中获得更好的可见度，与 AEM 深度集成。',
     highlights: ['企业级', 'AEM集成', 'LLM优化'],
     tags: ['Adobe', '企业级', 'LLM优化'],
     region: 'global',
@@ -249,7 +260,8 @@ const tier5Tools: AiCheckerTool[] = [
     id: 'llmstxt-gen',
     name: 'LLMs.txt 生成器',
     url: 'https://llmstxt.io',
-    description: '自动扫描网站结构并生成符合规范的 llms.txt 文件，让 AI 爬虫更好地理解网站内容，提升 AI 搜索可见度基础。',
+    description:
+      '自动扫描网站结构并生成符合规范的 llms.txt 文件，让 AI 爬虫更好地理解网站内容，提升 AI 搜索可见度基础。',
     highlights: ['自动扫描', 'llms.txt规范', 'AI可爬性'],
     tags: ['llms.txt', '内容结构', 'AI爬取'],
     region: 'global',
@@ -283,7 +295,8 @@ const tier5Tools: AiCheckerTool[] = [
     id: 'frase',
     name: 'Frase.io',
     url: 'https://www.frase.io',
-    description: '内容优化工具，通过分析 AI 搜索结果中的高频内容模式，指导用户创作更容易被 AI 引擎引用的文章结构和内容要素。',
+    description:
+      '内容优化工具，通过分析 AI 搜索结果中的高频内容模式，指导用户创作更容易被 AI 引擎引用的文章结构和内容要素。',
     highlights: ['内容分析', 'AI引用模式', '内容优化'],
     tags: ['内容优化', 'AI引用', '文章结构'],
     region: 'global',

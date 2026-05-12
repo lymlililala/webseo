@@ -122,9 +122,9 @@ const activeSidebarItem = computed(() => (activeCategory.value === 'all' ? scrol
         </h1>
 
         <p class="checker-hero-subtitle">
-          聚合 <strong>{{ totalTools }}+</strong> 款 AI 可见度体检工具，覆盖
-          <strong>国内 9 大 AI 引擎</strong>和<strong>国际主流 AI 平台</strong>，
-          从免费快速体检到企业级监测，帮助品牌全面掌握在 AI 搜索中的曝光情况
+          聚合 <strong>{{ totalTools }}+</strong> 款 AI 可见度体检工具，覆盖 <strong>国内 9 大 AI 引擎</strong>和<strong
+            >国际主流 AI 平台</strong
+          >， 从免费快速体检到企业级监测，帮助品牌全面掌握在 AI 搜索中的曝光情况
         </p>
 
         <!-- 用户旅程提示 -->
@@ -157,7 +157,12 @@ const activeSidebarItem = computed(() => (activeCategory.value === 'all' ? scrol
 
         <!-- 搜索框 -->
         <div class="checker-search-wrap">
-          <VaInput v-model="searchQuery" placeholder="搜索工具名称、平台、功能..." class="checker-search-input" clearable>
+          <VaInput
+            v-model="searchQuery"
+            placeholder="搜索工具名称、平台、功能..."
+            class="checker-search-input"
+            clearable
+          >
             <template #prepend>
               <VaIcon name="search" size="20px" color="secondary" />
             </template>
@@ -292,7 +297,10 @@ const activeSidebarItem = computed(() => (activeCategory.value === 'all' ? scrol
                     <span v-if="tool.badge" class="checker-badge checker-badge-highlight">{{ tool.badge }}</span>
                     <span v-if="tool.isFree" class="checker-badge checker-badge-free">免费</span>
                     <span v-else-if="tool.hasFreeplan" class="checker-badge checker-badge-freeplan">含免费版</span>
-                    <span class="checker-badge" :class="tool.region === 'cn' ? 'checker-badge-cn' : 'checker-badge-global'">
+                    <span
+                      class="checker-badge"
+                      :class="tool.region === 'cn' ? 'checker-badge-cn' : 'checker-badge-global'"
+                    >
                       {{ tool.region === 'cn' ? '🇨🇳 国内' : '🌍 国际' }}
                     </span>
                   </div>
@@ -438,8 +446,8 @@ const activeSidebarItem = computed(() => (activeCategory.value === 'all' ? scrol
               <div class="checker-tip-emoji">📄</div>
               <h3>第二步：添加 llms.txt</h3>
               <p>
-                使用 <strong>LLMs.txt 生成器</strong> 为网站创建 llms.txt 文件，主动告知 AI
-                爬虫网站核心内容，这是提升 AI 可见度的最基础步骤。
+                使用 <strong>LLMs.txt 生成器</strong> 为网站创建 llms.txt 文件，主动告知 AI 爬虫网站核心内容，这是提升
+                AI 可见度的最基础步骤。
               </p>
             </div>
             <div class="checker-tip-card">
@@ -454,8 +462,8 @@ const activeSidebarItem = computed(() => (activeCategory.value === 'all' ? scrol
               <div class="checker-tip-emoji">✍️</div>
               <h3>第四步：优化内容质量</h3>
               <p>
-                在内容中加入<strong>统计数据</strong>、<strong>FAQ 格式</strong>、<strong>权威引用</strong
-                >，使用 <strong>Frase.io</strong> 分析 AI 引用的内容模式，大幅提升被引用概率。
+                在内容中加入<strong>统计数据</strong>、<strong>FAQ 格式</strong>、<strong>权威引用</strong>，使用
+                <strong>Frase.io</strong> 分析 AI 引用的内容模式，大幅提升被引用概率。
               </p>
             </div>
             <div class="checker-tip-card">
@@ -470,7 +478,8 @@ const activeSidebarItem = computed(() => (activeCategory.value === 'all' ? scrol
               <div class="checker-tip-emoji">🔄</div>
               <h3>每月复查进度</h3>
               <p>
-                AI 引擎每月更新模型和训练数据，建议<strong>每月一次</strong>用免费工具复查品牌可见度，追踪优化效果，及时调整策略。
+                AI
+                引擎每月更新模型和训练数据，建议<strong>每月一次</strong>用免费工具复查品牌可见度，追踪优化效果，及时调整策略。
               </p>
             </div>
           </div>

@@ -48,6 +48,7 @@ npm run dev
 ## ✨ 验证成功
 
 打开浏览器访问 `http://localhost:5173`，进入：
+
 - **文章** 页面 → 应该显示 4 篇文章
 - **教程** 页面 → 应该显示 4 门课程
 - **新闻** 页面 → 应该显示 6 条新闻
@@ -56,29 +57,32 @@ npm run dev
 
 ## 📁 关键文件说明
 
-| 文件 | 说明 |
-|------|------|
-| `supabase-schema.sql` | 创建表结构的 SQL 脚本 |
-| `supabase-insert-data.sql` | 插入初始数据的 SQL 脚本 |
+| 文件                       | 说明                     |
+| -------------------------- | ------------------------ |
+| `supabase-schema.sql`      | 创建表结构的 SQL 脚本    |
+| `supabase-insert-data.sql` | 插入初始数据的 SQL 脚本  |
 | `src/services/supabase.ts` | Supabase 客户端和 API 层 |
-| `.env.local` | 环境变量（包含您的凭证）|
-| `SUPABASE_SETUP.md` | 详细文档 |
+| `.env.local`               | 环境变量（包含您的凭证） |
+| `SUPABASE_SETUP.md`        | 详细文档                 |
 
 ---
 
 ## 🚨 故障排除
 
 ### 表未显示数据？
+
 - 检查 SQL 执行是否成功（查看 Results 或 Error 标签）
 - 重新刷新浏览器
 - 检查浏览器控制台是否有错误
 
 ### 连接错误？
+
 - 确认 `.env.local` 中的 URL 和 API Key 正确
 - 检查 Supabase 项目是否在线
 - 清除浏览器缓存
 
 ### 权限拒绝？
+
 - 所有表都设置为公开读取
 - 如需编辑权限，需要配置 RLS 策略
 
@@ -89,12 +93,14 @@ npm run dev
 现在可以：
 
 1. **在页面中使用数据库数据**
+
    ```typescript
    import { articlesAPI } from '@/services/supabase'
    const articles = await articlesAPI.getAll()
    ```
 
 2. **添加新记录**（需要认证）
+
    ```typescript
    await articlesAPI.create({ ... })
    ```

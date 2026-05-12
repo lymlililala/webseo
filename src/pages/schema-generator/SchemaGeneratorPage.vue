@@ -1,36 +1,24 @@
 <script setup lang="ts">
 import { ref, computed } from 'vue'
 import { useRouter } from 'vue-router'
-import {
-  schemaTypes,
-  schemaTools,
-  getToolsForType,
-  type SchemaType,
-  type SchemaTool,
-} from '../../data/schema-tools'
+import { schemaTypes, schemaTools, getToolsForType, type SchemaType, type SchemaTool } from '../../data/schema-tools'
 
 const router = useRouter()
 
-const activeTypeId = ref<string>('faq')  // 默认选中 FAQ（AEO 核心）
+const activeTypeId = ref<string>('faq') // 默认选中 FAQ（AEO 核心）
 const copiedId = ref<string>('')
 
-const activeType = computed<SchemaType | undefined>(
-  () => schemaTypes.find((t) => t.id === activeTypeId.value),
-)
+const activeType = computed<SchemaType | undefined>(() => schemaTypes.find((t) => t.id === activeTypeId.value))
 
-const activeTypeTools = computed<SchemaTool[]>(
-  () => (activeTypeId.value ? getToolsForType(activeTypeId.value) : []),
-)
+const activeTypeTools = computed<SchemaTool[]>(() => (activeTypeId.value ? getToolsForType(activeTypeId.value) : []))
 
 // 全能型工具（不按 Schema 类型过滤，始终显示）
-const universalTools = computed<SchemaTool[]>(
-  () => schemaTools.filter((t) => ['merkle', 'google-rich-results', 'schema-org-validator'].includes(t.id)),
+const universalTools = computed<SchemaTool[]>(() =>
+  schemaTools.filter((t) => ['merkle', 'google-rich-results', 'schema-org-validator'].includes(t.id)),
 )
 
 // AI 自动化工具
-const autoTools = computed<SchemaTool[]>(
-  () => schemaTools.filter((t) => t.level === 'auto'),
-)
+const autoTools = computed<SchemaTool[]>(() => schemaTools.filter((t) => t.level === 'auto'))
 
 function selectType(id: string) {
   activeTypeId.value = id
@@ -53,7 +41,9 @@ async function copyCode(code: string, id: string) {
     document.execCommand('copy')
     document.body.removeChild(el)
     copiedId.value = id
-    setTimeout(() => { if (copiedId.value === id) copiedId.value = '' }, 2000)
+    setTimeout(() => {
+      if (copiedId.value === id) copiedId.value = ''
+    }, 2000)
   }
 }
 
@@ -144,7 +134,6 @@ function getLevelColor(level: SchemaTool['level']): string {
       <!-- ── 左侧：类型详情 ── -->
       <div class="schema-main">
         <div v-if="activeType" class="schema-detail">
-
           <!-- 类型头部 -->
           <div class="schema-detail-header" :style="{ borderLeftColor: activeType.color }">
             <div class="schema-detail-header-left">
@@ -185,11 +174,7 @@ function getLevelColor(level: SchemaTool['level']): string {
               必填字段说明
             </div>
             <div class="schema-fields-list">
-              <div
-                v-for="field in activeType.requiredFields"
-                :key="field.name"
-                class="schema-field-item"
-              >
+              <div v-for="field in activeType.requiredFields" :key="field.name" class="schema-field-item">
                 <code class="schema-field-name">{{ field.name }}</code>
                 <span class="schema-field-desc">{{ field.desc }}</span>
               </div>
@@ -216,31 +201,33 @@ function getLevelColor(level: SchemaTool['level']): string {
           </div>
 
           <!-- 推荐工具 -->
-          <div class="schema-section-title" style="margin-top: 1.4rem;">
+          <div class="schema-section-title" style="margin-top: 1.4rem">
             <VaIcon name="build" size="14px" color="warning" />
             推荐生成工具
           </div>
           <div class="schema-tools-grid">
-            <div
-              v-for="tool in activeTypeTools"
-              :key="tool.id"
-              class="schema-tool-card"
-              @click="openTool(tool.url)"
-            >
+            <div v-for="tool in activeTypeTools" :key="tool.id" class="schema-tool-card" @click="openTool(tool.url)">
               <div class="schema-tool-top">
                 <div class="schema-tool-name-row">
                   <span class="schema-tool-name">{{ tool.name }}</span>
                   <span
                     v-if="tool.badge"
                     class="schema-tool-badge"
-                    :style="{ background: tool.isOfficial ? 'rgba(16,185,129,0.12)' : 'rgba(245,158,11,0.12)', color: tool.isOfficial ? '#059669' : '#d97706' }"
+                    :style="{
+                      background: tool.isOfficial ? 'rgba(16,185,129,0.12)' : 'rgba(245,158,11,0.12)',
+                      color: tool.isOfficial ? '#059669' : '#d97706',
+                    }"
                   >
                     {{ tool.badge }}
                   </span>
                 </div>
                 <span
                   class="schema-level-tag"
-                  :style="{ color: getLevelColor(tool.level), borderColor: getLevelColor(tool.level) + '40', background: getLevelColor(tool.level) + '12' }"
+                  :style="{
+                    color: getLevelColor(tool.level),
+                    borderColor: getLevelColor(tool.level) + '40',
+                    background: getLevelColor(tool.level) + '12',
+                  }"
                 >
                   {{ getLevelLabel(tool.level) }}
                 </span>
@@ -267,18 +254,15 @@ function getLevelColor(level: SchemaTool['level']): string {
           <!-- 验证提示 -->
           <div class="schema-validate-tip">
             <VaIcon name="verified" size="15px" color="#6366F1" />
-            <span>生成代码后，务必用 <strong>Google Rich Results Test</strong> 和 <strong>Schema.org Validator</strong> 验证</span>
+            <span
+              >生成代码后，务必用 <strong>Google Rich Results Test</strong> 和
+              <strong>Schema.org Validator</strong> 验证</span
+            >
             <div class="schema-validate-btns">
-              <button
-                class="schema-validate-btn"
-                @click="openTool('https://search.google.com/test/rich-results')"
-              >
+              <button class="schema-validate-btn" @click="openTool('https://search.google.com/test/rich-results')">
                 <VaIcon name="open_in_new" size="11px" />Google 验证
               </button>
-              <button
-                class="schema-validate-btn"
-                @click="openTool('https://validator.schema.org/')"
-              >
+              <button class="schema-validate-btn" @click="openTool('https://validator.schema.org/')">
                 <VaIcon name="open_in_new" size="11px" />Schema.org 验证
               </button>
             </div>
@@ -289,7 +273,6 @@ function getLevelColor(level: SchemaTool['level']): string {
       <!-- ── 右侧：全能工具 + AI自动化 ── -->
       <aside class="schema-sidebar">
         <div class="schema-sidebar-inner">
-
           <!-- 全能型工具 -->
           <div class="schema-sidebar-section">
             <div class="schema-sidebar-section-title">
@@ -305,16 +288,12 @@ function getLevelColor(level: SchemaTool['level']): string {
               >
                 <div class="schema-sidebar-tool-top">
                   <span class="schema-sidebar-tool-name">{{ tool.name }}</span>
-                  <span
-                    v-if="tool.badge"
-                    class="schema-sidebar-badge"
-                  >{{ tool.badge }}</span>
+                  <span v-if="tool.badge" class="schema-sidebar-badge">{{ tool.badge }}</span>
                 </div>
                 <div class="schema-sidebar-tool-meta">
-                  <span
-                    class="schema-level-tag-sm"
-                    :style="{ color: getLevelColor(tool.level) }"
-                  >{{ getLevelLabel(tool.level) }}</span>
+                  <span class="schema-level-tag-sm" :style="{ color: getLevelColor(tool.level) }">{{
+                    getLevelLabel(tool.level)
+                  }}</span>
                   <span class="schema-sidebar-free">{{ tool.isFree ? '免费' : tool.pricing }}</span>
                 </div>
                 <div class="schema-sidebar-tool-visit">
@@ -335,18 +314,15 @@ function getLevelColor(level: SchemaTool['level']): string {
             </div>
             <p class="schema-sidebar-tip">适合 WordPress 站长或希望"一次设置、永久生效"的用户</p>
             <div class="schema-sidebar-tools">
-              <div
-                v-for="tool in autoTools"
-                :key="tool.id"
-                class="schema-sidebar-tool"
-                @click="openTool(tool.url)"
-              >
+              <div v-for="tool in autoTools" :key="tool.id" class="schema-sidebar-tool" @click="openTool(tool.url)">
                 <div class="schema-sidebar-tool-top">
                   <span class="schema-sidebar-tool-name">{{ tool.name }}</span>
                   <span v-if="tool.badge" class="schema-sidebar-badge schema-sidebar-badge-auto">{{ tool.badge }}</span>
                 </div>
                 <div class="schema-sidebar-tool-meta">
-                  <span class="schema-level-tag-sm" :style="{ color: getLevelColor(tool.level) }">{{ getLevelLabel(tool.level) }}</span>
+                  <span class="schema-level-tag-sm" :style="{ color: getLevelColor(tool.level) }">{{
+                    getLevelLabel(tool.level)
+                  }}</span>
                   <span class="schema-sidebar-free">{{ tool.hasFreeplan ? '含免费版' : tool.pricing }}</span>
                 </div>
                 <div class="schema-sidebar-tool-visit">
