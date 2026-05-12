@@ -129,6 +129,7 @@ const categories = [
             v-for="article in filteredArticles"
             :key="article.id"
             class="article-card"
+            :class="{ 'has-link': !!article.link }"
             @click="openArticle(article)"
           >
             <div class="article-header">
@@ -169,7 +170,7 @@ const categories = [
 
             <div class="article-footer">
               <span class="author">作者：{{ article.author }}</span>
-              <VaIcon name="open_in_new" size="16px" color="secondary" />
+              <VaIcon v-if="article.link" name="open_in_new" size="16px" color="secondary" />
             </div>
           </article>
         </div>
@@ -348,8 +349,12 @@ const categories = [
   background: var(--va-background-secondary);
   border: 1px solid var(--va-background-border);
   border-radius: 12px;
-  cursor: pointer;
+  cursor: default;
   transition: all 0.2s ease;
+}
+
+.article-card.has-link {
+  cursor: pointer;
 }
 
 .article-card:hover {
