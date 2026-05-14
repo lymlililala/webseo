@@ -245,8 +245,8 @@ const activeSidebarItem = computed(() => (activeCategory.value === 'all' ? scrol
 
           <!-- All -->
           <button class="geo-sidebar-item" :class="{ active: activeCategory === 'all' }" @click="selectCategory('all')">
-            <span class="geo-sidebar-dot" style="background: #6366f1" />
-            <VaIcon name="apps" size="14px" class="geo-sidebar-icon" />
+            <span class="geo-sidebar-active-bar" />
+            <VaIcon name="apps" size="16px" class="geo-sidebar-icon" />
             <span class="geo-sidebar-name">全部工具</span>
             <span class="geo-sidebar-count">{{ totalTools }}</span>
           </button>
@@ -263,10 +263,10 @@ const activeSidebarItem = computed(() => (activeCategory.value === 'all' ? scrol
             :style="{ '--cat-color': cat.color }"
             @click="selectCategory(cat.id)"
           >
-            <span class="geo-sidebar-dot" :style="{ background: cat.color }" />
+            <span class="geo-sidebar-active-bar" :style="{ background: cat.color }" />
             <VaIcon
               :name="cat.icon"
-              size="14px"
+              size="16px"
               class="geo-sidebar-icon"
               :style="{ color: activeCategory === cat.id ? cat.color : '' }"
             />
@@ -528,7 +528,7 @@ const activeSidebarItem = computed(() => (activeCategory.value === 'all' ? scrol
 /* ── Hero ──────────────────────────────────── */
 .geo-hero {
   background: linear-gradient(135deg, #0f1629 0%, #1a1f44 45%, #0d2135 100%);
-  padding: 2.5rem 2rem 2rem;
+  padding: 3.2rem 2rem 2.6rem;
   margin: -1rem -1rem 0;
   position: relative;
   overflow: hidden;
@@ -594,8 +594,8 @@ const activeSidebarItem = computed(() => (activeCategory.value === 'all' ? scrol
 }
 
 .geo-search-wrap {
-  max-width: 500px;
-  margin: 0 auto 1rem;
+  max-width: 560px;
+  margin: 0 auto 1.2rem;
 }
 
 .geo-search-input {
@@ -605,6 +605,8 @@ const activeSidebarItem = computed(() => (activeCategory.value === 'all' ? scrol
 /* 搜索框在深色 Hero 背景下强制白色文字 */
 .geo-search-input :deep(input) {
   color: #fff !important;
+  font-size: 15px !important;
+  height: 44px;
 }
 .geo-search-input :deep(input::placeholder) {
   color: rgba(255, 255, 255, 0.5) !important;
@@ -612,11 +614,14 @@ const activeSidebarItem = computed(() => (activeCategory.value === 'all' ? scrol
 .geo-search-input :deep(.va-input-wrapper__field) {
   background: rgba(255, 255, 255, 0.1) !important;
   border-color: rgba(255, 255, 255, 0.2) !important;
+  border-radius: 12px !important;
+  padding: 0 18px !important;
 }
 .geo-search-input :deep(.va-input-wrapper:hover .va-input-wrapper__field),
 .geo-search-input :deep(.va-input-wrapper--focused .va-input-wrapper__field) {
-  background: rgba(255, 255, 255, 0.14) !important;
-  border-color: rgba(255, 255, 255, 0.45) !important;
+  background: rgba(255, 255, 255, 0.15) !important;
+  border-color: rgba(255, 255, 255, 0.5) !important;
+  box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.3) !important;
 }
 
 /* Region tabs */
@@ -651,40 +656,52 @@ const activeSidebarItem = computed(() => (activeCategory.value === 'all' ? scrol
   color: #c7d2fe;
 }
 
-/* Stats */
+/* Stats：卡片化 */
 .geo-stats {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 1.5rem;
+  gap: 12px;
   flex-wrap: wrap;
-  margin-bottom: 1.1rem;
+  margin-bottom: 1.2rem;
 }
 
 .geo-stat {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 2px;
+  gap: 4px;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 12px;
+  padding: 12px 20px;
+  min-width: 82px;
+  backdrop-filter: blur(4px);
+  transition: background 0.2s;
+}
+
+.geo-stat:hover {
+  background: rgba(255, 255, 255, 0.13);
 }
 
 .geo-stat-num {
-  font-size: 1.4rem;
-  font-weight: 700;
+  font-size: 1.5rem;
+  font-weight: 800;
   color: #fff;
+  line-height: 1;
 }
 
 .geo-stat-label {
   font-size: 10.5px;
-  color: rgba(255, 255, 255, 0.4);
+  color: rgba(255, 255, 255, 0.5);
   text-transform: uppercase;
-  letter-spacing: 0.4px;
+  letter-spacing: 0.5px;
+  white-space: nowrap;
 }
 
+/* 隐藏旧分隔线，现在用卡片代替 */
 .geo-stat-div {
-  width: 1px;
-  height: 28px;
-  background: rgba(255, 255, 255, 0.1);
+  display: none;
 }
 
 /* Concept bar */
@@ -728,7 +745,7 @@ const activeSidebarItem = computed(() => (activeCategory.value === 'all' ? scrol
 
 /* ── Sidebar ───────────────────────────────── */
 .geo-sidebar {
-  width: 210px;
+  width: 228px;
   flex-shrink: 0;
   position: sticky;
   top: 60px;
@@ -749,7 +766,7 @@ const activeSidebarItem = computed(() => (activeCategory.value === 'all' ? scrol
 }
 
 .geo-sidebar-inner {
-  padding: 13px 7px 24px;
+  padding: 18px 12px 28px;
   display: flex;
   flex-direction: column;
   gap: 2px;
@@ -797,15 +814,17 @@ const activeSidebarItem = computed(() => (activeCategory.value === 'all' ? scrol
 .geo-sidebar-item {
   display: flex;
   align-items: center;
-  gap: 6px;
+  gap: 8px;
   width: 100%;
-  padding: 7px 8px;
-  border-radius: 7px;
+  padding: 9px 10px 9px 14px;
+  border-radius: 8px;
   border: none;
   background: transparent;
   cursor: pointer;
   text-align: left;
   transition: background 0.15s;
+  position: relative;
+  overflow: hidden;
 }
 
 .geo-sidebar-item:hover {
@@ -818,21 +837,27 @@ const activeSidebarItem = computed(() => (activeCategory.value === 'all' ? scrol
   background: var(--va-background-element);
 }
 
-.geo-sidebar-dot {
-  width: 5px;
-  height: 5px;
-  border-radius: 50%;
-  flex-shrink: 0;
-  opacity: 0.6;
-  transition:
-    opacity 0.15s,
-    transform 0.15s;
+/* 侧边栏活跃指示粗线条 */
+.geo-sidebar-active-bar {
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%) scaleY(0);
+  width: 3px;
+  height: 70%;
+  border-radius: 0 3px 3px 0;
+  background: var(--cat-color, var(--va-primary));
+  transition: transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 
-.geo-sidebar-item.active .geo-sidebar-dot,
-.geo-sidebar-item.scroll-active .geo-sidebar-dot {
-  opacity: 1;
-  transform: scale(1.4);
+.geo-sidebar-item.active .geo-sidebar-active-bar,
+.geo-sidebar-item.scroll-active .geo-sidebar-active-bar {
+  transform: translateY(-50%) scaleY(1);
+}
+
+/* 兼容旧的 dot 元素（已在模板中替换，此处保留以防万一） */
+.geo-sidebar-dot {
+  display: none;
 }
 
 .geo-sidebar-icon {
@@ -847,7 +872,7 @@ const activeSidebarItem = computed(() => (activeCategory.value === 'all' ? scrol
 
 .geo-sidebar-name {
   flex: 1;
-  font-size: 12px;
+  font-size: 13px;
   font-weight: 500;
   color: var(--va-text-secondary);
   white-space: nowrap;
@@ -863,12 +888,12 @@ const activeSidebarItem = computed(() => (activeCategory.value === 'all' ? scrol
 
 .geo-sidebar-count {
   flex-shrink: 0;
-  font-size: 10px;
+  font-size: 11px;
   color: var(--va-text-secondary);
   background: var(--va-background-element);
-  border-radius: 8px;
-  padding: 1px 5px;
-  min-width: 17px;
+  border-radius: 10px;
+  padding: 1px 7px;
+  min-width: 22px;
   text-align: center;
 }
 
@@ -881,7 +906,7 @@ const activeSidebarItem = computed(() => (activeCategory.value === 'all' ? scrol
 .geo-main-content {
   flex: 1;
   min-width: 0;
-  padding: 1.4rem 1.4rem 2rem;
+  padding: 2rem 2rem 2.5rem;
   overflow-y: auto;
 }
 
@@ -919,32 +944,32 @@ const activeSidebarItem = computed(() => (activeCategory.value === 'all' ? scrol
 .geo-featured-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(380px, 1fr));
-  gap: 8px;
+  gap: 12px;
 }
 
 .geo-featured-card {
   display: flex;
   align-items: flex-start;
-  gap: 12px;
-  padding: 13px 15px;
+  gap: 14px;
+  padding: 18px 20px;
   background: var(--va-background-secondary);
-  border: 1px solid var(--va-background-border);
-  border-radius: 11px;
+  border: none;
+  border-radius: 14px;
   cursor: pointer;
-  transition: all 0.2s ease;
+  transition: all 0.25s ease;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.05);
 }
 
 .geo-featured-card:hover {
-  border-color: var(--va-primary);
-  box-shadow: 0 3px 12px rgba(0, 0, 0, 0.07);
-  transform: translateY(-1px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+  transform: translateY(-4px);
 }
 
 .geo-featured-icon {
   flex-shrink: 0;
-  width: 42px;
-  height: 42px;
-  border-radius: 9px;
+  width: 48px;
+  height: 48px;
+  border-radius: 12px;
   border: 1px solid;
   display: flex;
   align-items: center;
@@ -1049,11 +1074,12 @@ const activeSidebarItem = computed(() => (activeCategory.value === 'all' ? scrol
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin-bottom: 1.1rem;
-  padding: 7px 12px;
+  margin-bottom: 1.5rem;
+  padding: 10px 14px;
   background: var(--va-background-secondary);
-  border-radius: 7px;
-  border: 1px solid var(--va-background-border);
+  border-radius: 10px;
+  border: none;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.04);
 }
 
 .geo-result-count {
@@ -1085,20 +1111,22 @@ const activeSidebarItem = computed(() => (activeCategory.value === 'all' ? scrol
 
 /* ── Category Group ────────────────────────── */
 .geo-category-group {
-  margin-bottom: 2.2rem;
+  margin-bottom: 3rem;
 }
 
 .geo-cat-header {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin-bottom: 0.9rem;
-  padding: 12px 14px;
+  margin-bottom: 1.2rem;
+  padding: 16px 20px;
   background: var(--va-background-secondary);
-  border-radius: 9px;
+  border-radius: 12px;
+  border: none;
   border-left: 4px solid;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.04);
   flex-wrap: wrap;
-  gap: 8px;
+  gap: 10px;
 }
 
 .geo-cat-header-left {
@@ -1108,9 +1136,9 @@ const activeSidebarItem = computed(() => (activeCategory.value === 'all' ? scrol
 }
 
 .geo-cat-icon {
-  width: 36px;
-  height: 36px;
-  border-radius: 8px;
+  width: 44px;
+  height: 44px;
+  border-radius: 11px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -1125,7 +1153,7 @@ const activeSidebarItem = computed(() => (activeCategory.value === 'all' ? scrol
 }
 
 .geo-cat-name {
-  font-size: 0.92rem;
+  font-size: 1.05rem;
   font-weight: 700;
   margin: 0;
   color: var(--va-text-primary);
@@ -1141,7 +1169,7 @@ const activeSidebarItem = computed(() => (activeCategory.value === 'all' ? scrol
 }
 
 .geo-cat-desc {
-  font-size: 11.5px;
+  font-size: 13px;
   color: var(--va-text-secondary);
   margin: 0;
 }
@@ -1154,29 +1182,30 @@ const activeSidebarItem = computed(() => (activeCategory.value === 'all' ? scrol
   flex-shrink: 0;
 }
 
-/* ── Tools Grid ────────────────────────────── */
+/* ── Tools Grid：改为 3 列，增加间距 ── */
 .geo-tools-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-  gap: 10px;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 14px;
 }
 
+/* 卡片：去掉边框，改为阴影 */
 .geo-tool-card {
-  padding: 13px 14px;
+  padding: 16px 18px;
   background: var(--va-background-secondary);
-  border: 1px solid var(--va-background-border);
-  border-radius: 10px;
+  border: none;
+  border-radius: 12px;
   cursor: pointer;
-  transition: all 0.2s ease;
+  transition: all 0.25s ease;
   display: flex;
   flex-direction: column;
-  gap: 7px;
+  gap: 9px;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.05);
 }
 
 .geo-tool-card:hover {
-  border-color: var(--tool-color, var(--va-primary));
-  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.07);
-  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+  transform: translateY(-4px);
 }
 
 .geo-tool-top {
@@ -1186,10 +1215,10 @@ const activeSidebarItem = computed(() => (activeCategory.value === 'all' ? scrol
 }
 
 .geo-tool-icon {
-  width: 34px;
-  height: 34px;
-  border-radius: 7px;
-  border: 1px solid;
+  width: 42px;
+  height: 42px;
+  border-radius: 10px;
+  border: 1px solid transparent;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -1202,7 +1231,7 @@ const activeSidebarItem = computed(() => (activeCategory.value === 'all' ? scrol
 }
 
 .geo-tool-name {
-  font-size: 13px;
+  font-size: 14px;
   font-weight: 700;
   margin: 0;
   color: var(--va-text-primary);
@@ -1240,14 +1269,15 @@ const activeSidebarItem = computed(() => (activeCategory.value === 'all' ? scrol
 }
 
 .geo-tool-desc {
-  font-size: 11.5px;
+  font-size: 13px;
   color: var(--va-text-secondary);
   margin: 0;
   line-height: 1.55;
   display: -webkit-box;
-  -webkit-line-clamp: 3;
+  -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
   overflow: hidden;
+  text-overflow: ellipsis;
   flex: 1;
 }
 
@@ -1413,9 +1443,10 @@ const activeSidebarItem = computed(() => (activeCategory.value === 'all' ? scrol
 /* ── Tips ──────────────────────────────────── */
 .geo-tips-section {
   background: var(--va-background-secondary);
-  border-radius: 12px;
-  padding: 1.4rem;
+  border-radius: 16px;
+  padding: 2rem;
   margin-top: 0.5rem;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.04);
 }
 
 .geo-tips-header {
@@ -1427,34 +1458,40 @@ const activeSidebarItem = computed(() => (activeCategory.value === 'all' ? scrol
 
 .geo-tips-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-  gap: 10px;
+  grid-template-columns: repeat(auto-fill, minmax(210px, 1fr));
+  gap: 14px;
 }
 
 .geo-tip-card {
-  padding: 13px 14px;
+  padding: 18px;
   background: var(--va-background-primary);
-  border-radius: 9px;
-  border: 1px solid var(--va-background-border);
+  border-radius: 12px;
+  border: none;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+  transition: box-shadow 0.2s;
+}
+
+.geo-tip-card:hover {
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.07);
 }
 
 .geo-tip-emoji {
-  font-size: 1.4rem;
-  margin-bottom: 6px;
+  font-size: 1.8rem;
+  margin-bottom: 10px;
 }
 
 .geo-tip-card h3 {
-  font-size: 12.5px;
+  font-size: 14px;
   font-weight: 700;
-  margin: 0 0 5px;
+  margin: 0 0 7px;
   color: var(--va-text-primary);
 }
 
 .geo-tip-card p {
-  font-size: 11.5px;
+  font-size: 13px;
   color: var(--va-text-secondary);
   margin: 0;
-  line-height: 1.6;
+  line-height: 1.65;
 }
 
 .geo-tip-card p strong {
@@ -1478,6 +1515,12 @@ const activeSidebarItem = computed(() => (activeCategory.value === 'all' ? scrol
 }
 
 /* ── Responsive ────────────────────────────── */
+@media (max-width: 1200px) {
+  .geo-tools-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
 @media (max-width: 900px) {
   .geo-body {
     flex-direction: column;
@@ -1496,7 +1539,7 @@ const activeSidebarItem = computed(() => (activeCategory.value === 'all' ? scrol
   .geo-sidebar-inner {
     flex-direction: row;
     flex-wrap: nowrap;
-    padding: 9px 12px;
+    padding: 10px 12px;
     gap: 4px;
     overflow-x: auto;
   }
@@ -1515,33 +1558,43 @@ const activeSidebarItem = computed(() => (activeCategory.value === 'all' ? scrol
   .geo-sidebar-item {
     flex-shrink: 0;
     white-space: nowrap;
-    padding: 5px 9px;
-    border-radius: 16px;
+    padding: 6px 12px;
+    border-radius: 20px;
   }
 
+  .geo-sidebar-active-bar,
   .geo-sidebar-dot,
   .geo-sidebar-count {
     display: none;
   }
 
   .geo-sidebar-name {
-    font-size: 11.5px;
+    font-size: 12.5px;
   }
 
   .geo-main-content {
-    padding: 1rem;
+    padding: 1.2rem;
+  }
+
+  .geo-tools-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
   }
 }
 
 @media (max-width: 600px) {
   .geo-hero-title {
-    font-size: 1.65rem;
+    font-size: 1.7rem;
   }
   .geo-stats {
-    gap: 1rem;
+    gap: 8px;
+  }
+  .geo-stat {
+    padding: 10px 14px;
+    min-width: 70px;
   }
   .geo-stat-num {
-    font-size: 1.2rem;
+    font-size: 1.3rem;
   }
   .geo-tools-grid {
     grid-template-columns: 1fr;

@@ -228,8 +228,8 @@ const activeSidebarItem = computed(() => (activeCategory.value === 'all' ? scrol
 
           <!-- All -->
           <button class="aeo-sidebar-item" :class="{ active: activeCategory === 'all' }" @click="selectCategory('all')">
-            <span class="aeo-sidebar-dot" style="background: #ec4899" />
-            <VaIcon name="apps" size="14px" class="aeo-sidebar-icon" />
+            <span class="aeo-sidebar-active-bar" />
+            <VaIcon name="apps" size="16px" class="aeo-sidebar-icon" />
             <span class="aeo-sidebar-name">全部工具</span>
             <span class="aeo-sidebar-count">{{ totalTools }}</span>
           </button>
@@ -246,10 +246,10 @@ const activeSidebarItem = computed(() => (activeCategory.value === 'all' ? scrol
             :style="{ '--cat-color': cat.color }"
             @click="selectCategory(cat.id)"
           >
-            <span class="aeo-sidebar-dot" :style="{ background: cat.color }" />
+            <span class="aeo-sidebar-active-bar" :style="{ background: cat.color }" />
             <VaIcon
               :name="cat.icon"
-              size="14px"
+              size="16px"
               class="aeo-sidebar-icon"
               :style="{ color: activeCategory === cat.id ? cat.color : '' }"
             />
@@ -511,7 +511,7 @@ const activeSidebarItem = computed(() => (activeCategory.value === 'all' ? scrol
 /* ── Hero ────────────────────────────────── */
 .aeo-hero {
   background: linear-gradient(135deg, #1a0a2e 0%, #2d1155 45%, #1a0e35 100%);
-  padding: 2.5rem 2rem 2rem;
+  padding: 3.2rem 2rem 2.6rem;
   margin: -1rem -1rem 0;
   position: relative;
   overflow: hidden;
@@ -577,8 +577,8 @@ const activeSidebarItem = computed(() => (activeCategory.value === 'all' ? scrol
 
 /* ── Search ──────────────────────────────── */
 .aeo-search-wrap {
-  max-width: 500px;
-  margin: 0 auto 1.2rem;
+  max-width: 560px;
+  margin: 0 auto 2rem;
 }
 
 .aeo-search-input {
@@ -588,6 +588,8 @@ const activeSidebarItem = computed(() => (activeCategory.value === 'all' ? scrol
 /* 搜索框在深色 Hero 背景下强制白色文字 */
 .aeo-search-input :deep(input) {
   color: #fff !important;
+  font-size: 15px !important;
+  height: 44px;
 }
 .aeo-search-input :deep(input::placeholder) {
   color: rgba(255, 255, 255, 0.5) !important;
@@ -595,48 +597,61 @@ const activeSidebarItem = computed(() => (activeCategory.value === 'all' ? scrol
 .aeo-search-input :deep(.va-input-wrapper__field) {
   background: rgba(255, 255, 255, 0.1) !important;
   border-color: rgba(255, 255, 255, 0.2) !important;
+  border-radius: 12px !important;
+  padding: 0 18px !important;
 }
 .aeo-search-input :deep(.va-input-wrapper:hover .va-input-wrapper__field),
 .aeo-search-input :deep(.va-input-wrapper--focused .va-input-wrapper__field) {
-  background: rgba(255, 255, 255, 0.14) !important;
-  border-color: rgba(255, 255, 255, 0.45) !important;
+  background: rgba(255, 255, 255, 0.15) !important;
+  border-color: rgba(255, 255, 255, 0.5) !important;
+  box-shadow: 0 0 0 3px rgba(236, 72, 153, 0.3) !important;
 }
 
-/* ── Stats ───────────────────────────────── */
+/* ── Stats：卡片化 ───────────────────────────────── */
 .aeo-stats {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 0;
+  gap: 12px;
   flex-wrap: wrap;
-  margin-bottom: 1rem;
+  margin-bottom: 1.2rem;
 }
 
 .aeo-stat {
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 0 1.2rem;
+  gap: 4px;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(236, 72, 153, 0.2);
+  border-radius: 12px;
+  padding: 12px 20px;
+  min-width: 82px;
+  backdrop-filter: blur(4px);
+  transition: background 0.2s;
+}
+
+.aeo-stat:hover {
+  background: rgba(236, 72, 153, 0.1);
 }
 
 .aeo-stat-num {
   font-size: 1.5rem;
-  font-weight: 700;
+  font-weight: 800;
   color: #f9a8d4;
-  line-height: 1.1;
+  line-height: 1;
 }
 
 .aeo-stat-label {
-  font-size: 0.72rem;
+  font-size: 10.5px;
   color: #a78bfa;
-  margin-top: 2px;
   white-space: nowrap;
+  text-align: center;
 }
 
+/* 旧分隔线隐藏 */
 .aeo-stat-div {
-  width: 1px;
-  height: 30px;
-  background: rgba(236, 72, 153, 0.25);
+  display: none;
 }
 
 /* ── Concept bar ─────────────────────────── */
@@ -671,17 +686,20 @@ const activeSidebarItem = computed(() => (activeCategory.value === 'all' ? scrol
 
 /* ── Sidebar ─────────────────────────────── */
 .aeo-sidebar {
-  width: 210px;
+  width: 228px;
   flex-shrink: 0;
   border-right: 1px solid var(--va-background-border);
   overflow-y: auto;
   position: sticky;
-  top: 0;
+  top: 60px;
   max-height: calc(100vh - 60px);
+  background: var(--va-background-primary);
+  scrollbar-width: thin;
+  scrollbar-color: var(--va-background-border) transparent;
 }
 
 .aeo-sidebar-inner {
-  padding: 1rem 0.6rem;
+  padding: 18px 12px 28px;
   display: flex;
   flex-direction: column;
   gap: 2px;
@@ -724,17 +742,19 @@ const activeSidebarItem = computed(() => (activeCategory.value === 'all' ? scrol
 .aeo-sidebar-item {
   display: flex;
   align-items: center;
-  gap: 7px;
-  padding: 7px 9px;
+  gap: 8px;
+  padding: 9px 10px 9px 14px;
   border-radius: 8px;
   border: none;
   background: transparent;
   cursor: pointer;
   text-align: left;
-  font-size: 0.815rem;
+  font-size: 13px;
   color: var(--va-text-primary);
   transition: all 0.15s;
   width: 100%;
+  position: relative;
+  overflow: hidden;
 }
 
 .aeo-sidebar-item:hover {
@@ -743,16 +763,30 @@ const activeSidebarItem = computed(() => (activeCategory.value === 'all' ? scrol
 
 .aeo-sidebar-item.active,
 .aeo-sidebar-item.scroll-active {
-  background: rgba(236, 72, 153, 0.1);
-  color: #ec4899;
-  font-weight: 600;
+  background: rgba(236, 72, 153, 0.08);
 }
 
+/* 活跃状态左侧粗线条 */
+.aeo-sidebar-active-bar {
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%) scaleY(0);
+  width: 3px;
+  height: 70%;
+  border-radius: 0 3px 3px 0;
+  background: var(--cat-color, #ec4899);
+  transition: transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.aeo-sidebar-item.active .aeo-sidebar-active-bar,
+.aeo-sidebar-item.scroll-active .aeo-sidebar-active-bar {
+  transform: translateY(-50%) scaleY(1);
+}
+
+/* 兼容旧 dot */
 .aeo-sidebar-dot {
-  width: 6px;
-  height: 6px;
-  border-radius: 50%;
-  flex-shrink: 0;
+  display: none;
 }
 
 .aeo-sidebar-icon {
@@ -771,16 +805,26 @@ const activeSidebarItem = computed(() => (activeCategory.value === 'all' ? scrol
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
+  font-weight: 500;
+  color: var(--va-text-secondary);
+  transition: color 0.15s;
+}
+
+.aeo-sidebar-item.active .aeo-sidebar-name,
+.aeo-sidebar-item.scroll-active .aeo-sidebar-name {
+  color: var(--va-text-primary);
+  font-weight: 600;
 }
 
 .aeo-sidebar-count {
-  font-size: 0.7rem;
-  background: var(--va-background-secondary);
-  color: var(--va-secondary);
-  padding: 1px 6px;
-  border-radius: 9px;
+  font-size: 11px;
+  background: var(--va-background-element);
+  color: var(--va-text-secondary);
+  padding: 1px 7px;
+  border-radius: 10px;
+  min-width: 22px;
+  text-align: center;
   flex-shrink: 0;
-  font-weight: 500;
 }
 
 .aeo-sidebar-item.active .aeo-sidebar-count,
@@ -792,7 +836,7 @@ const activeSidebarItem = computed(() => (activeCategory.value === 'all' ? scrol
 /* ── Main ────────────────────────────────── */
 .aeo-main-content {
   flex: 1;
-  padding: 1.5rem;
+  padding: 2rem 2rem 2.5rem;
   overflow-y: auto;
   min-width: 0;
 }
@@ -829,35 +873,35 @@ const activeSidebarItem = computed(() => (activeCategory.value === 'all' ? scrol
 /* ── Featured grid ───────────────────────── */
 .aeo-featured-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-  gap: 10px;
+  grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
+  gap: 12px;
 }
 
 .aeo-featured-card {
   display: flex;
   align-items: flex-start;
-  gap: 12px;
-  padding: 14px 14px 14px 14px;
-  border-radius: 12px;
-  border: 1px solid var(--va-background-border);
-  background: var(--va-background-primary);
+  gap: 14px;
+  padding: 18px 20px;
+  border-radius: 14px;
+  border: none;
+  background: var(--va-background-secondary);
   cursor: pointer;
-  transition: all 0.18s;
+  transition: all 0.25s ease;
   position: relative;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.05);
 }
 
 .aeo-featured-card:hover {
-  border-color: rgba(236, 72, 153, 0.4);
-  box-shadow: 0 4px 20px rgba(236, 72, 153, 0.1);
-  transform: translateY(-1px);
+  box-shadow: 0 8px 24px rgba(236, 72, 153, 0.12);
+  transform: translateY(-4px);
 }
 
 .aeo-featured-icon {
-  width: 42px;
-  height: 42px;
-  min-width: 42px;
-  min-height: 42px;
-  border-radius: 10px;
+  width: 50px;
+  height: 50px;
+  min-width: 50px;
+  min-height: 50px;
+  border-radius: 13px;
   border: 1px solid transparent;
   display: flex;
   align-items: center;
@@ -880,7 +924,7 @@ const activeSidebarItem = computed(() => (activeCategory.value === 'all' ? scrol
 }
 
 .aeo-featured-name {
-  font-size: 0.9rem;
+  font-size: 15px;
   font-weight: 700;
   color: var(--va-text-primary);
   margin: 0;
@@ -910,10 +954,10 @@ const activeSidebarItem = computed(() => (activeCategory.value === 'all' ? scrol
 }
 
 .aeo-featured-desc {
-  font-size: 0.78rem;
-  color: var(--va-secondary);
-  line-height: 1.5;
-  margin: 0 0 6px;
+  font-size: 13px;
+  color: var(--va-text-secondary);
+  line-height: 1.55;
+  margin: 0 0 8px;
   display: -webkit-box;
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
@@ -958,35 +1002,39 @@ const activeSidebarItem = computed(() => (activeCategory.value === 'all' ? scrol
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 8px 0;
-  margin-bottom: 1rem;
-  border-bottom: 1px solid var(--va-background-border);
+  padding: 10px 14px;
+  margin-bottom: 1.5rem;
+  background: var(--va-background-secondary);
+  border-radius: 10px;
+  border: none;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.04);
 }
 
 .aeo-result-count {
   display: flex;
   align-items: center;
   gap: 5px;
-  font-size: 0.8rem;
-  color: var(--va-secondary);
+  font-size: 13px;
+  color: var(--va-text-secondary);
 }
 
 .aeo-clear-btn {
-  display: flex;
+  display: inline-flex;
   align-items: center;
   gap: 4px;
-  font-size: 0.75rem;
-  color: #ec4899;
-  background: rgba(236, 72, 153, 0.08);
-  border: 1px solid rgba(236, 72, 153, 0.25);
-  padding: 3px 10px;
-  border-radius: 8px;
+  font-size: 12px;
+  color: var(--va-text-secondary);
+  background: none;
+  border: none;
   cursor: pointer;
+  padding: 3px 8px;
+  border-radius: 6px;
   transition: all 0.15s;
 }
 
 .aeo-clear-btn:hover {
-  background: rgba(236, 72, 153, 0.15);
+  background: var(--va-background-element);
+  color: var(--va-text-primary);
 }
 
 /* ── Empty ───────────────────────────────── */
@@ -1002,7 +1050,7 @@ const activeSidebarItem = computed(() => (activeCategory.value === 'all' ? scrol
 
 /* ── Category Group ──────────────────────── */
 .aeo-category-group {
-  margin-bottom: 2.5rem;
+  margin-bottom: 3rem;
 }
 
 .aeo-cat-header {
@@ -1010,11 +1058,12 @@ const activeSidebarItem = computed(() => (activeCategory.value === 'all' ? scrol
   align-items: center;
   justify-content: space-between;
   gap: 12px;
-  padding: 12px 16px;
-  border-left: 3px solid transparent;
+  padding: 16px 20px;
+  border-left: 4px solid transparent;
   background: var(--va-background-secondary);
-  border-radius: 0 10px 10px 0;
-  margin-bottom: 1rem;
+  border-radius: 12px;
+  margin-bottom: 1.2rem;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.04);
 }
 
 .aeo-cat-header-left {
@@ -1025,9 +1074,9 @@ const activeSidebarItem = computed(() => (activeCategory.value === 'all' ? scrol
 }
 
 .aeo-cat-icon {
-  width: 38px;
-  height: 38px;
-  border-radius: 9px;
+  width: 44px;
+  height: 44px;
+  border-radius: 11px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -1042,7 +1091,7 @@ const activeSidebarItem = computed(() => (activeCategory.value === 'all' ? scrol
 }
 
 .aeo-cat-name {
-  font-size: 0.95rem;
+  font-size: 1.05rem;
   font-weight: 700;
   color: var(--va-text-primary);
   margin: 0;
@@ -1059,10 +1108,10 @@ const activeSidebarItem = computed(() => (activeCategory.value === 'all' ? scrol
 }
 
 .aeo-cat-desc {
-  font-size: 0.78rem;
-  color: var(--va-secondary);
+  font-size: 13px;
+  color: var(--va-text-secondary);
   margin: 2px 0 0;
-  line-height: 1.4;
+  line-height: 1.5;
 }
 
 .aeo-cat-count {
@@ -1074,29 +1123,30 @@ const activeSidebarItem = computed(() => (activeCategory.value === 'all' ? scrol
   flex-shrink: 0;
 }
 
-/* ── Tools Grid ──────────────────────────── */
+/* ── Tools Grid：改为 3 列，增加间距 ──────────────────────────── */
 .aeo-tools-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-  gap: 10px;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 14px;
 }
 
+/* 卡片：去掉硬边框，改为阴影 + 圆角 */
 .aeo-tool-card {
-  padding: 14px;
-  border-radius: 10px;
-  border: 1px solid var(--va-background-border);
-  background: var(--va-background-primary);
+  padding: 16px 18px;
+  border-radius: 12px;
+  border: none;
+  background: var(--va-background-secondary);
   cursor: pointer;
-  transition: all 0.18s;
+  transition: all 0.25s ease;
   display: flex;
   flex-direction: column;
-  gap: 6px;
+  gap: 9px;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.05);
 }
 
 .aeo-tool-card:hover {
-  border-color: color-mix(in srgb, var(--tool-color) 40%, transparent);
-  box-shadow: 0 2px 16px color-mix(in srgb, var(--tool-color) 12%, transparent);
-  transform: translateY(-1px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+  transform: translateY(-4px);
 }
 
 .aeo-tool-top {
@@ -1107,11 +1157,11 @@ const activeSidebarItem = computed(() => (activeCategory.value === 'all' ? scrol
 }
 
 .aeo-tool-icon {
-  width: 32px;
-  height: 32px;
-  min-width: 32px;
-  min-height: 32px;
-  border-radius: 8px;
+  width: 42px;
+  height: 42px;
+  min-width: 42px;
+  min-height: 42px;
+  border-radius: 10px;
   border: 1px solid transparent;
   display: flex;
   align-items: center;
@@ -1129,11 +1179,11 @@ const activeSidebarItem = computed(() => (activeCategory.value === 'all' ? scrol
 }
 
 .aeo-tool-name {
-  font-size: 0.88rem;
+  font-size: 14px;
   font-weight: 700;
   color: var(--va-text-primary);
   margin: 0;
-  line-height: 1.3;
+  line-height: 1.35;
 }
 
 .aeo-tool-name-en {
@@ -1160,15 +1210,16 @@ const activeSidebarItem = computed(() => (activeCategory.value === 'all' ? scrol
 }
 
 .aeo-tool-desc {
-  font-size: 0.77rem;
-  color: var(--va-secondary);
-  line-height: 1.5;
+  font-size: 13px;
+  color: var(--va-text-secondary);
+  line-height: 1.55;
   margin: 0;
   flex: 1;
   display: -webkit-box;
-  -webkit-line-clamp: 3;
+  -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
   overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 /* ── GitHub info ─────────────────────────── */
@@ -1319,8 +1370,10 @@ const activeSidebarItem = computed(() => (activeCategory.value === 'all' ? scrol
 /* ── Tips ────────────────────────────────── */
 .aeo-tips-section {
   margin-top: 2rem;
-  padding-top: 1.5rem;
-  border-top: 1px solid var(--va-background-border);
+  padding: 2rem;
+  background: var(--va-background-secondary);
+  border-radius: 16px;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.04);
 }
 
 .aeo-tips-header {
@@ -1333,32 +1386,38 @@ const activeSidebarItem = computed(() => (activeCategory.value === 'all' ? scrol
 .aeo-tips-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(210px, 1fr));
-  gap: 10px;
+  gap: 14px;
 }
 
 .aeo-tip-card {
-  padding: 16px;
-  border-radius: 10px;
-  border: 1px solid var(--va-background-border);
-  background: var(--va-background-secondary);
+  padding: 18px;
+  border-radius: 12px;
+  border: none;
+  background: var(--va-background-primary);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+  transition: box-shadow 0.2s;
+}
+
+.aeo-tip-card:hover {
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.07);
 }
 
 .aeo-tip-emoji {
-  font-size: 1.5rem;
-  margin-bottom: 8px;
+  font-size: 1.8rem;
+  margin-bottom: 10px;
 }
 
 .aeo-tip-card h3 {
-  font-size: 0.85rem;
+  font-size: 14px;
   font-weight: 700;
   color: var(--va-text-primary);
-  margin: 0 0 6px;
+  margin: 0 0 7px;
 }
 
 .aeo-tip-card p {
-  font-size: 0.78rem;
-  color: var(--va-secondary);
-  line-height: 1.6;
+  font-size: 13px;
+  color: var(--va-text-secondary);
+  line-height: 1.65;
   margin: 0;
 }
 
@@ -1367,9 +1426,15 @@ const activeSidebarItem = computed(() => (activeCategory.value === 'all' ? scrol
 }
 
 /* ── Responsive ──────────────────────────── */
-@media (max-width: 768px) {
+@media (max-width: 1200px) {
+  .aeo-tools-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 900px) {
   .aeo-hero-title {
-    font-size: 1.5rem;
+    font-size: 1.8rem;
   }
   .aeo-body {
     flex-direction: column;
@@ -1380,14 +1445,49 @@ const activeSidebarItem = computed(() => (activeCategory.value === 'all' ? scrol
     position: static;
     border-right: none;
     border-bottom: 1px solid var(--va-background-border);
+    overflow-x: auto;
+    overflow-y: hidden;
   }
   .aeo-sidebar-inner {
     flex-direction: row;
-    flex-wrap: wrap;
-    padding: 0.6rem;
+    flex-wrap: nowrap;
+    padding: 10px 12px;
+    overflow-x: auto;
+    gap: 4px;
   }
+  .aeo-sidebar-item {
+    flex-shrink: 0;
+    white-space: nowrap;
+    padding: 6px 12px;
+    border-radius: 20px;
+  }
+  .aeo-sidebar-active-bar,
+  .aeo-sidebar-dot,
   .aeo-sidebar-count {
     display: none;
+  }
+  .aeo-main-content {
+    padding: 1.2rem;
+  }
+  .aeo-tools-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+  }
+}
+
+@media (max-width: 600px) {
+  .aeo-hero-title {
+    font-size: 1.6rem;
+  }
+  .aeo-stats {
+    gap: 8px;
+  }
+  .aeo-stat {
+    padding: 10px 14px;
+    min-width: 70px;
+  }
+  .aeo-stat-num {
+    font-size: 1.3rem;
   }
   .aeo-featured-grid {
     grid-template-columns: 1fr;
@@ -1398,11 +1498,8 @@ const activeSidebarItem = computed(() => (activeCategory.value === 'all' ? scrol
   .aeo-tips-grid {
     grid-template-columns: 1fr;
   }
-  .aeo-stat {
-    padding: 0 0.7rem;
-  }
   .aeo-concept-bar {
-    font-size: 0.68rem;
+    font-size: 0.7rem;
   }
 }
 </style>
