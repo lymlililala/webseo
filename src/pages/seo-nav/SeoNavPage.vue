@@ -124,31 +124,30 @@ const activeSidebarItem = computed(() => (activeCategory.value === 'all' ? scrol
           {{ seoCategories.length }} 大核心领域
         </p>
 
+        <!-- 搜索框：放大居中，成为视觉焦点 -->
         <div class="search-wrapper">
           <VaInput v-model="searchQuery" placeholder="搜索工具名称、功能或标签..." class="search-input" clearable>
             <template #prepend>
-              <VaIcon name="search" size="20px" color="secondary" />
+              <VaIcon name="search" size="22px" color="secondary" />
             </template>
           </VaInput>
         </div>
 
+        <!-- stats 数据卡片化 -->
         <div class="stats-row">
-          <div class="stat-item">
+          <div class="stat-card">
             <span class="stat-number">{{ totalTools }}+</span>
             <span class="stat-label">精选工具</span>
           </div>
-          <div class="stat-divider" />
-          <div class="stat-item">
+          <div class="stat-card">
             <span class="stat-number">{{ freeToolsCount }}</span>
             <span class="stat-label">免费可用</span>
           </div>
-          <div class="stat-divider" />
-          <div class="stat-item">
+          <div class="stat-card">
             <span class="stat-number">{{ aiToolsCount }}</span>
             <span class="stat-label">AI 友好</span>
           </div>
-          <div class="stat-divider" />
-          <div class="stat-item">
+          <div class="stat-card">
             <span class="stat-number">{{ seoCategories.length }}</span>
             <span class="stat-label">专业分类</span>
           </div>
@@ -177,7 +176,7 @@ const activeSidebarItem = computed(() => (activeCategory.value === 'all' ? scrol
 
           <!-- All entry -->
           <button class="sidebar-item" :class="{ active: activeCategory === 'all' }" @click="selectCategory('all')">
-            <span class="sidebar-item-dot" style="background: #6366f1" />
+            <span class="sidebar-active-bar" />
             <VaIcon name="apps" size="16px" class="sidebar-item-icon" />
             <span class="sidebar-item-name">全部工具</span>
             <span class="sidebar-item-count">{{ totalTools }}</span>
@@ -195,7 +194,7 @@ const activeSidebarItem = computed(() => (activeCategory.value === 'all' ? scrol
             :style="{ '--cat-color': cat.color }"
             @click="selectCategory(cat.id)"
           >
-            <span class="sidebar-item-dot" :style="{ background: cat.color }" />
+            <span class="sidebar-active-bar" :style="{ background: cat.color }" />
             <VaIcon
               :name="cat.icon"
               size="16px"
@@ -224,14 +223,14 @@ const activeSidebarItem = computed(() => (activeCategory.value === 'all' ? scrol
               <div
                 class="featured-card-icon"
                 :style="{
-                  background: getCategoryColor(getToolCategory(tool)?.id || '') + '15',
+                  background: getCategoryColor(getToolCategory(tool)?.id || '') + '18',
                   borderColor: getCategoryColor(getToolCategory(tool)?.id || '') + '35',
                 }"
               >
                 <VaIcon
                   :name="getToolCategory(tool)?.icon || 'link'"
                   :color="getCategoryColor(getToolCategory(tool)?.id || '')"
-                  size="26px"
+                  size="28px"
                 />
               </div>
               <div class="featured-card-content">
@@ -275,17 +274,17 @@ const activeSidebarItem = computed(() => (activeCategory.value === 'all' ? scrol
           </div>
 
           <div v-for="group in groupedFilteredTools" :key="group.id" class="category-group" :data-cat-id="group.id">
-            <div class="category-header" :style="{ borderLeftColor: group.color }">
+            <div class="category-header" :style="{ '--group-color': group.color }">
               <div class="category-header-left">
-                <div class="category-icon-wrap" :style="{ background: group.color + '15' }">
-                  <VaIcon :name="group.icon" :style="{ color: group.color }" size="22px" />
+                <div class="category-icon-wrap" :style="{ background: group.color + '18' }">
+                  <VaIcon :name="group.icon" :style="{ color: group.color }" size="24px" />
                 </div>
                 <div>
                   <h2 class="category-name">{{ group.name }}</h2>
                   <p class="category-desc">{{ group.description }}</p>
                 </div>
               </div>
-              <span class="category-count" :style="{ background: group.color + '15', color: group.color }">
+              <span class="category-count" :style="{ background: group.color + '18', color: group.color }">
                 {{ group.tools.length }} 个工具
               </span>
             </div>
@@ -295,9 +294,9 @@ const activeSidebarItem = computed(() => (activeCategory.value === 'all' ? scrol
                 <div class="tool-card-top">
                   <div
                     class="tool-icon-wrap"
-                    :style="{ background: group.color + '12', borderColor: group.color + '30' }"
+                    :style="{ background: group.color + '14', borderColor: group.color + '30' }"
                   >
-                    <VaIcon :name="group.icon" :style="{ color: group.color }" size="20px" />
+                    <VaIcon :name="group.icon" :style="{ color: group.color }" size="22px" />
                   </div>
                   <div class="tool-badges">
                     <span v-if="tool.isFree" class="badge badge-free">免费</span>
@@ -397,7 +396,7 @@ const activeSidebarItem = computed(() => (activeCategory.value === 'all' ? scrol
 /* ── Hero ─────────────────────────────────── */
 .hero-section {
   background: linear-gradient(135deg, #1a1f3c 0%, #2d3561 50%, #1a2744 100%);
-  padding: 2.8rem 2rem 2.4rem;
+  padding: 3.5rem 2rem 3rem;
   margin: -1rem -1rem 0 -1rem;
   position: relative;
   overflow: hidden;
@@ -409,9 +408,9 @@ const activeSidebarItem = computed(() => (activeCategory.value === 'all' ? scrol
   position: absolute;
   top: -50%;
   right: -20%;
-  width: 600px;
-  height: 600px;
-  background: radial-gradient(circle, rgba(99, 102, 241, 0.15) 0%, transparent 70%);
+  width: 700px;
+  height: 700px;
+  background: radial-gradient(circle, rgba(99, 102, 241, 0.18) 0%, transparent 70%);
   border-radius: 50%;
   pointer-events: none;
 }
@@ -421,9 +420,9 @@ const activeSidebarItem = computed(() => (activeCategory.value === 'all' ? scrol
   position: absolute;
   bottom: -30%;
   left: -10%;
-  width: 400px;
-  height: 400px;
-  background: radial-gradient(circle, rgba(16, 185, 129, 0.1) 0%, transparent 70%);
+  width: 450px;
+  height: 450px;
+  background: radial-gradient(circle, rgba(16, 185, 129, 0.12) 0%, transparent 70%);
   border-radius: 50%;
   pointer-events: none;
 }
@@ -431,7 +430,7 @@ const activeSidebarItem = computed(() => (activeCategory.value === 'all' ? scrol
 .hero-content {
   position: relative;
   z-index: 1;
-  max-width: 800px;
+  max-width: 720px;
   margin: 0 auto;
   text-align: center;
 }
@@ -443,32 +442,33 @@ const activeSidebarItem = computed(() => (activeCategory.value === 'all' ? scrol
   background: rgba(99, 102, 241, 0.2);
   border: 1px solid rgba(99, 102, 241, 0.4);
   color: #a5b4fc;
-  padding: 5px 14px;
+  padding: 5px 16px;
   border-radius: 20px;
   font-size: 12px;
   font-weight: 500;
-  margin-bottom: 1.2rem;
+  margin-bottom: 1.4rem;
 }
 
 .hero-title {
-  font-size: 2.2rem;
+  font-size: 2.4rem;
   font-weight: 800;
   color: #fff;
-  margin: 0 0 0.8rem;
+  margin: 0 0 0.9rem;
   line-height: 1.2;
   letter-spacing: -0.5px;
 }
 
 .hero-subtitle {
-  font-size: 1rem;
+  font-size: 1.05rem;
   color: rgba(255, 255, 255, 0.65);
-  margin: 0 0 1.6rem;
-  line-height: 1.6;
+  margin: 0 0 2rem;
+  line-height: 1.7;
 }
 
+/* 搜索框：放大，成为视觉焦点 */
 .search-wrapper {
-  max-width: 520px;
-  margin: 0 auto 1.6rem;
+  max-width: 580px;
+  margin: 0 auto 2.4rem;
 }
 
 .search-input {
@@ -478,6 +478,8 @@ const activeSidebarItem = computed(() => (activeCategory.value === 'all' ? scrol
 /* 搜索框在深色 Hero 背景下强制白色文字 */
 .search-input :deep(input) {
   color: #fff !important;
+  font-size: 15px !important;
+  height: 44px;
 }
 .search-input :deep(input::placeholder) {
   color: rgba(255, 255, 255, 0.5) !important;
@@ -485,45 +487,56 @@ const activeSidebarItem = computed(() => (activeCategory.value === 'all' ? scrol
 .search-input :deep(.va-input-wrapper__field) {
   background: rgba(255, 255, 255, 0.1) !important;
   border-color: rgba(255, 255, 255, 0.2) !important;
+  border-radius: 12px !important;
+  padding: 0 18px !important;
 }
 .search-input :deep(.va-input-wrapper:hover .va-input-wrapper__field),
 .search-input :deep(.va-input-wrapper--focused .va-input-wrapper__field) {
-  background: rgba(255, 255, 255, 0.14) !important;
-  border-color: rgba(255, 255, 255, 0.45) !important;
+  background: rgba(255, 255, 255, 0.15) !important;
+  border-color: rgba(255, 255, 255, 0.5) !important;
+  box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.3) !important;
 }
 
+/* stats 卡片化 */
 .stats-row {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 2rem;
+  gap: 14px;
   flex-wrap: wrap;
 }
 
-.stat-item {
+.stat-card {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 2px;
+  gap: 4px;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 12px;
+  padding: 14px 24px;
+  min-width: 90px;
+  backdrop-filter: blur(4px);
+  transition: background 0.2s;
+}
+
+.stat-card:hover {
+  background: rgba(255, 255, 255, 0.13);
 }
 
 .stat-number {
-  font-size: 1.5rem;
-  font-weight: 700;
+  font-size: 1.6rem;
+  font-weight: 800;
   color: #fff;
+  line-height: 1;
 }
 
 .stat-label {
   font-size: 11px;
-  color: rgba(255, 255, 255, 0.5);
+  color: rgba(255, 255, 255, 0.55);
   text-transform: uppercase;
-  letter-spacing: 0.5px;
-}
-
-.stat-divider {
-  width: 1px;
-  height: 32px;
-  background: rgba(255, 255, 255, 0.15);
+  letter-spacing: 0.6px;
+  white-space: nowrap;
 }
 
 /* ── Body layout ──────────────────────────── */
@@ -538,7 +551,7 @@ const activeSidebarItem = computed(() => (activeCategory.value === 'all' ? scrol
 
 /* ── Left Sidebar ─────────────────────────── */
 .cat-sidebar {
-  width: 220px;
+  width: 228px;
   flex-shrink: 0;
   position: sticky;
   top: 60px;
@@ -559,7 +572,7 @@ const activeSidebarItem = computed(() => (activeCategory.value === 'all' ? scrol
 }
 
 .sidebar-inner {
-  padding: 16px 10px 24px;
+  padding: 18px 12px 28px;
   display: flex;
   flex-direction: column;
   gap: 2px;
@@ -568,7 +581,7 @@ const activeSidebarItem = computed(() => (activeCategory.value === 'all' ? scrol
 .sidebar-filters {
   display: flex;
   gap: 6px;
-  padding: 0 2px 4px;
+  padding: 0 2px 6px;
   flex-wrap: wrap;
 }
 
@@ -576,7 +589,7 @@ const activeSidebarItem = computed(() => (activeCategory.value === 'all' ? scrol
   display: inline-flex;
   align-items: center;
   gap: 4px;
-  padding: 4px 10px;
+  padding: 5px 12px;
   border-radius: 20px;
   font-size: 12px;
   font-weight: 500;
@@ -602,15 +615,16 @@ const activeSidebarItem = computed(() => (activeCategory.value === 'all' ? scrol
 .sidebar-divider {
   height: 1px;
   background: var(--va-background-border);
-  margin: 8px 2px;
+  margin: 10px 2px;
 }
 
+/* 侧边栏条目：左侧活跃指示粗线 */
 .sidebar-item {
   display: flex;
   align-items: center;
   gap: 8px;
   width: 100%;
-  padding: 8px 10px;
+  padding: 9px 10px 9px 14px;
   border-radius: 8px;
   border: none;
   background: transparent;
@@ -620,6 +634,7 @@ const activeSidebarItem = computed(() => (activeCategory.value === 'all' ? scrol
     background 0.15s,
     color 0.15s;
   position: relative;
+  overflow: hidden;
 }
 
 .sidebar-item:hover {
@@ -627,28 +642,29 @@ const activeSidebarItem = computed(() => (activeCategory.value === 'all' ? scrol
 }
 
 .sidebar-item.active {
-  background: rgba(99, 102, 241, 0.1);
+  background: rgba(99, 102, 241, 0.08);
 }
 
 .sidebar-item.scroll-active:not(.active) {
   background: var(--va-background-element);
 }
 
-.sidebar-item-dot {
-  width: 6px;
-  height: 6px;
-  border-radius: 50%;
-  flex-shrink: 0;
-  opacity: 0.7;
-  transition:
-    opacity 0.15s,
-    transform 0.15s;
+/* 活跃状态左侧粗线条 */
+.sidebar-active-bar {
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%) scaleY(0);
+  width: 3px;
+  height: 70%;
+  border-radius: 0 3px 3px 0;
+  background: var(--cat-color, var(--va-primary));
+  transition: transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 
-.sidebar-item.active .sidebar-item-dot,
-.sidebar-item.scroll-active .sidebar-item-dot {
-  opacity: 1;
-  transform: scale(1.3);
+.sidebar-item.active .sidebar-active-bar,
+.sidebar-item.scroll-active .sidebar-active-bar {
+  transform: translateY(-50%) scaleY(1);
 }
 
 .sidebar-item-icon {
@@ -683,8 +699,8 @@ const activeSidebarItem = computed(() => (activeCategory.value === 'all' ? scrol
   color: var(--va-text-secondary);
   background: var(--va-background-element);
   border-radius: 10px;
-  padding: 1px 6px;
-  min-width: 20px;
+  padding: 1px 7px;
+  min-width: 22px;
   text-align: center;
 }
 
@@ -697,28 +713,28 @@ const activeSidebarItem = computed(() => (activeCategory.value === 'all' ? scrol
 .main-content {
   flex: 1;
   min-width: 0;
-  padding: 1.5rem 1.5rem 2rem;
+  padding: 2rem 2rem 2.5rem;
   overflow-y: auto;
 }
 
 /* ── Sections ─────────────────────────────── */
 .section {
-  margin-bottom: 2.5rem;
+  margin-bottom: 3rem;
 }
 
 .section-header {
-  margin-bottom: 1.2rem;
+  margin-bottom: 1.4rem;
 }
 
 .section-title-group {
   display: flex;
   align-items: center;
-  gap: 7px;
-  margin-bottom: 4px;
+  gap: 8px;
+  margin-bottom: 6px;
 }
 
 .section-title {
-  font-size: 1.15rem;
+  font-size: 1.2rem;
   font-weight: 700;
   margin: 0;
   color: var(--va-text-primary);
@@ -734,32 +750,32 @@ const activeSidebarItem = computed(() => (activeCategory.value === 'all' ? scrol
 .featured-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(380px, 1fr));
-  gap: 9px;
+  gap: 12px;
 }
 
 .featured-card {
   display: flex;
   align-items: center;
-  gap: 14px;
-  padding: 16px 18px;
+  gap: 16px;
+  padding: 18px 20px;
   background: var(--va-background-secondary);
-  border: 1px solid var(--va-background-border);
-  border-radius: 12px;
+  border: none;
+  border-radius: 14px;
   cursor: pointer;
-  transition: all 0.2s ease;
+  transition: all 0.25s ease;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.05);
 }
 
 .featured-card:hover {
-  border-color: var(--va-primary);
-  box-shadow: 0 3px 16px rgba(0, 0, 0, 0.07);
-  transform: translateY(-1px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+  transform: translateY(-4px);
 }
 
 .featured-card-icon {
   flex-shrink: 0;
-  width: 48px;
-  height: 48px;
-  border-radius: 11px;
+  width: 52px;
+  height: 52px;
+  border-radius: 13px;
   border: 1px solid;
   display: flex;
   align-items: center;
@@ -775,7 +791,7 @@ const activeSidebarItem = computed(() => (activeCategory.value === 'all' ? scrol
   display: flex;
   align-items: center;
   gap: 8px;
-  margin-bottom: 3px;
+  margin-bottom: 4px;
   flex-wrap: wrap;
 }
 
@@ -794,8 +810,8 @@ const activeSidebarItem = computed(() => (activeCategory.value === 'all' ? scrol
 .featured-card-desc {
   font-size: 13px;
   color: var(--va-text-secondary);
-  margin: 0 0 7px;
-  line-height: 1.5;
+  margin: 0 0 8px;
+  line-height: 1.55;
   display: -webkit-box;
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
@@ -804,18 +820,18 @@ const activeSidebarItem = computed(() => (activeCategory.value === 'all' ? scrol
 
 .featured-card-tags {
   display: flex;
-  gap: 4px;
+  gap: 5px;
   flex-wrap: wrap;
 }
 
 .featured-card-arrow {
   flex-shrink: 0;
-  opacity: 0.35;
+  opacity: 0.3;
   transition: opacity 0.2s;
 }
 
 .featured-card:hover .featured-card-arrow {
-  opacity: 0.8;
+  opacity: 0.85;
 }
 
 /* ── Result bar ───────────────────────────── */
@@ -823,17 +839,18 @@ const activeSidebarItem = computed(() => (activeCategory.value === 'all' ? scrol
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin-bottom: 1.2rem;
-  padding: 8px 12px;
+  margin-bottom: 1.5rem;
+  padding: 10px 14px;
   background: var(--va-background-secondary);
-  border-radius: 8px;
-  border: 1px solid var(--va-background-border);
+  border-radius: 10px;
+  border: none;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.04);
 }
 
 .result-count {
   display: flex;
   align-items: center;
-  gap: 5px;
+  gap: 6px;
   font-size: 13px;
   color: var(--va-text-secondary);
 }
@@ -847,8 +864,8 @@ const activeSidebarItem = computed(() => (activeCategory.value === 'all' ? scrol
   background: none;
   border: none;
   cursor: pointer;
-  padding: 2px 6px;
-  border-radius: 5px;
+  padding: 3px 8px;
+  border-radius: 6px;
   transition:
     background 0.15s,
     color 0.15s;
@@ -860,23 +877,22 @@ const activeSidebarItem = computed(() => (activeCategory.value === 'all' ? scrol
 }
 
 /* ── Tools section ────────────────────────── */
-.tools-section {
-  /* no extra padding needed */
-}
-
 .category-group {
-  margin-bottom: 2.5rem;
+  margin-bottom: 3rem;
 }
 
+/* 分类标题：放大字号、去掉 border-left 改为更醒目的设计 */
 .category-header {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin-bottom: 1rem;
-  padding: 14px 16px;
+  margin-bottom: 1.2rem;
+  padding: 16px 20px;
   background: var(--va-background-secondary);
-  border-radius: 10px;
-  border-left: 4px solid;
+  border-radius: 12px;
+  border: none;
+  border-left: 4px solid var(--group-color, #6366f1);
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.04);
   flex-wrap: wrap;
   gap: 10px;
 }
@@ -884,13 +900,13 @@ const activeSidebarItem = computed(() => (activeCategory.value === 'all' ? scrol
 .category-header-left {
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: 14px;
 }
 
 .category-icon-wrap {
-  width: 40px;
-  height: 40px;
-  border-radius: 9px;
+  width: 44px;
+  height: 44px;
+  border-radius: 11px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -898,49 +914,50 @@ const activeSidebarItem = computed(() => (activeCategory.value === 'all' ? scrol
 }
 
 .category-name {
-  font-size: 1rem;
+  font-size: 1.1rem;
   font-weight: 700;
-  margin: 0 0 2px;
+  margin: 0 0 3px;
   color: var(--va-text-primary);
 }
 
 .category-desc {
-  font-size: 12.5px;
+  font-size: 13px;
   color: var(--va-text-secondary);
   margin: 0;
 }
 
 .category-count {
-  padding: 4px 10px;
+  padding: 5px 12px;
   border-radius: 20px;
   font-size: 12px;
   font-weight: 600;
   flex-shrink: 0;
 }
 
-/* ── Tools Grid ───────────────────────────── */
+/* ── Tools Grid：改为 3 列，增加间距 ── */
 .tools-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-  gap: 10px;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 14px;
 }
 
+/* 卡片：去掉硬边框，改为圆角 + 悬浮阴影 */
 .tool-card {
-  padding: 16px;
+  padding: 18px;
   background: var(--va-background-secondary);
-  border: 1px solid var(--va-background-border);
-  border-radius: 11px;
+  border: none;
+  border-radius: 12px;
   cursor: pointer;
-  transition: all 0.2s ease;
+  transition: all 0.25s ease;
   display: flex;
   flex-direction: column;
-  gap: 9px;
+  gap: 10px;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.05);
 }
 
 .tool-card:hover {
-  border-color: var(--va-primary);
-  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.07);
-  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+  transform: translateY(-4px);
 }
 
 .tool-card-top {
@@ -949,11 +966,12 @@ const activeSidebarItem = computed(() => (activeCategory.value === 'all' ? scrol
   justify-content: space-between;
 }
 
+/* 图标放大，提升辨识度 */
 .tool-icon-wrap {
-  width: 38px;
-  height: 38px;
-  border-radius: 9px;
-  border: 1px solid;
+  width: 44px;
+  height: 44px;
+  border-radius: 11px;
+  border: 1px solid transparent;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -971,15 +989,17 @@ const activeSidebarItem = computed(() => (activeCategory.value === 'all' ? scrol
   color: var(--va-text-primary);
 }
 
+/* 描述文字调大，统一两行截断 */
 .tool-desc {
-  font-size: 12.5px;
+  font-size: 13px;
   color: var(--va-text-secondary);
   margin: 0;
-  line-height: 1.5;
+  line-height: 1.55;
   display: -webkit-box;
-  -webkit-line-clamp: 3;
+  -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
   overflow: hidden;
+  text-overflow: ellipsis;
   flex: 1;
 }
 
@@ -1014,11 +1034,11 @@ const activeSidebarItem = computed(() => (activeCategory.value === 'all' ? scrol
 /* ── Badges ───────────────────────────────── */
 .badge {
   display: inline-block;
-  padding: 2px 7px;
+  padding: 2px 8px;
   border-radius: 9px;
   font-size: 11px;
   font-weight: 600;
-  line-height: 17px;
+  line-height: 18px;
 }
 
 .badge-free {
@@ -1042,73 +1062,79 @@ const activeSidebarItem = computed(() => (activeCategory.value === 'all' ? scrol
 /* ── Tags ─────────────────────────────────── */
 .tag {
   display: inline-block;
-  padding: 2px 7px;
-  border-radius: 5px;
+  padding: 2px 8px;
+  border-radius: 6px;
   font-size: 11.5px;
   background: var(--va-background-element);
   color: var(--va-text-secondary);
-  border: 1px solid var(--va-background-border);
 }
 
 .tag-small {
-  padding: 1px 6px;
+  padding: 1px 7px;
   font-size: 11px;
 }
 
 /* ── Tips ─────────────────────────────────── */
 .tips-section {
   background: var(--va-background-secondary);
-  border-radius: 14px;
-  padding: 1.6rem;
+  border-radius: 16px;
+  padding: 2rem;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.04);
 }
 
 .tips-header {
   display: flex;
   align-items: center;
-  gap: 7px;
-  margin-bottom: 1.2rem;
+  gap: 8px;
+  margin-bottom: 1.4rem;
 }
 
 .tips-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-  gap: 12px;
+  grid-template-columns: repeat(auto-fill, minmax(210px, 1fr));
+  gap: 14px;
 }
 
 .tip-card {
-  padding: 16px;
+  padding: 18px;
   background: var(--va-background-primary);
-  border-radius: 10px;
-  border: 1px solid var(--va-background-border);
+  border-radius: 12px;
+  border: none;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+  transition: box-shadow 0.2s;
+}
+
+.tip-card:hover {
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.07);
 }
 
 .tip-icon {
-  font-size: 1.6rem;
-  margin-bottom: 8px;
+  font-size: 1.8rem;
+  margin-bottom: 10px;
 }
 
 .tip-title {
-  font-size: 13.5px;
+  font-size: 14px;
   font-weight: 700;
-  margin: 0 0 6px;
+  margin: 0 0 7px;
   color: var(--va-text-primary);
 }
 
 .tip-content {
-  font-size: 12.5px;
+  font-size: 13px;
   color: var(--va-text-secondary);
   margin: 0;
-  line-height: 1.6;
+  line-height: 1.65;
 }
 
 /* ── Empty State ──────────────────────────── */
 .empty-state {
   text-align: center;
-  padding: 3.5rem 2rem;
+  padding: 4rem 2rem;
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 14px;
+  gap: 16px;
 }
 
 .empty-text {
@@ -1118,6 +1144,12 @@ const activeSidebarItem = computed(() => (activeCategory.value === 'all' ? scrol
 }
 
 /* ── Responsive ───────────────────────────── */
+@media (max-width: 1200px) {
+  .tools-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
 @media (max-width: 900px) {
   .body-layout {
     flex-direction: column;
@@ -1155,11 +1187,11 @@ const activeSidebarItem = computed(() => (activeCategory.value === 'all' ? scrol
   .sidebar-item {
     flex-shrink: 0;
     white-space: nowrap;
-    padding: 6px 10px;
+    padding: 6px 12px;
     border-radius: 20px;
   }
 
-  .sidebar-item-dot {
+  .sidebar-active-bar {
     display: none;
   }
 
@@ -1172,21 +1204,31 @@ const activeSidebarItem = computed(() => (activeCategory.value === 'all' ? scrol
   }
 
   .main-content {
-    padding: 1rem;
+    padding: 1.2rem;
+  }
+
+  .tools-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
   }
 }
 
 @media (max-width: 600px) {
   .hero-title {
-    font-size: 1.7rem;
+    font-size: 1.8rem;
   }
 
   .stats-row {
-    gap: 1.2rem;
+    gap: 10px;
+  }
+
+  .stat-card {
+    padding: 10px 16px;
+    min-width: 72px;
   }
 
   .stat-number {
-    font-size: 1.3rem;
+    font-size: 1.35rem;
   }
 
   .featured-grid {
