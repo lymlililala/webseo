@@ -58,7 +58,11 @@ export const articlesAPI = {
     const cached = getCached<any[]>(cacheKey)
     if (cached) return cached
 
-    const { data, error } = await supabase.from('wseo_articles').select('*').order('date', { ascending: false })
+    const { data, error } = await supabase
+      .from('wseo_articles')
+      .select('*')
+      .order('date', { ascending: false })
+      .limit(100)
 
     if (error) throw error
     if (data) setCache(cacheKey, data)
@@ -138,6 +142,7 @@ export const tutorialsAPI = {
       .from('wseo_tutorials')
       .select('*')
       .order('created_at', { ascending: false })
+      .limit(100)
 
     if (error) throw error
     if (!tutorials || tutorials.length === 0) return []
@@ -287,7 +292,7 @@ export const newsAPI = {
     const cached = getCached<any[]>(cacheKey)
     if (cached) return cached
 
-    const { data, error } = await supabase.from('wseo_news').select('*').order('date', { ascending: false })
+    const { data, error } = await supabase.from('wseo_news').select('*').order('date', { ascending: false }).limit(100)
 
     if (error) throw error
     if (data) setCache(cacheKey, data)
