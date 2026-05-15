@@ -3,6 +3,7 @@ import { ref, computed, onMounted } from 'vue'
 import { useRouter } from 'vue-router'
 import { type News } from '../../data/news'
 import { newsAPI } from '../../services/supabase'
+import SkeletonLoader from '../../components/SkeletonLoader.vue'
 
 const router = useRouter()
 
@@ -124,9 +125,8 @@ function openNewsLink(link?: string) {
       </aside>
 
       <main class="main-content">
-        <div v-if="loading" class="empty-state">
-          <VaIcon name="hourglass_empty" size="56px" color="secondary" />
-          <p>加载中...</p>
+        <div v-if="loading" class="loading-state">
+          <SkeletonLoader variant="list" :count="5" />
         </div>
 
         <div v-else-if="filteredNews.length === 0" class="empty-state">
@@ -451,6 +451,10 @@ function openNewsLink(link?: string) {
   display: flex;
   align-items: center;
   gap: 4px;
+}
+
+.loading-state {
+  padding: 2rem 0;
 }
 
 .empty-state {

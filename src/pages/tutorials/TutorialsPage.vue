@@ -3,6 +3,7 @@ import { ref, computed, onMounted } from 'vue'
 import { useRouter } from 'vue-router'
 import { type Tutorial } from '../../data/tutorials'
 import { tutorialsAPI } from '../../services/supabase'
+import SkeletonLoader from '../../components/SkeletonLoader.vue'
 
 const router = useRouter()
 
@@ -120,9 +121,8 @@ const difficultyLabel = {
       </aside>
 
       <main class="main-content">
-        <div v-if="loading" class="empty-state">
-          <VaIcon name="hourglass_empty" size="56px" color="secondary" />
-          <p>加载中...</p>
+        <div v-if="loading" class="loading-state">
+          <SkeletonLoader variant="card" :count="6" />
         </div>
 
         <div v-else-if="filteredTutorials.length === 0" class="empty-state">
@@ -423,6 +423,10 @@ const difficultyLabel = {
 
 .enroll-btn {
   width: 100%;
+}
+
+.loading-state {
+  padding: 2rem 0;
 }
 
 .empty-state {
