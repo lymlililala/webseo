@@ -1,5 +1,13 @@
 {
   "buildCommand": "npm run build:ci",
   "outputDirectory": "dist",
+  "redirects": [
+    {
+      "source": "/:path*",
+      "has": [{ "type": "host", "value": "sgaindex.com" }],
+      "destination": "https://www.sgaindex.com/:path*",
+      "permanent": true
+    }
+  ],
   "rewrites": [{ "source": "/(.*)", "destination": "/index.html" }]
 }
