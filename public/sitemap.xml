@@ -222,6 +222,81 @@
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
+  <!-- 新增文章 2026-05-10~15 -->
+  <url>
+    <loc>https://sgaindex.com/articles/65397d04-f341-4187-b0ab-60be0fe44ae8</loc>
+    <lastmod>2026-05-15</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://sgaindex.com/articles/65193b23-bf36-44e1-b53a-a6748e0e9170</loc>
+    <lastmod>2026-05-14</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://sgaindex.com/articles/1b4cbfa7-b385-45a9-b310-b88e1cc00b42</loc>
+    <lastmod>2026-05-13</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://sgaindex.com/articles/82d7ff3e-7bbf-4bfa-ade1-a4d55b32094f</loc>
+    <lastmod>2026-05-12</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://sgaindex.com/articles/213817b6-26e5-4737-bf70-cfb1fd2db06f</loc>
+    <lastmod>2026-05-11</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://sgaindex.com/articles/d239e0fc-4768-4f44-957a-c697cc25f28e</loc>
+    <lastmod>2026-05-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <!-- 新增教程 -->
+  <url>
+    <loc>https://sgaindex.com/tutorials/bd2d00bc-641c-465f-844a-651c8a34728c</loc>
+    <lastmod>2026-05-15</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://sgaindex.com/tutorials/38d88684-adca-4edb-9c70-a6935967a2cc</loc>
+    <lastmod>2026-05-14</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://sgaindex.com/tutorials/a128bcc1-031f-4624-80c7-daea50438110</loc>
+    <lastmod>2026-05-13</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <!-- 新增新闻 -->
+  <url>
+    <loc>https://sgaindex.com/news/8ba65710-c5fd-4676-bcde-b44876994990</loc>
+    <lastmod>2026-05-15</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://sgaindex.com/news/42ebe0ed-11d2-42ff-9883-883eade92ab8</loc>
+    <lastmod>2026-05-13</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://sgaindex.com/news/49b171e6-b81b-4670-92e0-9574def42c10</loc>
+    <lastmod>2026-05-14</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
   <url>
     <loc>https://sgaindex.com/tutorials</loc>
     <changefreq>weekly</changefreq>
