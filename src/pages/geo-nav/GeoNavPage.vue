@@ -528,10 +528,10 @@ const activeSidebarItem = computed(() => (activeCategory.value === 'all' ? scrol
 /* ── Hero ──────────────────────────────────── */
 .geo-hero {
   background: linear-gradient(135deg, #0f1629 0%, #1a1f44 45%, #0d2135 100%);
-  padding: 3.2rem 2rem 2.6rem;
+  padding: 1.8rem 2rem 0;
   margin: -1rem -1rem 0;
   position: relative;
-  overflow: hidden;
+  overflow: visible;
   flex-shrink: 0;
 }
 
@@ -563,14 +563,14 @@ const activeSidebarItem = computed(() => (activeCategory.value === 'all' ? scrol
   border-radius: 20px;
   font-size: 12px;
   font-weight: 600;
-  margin-bottom: 0.9rem;
+  margin-bottom: 0.7rem;
 }
 
 .geo-hero-title {
-  font-size: 2.1rem;
+  font-size: 1.9rem;
   font-weight: 800;
   color: #fff;
-  margin: 0 0 0.6rem;
+  margin: 0 0 0.45rem;
   line-height: 1.2;
   letter-spacing: -0.5px;
 }
@@ -583,10 +583,10 @@ const activeSidebarItem = computed(() => (activeCategory.value === 'all' ? scrol
 }
 
 .geo-hero-subtitle {
-  font-size: 0.9rem;
+  font-size: 0.88rem;
   color: rgba(255, 255, 255, 0.6);
-  margin: 0 0 1.3rem;
-  line-height: 1.65;
+  margin: 0 0 1rem;
+  line-height: 1.6;
 }
 
 .geo-hero-subtitle strong {
@@ -595,7 +595,7 @@ const activeSidebarItem = computed(() => (activeCategory.value === 'all' ? scrol
 
 .geo-search-wrap {
   max-width: 560px;
-  margin: 0 auto 1.2rem;
+  margin: 0 auto 0.8rem;
 }
 
 .geo-search-input {
@@ -630,7 +630,7 @@ const activeSidebarItem = computed(() => (activeCategory.value === 'all' ? scrol
   align-items: center;
   justify-content: center;
   gap: 6px;
-  margin-bottom: 1.1rem;
+  margin-bottom: 0.8rem;
 }
 
 .geo-region-tab {
@@ -656,50 +656,51 @@ const activeSidebarItem = computed(() => (activeCategory.value === 'all' ? scrol
   color: #c7d2fe;
 }
 
-/* Stats：卡片化 */
+/* Stats 扁平横向条 — 悬浮在 Hero/Body 交界处 */
 .geo-stats {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 12px;
-  flex-wrap: wrap;
-  margin-bottom: 1.2rem;
+  gap: 0;
+  flex-wrap: nowrap;
+  margin: 0.8rem -2rem 0;
+  background: rgba(255, 255, 255, 0.06);
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(8px);
 }
 
 .geo-stat {
   display: flex;
-  flex-direction: column;
   align-items: center;
-  gap: 4px;
-  background: rgba(255, 255, 255, 0.08);
-  border: 1px solid rgba(255, 255, 255, 0.12);
-  border-radius: 12px;
-  padding: 12px 20px;
-  min-width: 82px;
-  backdrop-filter: blur(4px);
+  gap: 7px;
+  padding: 9px 22px;
+  border-right: 1px solid rgba(255, 255, 255, 0.1);
   transition: background 0.2s;
+  flex: 1;
+  justify-content: center;
+}
+
+.geo-stat:last-child {
+  border-right: none;
 }
 
 .geo-stat:hover {
-  background: rgba(255, 255, 255, 0.13);
+  background: rgba(255, 255, 255, 0.08);
 }
 
 .geo-stat-num {
-  font-size: 1.5rem;
+  font-size: 1.1rem;
   font-weight: 800;
   color: #fff;
   line-height: 1;
 }
 
 .geo-stat-label {
-  font-size: 10.5px;
-  color: rgba(255, 255, 255, 0.5);
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.6);
   white-space: nowrap;
 }
 
-/* 隐藏旧分隔线，现在用卡片代替 */
 .geo-stat-div {
   display: none;
 }
@@ -711,12 +712,13 @@ const activeSidebarItem = computed(() => (activeCategory.value === 'all' ? scrol
   gap: 8px;
   flex-wrap: wrap;
   justify-content: center;
-  padding: 9px 18px;
+  padding: 8px 16px;
   background: rgba(255, 255, 255, 0.05);
   border: 1px solid rgba(255, 255, 255, 0.09);
   border-radius: 10px;
-  font-size: 12px;
+  font-size: 11.5px;
   color: rgba(255, 255, 255, 0.5);
+  margin-bottom: 1rem;
 }
 
 .geo-concept-item {
@@ -1584,17 +1586,17 @@ const activeSidebarItem = computed(() => (activeCategory.value === 'all' ? scrol
 
 @media (max-width: 600px) {
   .geo-hero-title {
-    font-size: 1.7rem;
+    font-size: 1.6rem;
   }
   .geo-stats {
-    gap: 8px;
+    flex-wrap: wrap;
   }
   .geo-stat {
-    padding: 10px 14px;
-    min-width: 70px;
+    padding: 7px 14px;
+    flex: 1 1 45%;
   }
   .geo-stat-num {
-    font-size: 1.3rem;
+    font-size: 1rem;
   }
   .geo-tools-grid {
     grid-template-columns: 1fr;

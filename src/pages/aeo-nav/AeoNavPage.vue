@@ -156,28 +156,6 @@ const activeSidebarItem = computed(() => (activeCategory.value === 'all' ? scrol
           </VaInput>
         </div>
 
-        <div class="aeo-stats">
-          <div class="aeo-stat">
-            <span class="aeo-stat-num">{{ totalTools }}+</span>
-            <span class="aeo-stat-label">精选工具</span>
-          </div>
-          <div class="aeo-stat-div" />
-          <div class="aeo-stat">
-            <span class="aeo-stat-num">{{ openSourceCount }}</span>
-            <span class="aeo-stat-label">⭐ 开源项目</span>
-          </div>
-          <div class="aeo-stat-div" />
-          <div class="aeo-stat">
-            <span class="aeo-stat-num">{{ freeCount }}</span>
-            <span class="aeo-stat-label">🆓 含免费版</span>
-          </div>
-          <div class="aeo-stat-div" />
-          <div class="aeo-stat">
-            <span class="aeo-stat-num">{{ chinaCount }}</span>
-            <span class="aeo-stat-label">🇨🇳 国内平台</span>
-          </div>
-        </div>
-
         <!-- Concept bar -->
         <div class="aeo-concept-bar">
           <div class="aeo-concept-item">
@@ -199,6 +177,26 @@ const activeSidebarItem = computed(() => (activeCategory.value === 'all' ? scrol
             <VaIcon name="help_outline" size="15px" color="#FCD34D" />
             <span><strong>PAA</strong> = People Also Ask 答案框</span>
           </div>
+        </div>
+      </div>
+
+      <!-- Stats 通栏条：移出 hero-content 以实现全宽 -->
+      <div class="aeo-stats">
+        <div class="aeo-stat">
+          <span class="aeo-stat-num">{{ totalTools }}+</span>
+          <span class="aeo-stat-label">精选工具</span>
+        </div>
+        <div class="aeo-stat">
+          <span class="aeo-stat-num">{{ openSourceCount }}</span>
+          <span class="aeo-stat-label">⭐ 开源项目</span>
+        </div>
+        <div class="aeo-stat">
+          <span class="aeo-stat-num">{{ freeCount }}</span>
+          <span class="aeo-stat-label">🆓 含免费版</span>
+        </div>
+        <div class="aeo-stat">
+          <span class="aeo-stat-num">{{ chinaCount }}</span>
+          <span class="aeo-stat-label">🇨🇳 国内平台</span>
         </div>
       </div>
     </div>
@@ -511,10 +509,10 @@ const activeSidebarItem = computed(() => (activeCategory.value === 'all' ? scrol
 /* ── Hero ────────────────────────────────── */
 .aeo-hero {
   background: linear-gradient(135deg, #1a0a2e 0%, #2d1155 45%, #1a0e35 100%);
-  padding: 3.2rem 2rem 2.6rem;
+  padding: 1.8rem 2rem 0;
   margin: -1rem -1rem 0;
   position: relative;
-  overflow: hidden;
+  overflow: visible;
   flex-shrink: 0;
 }
 
@@ -546,15 +544,15 @@ const activeSidebarItem = computed(() => (activeCategory.value === 'all' ? scrol
   border-radius: 20px;
   font-size: 12px;
   font-weight: 600;
-  margin-bottom: 0.9rem;
+  margin-bottom: 0.65rem;
 }
 
 .aeo-hero-title {
-  font-size: 2.2rem;
+  font-size: 2rem;
   font-weight: 800;
   color: #fff;
   line-height: 1.2;
-  margin-bottom: 0.7rem;
+  margin-bottom: 0.5rem;
 }
 
 .aeo-hero-title-accent {
@@ -566,9 +564,9 @@ const activeSidebarItem = computed(() => (activeCategory.value === 'all' ? scrol
 
 .aeo-hero-subtitle {
   color: #c4b5fd;
-  font-size: 0.95rem;
-  line-height: 1.7;
-  margin-bottom: 1.3rem;
+  font-size: 0.9rem;
+  line-height: 1.6;
+  margin-bottom: 1rem;
 }
 
 .aeo-hero-subtitle strong {
@@ -578,7 +576,7 @@ const activeSidebarItem = computed(() => (activeCategory.value === 'all' ? scrol
 /* ── Search ──────────────────────────────── */
 .aeo-search-wrap {
   max-width: 560px;
-  margin: 0 auto 2rem;
+  margin: 0 auto 1.2rem;
 }
 
 .aeo-search-input {
@@ -607,46 +605,54 @@ const activeSidebarItem = computed(() => (activeCategory.value === 'all' ? scrol
   box-shadow: 0 0 0 3px rgba(236, 72, 153, 0.3) !important;
 }
 
-/* ── Stats：卡片化 ───────────────────────────────── */
+/* ── Stats：横向通栏扁平条，悬浮在 Hero/Body 交界处 ───────────────── */
 .aeo-stats {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 12px;
-  flex-wrap: wrap;
-  margin-bottom: 1.2rem;
+  gap: 0;
+  flex-wrap: nowrap;
+  margin: 0 -2rem;
+  background: rgba(255, 255, 255, 0.06);
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(8px);
+  position: relative;
+  z-index: 2;
 }
 
 .aeo-stat {
   display: flex;
-  flex-direction: column;
   align-items: center;
-  gap: 4px;
-  background: rgba(255, 255, 255, 0.08);
-  border: 1px solid rgba(236, 72, 153, 0.2);
-  border-radius: 12px;
-  padding: 12px 20px;
-  min-width: 82px;
-  backdrop-filter: blur(4px);
+  gap: 8px;
+  padding: 10px 28px;
+  border-right: 1px solid rgba(255, 255, 255, 0.1);
   transition: background 0.2s;
+  flex: 1;
+  justify-content: center;
+  background: none;
+  border-radius: 0;
+  min-width: 0;
+}
+
+.aeo-stat:last-child {
+  border-right: none;
 }
 
 .aeo-stat:hover {
-  background: rgba(236, 72, 153, 0.1);
+  background: rgba(255, 255, 255, 0.08);
 }
 
 .aeo-stat-num {
-  font-size: 1.5rem;
+  font-size: 1.15rem;
   font-weight: 800;
-  color: #f9a8d4;
+  color: #fff;
   line-height: 1;
 }
 
 .aeo-stat-label {
-  font-size: 10.5px;
-  color: #a78bfa;
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.6);
   white-space: nowrap;
-  text-align: center;
 }
 
 /* 旧分隔线隐藏 */
@@ -663,7 +669,8 @@ const activeSidebarItem = computed(() => (activeCategory.value === 'all' ? scrol
   gap: 8px;
   font-size: 0.75rem;
   color: #c4b5fd;
-  margin-top: 0.7rem;
+  margin-top: 0;
+  padding: 8px 0;
 }
 
 .aeo-concept-item {
@@ -1477,17 +1484,17 @@ const activeSidebarItem = computed(() => (activeCategory.value === 'all' ? scrol
 
 @media (max-width: 600px) {
   .aeo-hero-title {
-    font-size: 1.6rem;
+    font-size: 1.5rem;
   }
   .aeo-stats {
-    gap: 8px;
+    flex-wrap: wrap;
   }
   .aeo-stat {
-    padding: 10px 14px;
-    min-width: 70px;
+    padding: 8px 16px;
+    flex: 1 1 45%;
   }
   .aeo-stat-num {
-    font-size: 1.3rem;
+    font-size: 1rem;
   }
   .aeo-featured-grid {
     grid-template-columns: 1fr;
