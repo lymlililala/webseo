@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref, computed, onMounted } from 'vue'
+import { ref, computed, onMounted, watch } from 'vue'
 import { useRouter } from 'vue-router'
 import { type Tutorial } from '../../data/tutorials'
 import { tutorialsAPI } from '../../services/supabase'
@@ -12,6 +12,8 @@ const selectedCategory = ref<'all' | 'seo' | 'geo' | 'aeo'>('all')
 const selectedLevel = ref<'all' | 'beginner' | 'intermediate' | 'advanced'>('all')
 const loading = ref(true)
 const allTutorials = ref<Tutorial[]>([])
+const currentPage = ref(1)
+const pageSize = 12
 
 onMounted(async () => {
   try {
@@ -50,6 +52,24 @@ const filteredTutorials = computed(() => {
 
   return result.sort((a, b) => b.students - a.students)
 })
+
+// 分页
+const paginatedTutorials = computed(() => {
+  const start = (currentPage.value - 1) * pageSize
+  return filteredTutorials.value.slice(start, start + pageSize)
+})
+
+const totalPages = computed(() => Math.ceil(filteredTutorials.value.length / pageSize))
+
+// 筛选变化时重置到第一页
+watch([searchQuery, selectedCategory, selectedLevel], () => {
+  currentPage.value = 1
+})
+
+function goToPage(page: number) {
+  currentPage.value = Math.max(1, Math.min(page, totalPages.value))
+  window.scrollTo({ top: 0, behavior: 'smooth' })
+}
 
 const difficultyLabel = {
   beginner: '初级',
@@ -130,47 +150,67 @@ const difficultyLabel = {
           <p>暂无匹配课程</p>
         </div>
 
-        <div v-else class="tutorials-grid">
-          <div
-            v-for="tutorial in filteredTutorials"
-            :key="tutorial.id"
-            class="tutorial-card"
-            @click="router.push({ name: 'tutorial-detail', params: { id: tutorial.id } })"
-          >
-            <div class="tutorial-header">
-              <div class="difficulty-badge" :class="tutorial.difficulty">
-                {{ difficultyLabel[tutorial.difficulty] }}
+        <div v-else>
+          <div class="tutorials-grid">
+            <div
+              v-for="tutorial in paginatedTutorials"
+              :key="tutorial.id"
+              class="tutorial-card"
+              @click="router.push({ name: 'tutorial-detail', params: { id: tutorial.id } })"
+            >
+              <div class="tutorial-header">
+                <div class="difficulty-badge" :class="tutorial.difficulty">
+                  {{ difficultyLabel[tutorial.difficulty] }}
+                </div>
+                <div class="rating">
+                  <VaIcon name="star" size="14px" color="warning" />
+                  <span>{{ tutorial.rating }}</span>
+                </div>
               </div>
-              <div class="rating">
-                <VaIcon name="star" size="14px" color="warning" />
-                <span>{{ tutorial.rating }}</span>
+
+              <h3 class="tutorial-title">{{ tutorial.title }}</h3>
+              <p class="tutorial-desc">{{ tutorial.description }}</p>
+
+              <div class="tutorial-info">
+                <span class="info-item">
+                  <VaIcon name="person" size="14px" />
+                  {{ tutorial.instructor }}
+                </span>
+                <span class="info-item">
+                  <VaIcon name="schedule" size="14px" />
+                  {{ tutorial.duration }} 分钟
+                </span>
+                <span class="info-item">
+                  <VaIcon name="group" size="14px" />
+                  {{ tutorial.students.toLocaleString() }} 学生
+                </span>
               </div>
+
+              <div class="lessons-count">
+                <VaIcon name="list" size="14px" />
+                {{ tutorial.lessons.length }} 节课程
+              </div>
+
+              <VaButton class="enroll-btn" preset="secondary"> 查看课程 </VaButton>
             </div>
+          </div>
 
-            <h3 class="tutorial-title">{{ tutorial.title }}</h3>
-            <p class="tutorial-desc">{{ tutorial.description }}</p>
-
-            <div class="tutorial-info">
-              <span class="info-item">
-                <VaIcon name="person" size="14px" />
-                {{ tutorial.instructor }}
-              </span>
-              <span class="info-item">
-                <VaIcon name="schedule" size="14px" />
-                {{ tutorial.duration }} 分钟
-              </span>
-              <span class="info-item">
-                <VaIcon name="group" size="14px" />
-                {{ tutorial.students.toLocaleString() }} 学生
-              </span>
+          <!-- 分页器 -->
+          <div v-if="totalPages > 1" class="pagination">
+            <VaButton preset="secondary" size="small" :disabled="currentPage === 1" @click="goToPage(currentPage - 1)">
+              <VaIcon name="arrow_back" size="16px" />
+            </VaButton>
+            <div class="page-info">
+              第 {{ currentPage }} / {{ totalPages }} 页（共 {{ filteredTutorials.length }} 门课程）
             </div>
-
-            <div class="lessons-count">
-              <VaIcon name="list" size="14px" />
-              {{ tutorial.lessons.length }} 节课程
-            </div>
-
-            <VaButton class="enroll-btn" preset="secondary"> 查看课程 </VaButton>
+            <VaButton
+              preset="secondary"
+              size="small"
+              :disabled="currentPage === totalPages"
+              @click="goToPage(currentPage + 1)"
+            >
+              <VaIcon name="arrow_forward" size="16px" />
+            </VaButton>
           </div>
         </div>
       </main>
@@ -436,6 +476,25 @@ const difficultyLabel = {
   flex-direction: column;
   align-items: center;
   gap: 14px;
+}
+
+/* ── Pagination ───────────────────────── */
+.pagination {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  margin-top: 32px;
+  padding: 20px;
+  background: var(--va-background-secondary);
+  border-radius: 12px;
+}
+
+.page-info {
+  font-size: 14px;
+  color: var(--va-text-secondary);
+  min-width: 180px;
+  text-align: center;
 }
 
 @media (max-width: 900px) {

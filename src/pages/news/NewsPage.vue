@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref, computed, onMounted } from 'vue'
+import { ref, computed, onMounted, watch } from 'vue'
 import { useRouter } from 'vue-router'
 import { type News } from '../../data/news'
 import { newsAPI } from '../../services/supabase'
@@ -12,6 +12,8 @@ const selectedCategory = ref<'all' | 'seo' | 'geo' | 'aeo' | 'ai' | 'industry'>(
 const selectedImpact = ref<'all' | 'high' | 'medium' | 'low'>('all')
 const loading = ref(true)
 const allNews = ref<News[]>([])
+const currentPage = ref(1)
+const pageSize = 12
 
 onMounted(async () => {
   try {
@@ -46,6 +48,24 @@ const filteredNews = computed(() => {
 
   return result.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
 })
+
+// 分页
+const paginatedNews = computed(() => {
+  const start = (currentPage.value - 1) * pageSize
+  return filteredNews.value.slice(start, start + pageSize)
+})
+
+const totalPages = computed(() => Math.ceil(filteredNews.value.length / pageSize))
+
+// 筛选变化时重置到第一页
+watch([searchQuery, selectedCategory, selectedImpact], () => {
+  currentPage.value = 1
+})
+
+function goToPage(page: number) {
+  currentPage.value = Math.max(1, Math.min(page, totalPages.value))
+  window.scrollTo({ top: 0, behavior: 'smooth' })
+}
 
 const impactLabel = {
   high: '高影响',
@@ -134,49 +154,69 @@ function openNewsLink(link?: string) {
           <p>暂无匹配新闻</p>
         </div>
 
-        <div v-else class="news-list">
-          <article
-            v-for="item in filteredNews"
-            :key="item.id"
-            class="news-item"
-            @click="router.push({ name: 'news-detail', params: { id: item.id } })"
-          >
-            <div class="news-header">
-              <div class="news-meta">
-                <span class="category-tag">{{ item.category.toUpperCase() }}</span>
-                <span class="date">{{ new Date(item.date).toLocaleDateString('zh-CN') }}</span>
+        <div v-else>
+          <div class="news-list">
+            <article
+              v-for="item in paginatedNews"
+              :key="item.id"
+              class="news-item"
+              @click="router.push({ name: 'news-detail', params: { id: item.id } })"
+            >
+              <div class="news-header">
+                <div class="news-meta">
+                  <span class="category-tag">{{ item.category.toUpperCase() }}</span>
+                  <span class="date">{{ new Date(item.date).toLocaleDateString('zh-CN') }}</span>
+                </div>
+                <div class="impact-badge" :class="item.impact">
+                  {{ impactLabel[item.impact] }}
+                </div>
               </div>
-              <div class="impact-badge" :class="item.impact">
-                {{ impactLabel[item.impact] }}
+
+              <h3 class="news-title">{{ item.title }}</h3>
+              <p class="news-desc">{{ item.description }}</p>
+
+              <div class="news-tags">
+                <span v-for="tag in item.tags.slice(0, 4)" :key="tag" class="tag">{{ tag }}</span>
               </div>
-            </div>
 
-            <h3 class="news-title">{{ item.title }}</h3>
-            <p class="news-desc">{{ item.description }}</p>
+              <div class="news-footer">
+                <span class="source">
+                  <VaIcon name="source" size="14px" />
+                  {{ item.source }}
+                </span>
+                <VaButton
+                  v-if="item.link"
+                  preset="plain"
+                  size="small"
+                  border
+                  class="read-more"
+                  @click.stop="openNewsLink(item.link)"
+                >
+                  <VaIcon name="open_in_new" size="14px" />
+                  阅读全文
+                </VaButton>
+                <span v-else class="no-link">暂无原文链接</span>
+              </div>
+            </article>
+          </div>
 
-            <div class="news-tags">
-              <span v-for="tag in item.tags.slice(0, 4)" :key="tag" class="tag">{{ tag }}</span>
+          <!-- 分页器 -->
+          <div v-if="totalPages > 1" class="pagination">
+            <VaButton preset="secondary" size="small" :disabled="currentPage === 1" @click="goToPage(currentPage - 1)">
+              <VaIcon name="arrow_back" size="16px" />
+            </VaButton>
+            <div class="page-info">
+              第 {{ currentPage }} / {{ totalPages }} 页（共 {{ filteredNews.length }} 条新闻）
             </div>
-
-            <div class="news-footer">
-              <span class="source">
-                <VaIcon name="source" size="14px" />
-                {{ item.source }}
-              </span>
-              <VaButton
-                v-if="item.link"
-                preset="plain"
-                size="small"
-                border
-                class="read-more"
-                @click.stop="openNewsLink(item.link)"
-              >
-                <VaIcon name="open_in_new" size="14px" />
-                阅读全文
-              </VaButton>
-              <span v-else class="no-link">暂无原文链接</span>
-            </div>
-          </article>
+            <VaButton
+              preset="secondary"
+              size="small"
+              :disabled="currentPage === totalPages"
+              @click="goToPage(currentPage + 1)"
+            >
+              <VaIcon name="arrow_forward" size="16px" />
+            </VaButton>
+          </div>
         </div>
       </main>
     </div>
@@ -464,6 +504,25 @@ function openNewsLink(link?: string) {
   flex-direction: column;
   align-items: center;
   gap: 14px;
+}
+
+/* ── Pagination ───────────────────────── */
+.pagination {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  margin-top: 32px;
+  padding: 20px;
+  background: var(--va-background-secondary);
+  border-radius: 12px;
+}
+
+.page-info {
+  font-size: 14px;
+  color: var(--va-text-secondary);
+  min-width: 180px;
+  text-align: center;
 }
 
 @media (max-width: 900px) {

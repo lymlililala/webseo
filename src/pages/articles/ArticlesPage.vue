@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref, computed, onMounted } from 'vue'
+import { ref, computed, onMounted, watch } from 'vue'
 import { useRouter } from 'vue-router'
 import { type Article } from '../../data/articles'
 import { articlesAPI } from '../../services/supabase'
@@ -12,7 +12,7 @@ const selectedCategory = ref<'all' | 'seo' | 'geo' | 'aeo' | 'tools'>('all')
 const loading = ref(true)
 const allArticles = ref<Article[]>([])
 const currentPage = ref(1)
-const pageSize = 30 // 首屏最多显示 30 条
+const pageSize = 12 // 每页显示 12 条
 
 onMounted(async () => {
   try {
@@ -62,6 +62,11 @@ const totalPages = computed(() => Math.ceil(filteredArticles.value.length / page
 function openArticle(article: Article) {
   router.push({ name: 'article-detail', params: { id: article.id } })
 }
+
+// 筛选条件变化时重置到第一页
+watch([searchQuery, selectedCategory], () => {
+  currentPage.value = 1
+})
 
 function clearFilters() {
   searchQuery.value = ''
