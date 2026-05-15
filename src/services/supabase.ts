@@ -5,6 +5,38 @@ const supabaseAnonKey = import.meta.env.VITE_SUPABASE_ANON_KEY || ''
 
 const SUPABASE_CONFIGURED = !!(supabaseUrl && supabaseAnonKey)
 
+// ============================================================================
+// 内存缓存：同一 session 内避免重复拉取相同数据（TTL 5 分钟）
+// ============================================================================
+const CACHE_TTL = 5 * 60 * 1000 // 5 minutes
+
+interface CacheEntry<T> {
+  data: T
+  ts: number
+}
+
+const memCache = new Map<string, CacheEntry<any>>()
+
+function getCached<T>(key: string): T | null {
+  const entry = memCache.get(key)
+  if (entry && Date.now() - entry.ts < CACHE_TTL) {
+    return entry.data as T
+  }
+  return null
+}
+
+function setCache<T>(key: string, data: T): void {
+  memCache.set(key, { data, ts: Date.now() })
+}
+
+export function clearCache(key?: string): void {
+  if (key) {
+    memCache.delete(key)
+  } else {
+    memCache.clear()
+  }
+}
+
 if (!SUPABASE_CONFIGURED) {
   console.warn('⚠️ Supabase credentials not configured. Pages will use local data fallback.')
 }
@@ -22,16 +54,26 @@ export { SUPABASE_CONFIGURED }
 // ============================================================================
 export const articlesAPI = {
   async getAll() {
+    const cacheKey = 'articles:all'
+    const cached = getCached<any[]>(cacheKey)
+    if (cached) return cached
+
     const { data, error } = await supabase.from('wseo_articles').select('*').order('date', { ascending: false })
 
     if (error) throw error
+    if (data) setCache(cacheKey, data)
     return data
   },
 
   async getById(id: string) {
+    const cacheKey = `articles:${id}`
+    const cached = getCached<any>(cacheKey)
+    if (cached) return cached
+
     const { data, error } = await supabase.from('wseo_articles').select('*').eq('id', id).single()
 
     if (error) throw error
+    if (data) setCache(cacheKey, data)
     return data
   },
 
@@ -87,6 +129,10 @@ export const articlesAPI = {
 // ============================================================================
 export const tutorialsAPI = {
   async getAll() {
+    const cacheKey = 'tutorials:all'
+    const cached = getCached<any[]>(cacheKey)
+    if (cached) return cached
+
     // 1. 查询所有教程
     const { data: tutorials, error } = await supabase
       .from('wseo_tutorials')
@@ -109,13 +155,19 @@ export const tutorialsAPI = {
       lessonMap[l.tutorial_id].push({ ...l, number: l.lesson_number })
     }
 
-    return tutorials.map((t: any) => ({
+    const result = tutorials.map((t: any) => ({
       ...t,
       lessons: lessonMap[t.id] || [],
     }))
+    setCache(cacheKey, result)
+    return result
   },
 
   async getById(id: string) {
+    const cacheKey = `tutorials:${id}`
+    const cached = getCached<any>(cacheKey)
+    if (cached) return cached
+
     const { data: tutorial, error: tutorialError } = await supabase
       .from('wseo_tutorials')
       .select('*')
@@ -138,7 +190,9 @@ export const tutorialsAPI = {
       number: l.lesson_number,
     }))
 
-    return { ...tutorial, lessons: mappedLessons }
+    const tutorialResult = { ...tutorial, lessons: mappedLessons }
+    setCache(cacheKey, tutorialResult)
+    return tutorialResult
   },
 
   async getByCategory(category: string) {
@@ -229,16 +283,26 @@ export const lessonsAPI = {
 // ============================================================================
 export const newsAPI = {
   async getAll() {
+    const cacheKey = 'news:all'
+    const cached = getCached<any[]>(cacheKey)
+    if (cached) return cached
+
     const { data, error } = await supabase.from('wseo_news').select('*').order('date', { ascending: false })
 
     if (error) throw error
+    if (data) setCache(cacheKey, data)
     return data
   },
 
   async getById(id: string) {
+    const cacheKey = `news:${id}`
+    const cached = getCached<any>(cacheKey)
+    if (cached) return cached
+
     const { data, error } = await supabase.from('wseo_news').select('*').eq('id', id).single()
 
     if (error) throw error
+    if (data) setCache(cacheKey, data)
     return data
   },
 

@@ -3,6 +3,7 @@ import { ref, computed, onMounted } from 'vue'
 import { useRouter } from 'vue-router'
 import { type Article } from '../../data/articles'
 import { articlesAPI } from '../../services/supabase'
+import SkeletonLoader from '../../components/SkeletonLoader.vue'
 
 const router = useRouter()
 
@@ -10,6 +11,8 @@ const searchQuery = ref('')
 const selectedCategory = ref<'all' | 'seo' | 'geo' | 'aeo' | 'tools'>('all')
 const loading = ref(true)
 const allArticles = ref<Article[]>([])
+const currentPage = ref(1)
+const pageSize = 30 // 首屏最多显示 30 条
 
 onMounted(async () => {
   try {
@@ -47,6 +50,15 @@ const filteredArticles = computed(() => {
   return result.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
 })
 
+// 分页
+const paginatedArticles = computed(() => {
+  const start = (currentPage.value - 1) * pageSize
+  const end = start + pageSize
+  return filteredArticles.value.slice(start, end)
+})
+
+const totalPages = computed(() => Math.ceil(filteredArticles.value.length / pageSize))
+
 function openArticle(article: Article) {
   router.push({ name: 'article-detail', params: { id: article.id } })
 }
@@ -54,6 +66,13 @@ function openArticle(article: Article) {
 function clearFilters() {
   searchQuery.value = ''
   selectedCategory.value = 'all'
+  currentPage.value = 1
+}
+
+function goToPage(page: number) {
+  currentPage.value = Math.max(1, Math.min(page, totalPages.value))
+  // 平滑滚动到顶部
+  window.scrollTo({ top: 0, behavior: 'smooth' })
 }
 
 const categories = [
@@ -107,9 +126,8 @@ const categories = [
 
       <!-- Articles Grid -->
       <main class="articles-main">
-        <div v-if="loading" class="empty-state">
-          <VaIcon name="hourglass_empty" size="56px" color="secondary" />
-          <p>加载中...</p>
+        <div v-if="loading" class="loading-state">
+          <SkeletonLoader variant="card" :count="6" />
         </div>
 
         <div v-else-if="filteredArticles.length === 0" class="empty-state">
@@ -118,54 +136,76 @@ const categories = [
           <VaButton preset="secondary" size="small" @click="clearFilters"> 清除筛选 </VaButton>
         </div>
 
-        <div v-else class="articles-grid">
-          <article
-            v-for="article in filteredArticles"
-            :key="article.id"
-            class="article-card"
-            @click="openArticle(article)"
-          >
-            <div class="article-header">
-              <div class="article-meta">
-                <VaIcon
-                  :name="
-                    {
-                      seo: 'travel_explore',
-                      geo: 'auto_awesome',
-                      aeo: 'question_answer',
-                      tools: 'build',
-                    }[article.category]
-                  "
-                  size="14px"
-                  :style="{
-                    color: {
-                      seo: '#3B82F6',
-                      geo: '#10B981',
-                      aeo: '#EC4899',
-                      tools: '#F59E0B',
-                    }[article.category],
-                  }"
-                />
-                <span class="date">{{ new Date(article.date).toLocaleDateString('zh-CN') }}</span>
-                <span class="read-time">{{ article.readTime }} 分钟阅读</span>
+        <div v-else>
+          <div class="articles-grid">
+            <article
+              v-for="article in paginatedArticles"
+              :key="article.id"
+              class="article-card"
+              @click="openArticle(article)"
+            >
+              <div class="article-header">
+                <div class="article-meta">
+                  <VaIcon
+                    :name="
+                      {
+                        seo: 'travel_explore',
+                        geo: 'auto_awesome',
+                        aeo: 'question_answer',
+                        tools: 'build',
+                      }[article.category]
+                    "
+                    size="14px"
+                    :style="{
+                      color: {
+                        seo: '#3B82F6',
+                        geo: '#10B981',
+                        aeo: '#EC4899',
+                        tools: '#F59E0B',
+                      }[article.category],
+                    }"
+                  />
+                  <span class="date">{{ new Date(article.date).toLocaleDateString('zh-CN') }}</span>
+                  <span class="read-time">{{ article.readTime }} 分钟阅读</span>
+                </div>
+                <div v-if="article.category === 'tools'" class="impact-badge">
+                  <VaIcon name="star" size="12px" />
+                </div>
               </div>
-              <div v-if="article.category === 'tools'" class="impact-badge">
-                <VaIcon name="star" size="12px" />
+
+              <h3 class="article-title">{{ article.title }}</h3>
+              <p class="article-desc">{{ article.description }}</p>
+
+              <div class="article-tags">
+                <span v-for="tag in article.tags.slice(0, 3)" :key="tag" class="tag">{{ tag }}</span>
               </div>
+
+              <div class="article-footer">
+                <span class="author">作者：{{ article.author }}</span>
+                <VaIcon name="open_in_new" size="16px" color="secondary" />
+              </div>
+            </article>
+          </div>
+
+          <!-- 分页器 -->
+          <div v-if="totalPages > 1" class="pagination">
+            <VaButton preset="secondary" size="small" :disabled="currentPage === 1" @click="goToPage(currentPage - 1)">
+              <VaIcon name="arrow_back" size="16px" />
+            </VaButton>
+
+            <div class="page-info">
+              第 {{ currentPage }} / {{ totalPages }} 页（共 {{ filteredArticles.length }} 篇）
             </div>
 
-            <h3 class="article-title">{{ article.title }}</h3>
-            <p class="article-desc">{{ article.description }}</p>
-
-            <div class="article-tags">
-              <span v-for="tag in article.tags.slice(0, 3)" :key="tag" class="tag">{{ tag }}</span>
-            </div>
-
-            <div class="article-footer">
-              <span class="author">作者：{{ article.author }}</span>
-              <VaIcon name="open_in_new" size="16px" color="secondary" />
-            </div>
-          </article>
+            <VaButton
+              preset="secondary"
+              size="small"
+              :disabled="currentPage === totalPages"
+              @click="goToPage(currentPage + 1)"
+            >
+              <VaIcon name="arrow_forward" size="16px" />
+            </VaButton>
+          </div>
         </div>
       </main>
     </div>
@@ -429,6 +469,11 @@ const categories = [
   font-size: 12px;
 }
 
+/* ── Loading State ────────────────────── */
+.loading-state {
+  padding: 2rem 0;
+}
+
 /* ── Empty State ──────────────────────── */
 .empty-state {
   text-align: center;
@@ -443,6 +488,25 @@ const categories = [
   font-size: 14px;
   color: var(--va-text-secondary);
   margin: 0;
+}
+
+/* ── Pagination ───────────────────────── */
+.pagination {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  margin-top: 32px;
+  padding: 20px;
+  background: var(--va-background-secondary);
+  border-radius: 12px;
+}
+
+.page-info {
+  font-size: 14px;
+  color: var(--va-text-secondary);
+  min-width: 180px;
+  text-align: center;
 }
 
 /* ── Responsive ───────────────────────── */
