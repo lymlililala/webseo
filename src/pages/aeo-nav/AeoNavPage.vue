@@ -1,6 +1,25 @@
 <script setup lang="ts">
 import { ref, computed, onMounted, onUnmounted } from 'vue'
 import { aeoCategories, allAeoTools, featuredAeoTools, type AeoTool, type AeoCategory } from '../../data/aeo-tools'
+import { usePageSeo } from '../../composables/usePageSeo'
+
+usePageSeo({
+  title: 'AEO工具导航 — 答案引擎优化工具精选',
+  description:
+    '收录50+款AEO（答案引擎优化）工具，帮助内容出现在Google精选摘要、AI直接答案和语音搜索结果中。工具分类包含Schema生成器、精选摘要优化、结构化数据验证等。',
+  path: '/aeo-nav',
+  keywords: 'AEO工具,答案引擎优化,精选摘要,Schema标记,结构化数据,语音搜索优化',
+  jsonLd: [
+    {
+      '@context': 'https://schema.org',
+      '@type': 'CollectionPage',
+      name: 'AEO工具导航',
+      description: '收录50+款AEO工具，帮助内容出现在Google精选摘要和AI答案中',
+      url: 'https://sgaindex.com/aeo-nav',
+      isPartOf: { '@type': 'WebSite', name: 'SGAIndex', url: 'https://sgaindex.com' },
+    },
+  ],
+})
 
 const searchQuery = ref('')
 const activeCategory = ref('all')

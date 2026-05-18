@@ -1,6 +1,25 @@
 <script setup lang="ts">
 import { ref, computed, onMounted, onUnmounted } from 'vue'
 import { geoCategories, allGeoTools, featuredGeoTools, type GeoTool, type GeoCategory } from '../../data/geo-tools'
+import { usePageSeo } from '../../composables/usePageSeo'
+
+usePageSeo({
+  title: 'GEO工具导航 — 生成式引擎优化工具精选',
+  description:
+    '收录60+款GEO（生成式引擎优化）工具，帮助网站内容被ChatGPT、Perplexity、Google AI Overview等AI搜索引擎引用。洵盖AI可见度监测、品牌提及分析、llms.txt等工具。',
+  path: '/geo-nav',
+  keywords: 'GEO工具,生成式引擎优化,AI搜索优化,ChatGPT SEO,Perplexity优化,AI可见度',
+  jsonLd: [
+    {
+      '@context': 'https://schema.org',
+      '@type': 'CollectionPage',
+      name: 'GEO工具导航',
+      description: '收录60+款GEO工具，帮助网站内容被AI搜索引擎引用',
+      url: 'https://sgaindex.com/geo-nav',
+      isPartOf: { '@type': 'WebSite', name: 'SGAIndex', url: 'https://sgaindex.com' },
+    },
+  ],
+})
 
 const searchQuery = ref('')
 const activeCategory = ref('all')

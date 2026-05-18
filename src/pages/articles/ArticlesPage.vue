@@ -4,6 +4,25 @@ import { useRouter } from 'vue-router'
 import { type Article } from '../../data/articles'
 import { articlesAPI } from '../../services/supabase'
 import SkeletonLoader from '../../components/SkeletonLoader.vue'
+import { usePageSeo } from '../../composables/usePageSeo'
+
+usePageSeo({
+  title: 'SEO/GEO/AEO 深度文章 — AI搜索时代实操指南',
+  description:
+    '收录30+篇SEO、GEO、AEO深度分析文章，分享AI搜索时代的网站优化实战经验。包含GEO优化指南、AEO策略、llms.txt配置、Schema标记等前沿话题。',
+  path: '/articles',
+  keywords: 'SEO文章,GEO优化,AEO策略,AI搜索优化,llms.txt,结构化数据',
+  jsonLd: [
+    {
+      '@context': 'https://schema.org',
+      '@type': 'Blog',
+      name: 'SGAIndex文章中心',
+      description: 'SEO、GEO、AEO深度分析文章，分享AI搜索时代的网站优化实战',
+      url: 'https://sgaindex.com/articles',
+      publisher: { '@type': 'Organization', name: 'SGAIndex', url: 'https://sgaindex.com' },
+    },
+  ],
+})
 
 const router = useRouter()
 

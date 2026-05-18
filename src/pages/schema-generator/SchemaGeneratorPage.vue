@@ -2,6 +2,27 @@
 import { ref, computed } from 'vue'
 import { useRouter } from 'vue-router'
 import { schemaTypes, schemaTools, getToolsForType, type SchemaType, type SchemaTool } from '../../data/schema-tools'
+import { usePageSeo } from '../../composables/usePageSeo'
+
+usePageSeo({
+  title: 'Schema结构化数据工具 — JSON-LD生成和验证',
+  description:
+    '免费Schema结构化数据工具，支掐1JSON-LD、Microdata等格式。支持Article、FAQ、Product、HowTo、BreadcrumbList等20+类Schema类型生成和验证，提升搜索结果展示效果。',
+  path: '/schema-generator',
+  keywords: 'Schema生成器,JSON-LD生成,结构化数据,FAQ Schema,Article Schema,丰富摘要',
+  jsonLd: [
+    {
+      '@context': 'https://schema.org',
+      '@type': 'SoftwareApplication',
+      name: 'SGAIndex Schema结构化数据生成器',
+      description: '免费Schema JSON-LD生成工具，支持20+类Schema类型',
+      url: 'https://sgaindex.com/schema-generator',
+      applicationCategory: 'DeveloperApplication',
+      operatingSystem: 'Web',
+      offers: { '@type': 'Offer', price: '0', priceCurrency: 'CNY' },
+    },
+  ],
+})
 
 const router = useRouter()
 

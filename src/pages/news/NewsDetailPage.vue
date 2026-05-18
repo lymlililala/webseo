@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref, computed, onMounted } from 'vue'
+import { ref, computed, onMounted, watch } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 import { marked } from 'marked'
 import { type News } from '../../data/news'
@@ -48,6 +48,61 @@ const categoryMeta: Record<string, { label: string; color: string }> = {
   ai: { label: 'AI', color: '#8B5CF6' },
   industry: { label: '行业', color: '#F59E0B' },
 }
+
+// 数据加载后动态更新 SEO
+watch(newsItem, (n) => {
+  if (!n) return
+  const canonicalUrl = `https://sgaindex.com/news/${n.id}`
+  const fullTitle = `${n.title} | SGAIndex资讯`
+  document.title = fullTitle
+  const setMeta = (name: string, content: string, attr = 'name') => {
+    let el = document.querySelector(`meta[${attr}="${name}"]`) as HTMLMetaElement | null
+    if (!el) {
+      el = document.createElement('meta')
+      el.setAttribute(attr, name)
+      el.setAttribute('data-seo', 'true')
+      document.head.appendChild(el)
+    }
+    el.content = content
+  }
+  const setLink = (rel: string, href: string, id?: string) => {
+    const selector = id ? `link[id="${id}"]` : `link[rel="${rel}"]`
+    let el = document.querySelector(selector) as HTMLLinkElement | null
+    if (!el) {
+      el = document.createElement('link')
+      el.rel = rel
+      if (id) el.id = id
+      el.setAttribute('data-seo', 'true')
+      document.head.appendChild(el)
+    }
+    el.href = href
+  }
+  setMeta('description', n.description)
+  setMeta('robots', 'index, follow')
+  setLink('canonical', canonicalUrl, 'canonical-link')
+  setMeta('og:type', 'article', 'property')
+  setMeta('og:title', fullTitle, 'property')
+  setMeta('og:description', n.description, 'property')
+  setMeta('og:url', canonicalUrl, 'property')
+  setMeta('twitter:card', 'summary_large_image')
+  setMeta('twitter:title', fullTitle)
+  setMeta('twitter:description', n.description)
+  document.querySelectorAll('script[type="application/ld+json"][data-seo="true"]').forEach((el) => el.remove())
+  const script = document.createElement('script')
+  script.type = 'application/ld+json'
+  script.setAttribute('data-seo', 'true')
+  script.textContent = JSON.stringify({
+    '@context': 'https://schema.org',
+    '@type': 'NewsArticle',
+    headline: n.title,
+    description: n.description,
+    datePublished: n.date,
+    url: canonicalUrl,
+    publisher: { '@type': 'Organization', name: 'SGAIndex', url: 'https://sgaindex.com' },
+    mainEntityOfPage: { '@type': 'WebPage', '@id': canonicalUrl },
+  })
+  document.head.appendChild(script)
+})
 
 const impactMeta: Record<string, { label: string; color: string }> = {
   high: { label: '高影响', color: '#EF4444' },

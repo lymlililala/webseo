@@ -4,6 +4,24 @@ import { useRouter } from 'vue-router'
 import { type Tutorial } from '../../data/tutorials'
 import { tutorialsAPI } from '../../services/supabase'
 import SkeletonLoader from '../../components/SkeletonLoader.vue'
+import { usePageSeo } from '../../composables/usePageSeo'
+
+usePageSeo({
+  title: 'SEO教程 — 从入门到进阶的搜索优化实战指南',
+  description:
+    '深入浅击SEO、GEO、AEO实操教程，适合初学者和中级从业者。包含技术SEO设置、关键词研究、GEO内容优化、Schema标记添加、llms.txt配置等实操教程。',
+  path: '/tutorials',
+  keywords: 'SEO教程,搜索优化教程,GEO实操,技术SEO设置,Schema标记教程,初学者SEO',
+  jsonLd: [
+    {
+      '@context': 'https://schema.org',
+      '@type': 'ItemList',
+      name: 'SEO教程列表',
+      description: '从入门到进阶的SEO实操教程，包含GEO、AEO实操指南',
+      url: 'https://sgaindex.com/tutorials',
+    },
+  ],
+})
 
 const router = useRouter()
 
