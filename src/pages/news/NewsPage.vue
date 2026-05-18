@@ -4,6 +4,25 @@ import { useRouter } from 'vue-router'
 import { type News } from '../../data/news'
 import { newsAPI } from '../../services/supabase'
 import SkeletonLoader from '../../components/SkeletonLoader.vue'
+import { usePageSeo } from '../../composables/usePageSeo'
+
+usePageSeo({
+  title: 'SEO资讯 — 搜索引擎与AI动态最新动态',
+  description:
+    '跟踪搜索引擎和AI引擎最新动态：Google算法更新、ChatGPT新功能、Perplexity动态、AI搜索行业趋势。让您第一时间了解搜索优化行业变化。',
+  path: '/news',
+  keywords: 'SEO资讯,Google算法更新,AI搜索动态,ChatGPT更新,Perplexity资讯,搜索行业新闻',
+  jsonLd: [
+    {
+      '@context': 'https://schema.org',
+      '@type': 'Blog',
+      name: 'SGAIndex搜索资讯',
+      description: '搜索引擎和AI引擎最新动态和行业趋势',
+      url: 'https://sgaindex.com/news',
+      publisher: { '@type': 'Organization', name: 'SGAIndex', url: 'https://sgaindex.com' },
+    },
+  ],
+})
 
 const router = useRouter()
 

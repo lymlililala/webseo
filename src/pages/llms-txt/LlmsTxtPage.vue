@@ -1,5 +1,26 @@
 <script setup lang="ts">
 import { ref } from 'vue'
+import { usePageSeo } from '../../composables/usePageSeo'
+
+usePageSeo({
+  title: 'llms.txt工具导航 — AI爬虫网站索引配置',
+  description:
+    'llms.txt生成器、验证器、模板库一站汇集。帮助网站建立AI可读的语义索引文件，让ChatGPT、Perplexity、Claude等AI大模型更好地理解和引用您的网站内容。',
+  path: '/llms-txt',
+  keywords: 'llms.txt,AI爬虫配置,AI索引文件,ChatGPT网站索引,Perplexity网站,AI可见度',
+  jsonLd: [
+    {
+      '@context': 'https://schema.org',
+      '@type': 'SoftwareApplication',
+      name: 'llms.txt生成工具',
+      description: 'llms.txt生成器、验证器和模板库——帮助网站建立AI可读语义索引',
+      url: 'https://sgaindex.com/llms-txt',
+      applicationCategory: 'DeveloperApplication',
+      operatingSystem: 'Web',
+      offers: { '@type': 'Offer', price: '0', priceCurrency: 'CNY' },
+    },
+  ],
+})
 
 const activeTab = ref<'tools' | 'templates' | 'guide'>('tools')
 

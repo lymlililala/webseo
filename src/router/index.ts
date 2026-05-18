@@ -7,7 +7,8 @@ import RouteViewComponent from '../layouts/RouterBypass.vue'
 const routes: Array<RouteRecordRaw> = [
   {
     path: '/:pathMatch(.*)*',
-    redirect: { name: 'seo-nav' },
+    name: 'not-found',
+    component: () => import('../pages/404.vue'),
   },
   {
     name: 'admin',

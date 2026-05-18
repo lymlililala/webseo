@@ -7,6 +7,26 @@ import {
   type AiCheckerTool,
   type AiCheckerCategory,
 } from '../../data/ai-checker-tools'
+import { usePageSeo } from '../../composables/usePageSeo'
+
+usePageSeo({
+  title: 'AI可见度检测工具 — 网站内容AI引用分析',
+  description:
+    '检测网站内容在ChatGPT、Perplexity、Claude、Gemini等主流AI大模型中的引用和可见度表现。了解品牌在AI搜索中的曝光情况，优化GEO策略。',
+  path: '/ai-checker',
+  keywords: 'AI可见度检测,品牌AI引用分析,ChatGPT品牌曝光,GEO效果检测,AI搜索可见度',
+  jsonLd: [
+    {
+      '@context': 'https://schema.org',
+      '@type': 'SoftwareApplication',
+      name: 'AI可见度检测工具',
+      description: '检测网站内容在主流AI大模型中的引用和可见度表现',
+      url: 'https://sgaindex.com/ai-checker',
+      applicationCategory: 'BusinessApplication',
+      operatingSystem: 'Web',
+    },
+  ],
+})
 
 const searchQuery = ref('')
 const activeCategory = ref('all')

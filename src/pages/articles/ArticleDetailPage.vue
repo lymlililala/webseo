@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref, computed, onMounted } from 'vue'
+import { ref, computed, onMounted, watch } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 import { marked } from 'marked'
 import { type Article } from '../../data/articles'
@@ -50,6 +50,65 @@ const categoryMeta: Record<string, { label: string; color: string; icon: string 
   aeo: { label: 'AEO', color: '#EC4899', icon: 'question_answer' },
   tools: { label: '工具', color: '#F59E0B', icon: 'build' },
 }
+
+// 文章加载后动态更新 SEO
+watch(article, (a) => {
+  if (!a) return
+  const canonicalUrl = `https://sgaindex.com/articles/${a.id}`
+  const fullTitle = `${a.title} | SGAIndex`
+  document.title = fullTitle
+  const setMeta = (name: string, content: string, attr = 'name') => {
+    let el = document.querySelector(`meta[${attr}="${name}"]`) as HTMLMetaElement | null
+    if (!el) {
+      el = document.createElement('meta')
+      el.setAttribute(attr, name)
+      el.setAttribute('data-seo', 'true')
+      document.head.appendChild(el)
+    }
+    el.content = content
+  }
+  const setLink = (rel: string, href: string, id?: string) => {
+    const selector = id ? `link[id="${id}"]` : `link[rel="${rel}"]`
+    let el = document.querySelector(selector) as HTMLLinkElement | null
+    if (!el) {
+      el = document.createElement('link')
+      el.rel = rel
+      if (id) el.id = id
+      el.setAttribute('data-seo', 'true')
+      document.head.appendChild(el)
+    }
+    el.href = href
+  }
+  setMeta('description', a.description)
+  setMeta('robots', 'index, follow')
+  if (Array.isArray(a.tags) && a.tags.length) setMeta('keywords', a.tags.join(','))
+  setLink('canonical', canonicalUrl, 'canonical-link')
+  setMeta('og:type', 'article', 'property')
+  setMeta('og:title', fullTitle, 'property')
+  setMeta('og:description', a.description, 'property')
+  setMeta('og:url', canonicalUrl, 'property')
+  setMeta('twitter:card', 'summary_large_image')
+  setMeta('twitter:title', fullTitle)
+  setMeta('twitter:description', a.description)
+  // JSON-LD Article
+  document.querySelectorAll('script[type="application/ld+json"][data-seo="true"]').forEach((el) => el.remove())
+  const script = document.createElement('script')
+  script.type = 'application/ld+json'
+  script.setAttribute('data-seo', 'true')
+  script.textContent = JSON.stringify({
+    '@context': 'https://schema.org',
+    '@type': 'Article',
+    headline: a.title,
+    description: a.description,
+    datePublished: a.date,
+    dateModified: a.date,
+    author: { '@type': 'Organization', name: a.author || 'SGAIndex团队', url: 'https://sgaindex.com' },
+    publisher: { '@type': 'Organization', name: 'SGAIndex', url: 'https://sgaindex.com' },
+    mainEntityOfPage: { '@type': 'WebPage', '@id': canonicalUrl },
+    url: canonicalUrl,
+  })
+  document.head.appendChild(script)
+})
 </script>
 
 <template>

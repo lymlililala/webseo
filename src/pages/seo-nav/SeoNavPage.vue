@@ -1,6 +1,25 @@
 <script setup lang="ts">
 import { ref, computed, onMounted, onUnmounted } from 'vue'
 import { seoCategories, allTools, featuredTools, type SeoTool, type SeoCategory } from '../../data/seo-tools'
+import { usePageSeo } from '../../composables/usePageSeo'
+
+usePageSeo({
+  title: 'SEO工具导航 — 100+主流SEO工具精选',
+  description:
+    '精选100+款SEO工具，涵盖关键词研究、外链分析、技术SEO、内容优化、本地SEO等分类，帮助网站提升Google搜索排名。免费工具优先推荐。',
+  path: '/seo-nav',
+  keywords: 'SEO工具,关键词研究工具,外链分析,技术SEO,Ahrefs,Semrush,Google Search Console',
+  jsonLd: [
+    {
+      '@context': 'https://schema.org',
+      '@type': 'CollectionPage',
+      name: 'SEO工具导航',
+      description: '精选100+款SEO工具，涵盖关键词研究、外链分析、技术SEO等分类',
+      url: 'https://sgaindex.com/seo-nav',
+      isPartOf: { '@type': 'WebSite', name: 'SGAIndex', url: 'https://sgaindex.com' },
+    },
+  ],
+})
 
 const searchQuery = ref('')
 const activeCategory = ref('all')
