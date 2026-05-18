@@ -322,4 +322,73 @@
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
+  <!-- 新增文章 2026-05-13~18（第二批） -->
+  <url>
+    <loc>https://sgaindex.com/articles/b2c3d4e5-0001-4001-8001-200000000001</loc>
+    <lastmod>2026-05-18</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://sgaindex.com/articles/b2c3d4e5-0002-4002-8002-200000000002</loc>
+    <lastmod>2026-05-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://sgaindex.com/articles/b2c3d4e5-0003-4003-8003-200000000003</loc>
+    <lastmod>2026-05-16</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://sgaindex.com/articles/b2c3d4e5-0004-4004-8004-200000000004</loc>
+    <lastmod>2026-05-15</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://sgaindex.com/articles/b2c3d4e5-0005-4005-8005-200000000005</loc>
+    <lastmod>2026-05-14</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://sgaindex.com/articles/b2c3d4e5-0006-4006-8006-200000000006</loc>
+    <lastmod>2026-05-13</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <!-- 新增教程 2026-05-18（第二批） -->
+  <url>
+    <loc>https://sgaindex.com/tutorials/c3d4e5f6-0001-4001-8001-300000000001</loc>
+    <lastmod>2026-05-18</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://sgaindex.com/tutorials/c3d4e5f6-0002-4002-8002-300000000002</loc>
+    <lastmod>2026-05-18</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <!-- 新增资讯 2026-05-16~18（第二批） -->
+  <url>
+    <loc>https://sgaindex.com/news/e5f6a7b8-0001-4001-8001-500000000001</loc>
+    <lastmod>2026-05-18</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://sgaindex.com/news/e5f6a7b8-0002-4002-8002-500000000002</loc>
+    <lastmod>2026-05-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://sgaindex.com/news/e5f6a7b8-0003-4003-8003-500000000003</loc>
+    <lastmod>2026-05-16</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
 </urlset>
