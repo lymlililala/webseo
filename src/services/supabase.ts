@@ -50,6 +50,30 @@ export const supabase = createClient(
 export { SUPABASE_CONFIGURED }
 
 // ============================================================================
+// 数据规范化：tags 字段在数据库中可能以 JSON 字符串形式存储，统一解析为数组
+// ============================================================================
+function parseTags(row: any): any {
+  if (!row) return row
+  if (typeof row.tags === 'string') {
+    try {
+      row.tags = JSON.parse(row.tags)
+    } catch {
+      // 解析失败则按逗号分割兜底
+      row.tags = row.tags
+        .split(',')
+        .map((t: string) => t.trim())
+        .filter(Boolean)
+    }
+  }
+  if (!Array.isArray(row.tags)) row.tags = []
+  return row
+}
+
+function parseRows(rows: any[] | null): any[] {
+  return (rows || []).map(parseTags)
+}
+
+// ============================================================================
 // ARTICLES API
 // ============================================================================
 export const articlesAPI = {
@@ -65,8 +89,9 @@ export const articlesAPI = {
       .limit(100)
 
     if (error) throw error
-    if (data) setCache(cacheKey, data)
-    return data
+    const parsed = parseRows(data)
+    if (parsed.length) setCache(cacheKey, parsed)
+    return parsed
   },
 
   async getById(id: string) {
@@ -77,8 +102,9 @@ export const articlesAPI = {
     const { data, error } = await supabase.from('wseo_articles').select('*').eq('id', id).single()
 
     if (error) throw error
-    if (data) setCache(cacheKey, data)
-    return data
+    const parsed = parseTags(data)
+    if (parsed) setCache(cacheKey, parsed)
+    return parsed
   },
 
   async getByCategory(category: string) {
@@ -89,7 +115,7 @@ export const articlesAPI = {
       .order('date', { ascending: false })
 
     if (error) throw error
-    return data
+    return parseRows(data)
   },
 
   async search(query: string) {
@@ -100,7 +126,7 @@ export const articlesAPI = {
       .order('date', { ascending: false })
 
     if (error) throw error
-    return data
+    return parseRows(data)
   },
 
   async create(article: any) {
@@ -160,10 +186,12 @@ export const tutorialsAPI = {
       lessonMap[l.tutorial_id].push({ ...l, number: l.lesson_number })
     }
 
-    const result = tutorials.map((t: any) => ({
-      ...t,
-      lessons: lessonMap[t.id] || [],
-    }))
+    const result = tutorials.map((t: any) =>
+      parseTags({
+        ...t,
+        lessons: lessonMap[t.id] || [],
+      }),
+    )
     setCache(cacheKey, result)
     return result
   },
@@ -195,7 +223,7 @@ export const tutorialsAPI = {
       number: l.lesson_number,
     }))
 
-    const tutorialResult = { ...tutorial, lessons: mappedLessons }
+    const tutorialResult = parseTags({ ...tutorial, lessons: mappedLessons })
     setCache(cacheKey, tutorialResult)
     return tutorialResult
   },
@@ -208,7 +236,7 @@ export const tutorialsAPI = {
       .order('created_at', { ascending: false })
 
     if (error) throw error
-    return data
+    return parseRows(data)
   },
 
   async getByDifficulty(difficulty: string) {
@@ -219,7 +247,7 @@ export const tutorialsAPI = {
       .order('created_at', { ascending: false })
 
     if (error) throw error
-    return data
+    return parseRows(data)
   },
 
   async create(tutorial: any) {
@@ -295,8 +323,9 @@ export const newsAPI = {
     const { data, error } = await supabase.from('wseo_news').select('*').order('date', { ascending: false }).limit(100)
 
     if (error) throw error
-    if (data) setCache(cacheKey, data)
-    return data
+    const parsed = parseRows(data)
+    if (parsed.length) setCache(cacheKey, parsed)
+    return parsed
   },
 
   async getById(id: string) {
@@ -307,8 +336,9 @@ export const newsAPI = {
     const { data, error } = await supabase.from('wseo_news').select('*').eq('id', id).single()
 
     if (error) throw error
-    if (data) setCache(cacheKey, data)
-    return data
+    const parsed = parseTags(data)
+    if (parsed) setCache(cacheKey, parsed)
+    return parsed
   },
 
   async getByCategory(category: string) {
@@ -319,7 +349,7 @@ export const newsAPI = {
       .order('date', { ascending: false })
 
     if (error) throw error
-    return data
+    return parseRows(data)
   },
 
   async getByImpact(impact: string) {
@@ -330,7 +360,7 @@ export const newsAPI = {
       .order('date', { ascending: false })
 
     if (error) throw error
-    return data
+    return parseRows(data)
   },
 
   async search(query: string) {
@@ -341,7 +371,7 @@ export const newsAPI = {
       .order('date', { ascending: false })
 
     if (error) throw error
-    return data
+    return parseRows(data)
   },
 
   async create(newsItem: any) {
