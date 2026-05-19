@@ -3,14 +3,6 @@
   "outputDirectory": "dist",
   "cleanUrls": true,
   "trailingSlash": false,
-  "redirects": [
-    {
-      "source": "/:path*",
-      "has": [{ "type": "host", "value": "www.sgaindex.com" }],
-      "destination": "https://sgaindex.com/:path*",
-      "permanent": true
-    }
-  ],
   "rewrites": [
     {
       "source": "/(.*)",
