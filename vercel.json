@@ -13,46 +13,6 @@
   ],
   "rewrites": [
     {
-      "source": "/seo-nav",
-      "destination": "/seo-nav/index.html"
-    },
-    {
-      "source": "/geo-nav",
-      "destination": "/geo-nav/index.html"
-    },
-    {
-      "source": "/aeo-nav",
-      "destination": "/aeo-nav/index.html"
-    },
-    {
-      "source": "/schema-generator",
-      "destination": "/schema-generator/index.html"
-    },
-    {
-      "source": "/ai-checker",
-      "destination": "/ai-checker/index.html"
-    },
-    {
-      "source": "/llms-txt",
-      "destination": "/llms-txt/index.html"
-    },
-    {
-      "source": "/glossary",
-      "destination": "/glossary/index.html"
-    },
-    {
-      "source": "/articles",
-      "destination": "/articles/index.html"
-    },
-    {
-      "source": "/tutorials",
-      "destination": "/tutorials/index.html"
-    },
-    {
-      "source": "/news",
-      "destination": "/news/index.html"
-    },
-    {
       "source": "/(.*)",
       "destination": "/index.html"
     }
