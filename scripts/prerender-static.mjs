@@ -25,6 +25,24 @@ const OG_IMAGE = `${SITE}/og-default.png`
 /** 需要预渲染的静态路由 */
 const routes = [
   {
+    path: '/',
+    title: 'SGAIndex — SEO/GEO/AEO 工具导航 | AI搜索时代优化平台',
+    description: 'AI时代的SEO与GEO工具导航平台，收录100+款SEO、GEO（生成式引擎优化）、AEO（答案引擎优化）工具，帮助网站在Google和ChatGPT等AI引擎中获得更好的可见性。',
+    h1: 'SEO/GEO/AEO 工具导航',
+    jsonld: {
+      '@context': 'https://schema.org',
+      '@type': 'WebSite',
+      name: SITE_NAME,
+      url: SITE,
+      description: 'AI时代的SEO与GEO工具导航平台，收录SEO、GEO、AEO、Schema结构化数据工具',
+      potentialAction: {
+        '@type': 'SearchAction',
+        target: `${SITE}/seo-nav?q={search_term_string}`,
+        'query-input': 'required name=search_term_string',
+      },
+    },
+  },
+  {
     path: '/seo-nav',
     title: 'SEO工具导航 — 100+主流SEO工具精选',
     description: '精选100+款SEO工具，涵盖关键词研究、外链分析、技术SEO、内容优化、本地SEO等分类，帮助网站提升Google搜索排名。',
@@ -157,11 +175,24 @@ const routes = [
       publisher: { '@type': 'Organization', name: SITE_NAME, url: SITE },
     },
   },
+  {
+    path: '/faq',
+    title: 'FAQ — SEO/GEO/AEO 常见问题解答',
+    description: '解答SEO、GEO生成式引擎优化、AEO答案引擎优化的常见问题，帮助你快速了解AI搜索时代的网站优化策略。',
+    h1: '常见问题 — SEO/GEO/AEO FAQ',
+    jsonld: {
+      '@context': 'https://schema.org',
+      '@type': 'FAQPage',
+      name: 'SEO/GEO/AEO 常见问题',
+      url: `${SITE}/faq`,
+    },
+  },
 ]
 
 function buildHtml(route) {
-  const fullTitle = `${route.title} | ${SITE_NAME}`
-  const canonicalUrl = `${SITE}${route.path}`
+  // 首页路径直接用完整 title（已包含品牌名），其余路径拼接 SITE_NAME
+  const fullTitle = route.path === '/' ? route.title : `${route.title} | ${SITE_NAME}`
+  const canonicalUrl = route.path === '/' ? SITE : `${SITE}${route.path}`
 
   // 替换 <title>
   let html = template.replace(
@@ -223,15 +254,23 @@ function escapeHtml(str) {
 
 let count = 0
 for (const route of routes) {
-  const outDir = path.join(distDir, route.path.slice(1)) // remove leading /
-  fs.mkdirSync(outDir, { recursive: true })
-  const outPath = path.join(outDir, 'index.html')
-  fs.writeFileSync(outPath, buildHtml(route), 'utf-8')
-  console.log(`✅ Generated: dist${route.path}/index.html`)
+  if (route.path === '/') {
+    // 首页：直接覆盖 dist/index.html
+    const outPath = path.join(distDir, 'index.html')
+    fs.writeFileSync(outPath, buildHtml(route), 'utf-8')
+    console.log(`✅ Generated: dist/index.html (/)`)
+  } else {
+    const outDir = path.join(distDir, route.path.slice(1)) // remove leading /
+    fs.mkdirSync(outDir, { recursive: true })
+    const outPath = path.join(outDir, 'index.html')
+    fs.writeFileSync(outPath, buildHtml(route), 'utf-8')
+    console.log(`✅ Generated: dist${route.path}/index.html`)
+  }
   count++
 }
 
-// 生成 404.html（Vercel 会自动用它来响应 404，并返回 404 状态码）
+// 生成 404.html（Vercel routes 兜底规则会返回 404 状态码）
+// 注意：404 页不设 canonical，设 noindex，防止被搜索引擎收录
 const html404 = template
   .replace(/<title>[^<]*<\/title>/, `<title>页面未找到 — ${SITE_NAME}</title>`)
   .replace(
@@ -239,9 +278,10 @@ const html404 = template
     `
     <meta name="description" content="您访问的页面不存在，请返回 SGAIndex 主页继续探索SEO、GEO、AEO工具导航。" />
     <meta name="robots" content="noindex, follow" />
-    <link rel="canonical" href="${SITE}/seo-nav" />
     </head>`
   )
+  // 移除 index.html 自带的默认 canonical，404 页不应有 canonical
+  .replace(/<link rel="canonical"[^>]*>/g, '')
 const path404 = path.join(distDir, '404.html')
 fs.writeFileSync(path404, html404, 'utf-8')
 console.log('✅ Generated: dist/404.html')
