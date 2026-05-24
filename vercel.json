@@ -29,7 +29,7 @@
     },
     {
       "src": "/(articles|tutorials|news)/([^/]+)",
-      "dest": "/index.html"
+      "dest": "/$1/$2/index.html"
     },
     {
       "src": "^/$",
