@@ -30,9 +30,9 @@ const renderedContent = computed(() => {
 })
 
 onMounted(async () => {
-  const id = route.params.id as string
+  const slug = route.params.id as string
   try {
-    const data = await articlesAPI.getById(id)
+    const data = await articlesAPI.getBySlug(slug)
     if (data) {
       article.value = { ...data, readTime: data.read_time ?? data.readTime ?? 5 }
     }
@@ -54,7 +54,7 @@ const categoryMeta: Record<string, { label: string; color: string; icon: string 
 // 文章加载后动态更新 SEO
 watch(article, (a) => {
   if (!a) return
-  const canonicalUrl = `https://sgaindex.com/articles/${a.id}`
+  const canonicalUrl = `https://sgaindex.com/articles/${a.slug || a.id}`
   const fullTitle = `${a.title} | SGAIndex`
   document.title = fullTitle
   const setMeta = (name: string, content: string, attr = 'name') => {

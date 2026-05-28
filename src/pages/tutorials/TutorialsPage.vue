@@ -174,7 +174,7 @@ const difficultyLabel = {
               v-for="tutorial in paginatedTutorials"
               :key="tutorial.id"
               class="tutorial-card"
-              @click="router.push({ name: 'tutorial-detail', params: { id: tutorial.id } })"
+              @click="router.push({ name: 'tutorial-detail', params: { id: (tutorial as any).slug || tutorial.id } })"
             >
               <div class="tutorial-header">
                 <div class="difficulty-badge" :class="tutorial.difficulty">

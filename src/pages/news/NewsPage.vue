@@ -179,7 +179,7 @@ function openNewsLink(link?: string) {
               v-for="item in paginatedNews"
               :key="item.id"
               class="news-item"
-              @click="router.push({ name: 'news-detail', params: { id: item.id } })"
+              @click="router.push({ name: 'news-detail', params: { id: (item as any).slug || item.id } })"
             >
               <div class="news-header">
                 <div class="news-meta">

@@ -79,7 +79,7 @@ const paginatedArticles = computed(() => {
 const totalPages = computed(() => Math.ceil(filteredArticles.value.length / pageSize))
 
 function openArticle(article: Article) {
-  router.push({ name: 'article-detail', params: { id: article.id } })
+  router.push({ name: 'article-detail', params: { id: (article as any).slug || article.id } })
 }
 
 // 筛选条件变化时重置到第一页

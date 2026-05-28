@@ -29,9 +29,9 @@ const renderedContent = computed(() => {
 })
 
 onMounted(async () => {
-  const id = route.params.id as string
+  const slug = route.params.id as string
   try {
-    const data = await newsAPI.getById(id)
+    const data = await newsAPI.getBySlug(slug)
     newsItem.value = data ?? null
   } catch (e) {
     console.error('加载新闻失败', e)
@@ -52,7 +52,7 @@ const categoryMeta: Record<string, { label: string; color: string }> = {
 // 数据加载后动态更新 SEO
 watch(newsItem, (n) => {
   if (!n) return
-  const canonicalUrl = `https://sgaindex.com/news/${n.id}`
+  const canonicalUrl = `https://sgaindex.com/news/${n.slug || n.id}`
   const fullTitle = `${n.title} | SGAIndex资讯`
   document.title = fullTitle
   const setMeta = (name: string, content: string, attr = 'name') => {

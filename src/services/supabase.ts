@@ -107,6 +107,19 @@ export const articlesAPI = {
     return parsed
   },
 
+  async getBySlug(slug: string) {
+    const cacheKey = `articles:slug:${slug}`
+    const cached = getCached<any>(cacheKey)
+    if (cached) return cached
+
+    const { data, error } = await supabase.from('wseo_articles').select('*').eq('slug', slug).single()
+
+    if (error) throw error
+    const parsed = parseTags(data)
+    if (parsed) setCache(cacheKey, parsed)
+    return parsed
+  },
+
   async getByCategory(category: string) {
     const { data, error } = await supabase
       .from('wseo_articles')
@@ -228,6 +241,33 @@ export const tutorialsAPI = {
     return tutorialResult
   },
 
+  async getBySlug(slug: string) {
+    const cacheKey = `tutorials:slug:${slug}`
+    const cached = getCached<any>(cacheKey)
+    if (cached) return cached
+
+    const { data: tutorial, error: tutorialError } = await supabase
+      .from('wseo_tutorials')
+      .select('*')
+      .eq('slug', slug)
+      .single()
+
+    if (tutorialError) throw tutorialError
+
+    const { data: lessons, error: lessonsError } = await supabase
+      .from('wseo_tutorial_lessons')
+      .select('*')
+      .eq('tutorial_id', tutorial.id)
+      .order('lesson_number', { ascending: true })
+
+    if (lessonsError) throw lessonsError
+
+    const mappedLessons = (lessons || []).map((l: any) => ({ ...l, number: l.lesson_number }))
+    const result = parseTags({ ...tutorial, lessons: mappedLessons })
+    setCache(cacheKey, result)
+    return result
+  },
+
   async getByCategory(category: string) {
     const { data, error } = await supabase
       .from('wseo_tutorials')
@@ -334,6 +374,19 @@ export const newsAPI = {
     if (cached) return cached
 
     const { data, error } = await supabase.from('wseo_news').select('*').eq('id', id).single()
+
+    if (error) throw error
+    const parsed = parseTags(data)
+    if (parsed) setCache(cacheKey, parsed)
+    return parsed
+  },
+
+  async getBySlug(slug: string) {
+    const cacheKey = `news:slug:${slug}`
+    const cached = getCached<any>(cacheKey)
+    if (cached) return cached
+
+    const { data, error } = await supabase.from('wseo_news').select('*').eq('slug', slug).single()
 
     if (error) throw error
     const parsed = parseTags(data)
