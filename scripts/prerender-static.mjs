@@ -342,14 +342,15 @@ async function main() {
   console.log('\n📰 从数据库查询文章并预渲染...')
   const { data: articles, error: aErr } = await supabase
     .from('wseo_articles')
-    .select('id, title, description, date, author, tags, category')
+    .select('id, slug, title, description, date, author, tags, category')
     .order('date', { ascending: false })
 
   if (aErr) {
     console.error('  ⚠️  文章查询失败:', aErr.message, '— 跳过文章预渲染')
   } else {
     for (const a of articles || []) {
-      const routePath = `/articles/${a.id}`
+      const routeKey = a.slug || a.id
+      const routePath = `/articles/${routeKey}`
       const canonicalUrl = `${SITE}${routePath}`
       const tags = Array.isArray(a.tags) ? a.tags : []
       writeHtml(
@@ -384,14 +385,15 @@ async function main() {
   console.log('\n📚 从数据库查询教程并预渲染...')
   const { data: tutorials, error: tErr } = await supabase
     .from('wseo_tutorials')
-    .select('id, title, description, tags, category, difficulty')
+    .select('id, slug, title, description, tags, category, difficulty')
     .order('id', { ascending: true })
 
   if (tErr) {
     console.error('  ⚠️  教程查询失败:', tErr.message, '— 跳过教程预渲染')
   } else {
     for (const t of tutorials || []) {
-      const routePath = `/tutorials/${t.id}`
+      const routeKey = t.slug || t.id
+      const routePath = `/tutorials/${routeKey}`
       const canonicalUrl = `${SITE}${routePath}`
       const tags = Array.isArray(t.tags) ? t.tags : []
       writeHtml(
@@ -421,14 +423,15 @@ async function main() {
   console.log('\n📡 从数据库查询资讯并预渲染...')
   const { data: news, error: nErr } = await supabase
     .from('wseo_news')
-    .select('id, title, description, date, tags, category')
+    .select('id, slug, title, description, date, tags, category')
     .order('date', { ascending: false })
 
   if (nErr) {
     console.error('  ⚠️  资讯查询失败:', nErr.message, '— 跳过资讯预渲染')
   } else {
     for (const n of news || []) {
-      const routePath = `/news/${n.id}`
+      const routeKey = n.slug || n.id
+      const routePath = `/news/${routeKey}`
       const canonicalUrl = `${SITE}${routePath}`
       const tags = Array.isArray(n.tags) ? n.tags : []
       writeHtml(

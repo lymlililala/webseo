@@ -13,9 +13,9 @@ const loading = ref(true)
 const notFound = ref(false)
 
 onMounted(async () => {
-  const id = route.params.id as string
+  const slug = route.params.id as string
   try {
-    const data = await tutorialsAPI.getById(id)
+    const data = await tutorialsAPI.getBySlug(slug)
     if (data) {
       tutorial.value = {
         ...data,
@@ -46,7 +46,7 @@ const categoryMeta: Record<string, { label: string; color: string; icon: string 
 // 数据加载后动态更新 SEO
 watch(tutorial, (t) => {
   if (!t) return
-  const canonicalUrl = `https://sgaindex.com/tutorials/${t.id}`
+  const canonicalUrl = `https://sgaindex.com/tutorials/${t.slug || t.id}`
   const fullTitle = `${t.title} | SGAIndex教程`
   document.title = fullTitle
   const setMeta = (name: string, content: string, attr = 'name') => {
