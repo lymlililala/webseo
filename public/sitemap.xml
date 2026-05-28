@@ -331,19 +331,19 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://sgaindex.com/articles/key=lambda x: {"HIGH": 0</loc>
+    <loc>https://sgaindex.com/articles/actions-221ef691</loc>
     <lastmod>2026-05-28</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://sgaindex.com/articles/"action": f"Add photos to {result['location']} GBP"</loc>
+    <loc>https://sgaindex.com/articles/priority-medium-75b8e0fa</loc>
     <lastmod>2026-05-28</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://sgaindex.com/articles/"action": f"Complete GBP profile for {result['location']}"</loc>
+    <loc>https://sgaindex.com/articles/priority-high-2850affa</loc>
     <lastmod>2026-05-28</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
@@ -427,14 +427,13 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://sgaindex.com/articles/{
-    method: 'POST'</loc>
+    <loc>https://sgaindex.com/articles/process-env-slack_webhook-c18312ce</loc>
     <lastmod>2026-05-28</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://sgaindex.com/articles/text: { type: 'mrkdwn'</loc>
+    <loc>https://sgaindex.com/articles/f-type-section-83c99811</loc>
     <lastmod>2026-05-28</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
@@ -446,37 +445,37 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://sgaindex.com/articles/sheet_name='Recommendations'</loc>
+    <loc>https://sgaindex.com/articles/writer-1f200685</loc>
     <lastmod>2026-05-28</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://sgaindex.com/articles/sheet_name='Medium Priority'</loc>
+    <loc>https://sgaindex.com/articles/writer-f8e74a5f</loc>
     <lastmod>2026-05-28</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://sgaindex.com/articles/sheet_name='High Priority'</loc>
+    <loc>https://sgaindex.com/articles/writer-ea10d36a</loc>
     <lastmod>2026-05-28</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://sgaindex.com/articles/sheet_name='Critical'</loc>
+    <loc>https://sgaindex.com/articles/writer-2e169a97</loc>
     <lastmod>2026-05-28</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://sgaindex.com/articles/sheet_name='Summary'</loc>
+    <loc>https://sgaindex.com/articles/writer-632b4a4d</loc>
     <lastmod>2026-05-28</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://sgaindex.com/articles/engine='openpyxl'</loc>
+    <loc>https://sgaindex.com/articles/output_path-b410dbca</loc>
     <lastmod>2026-05-28</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
@@ -488,7 +487,7 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://sgaindex.com/articles/left_on='Address'</loc>
+    <loc>https://sgaindex.com/articles/gsc_data-53b03ba3</loc>
     <lastmod>2026-05-28</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
@@ -530,7 +529,7 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://sgaindex.com/articles/`${canonical}</head>`</loc>
+    <loc>https://sgaindex.com/articles/html-replace-head-d5f63ea4</loc>
     <lastmod>2026-05-28</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
@@ -572,14 +571,13 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://sgaindex.com/articles/Rich Results Test</loc>
+    <loc>https://sgaindex.com/articles/url-inspection-88aefbaf</loc>
     <lastmod>2026-05-28</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://sgaindex.com/articles/userAgentPattern: /Googlebot|bingbot/i
-}</loc>
+    <loc>https://sgaindex.com/articles/rendertron-makemiddleware-proxyurl-http-rendertron-3000-render-64478321</loc>
     <lastmod>2026-05-28</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
@@ -591,7 +589,7 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://sgaindex.com/articles/\'google.com\'</loc>
+    <loc>https://sgaindex.com/articles/googlebot-com-76e3a246</loc>
     <lastmod>2026-05-28</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
@@ -603,19 +601,19 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://sgaindex.com/articles/\'mean\'</loc>
+    <loc>https://sgaindex.com/articles/status-42790671</loc>
     <lastmod>2026-05-28</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://sgaindex.com/articles/\'max\'</loc>
+    <loc>https://sgaindex.com/articles/timestamp-8460ff3c</loc>
     <lastmod>2026-05-28</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://sgaindex.com/articles/\'size\'</loc>
+    <loc>https://sgaindex.com/articles/crawl_count-url-d48b724d</loc>
     <lastmod>2026-05-28</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
@@ -651,7 +649,7 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://sgaindex.com/articles/\'r\'</loc>
+    <loc>https://sgaindex.com/articles/log_path-24dd7378</loc>
     <lastmod>2026-05-28</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
@@ -663,7 +661,7 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://sgaindex.com/articles/search_mode='web'</loc>
+    <loc>https://sgaindex.com/articles/query-keyword-969353d7</loc>
     <lastmod>2026-05-28</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
@@ -705,8 +703,7 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://sgaindex.com/articles/schema=[
-            bigquery.SchemaField('date'</loc>
+    <loc>https://sgaindex.com/articles/write_disposition-write_append-70cb78cb</loc>
     <lastmod>2026-05-28</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
@@ -718,7 +715,7 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://sgaindex.com/articles/scopes=['https://www.googleapis.com/auth/webmasters.readonly']</loc>
+    <loc>https://sgaindex.com/articles/service-account-key-json-95254e3d</loc>
     <lastmod>2026-05-28</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
@@ -736,7 +733,7 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://sgaindex.com/articles/7 AM</loc>
+    <loc>https://sgaindex.com/articles/daily-4d526454</loc>
     <lastmod>2026-05-28</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
@@ -754,19 +751,19 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://sgaindex.com/articles/class_='toc'</loc>
+    <loc>https://sgaindex.com/articles/soup-find-nav-eb96472e</loc>
     <lastmod>2026-05-28</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://sgaindex.com/articles/type='application/ld+json'</loc>
+    <loc>https://sgaindex.com/articles/soup-find-script-2556252a</loc>
     <lastmod>2026-05-28</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://sgaindex.com/articles/Monday 8 AM</loc>
+    <loc>https://sgaindex.com/articles/weekly-3638647e</loc>
     <lastmod>2026-05-28</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
@@ -784,7 +781,7 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://sgaindex.com/articles/WoW comparisons</loc>
+    <loc>https://sgaindex.com/articles/yoy-4beae72b</loc>
     <lastmod>2026-05-28</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
@@ -850,7 +847,7 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://sgaindex.com/articles/{'data-attrid': 'AiOverview'}</loc>
+    <loc>https://sgaindex.com/articles/div-39c82612</loc>
     <lastmod>2026-05-28</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
@@ -862,7 +859,7 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://sgaindex.com/articles/AI overviews</loc>
+    <loc>https://sgaindex.com/articles/featured-snippets-c96ef03f</loc>
     <lastmod>2026-05-28</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
@@ -880,8 +877,7 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://sgaindex.com/articles/schema=[
-            bigquery.SchemaField('query'</loc>
+    <loc>https://sgaindex.com/articles/write_disposition-write_append-37160837</loc>
     <lastmod>2026-05-28</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
@@ -959,19 +955,19 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://sgaindex.com/articles/encoding='utf-8'</loc>
+    <loc>https://sgaindex.com/articles/output_path-fd32e76c</loc>
     <lastmod>2026-05-28</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://sgaindex.com/articles/rel='canonical'</loc>
+    <loc>https://sgaindex.com/articles/link-e3995bf1</loc>
     <lastmod>2026-05-28</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://sgaindex.com/articles/attrs={'name': 'description'}</loc>
+    <loc>https://sgaindex.com/articles/meta-8a38f95c</loc>
     <lastmod>2026-05-28</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
@@ -2189,55 +2185,43 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://sgaindex.com/articles/page["slug"]</loc>
+    <loc>https://sgaindex.com/articles/rel-102f6745</loc>
     <lastmod>2026-05-28</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://sgaindex.com/articles/rel="alternate"</loc>
+    <loc>https://sgaindex.com/articles/url_elem-06ad65c3</loc>
     <lastmod>2026-05-28</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://sgaindex.com/articles/"html.parser"</loc>
+    <loc>https://sgaindex.com/articles/href-bf4d0b5e</loc>
     <lastmod>2026-05-28</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://sgaindex.com/articles/locales</loc>
+    <loc>https://sgaindex.com/articles/f-slug_-locale-3022a544</loc>
     <lastmod>2026-05-28</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://sgaindex.com/articles/f"{base_url}/{locales[0]}/{page['slug']}"</loc>
+    <loc>https://sgaindex.com/articles/resp-text-58b51c36</loc>
     <lastmod>2026-05-28</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://sgaindex.com/articles/"x-default"</loc>
+    <loc>https://sgaindex.com/articles/link-96b74fda</loc>
     <lastmod>2026-05-28</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://sgaindex.com/articles/"alternate"</loc>
-    <lastmod>2026-05-28</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://sgaindex.com/articles/"xhtml:link"</loc>
-    <lastmod>2026-05-28</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://sgaindex.com/articles/f"{base_url}/{locale}/{slug}"</loc>
+    <loc>https://sgaindex.com/articles/hreflang-b3591091</loc>
     <lastmod>2026-05-28</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
@@ -2249,7 +2233,13 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://sgaindex.com/articles/INTEGER</loc>
+    <loc>https://sgaindex.com/articles/locales</loc>
+    <lastmod>2026-05-28</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://sgaindex.com/articles/href-7c768370</loc>
     <lastmod>2026-05-28</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
@@ -2261,7 +2251,7 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://sgaindex.com/articles/f'{project_id}.{dataset_id}.{table_id}'</loc>
+    <loc>https://sgaindex.com/articles/df-f1b70bf7</loc>
     <lastmod>2026-05-28</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
@@ -2273,13 +2263,13 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://sgaindex.com/articles/STRING</loc>
+    <loc>https://sgaindex.com/articles/INTEGER</loc>
     <lastmod>2026-05-28</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://sgaindex.com/articles/file</loc>
+    <loc>https://sgaindex.com/articles/STRING</loc>
     <lastmod>2026-05-28</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
@@ -2327,6 +2317,12 @@
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://sgaindex.com/articles/file</loc>
+    <lastmod>2026-05-28</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://sgaindex.com/articles/.md</loc>
     <lastmod>2026-05-28</lastmod>
     <changefreq>weekly</changefreq>
@@ -2351,37 +2347,7 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://sgaindex.com/articles/href</loc>
-    <lastmod>2026-05-28</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://sgaindex.com/articles/n_clusters=10</loc>
-    <lastmod>2026-05-28</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://sgaindex.com/articles/link['href']</loc>
-    <lastmod>2026-05-28</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
     <loc>https://sgaindex.com/articles/href=True</loc>
-    <lastmod>2026-05-28</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://sgaindex.com/articles/random_state=42</loc>
-    <lastmod>2026-05-28</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://sgaindex.com/articles/cluster</loc>
     <lastmod>2026-05-28</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
@@ -2394,6 +2360,36 @@
   </url>
   <url>
     <loc>https://sgaindex.com/articles/max_pages=100</loc>
+    <lastmod>2026-05-28</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://sgaindex.com/articles/cluster</loc>
+    <lastmod>2026-05-28</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://sgaindex.com/articles/random_state=42</loc>
+    <lastmod>2026-05-28</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://sgaindex.com/articles/n_clusters=10</loc>
+    <lastmod>2026-05-28</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://sgaindex.com/articles/url-efb00a5d</loc>
+    <lastmod>2026-05-28</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://sgaindex.com/articles/href</loc>
     <lastmod>2026-05-28</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
@@ -2651,7 +2647,31 @@
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://sgaindex.com/articles/google-search-console-advanced-guide</loc>
+    <lastmod>2026-05-27</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://sgaindex.com/articles/indexing-coverage-issues-guide</loc>
+    <lastmod>2026-05-27</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://sgaindex.com/articles/crawl-budget-optimization</loc>
+    <lastmod>2026-05-27</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://sgaindex.com/articles/website-migration-seo-guide</loc>
+    <lastmod>2026-05-27</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://sgaindex.com/articles/keyword-cannibalization-fix-guide</loc>
     <lastmod>2026-05-27</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
@@ -2669,31 +2689,13 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://sgaindex.com/articles/keyword-cannibalization-fix-guide</loc>
-    <lastmod>2026-05-27</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
     <loc>https://sgaindex.com/articles/google-penalty-recovery-guide</loc>
     <lastmod>2026-05-27</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://sgaindex.com/articles/google-search-console-advanced-guide</loc>
-    <lastmod>2026-05-27</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://sgaindex.com/articles/website-migration-seo-guide</loc>
-    <lastmod>2026-05-27</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://sgaindex.com/articles/indexing-coverage-issues-guide</loc>
+    <loc>https://sgaindex.com/articles/saas-seo-growth-strategy</loc>
     <lastmod>2026-05-27</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
@@ -2711,19 +2713,13 @@
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://sgaindex.com/articles/ai-writing-tools-seo-comparison</loc>
+    <lastmod>2026-05-27</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://sgaindex.com/articles/mobile-first-seo-strategy</loc>
-    <lastmod>2026-05-27</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://sgaindex.com/articles/ecommerce-review-seo-optimization</loc>
-    <lastmod>2026-05-27</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://sgaindex.com/articles/ecommerce-core-web-vitals-optimization</loc>
     <lastmod>2026-05-27</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
@@ -2735,19 +2731,13 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://sgaindex.com/articles/saas-seo-growth-strategy</loc>
+    <loc>https://sgaindex.com/articles/ecommerce-core-web-vitals-optimization</loc>
     <lastmod>2026-05-27</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://sgaindex.com/articles/ai-writing-tools-seo-comparison</loc>
-    <lastmod>2026-05-27</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://sgaindex.com/articles/link-exchange-compliant-strategy</loc>
+    <loc>https://sgaindex.com/articles/ecommerce-review-seo-optimization</loc>
     <lastmod>2026-05-27</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
@@ -2789,19 +2779,49 @@
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://sgaindex.com/articles/link-exchange-compliant-strategy</loc>
+    <lastmod>2026-05-27</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://sgaindex.com/articles/edu-gov-backlink-strategy</loc>
     <lastmod>2026-05-27</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://sgaindex.com/articles/brand-storytelling-seo</loc>
+    <loc>https://sgaindex.com/articles/news-seo-google-news-optimization</loc>
+    <lastmod>2026-05-27</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://sgaindex.com/articles/brand-seo-complete-guide</loc>
+    <lastmod>2026-05-27</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://sgaindex.com/articles/digital-pr-seo-integration</loc>
     <lastmod>2026-05-27</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://sgaindex.com/articles/seo-brand-advertising-synergy</loc>
+    <lastmod>2026-05-27</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://sgaindex.com/articles/social-signals-seo-impact</loc>
+    <lastmod>2026-05-27</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://sgaindex.com/articles/brand-storytelling-seo</loc>
     <lastmod>2026-05-27</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
@@ -2819,43 +2839,25 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://sgaindex.com/articles/social-signals-seo-impact</loc>
-    <lastmod>2026-05-27</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://sgaindex.com/articles/digital-pr-seo-integration</loc>
-    <lastmod>2026-05-27</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://sgaindex.com/articles/brand-seo-complete-guide</loc>
-    <lastmod>2026-05-27</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://sgaindex.com/articles/news-seo-google-news-optimization</loc>
-    <lastmod>2026-05-27</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://sgaindex.com/articles/zero-click-search-content-strategy</loc>
-    <lastmod>2026-05-27</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
     <loc>https://sgaindex.com/articles/content-refresh-strategy</loc>
     <lastmod>2026-05-27</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://sgaindex.com/articles/long-tail-keywords-mining-guide</loc>
+    <lastmod>2026-05-27</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://sgaindex.com/articles/semantic-seo-guide</loc>
+    <lastmod>2026-05-27</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://sgaindex.com/articles/zero-click-search-content-strategy</loc>
     <lastmod>2026-05-27</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
@@ -2873,20 +2875,20 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://sgaindex.com/articles/search-intent-four-quadrant-model</loc>
-    <lastmod>2026-05-27</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
     <loc>https://sgaindex.com/articles/google-ai-overview-content-strategy</loc>
     <lastmod>2026-05-27</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://sgaindex.com/articles/long-tail-keywords-mining-guide</loc>
+    <loc>https://sgaindex.com/articles/search-intent-four-quadrant-model</loc>
     <lastmod>2026-05-27</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://sgaindex.com/articles/google-ai-overview-f8a1b2c3</loc>
+    <lastmod>2026-05-22</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
@@ -2897,8 +2899,8 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://sgaindex.com/articles/aeo-ai-f8a1b2c3</loc>
-    <lastmod>2026-05-19</lastmod>
+    <loc>https://sgaindex.com/articles/llmstxt-f8a1b2c3</loc>
+    <lastmod>2026-05-21</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
@@ -2909,20 +2911,14 @@
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://sgaindex.com/articles/aeo-ai-f8a1b2c3</loc>
+    <lastmod>2026-05-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://sgaindex.com/articles/e-e-a-t-f8a1b2c3</loc>
     <lastmod>2026-05-23</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://sgaindex.com/articles/llmstxt-f8a1b2c3</loc>
-    <lastmod>2026-05-21</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://sgaindex.com/articles/google-ai-overview-f8a1b2c3</loc>
-    <lastmod>2026-05-22</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
@@ -3239,26 +3235,26 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://sgaindex.com/articles/article-f2ced40e</loc>
-    <lastmod>2026-03-20</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
     <loc>https://sgaindex.com/articles/aigeodeepseekkimi-f7709f82</loc>
     <lastmod>2026-03-25</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://sgaindex.com/articles/article-e656771e</loc>
-    <lastmod>2026-03-30</lastmod>
+    <loc>https://sgaindex.com/articles/article-f2ced40e</loc>
+    <lastmod>2026-03-20</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://sgaindex.com/articles/2026seo10-1720d2bc</loc>
     <lastmod>2026-04-05</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://sgaindex.com/articles/article-e656771e</loc>
+    <lastmod>2026-03-30</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
@@ -3275,14 +3271,14 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://sgaindex.com/articles/2026geoai-9a023a1f</loc>
-    <lastmod>2026-05-01</lastmod>
+    <loc>https://sgaindex.com/articles/llmstxtai-22c8b2ea</loc>
+    <lastmod>2026-04-28</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://sgaindex.com/articles/llmstxtai-22c8b2ea</loc>
-    <lastmod>2026-04-28</lastmod>
+    <loc>https://sgaindex.com/articles/2026geoai-9a023a1f</loc>
+    <lastmod>2026-05-01</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
