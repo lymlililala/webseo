@@ -7,6 +7,7 @@ import { marked } from 'marked'
 import Breadcrumb from '../../components/Breadcrumb.vue'
 import RelatedContent from '../../components/RelatedContent.vue'
 import PrevNextNav from '../../components/PrevNextNav.vue'
+import { autolinkGlossary } from '../../utils/glossaryAutolink'
 
 const route = useRoute()
 const router = useRouter()
@@ -67,8 +68,19 @@ onMounted(async () => {
 // 将 description 渲染为 HTML（支持 markdown 格式）
 const descriptionHtml = computed(() => {
   if (!tutorial.value?.description) return ''
-  return marked(tutorial.value.description) as string
+  return autolinkGlossary(marked(tutorial.value.description) as string)
 })
+
+// 正文内自动内链(术语链接)用事件委托走 SPA 路由，避免整页刷新
+function onContentClick(e: MouseEvent) {
+  const a = (e.target as HTMLElement).closest('a.glossary-autolink') as HTMLAnchorElement | null
+  if (!a) return
+  const href = a.getAttribute('href') || ''
+  if (href.startsWith('/')) {
+    e.preventDefault()
+    router.push(href)
+  }
+}
 
 const categoryMeta: Record<string, { label: string; color: string; icon: string }> = {
   seo: { label: 'SEO', color: '#3B82F6', icon: 'travel_explore' },
@@ -236,7 +248,7 @@ function formatDuration(minutes: number) {
             <VaIcon name="info_outline" size="20px" color="primary" />
             <h2>课程概述</h2>
           </div>
-          <div class="description-content" v-html="descriptionHtml"></div>
+          <div class="description-content" v-html="descriptionHtml" @click="onContentClick"></div>
         </div>
 
         <!-- 课程大纲 -->
@@ -452,6 +464,12 @@ function formatDuration(minutes: number) {
   font-size: 14px;
   line-height: 1.75;
   color: var(--va-text-primary);
+}
+
+.overview-section .description-content :deep(a.glossary-autolink) {
+  color: #6366f1;
+  text-decoration: none;
+  border-bottom: 1px dashed rgba(99, 102, 241, 0.5);
 }
 
 .overview-section .description-content :deep(p) {

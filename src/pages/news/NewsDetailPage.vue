@@ -7,6 +7,7 @@ import { newsAPI } from '../../services/supabase'
 import Breadcrumb from '../../components/Breadcrumb.vue'
 import RelatedContent from '../../components/RelatedContent.vue'
 import PrevNextNav from '../../components/PrevNextNav.vue'
+import { autolinkGlossary } from '../../utils/glossaryAutolink'
 
 const route = useRoute()
 const router = useRouter()
@@ -62,8 +63,19 @@ marked.use({
 
 const renderedContent = computed(() => {
   if (!newsItem.value?.content) return ''
-  return marked(newsItem.value.content) as string
+  return autolinkGlossary(marked(newsItem.value.content) as string)
 })
+
+// 正文内自动内链(术语链接)用事件委托走 SPA 路由，避免整页刷新
+function onContentClick(e: MouseEvent) {
+  const a = (e.target as HTMLElement).closest('a.glossary-autolink') as HTMLAnchorElement | null
+  if (!a) return
+  const href = a.getAttribute('href') || ''
+  if (href.startsWith('/')) {
+    e.preventDefault()
+    router.push(href)
+  }
+}
 
 onMounted(async () => {
   const slug = route.params.id as string
@@ -221,7 +233,7 @@ const impactMeta: Record<string, { label: string; color: string }> = {
 
         <article class="news-body">
           <!-- eslint-disable-next-line vue/no-v-html -->
-          <div class="markdown-body" v-html="renderedContent" />
+          <div class="markdown-body" v-html="renderedContent" @click="onContentClick" />
         </article>
 
         <!-- 相关推荐 + 上一篇/下一篇 -->
@@ -499,6 +511,10 @@ const impactMeta: Record<string, { label: string; color: string }> = {
 
 .markdown-body :deep(a:hover) {
   text-decoration: underline;
+}
+
+.markdown-body :deep(a.glossary-autolink) {
+  border-bottom: 1px dashed rgba(16, 185, 129, 0.5);
 }
 .markdown-body :deep(hr) {
   border: none;
