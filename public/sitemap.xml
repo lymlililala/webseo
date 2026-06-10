@@ -2743,12 +2743,6 @@
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://sgaindex.com/news/json=payload</loc>
-    <lastmod>2026-05-28</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
     <loc>https://sgaindex.com/news/indexnow-protocol-2026-best-practices</loc>
     <lastmod>2026-05-28</lastmod>
     <changefreq>daily</changefreq>
