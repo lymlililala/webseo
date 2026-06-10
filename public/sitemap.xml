@@ -67,12 +67,6 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://sgaindex.com/pricing-plans</loc>
-    <lastmod>2026-05-18</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
     <loc>https://sgaindex.com/articles/moz-introduces-ai-powered-site-audit-recommendations</loc>
     <lastmod>2026-05-28</lastmod>
     <changefreq>weekly</changefreq>
@@ -2305,12 +2299,6 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://sgaindex.com/articles//</loc>
-    <lastmod>2026-05-28</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
     <loc>https://sgaindex.com/articles/content_dir</loc>
     <lastmod>2026-05-28</lastmod>
     <changefreq>weekly</changefreq>
@@ -2324,12 +2312,6 @@
   </url>
   <url>
     <loc>https://sgaindex.com/articles/.md</loc>
-    <lastmod>2026-05-28</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://sgaindex.com/articles/http://www.sitemaps.org/schemas/sitemap/0.9</loc>
     <lastmod>2026-05-28</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>

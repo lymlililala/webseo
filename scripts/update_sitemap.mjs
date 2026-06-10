@@ -98,12 +98,6 @@ const STATIC_PAGES = `  <url>
     <lastmod>2026-05-18</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://sgaindex.com/pricing-plans</loc>
-    <lastmod>2026-05-18</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
   </url>`;
 
 function urlEntry(loc, lastmod, changefreq, priority) {
