@@ -4,6 +4,9 @@ import { useRoute, useRouter } from 'vue-router'
 import { marked } from 'marked'
 import { type Article } from '../../data/articles'
 import { articlesAPI } from '../../services/supabase'
+import Breadcrumb from '../../components/Breadcrumb.vue'
+import RelatedContent from '../../components/RelatedContent.vue'
+import PrevNextNav from '../../components/PrevNextNav.vue'
 
 const route = useRoute()
 const router = useRouter()
@@ -11,6 +14,42 @@ const router = useRouter()
 const article = ref<Article | null>(null)
 const loading = ref(true)
 const notFound = ref(false)
+
+// 内链：相关推荐 + 上一篇/下一篇
+const relatedArticles = ref<Article[]>([])
+const prevArticle = ref<Article | null>(null)
+const nextArticle = ref<Article | null>(null)
+
+const breadcrumbItems = computed(() => [
+  { name: '首页', to: '/' },
+  { name: '文章', to: '/articles' },
+  { name: article.value?.title || '' },
+])
+
+async function loadInternalLinks(current: Article) {
+  const selfKey = (current as any).slug || current.id
+  try {
+    // 相关推荐：同分类，排除自身，取前 6
+    const sameCat = await articlesAPI.getByCategory(current.category)
+    relatedArticles.value = (sameCat || [])
+      .filter((a: any) => (a.slug || a.id) !== selfKey)
+      .sort((a: any, b: any) => new Date(b.date).getTime() - new Date(a.date).getTime())
+      .slice(0, 6)
+
+    // 上一篇/下一篇：全量按日期排序后取邻居
+    const all = await articlesAPI.getAll()
+    const sorted = (all || [])
+      .slice()
+      .sort((a: any, b: any) => new Date(b.date).getTime() - new Date(a.date).getTime())
+    const idx = sorted.findIndex((a: any) => (a.slug || a.id) === selfKey)
+    if (idx !== -1) {
+      prevArticle.value = idx > 0 ? sorted[idx - 1] : null
+      nextArticle.value = idx < sorted.length - 1 ? sorted[idx + 1] : null
+    }
+  } catch (e) {
+    console.error('加载相关文章失败', e)
+  }
+}
 
 // 配置 marked：在新标签页打开外链
 marked.use({
@@ -35,6 +74,7 @@ onMounted(async () => {
     const data = await articlesAPI.getBySlug(slug)
     if (data) {
       article.value = { ...data, readTime: data.read_time ?? data.readTime ?? 5 }
+      loadInternalLinks(article.value)
     }
   } catch (e) {
     console.error('加载文章失败', e)
@@ -180,10 +220,16 @@ watch(article, (a) => {
 
       <!-- 正文 -->
       <div class="content-wrapper">
+        <Breadcrumb :items="breadcrumbItems" class="detail-breadcrumb" />
+
         <article class="article-body">
           <!-- eslint-disable-next-line vue/no-v-html -->
           <div class="markdown-body" v-html="renderedContent" />
         </article>
+
+        <!-- 相关推荐 + 上一篇/下一篇 -->
+        <RelatedContent :items="relatedArticles" type="articles" title="相关文章" />
+        <PrevNextNav type="articles" :prev="prevArticle" :next="nextArticle" />
 
         <!-- 底部导航 -->
         <div class="article-footer">
@@ -334,6 +380,10 @@ watch(article, (a) => {
   padding: 2.4rem 1.5rem 3rem;
   width: 100%;
   box-sizing: border-box;
+}
+
+.detail-breadcrumb {
+  margin-bottom: 1.2rem;
 }
 
 .article-body {

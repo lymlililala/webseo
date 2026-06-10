@@ -4,6 +4,9 @@ import { useRoute, useRouter } from 'vue-router'
 import { type Tutorial } from '../../data/tutorials'
 import { tutorialsAPI } from '../../services/supabase'
 import { marked } from 'marked'
+import Breadcrumb from '../../components/Breadcrumb.vue'
+import RelatedContent from '../../components/RelatedContent.vue'
+import PrevNextNav from '../../components/PrevNextNav.vue'
 
 const route = useRoute()
 const router = useRouter()
@@ -11,6 +14,35 @@ const router = useRouter()
 const tutorial = ref<Tutorial | null>(null)
 const loading = ref(true)
 const notFound = ref(false)
+
+// 内链：相关推荐 + 上一篇/下一篇
+const relatedTutorials = ref<Tutorial[]>([])
+const prevTutorial = ref<Tutorial | null>(null)
+const nextTutorial = ref<Tutorial | null>(null)
+
+const breadcrumbItems = computed(() => [
+  { name: '首页', to: '/' },
+  { name: '教程', to: '/tutorials' },
+  { name: tutorial.value?.title || '' },
+])
+
+async function loadInternalLinks(current: Tutorial) {
+  const selfKey = (current as any).slug || current.id
+  try {
+    const sameCat = await tutorialsAPI.getByCategory(current.category)
+    relatedTutorials.value = (sameCat || []).filter((t: any) => (t.slug || t.id) !== selfKey).slice(0, 6)
+
+    const all = await tutorialsAPI.getAll()
+    const list = all || []
+    const idx = list.findIndex((t: any) => (t.slug || t.id) === selfKey)
+    if (idx !== -1) {
+      prevTutorial.value = idx > 0 ? list[idx - 1] : null
+      nextTutorial.value = idx < list.length - 1 ? list[idx + 1] : null
+    }
+  } catch (e) {
+    console.error('加载相关教程失败', e)
+  }
+}
 
 onMounted(async () => {
   const slug = route.params.id as string
@@ -22,6 +54,7 @@ onMounted(async () => {
         lessons: data.lessons ?? [],
         duration: data.duration ?? 30,
       } as Tutorial
+      loadInternalLinks(tutorial.value)
     }
   } catch (e) {
     console.error('加载教程失败', e)
@@ -195,6 +228,8 @@ function formatDuration(minutes: number) {
 
       <!-- 课程内容 -->
       <div class="content-wrapper">
+        <Breadcrumb :items="breadcrumbItems" class="detail-breadcrumb" />
+
         <!-- 课程概述 -->
         <div v-if="tutorial.description" class="tutorial-body overview-section">
           <div class="section-header">
@@ -238,6 +273,10 @@ function formatDuration(minutes: number) {
             <p>课程内容正在整理中，敬请期待</p>
           </div>
         </div>
+
+        <!-- 相关推荐 + 上一篇/下一篇 -->
+        <RelatedContent :items="relatedTutorials" type="tutorials" title="相关教程" />
+        <PrevNextNav type="tutorials" :prev="prevTutorial" :next="nextTutorial" />
 
         <div class="page-footer">
           <VaButton preset="secondary" @click="router.push({ name: 'tutorials' })">

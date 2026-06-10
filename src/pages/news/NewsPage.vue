@@ -191,7 +191,13 @@ function openNewsLink(link?: string) {
                 </div>
               </div>
 
-              <h3 class="news-title">{{ item.title }}</h3>
+              <RouterLink
+                :to="{ name: 'news-detail', params: { id: (item as any).slug || item.id } }"
+                class="news-title-link"
+                @click.stop
+              >
+                <h3 class="news-title">{{ item.title }}</h3>
+              </RouterLink>
               <p class="news-desc">{{ item.description }}</p>
 
               <div class="news-tags">
@@ -452,12 +458,21 @@ function openNewsLink(link?: string) {
   color: #4b5563;
 }
 
+.news-title-link {
+  text-decoration: none;
+  color: inherit;
+}
+
 .news-title {
   font-size: 16px;
   font-weight: 700;
   color: var(--va-text-primary);
   margin: 0 0 8px;
   line-height: 1.5;
+}
+
+.news-title-link:hover .news-title {
+  color: var(--va-primary);
 }
 
 .news-desc {

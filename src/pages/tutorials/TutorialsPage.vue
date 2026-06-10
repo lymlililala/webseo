@@ -186,7 +186,13 @@ const difficultyLabel = {
                 </div>
               </div>
 
-              <h3 class="tutorial-title">{{ tutorial.title }}</h3>
+              <RouterLink
+                :to="{ name: 'tutorial-detail', params: { id: (tutorial as any).slug || tutorial.id } }"
+                class="tutorial-title-link"
+                @click.stop
+              >
+                <h3 class="tutorial-title">{{ tutorial.title }}</h3>
+              </RouterLink>
               <p class="tutorial-desc">{{ tutorial.description }}</p>
 
               <div class="tutorial-info">
@@ -437,12 +443,21 @@ const difficultyLabel = {
   color: var(--va-text-primary);
 }
 
+.tutorial-title-link {
+  text-decoration: none;
+  color: inherit;
+}
+
 .tutorial-title {
   font-size: 15px;
   font-weight: 700;
   margin: 0;
   color: var(--va-text-primary);
   line-height: 1.5;
+}
+
+.tutorial-title-link:hover .tutorial-title {
+  color: var(--va-primary);
 }
 
 .tutorial-desc {
