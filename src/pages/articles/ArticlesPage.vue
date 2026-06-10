@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import { ref, computed, onMounted, watch } from 'vue'
-import { useRouter } from 'vue-router'
 import { type Article } from '../../data/articles'
 import { articlesAPI } from '../../services/supabase'
 import SkeletonLoader from '../../components/SkeletonLoader.vue'
@@ -23,8 +22,6 @@ usePageSeo({
     },
   ],
 })
-
-const router = useRouter()
 
 const searchQuery = ref('')
 const selectedCategory = ref<'all' | 'seo' | 'geo' | 'aeo' | 'tools'>('all')
@@ -78,8 +75,8 @@ const paginatedArticles = computed(() => {
 
 const totalPages = computed(() => Math.ceil(filteredArticles.value.length / pageSize))
 
-function openArticle(article: Article) {
-  router.push({ name: 'article-detail', params: { id: (article as any).slug || article.id } })
+function articleLink(article: Article) {
+  return { name: 'article-detail', params: { id: (article as any).slug || article.id } }
 }
 
 // 筛选条件变化时重置到第一页
@@ -162,11 +159,11 @@ const categories = [
 
         <div v-else>
           <div class="articles-grid">
-            <article
+            <RouterLink
               v-for="article in paginatedArticles"
               :key="article.id"
+              :to="articleLink(article)"
               class="article-card"
-              @click="openArticle(article)"
             >
               <div class="article-header">
                 <div class="article-meta">
@@ -208,7 +205,7 @@ const categories = [
                 <span class="author">作者：{{ article.author }}</span>
                 <VaIcon name="open_in_new" size="16px" color="secondary" />
               </div>
-            </article>
+            </RouterLink>
           </div>
 
           <!-- 分页器 -->
@@ -408,6 +405,8 @@ const categories = [
   border-radius: 12px;
   cursor: pointer;
   transition: all 0.2s ease;
+  text-decoration: none;
+  color: inherit;
 }
 
 .article-card:hover {

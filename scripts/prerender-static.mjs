@@ -60,6 +60,74 @@ function escapeHtml(str) {
   return String(str).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
 }
 
+// ── 内链构建 ────────────────────────────────────────────────────────────────
+/**
+ * 生成详情页爬虫可见的内链 HTML（面包屑 + 相关内容 + 上一篇/下一篇）
+ * @param opts.base   内容类型前缀，如 '/articles'
+ * @param opts.listName 列表页中文名，如 '文章'
+ * @param opts.related 相关项数组 [{ slug, id, title }]
+ * @param opts.prev   上一篇 { slug, id, title } | null
+ * @param opts.next   下一篇 { slug, id, title } | null
+ */
+function buildInternalLinks({ base, listName, related, prev, next }) {
+  const link = (item, label) => {
+    const key = item.slug || item.id
+    return `<a href="${base}/${escapeAttr(key)}">${escapeHtml(label ?? item.title)}</a>`
+  }
+  let html = ''
+  // 面包屑
+  html += `<a href="/">首页</a><a href="${base}">${escapeHtml(listName)}</a>`
+  // 相关内容
+  if (related && related.length) {
+    html += related.map((r) => link(r)).join('')
+  }
+  // 上一篇 / 下一篇
+  if (prev) html += link(prev, `上一篇：${prev.title}`)
+  if (next) html += link(next, `下一篇：${next.title}`)
+  return html
+}
+
+/**
+ * 生成 BreadcrumbList JSON-LD
+ * @param crumbs [{ name, path? }]，path 缺省表示当前页
+ */
+function buildBreadcrumbJsonld(crumbs) {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: crumbs.map((c, i) => ({
+      '@type': 'ListItem',
+      position: i + 1,
+      name: c.name,
+      ...(c.path ? { item: `${SITE}${c.path}` } : {}),
+    })),
+  }
+}
+
+/**
+ * 对全量数组按 category 分组，并为每条算出相关项与上一/下一项
+ * 假设输入数组已按展示顺序（日期倒序或 id 升序）排好
+ * @returns Map<index, { related, prev, next }>，按数组下标索引
+ */
+function computeRelations(list, limit = 6) {
+  const byCat = new Map()
+  list.forEach((item) => {
+    const cat = item.category || '_'
+    if (!byCat.has(cat)) byCat.set(cat, [])
+    byCat.get(cat).push(item)
+  })
+  return list.map((item, i) => {
+    const key = item.slug || item.id
+    const cat = item.category || '_'
+    const related = (byCat.get(cat) || []).filter((o) => (o.slug || o.id) !== key).slice(0, limit)
+    return {
+      related,
+      prev: i > 0 ? list[i - 1] : null,
+      next: i < list.length - 1 ? list[i + 1] : null,
+    }
+  })
+}
+
 /**
  * 把模板 HTML 替换为指定页面的 SEO 信息
  * @param {object} opts
@@ -71,7 +139,7 @@ function escapeHtml(str) {
  *   ogType       - OG type，默认 'website'
  *   keywords     - 关键词，可选
  */
-function buildHtml({ title, description, canonicalUrl, h1, jsonld, ogType = 'website', keywords }) {
+function buildHtml({ title, description, canonicalUrl, h1, jsonld, ogType = 'website', keywords, internalLinks, breadcrumbJsonld }) {
   // 1. 替换 <title>
   let html = template.replace(/<title>[^<]*<\/title>/, `<title>${escapeHtml(title)}</title>`)
 
@@ -91,6 +159,10 @@ function buildHtml({ title, description, canonicalUrl, h1, jsonld, ogType = 'web
     ? `\n    <script type="application/ld+json">\n    ${JSON.stringify(jsonld, null, 2)}\n    </script>`
     : ''
 
+  const breadcrumbStr = breadcrumbJsonld
+    ? `\n    <script type="application/ld+json">\n    ${JSON.stringify(breadcrumbJsonld, null, 2)}\n    </script>`
+    : ''
+
   const keywordsMeta = keywords ? `\n    <meta name="keywords" content="${escapeAttr(keywords)}" />` : ''
 
   const seoBlock = `
@@ -108,18 +180,20 @@ function buildHtml({ title, description, canonicalUrl, h1, jsonld, ogType = 'web
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="${escapeAttr(title)}" />
     <meta name="twitter:description" content="${escapeAttr(description)}" />
-    <meta name="twitter:image" content="${OG_IMAGE}" />${jsonldStr}
+    <meta name="twitter:image" content="${OG_IMAGE}" />${jsonldStr}${breadcrumbStr}
     <!-- ═══════════════════════════════════════════ -->`
 
   // 4. 注入到 </head> 前
   html = html.replace('</head>', `${seoBlock}\n  </head>`)
 
-  // 5. 在 <div id="app"> 后注入隐藏 H1（仅供爬虫）
-  if (h1) {
-    html = html.replace(
-      '<div id="app"></div>',
-      `<div id="app"></div>\n    <h1 style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;pointer-events:none">${escapeHtml(h1)}</h1>`
-    )
+  // 5. 在 <div id="app"> 后注入隐藏 H1 + 内链（仅供爬虫；客户端 Vue 渲染后覆盖可见 UI）
+  const hiddenStyle =
+    'position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;pointer-events:none'
+  let crawlerBlock = ''
+  if (h1) crawlerBlock += `\n    <h1 style="${hiddenStyle}">${escapeHtml(h1)}</h1>`
+  if (internalLinks) crawlerBlock += `\n    <nav aria-label="内部链接" style="${hiddenStyle}">${internalLinks}</nav>`
+  if (crawlerBlock) {
+    html = html.replace('<div id="app"></div>', `<div id="app"></div>${crawlerBlock}`)
   }
 
   return html
@@ -348,11 +422,14 @@ async function main() {
   if (aErr) {
     console.error('  ⚠️  文章查询失败:', aErr.message, '— 跳过文章预渲染')
   } else {
-    for (const a of articles || []) {
+    const list = articles || []
+    const relations = computeRelations(list)
+    list.forEach((a, i) => {
       const routeKey = a.slug || a.id
       const routePath = `/articles/${routeKey}`
       const canonicalUrl = `${SITE}${routePath}`
       const tags = Array.isArray(a.tags) ? a.tags : []
+      const rel = relations[i]
       writeHtml(
         routePath,
         buildHtml({
@@ -362,6 +439,18 @@ async function main() {
           h1: a.title,
           ogType: 'article',
           keywords: tags.join(','),
+          internalLinks: buildInternalLinks({
+            base: '/articles',
+            listName: '文章',
+            related: rel.related,
+            prev: rel.prev,
+            next: rel.next,
+          }),
+          breadcrumbJsonld: buildBreadcrumbJsonld([
+            { name: '首页', path: '/' },
+            { name: '文章', path: '/articles' },
+            { name: a.title },
+          ]),
           jsonld: {
             '@context': 'https://schema.org',
             '@type': 'Article',
@@ -377,8 +466,8 @@ async function main() {
         })
       )
       totalCount++
-    }
-    console.log(`  → 共生成 ${(articles || []).length} 篇文章`)
+    })
+    console.log(`  → 共生成 ${list.length} 篇文章`)
   }
 
   // 3. 动态路由：教程详情
@@ -391,11 +480,14 @@ async function main() {
   if (tErr) {
     console.error('  ⚠️  教程查询失败:', tErr.message, '— 跳过教程预渲染')
   } else {
-    for (const t of tutorials || []) {
+    const list = tutorials || []
+    const relations = computeRelations(list)
+    list.forEach((t, i) => {
       const routeKey = t.slug || t.id
       const routePath = `/tutorials/${routeKey}`
       const canonicalUrl = `${SITE}${routePath}`
       const tags = Array.isArray(t.tags) ? t.tags : []
+      const rel = relations[i]
       writeHtml(
         routePath,
         buildHtml({
@@ -404,6 +496,18 @@ async function main() {
           canonicalUrl,
           h1: t.title,
           keywords: tags.join(','),
+          internalLinks: buildInternalLinks({
+            base: '/tutorials',
+            listName: '教程',
+            related: rel.related,
+            prev: rel.prev,
+            next: rel.next,
+          }),
+          breadcrumbJsonld: buildBreadcrumbJsonld([
+            { name: '首页', path: '/' },
+            { name: '教程', path: '/tutorials' },
+            { name: t.title },
+          ]),
           jsonld: {
             '@context': 'https://schema.org',
             '@type': 'Course',
@@ -415,8 +519,8 @@ async function main() {
         })
       )
       totalCount++
-    }
-    console.log(`  → 共生成 ${(tutorials || []).length} 个教程`)
+    })
+    console.log(`  → 共生成 ${list.length} 个教程`)
   }
 
   // 4. 动态路由：资讯详情
@@ -429,11 +533,14 @@ async function main() {
   if (nErr) {
     console.error('  ⚠️  资讯查询失败:', nErr.message, '— 跳过资讯预渲染')
   } else {
-    for (const n of news || []) {
+    const list = news || []
+    const relations = computeRelations(list)
+    list.forEach((n, i) => {
       const routeKey = n.slug || n.id
       const routePath = `/news/${routeKey}`
       const canonicalUrl = `${SITE}${routePath}`
       const tags = Array.isArray(n.tags) ? n.tags : []
+      const rel = relations[i]
       writeHtml(
         routePath,
         buildHtml({
@@ -443,6 +550,18 @@ async function main() {
           h1: n.title,
           ogType: 'article',
           keywords: tags.join(','),
+          internalLinks: buildInternalLinks({
+            base: '/news',
+            listName: '资讯',
+            related: rel.related,
+            prev: rel.prev,
+            next: rel.next,
+          }),
+          breadcrumbJsonld: buildBreadcrumbJsonld([
+            { name: '首页', path: '/' },
+            { name: '资讯', path: '/news' },
+            { name: n.title },
+          ]),
           jsonld: {
             '@context': 'https://schema.org',
             '@type': 'NewsArticle',
@@ -456,8 +575,8 @@ async function main() {
         })
       )
       totalCount++
-    }
-    console.log(`  → 共生成 ${(news || []).length} 条资讯`)
+    })
+    console.log(`  → 共生成 ${list.length} 条资讯`)
   }
 
   // 5. 生成 404.html

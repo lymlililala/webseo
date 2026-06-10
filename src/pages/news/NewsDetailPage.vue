@@ -4,6 +4,9 @@ import { useRoute, useRouter } from 'vue-router'
 import { marked } from 'marked'
 import { type News } from '../../data/news'
 import { newsAPI } from '../../services/supabase'
+import Breadcrumb from '../../components/Breadcrumb.vue'
+import RelatedContent from '../../components/RelatedContent.vue'
+import PrevNextNav from '../../components/PrevNextNav.vue'
 
 const route = useRoute()
 const router = useRouter()
@@ -11,6 +14,40 @@ const router = useRouter()
 const newsItem = ref<News | null>(null)
 const loading = ref(true)
 const notFound = ref(false)
+
+// 内链：相关推荐 + 上一篇/下一篇
+const relatedNews = ref<News[]>([])
+const prevNews = ref<News | null>(null)
+const nextNews = ref<News | null>(null)
+
+const breadcrumbItems = computed(() => [
+  { name: '首页', to: '/' },
+  { name: '资讯', to: '/news' },
+  { name: newsItem.value?.title || '' },
+])
+
+async function loadInternalLinks(current: News) {
+  const selfKey = (current as any).slug || current.id
+  try {
+    const sameCat = await newsAPI.getByCategory(current.category)
+    relatedNews.value = (sameCat || [])
+      .filter((n: any) => (n.slug || n.id) !== selfKey)
+      .sort((a: any, b: any) => new Date(b.date).getTime() - new Date(a.date).getTime())
+      .slice(0, 6)
+
+    const all = await newsAPI.getAll()
+    const sorted = (all || [])
+      .slice()
+      .sort((a: any, b: any) => new Date(b.date).getTime() - new Date(a.date).getTime())
+    const idx = sorted.findIndex((n: any) => (n.slug || n.id) === selfKey)
+    if (idx !== -1) {
+      prevNews.value = idx > 0 ? sorted[idx - 1] : null
+      nextNews.value = idx < sorted.length - 1 ? sorted[idx + 1] : null
+    }
+  } catch (e) {
+    console.error('加载相关资讯失败', e)
+  }
+}
 
 marked.use({
   renderer: {
@@ -33,6 +70,7 @@ onMounted(async () => {
   try {
     const data = await newsAPI.getBySlug(slug)
     newsItem.value = data ?? null
+    if (newsItem.value) loadInternalLinks(newsItem.value)
   } catch (e) {
     console.error('加载新闻失败', e)
   } finally {
@@ -179,10 +217,16 @@ const impactMeta: Record<string, { label: string; color: string }> = {
 
       <!-- 正文 -->
       <div class="content-wrapper">
+        <Breadcrumb :items="breadcrumbItems" class="detail-breadcrumb" />
+
         <article class="news-body">
           <!-- eslint-disable-next-line vue/no-v-html -->
           <div class="markdown-body" v-html="renderedContent" />
         </article>
+
+        <!-- 相关推荐 + 上一篇/下一篇 -->
+        <RelatedContent :items="relatedNews" type="news" title="相关资讯" />
+        <PrevNextNav type="news" :prev="prevNews" :next="nextNews" />
 
         <div class="news-footer">
           <VaButton preset="secondary" @click="router.push({ name: 'news' })">
@@ -335,6 +379,10 @@ const impactMeta: Record<string, { label: string; color: string }> = {
   padding: 2.4rem 1.5rem 3rem;
   width: 100%;
   box-sizing: border-box;
+}
+
+.detail-breadcrumb {
+  margin-bottom: 1.2rem;
 }
 
 .news-body {
