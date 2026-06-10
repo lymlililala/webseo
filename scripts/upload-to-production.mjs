@@ -5,14 +5,31 @@
  */
 import { createClient } from '@supabase/supabase-js';
 import { execSync } from 'child_process';
+import { readFileSync } from 'fs';
 import { dirname, join } from 'path';
 import { fileURLToPath } from 'url';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const PARSE_SCRIPT = join(__dirname, 'parse_sql.py');
 
-const SUPABASE_URL = 'https://tixgzezefjjsyuzgdhcd.supabase.co';
-const SERVICE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InRpeGd6ZXplZmpqc3l1emdkaGNkIiwicm9sZSI6InNlcnZpY2Vfcm9sZSIsImlhdCI6MTc3ODE0OTM3OCwiZXhwIjoyMDkzNzI1Mzc4fQ.CBarLrHnr-tr5ZPaGs2JvW3NJE6O5O1Hw7oTWsHuI-E';
+// 手动加载 .env.local（无需 dotenv），CI 环境直接用注入的环境变量
+try {
+  const envContent = readFileSync(join(__dirname, '..', '.env.local'), 'utf-8');
+  for (const line of envContent.split('\n')) {
+    const t = line.trim();
+    if (!t || t.startsWith('#')) continue;
+    const eq = t.indexOf('=');
+    if (eq === -1) continue;
+    const key = t.slice(0, eq).trim();
+    if (!(key in process.env)) process.env[key] = t.slice(eq + 1).trim();
+  }
+} catch {
+  // 忽略：使用进程本身的环境变量
+}
+
+const SUPABASE_URL = process.env.VITE_SUPABASE_URL;
+const SERVICE_KEY =
+  process.env.SUPABASE_SECRET_KEY || process.env.SUPABASE_SERVICE_ROLE_KEY || process.env.VITE_SUPABASE_ANON_KEY;
 
 const supabase = createClient(SUPABASE_URL, SERVICE_KEY);
 

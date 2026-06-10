@@ -16,7 +16,10 @@ try {
   }
 } catch (_) {}
 
-const s = createClient(process.env.VITE_SUPABASE_URL, process.env.SUPABASE_SERVICE_ROLE_KEY);
+const s = createClient(
+  process.env.VITE_SUPABASE_URL,
+  process.env.SUPABASE_SECRET_KEY || process.env.SUPABASE_SERVICE_ROLE_KEY
+);
 
 // 脏 slug 判断：包含特殊字符 <>{}$`\'"() 或空格
 function isDirtySlug(slug) {
