@@ -1,7 +1,8 @@
 import { createClient } from '@supabase/supabase-js'
 
 const supabaseUrl = import.meta.env.VITE_SUPABASE_URL || ''
-const supabaseAnonKey = import.meta.env.VITE_SUPABASE_ANON_KEY || ''
+// 优先用新版 publishable 公钥；legacy anon JWT 已于 2026-06-08 被 Supabase 禁用
+const supabaseAnonKey = import.meta.env.VITE_SUPABASE_PUBLISHABLE_KEY || import.meta.env.VITE_SUPABASE_ANON_KEY || ''
 
 const SUPABASE_CONFIGURED = !!(supabaseUrl && supabaseAnonKey)
 
