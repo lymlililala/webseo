@@ -10,9 +10,24 @@ const __dirname = dirname(fileURLToPath(import.meta.url));
 const ROOT = join(__dirname, '..');
 const SITEMAP_PATH = join(ROOT, 'public', 'sitemap.xml');
 
+// 手动加载 .env.local（无需 dotenv），CI 环境直接用注入的环境变量
+try {
+  const envContent = readFileSync(join(ROOT, '.env.local'), 'utf-8');
+  for (const line of envContent.split('\n')) {
+    const t = line.trim();
+    if (!t || t.startsWith('#')) continue;
+    const eq = t.indexOf('=');
+    if (eq === -1) continue;
+    const key = t.slice(0, eq).trim();
+    if (!(key in process.env)) process.env[key] = t.slice(eq + 1).trim();
+  }
+} catch {
+  // 忽略：使用进程本身的环境变量
+}
+
 const supabase = createClient(
-  'https://tixgzezefjjsyuzgdhcd.supabase.co',
-  'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InRpeGd6ZXplZmpqc3l1emdkaGNkIiwicm9sZSI6InNlcnZpY2Vfcm9sZSIsImlhdCI6MTc3ODE0OTM3OCwiZXhwIjoyMDkzNzI1Mzc4fQ.CBarLrHnr-tr5ZPaGs2JvW3NJE6O5O1Hw7oTWsHuI-E'
+  process.env.VITE_SUPABASE_URL,
+  process.env.SUPABASE_SECRET_KEY || process.env.SUPABASE_SERVICE_ROLE_KEY || process.env.VITE_SUPABASE_ANON_KEY
 );
 
 const TODAY = new Date().toISOString().split('T')[0]; // 2026-05-28

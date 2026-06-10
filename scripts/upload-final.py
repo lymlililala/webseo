@@ -16,8 +16,15 @@ ssl_context.check_hostname = False
 ssl_context.verify_mode = ssl.CERT_NONE
 
 SUPABASE_URL = "https://tixgzezefjjsyuzgdhcd.supabase.co"
-SERVICE_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InRpeGd6ZXplZmpqc3l1emdkaGNkIiwicm9sZSI6InNlcnZpY2Vfcm9sZSIsImlhdCI6MTc3ODE0OTM3OCwiZXhwIjoyMDkzNzI1Mzc4fQ.CBarLrHnr-tr5ZPaGs2JvW3NJE6O5O1Hw7oTWsHuI-E"
-
+import os as _os
+_envp = _os.path.join(_os.path.dirname(_os.path.abspath(__file__)), "..", ".env.local")
+if _os.path.exists(_envp):
+    for _line in open(_envp, encoding="utf-8"):
+        _s = _line.strip()
+        if _s and not _s.startswith("#") and "=" in _s:
+            _k, _v = _s.split("=", 1)
+            _os.environ.setdefault(_k.strip(), _v.strip())
+SERVICE_KEY = _os.environ.get("SUPABASE_SECRET_KEY") or _os.environ.get("SUPABASE_SERVICE_ROLE_KEY", "")
 HEADERS = {
     "apikey": SERVICE_KEY,
     "Authorization": "Bearer " + SERVICE_KEY,
