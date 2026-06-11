@@ -74,10 +74,6 @@ const totalTools = computed(() => allTools.length)
 const freeToolsCount = computed(() => allTools.filter((t) => t.isFree).length)
 const aiToolsCount = computed(() => allTools.filter((t) => t.isAiFriendly).length)
 
-function openTool(url: string) {
-  window.open(url, '_blank', 'noopener,noreferrer')
-}
-
 function getCategoryColor(categoryId: string): string {
   const cat = seoCategories.find((c) => c.id === categoryId)
   return cat?.color || '#4CAF50'
@@ -104,6 +100,15 @@ function clearFilters() {
 const scrollSpy = ref('all')
 let observer: IntersectionObserver | null = null
 
+// 回到顶部按钮:页面滚动超过一屏后显示
+const showBackTop = ref(false)
+function onWindowScroll() {
+  showBackTop.value = window.scrollY > 600
+}
+function scrollToTop() {
+  window.scrollTo({ top: 0, behavior: 'smooth' })
+}
+
 onMounted(() => {
   observer = new IntersectionObserver(
     (entries) => {
@@ -119,10 +124,12 @@ onMounted(() => {
   document.querySelectorAll('.category-group[data-cat-id]').forEach((el) => {
     observer?.observe(el)
   })
+  window.addEventListener('scroll', onWindowScroll, { passive: true })
 })
 
 onUnmounted(() => {
   observer?.disconnect()
+  window.removeEventListener('scroll', onWindowScroll)
 })
 
 const activeSidebarItem = computed(() => (activeCategory.value === 'all' ? scrollSpy.value : activeCategory.value))
@@ -238,7 +245,15 @@ const activeSidebarItem = computed(() => (activeCategory.value === 'all' ? scrol
             <p class="section-desc">Core tools every site owner needs — each battle-tested in the field</p>
           </div>
           <div class="featured-grid">
-            <div v-for="tool in featuredTools" :key="tool.id" class="featured-card" @click="openTool(tool.url)">
+            <a
+              v-for="tool in featuredTools"
+              :key="tool.id"
+              :href="tool.url"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="featured-card"
+              :aria-label="`Visit ${tool.name} (opens in a new tab)`"
+            >
               <div
                 class="featured-card-icon"
                 :style="{
@@ -268,7 +283,7 @@ const activeSidebarItem = computed(() => (activeCategory.value === 'all' ? scrol
               <div class="featured-card-arrow">
                 <VaIcon name="open_in_new" size="16px" color="secondary" />
               </div>
-            </div>
+            </a>
           </div>
         </div>
 
@@ -309,7 +324,15 @@ const activeSidebarItem = computed(() => (activeCategory.value === 'all' ? scrol
             </div>
 
             <div class="tools-grid">
-              <div v-for="tool in group.tools" :key="tool.id" class="tool-card" @click="openTool(tool.url)">
+              <a
+                v-for="tool in group.tools"
+                :key="tool.id"
+                :href="tool.url"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="tool-card"
+                :aria-label="`Visit ${tool.name} (opens in a new tab)`"
+              >
                 <div class="tool-card-top">
                   <div
                     class="tool-icon-wrap"
@@ -336,7 +359,7 @@ const activeSidebarItem = computed(() => (activeCategory.value === 'all' ? scrol
                     <span>Visit</span>
                   </div>
                 </div>
-              </div>
+              </a>
             </div>
           </div>
         </div>
@@ -400,6 +423,13 @@ const activeSidebarItem = computed(() => (activeCategory.value === 'all' ? scrol
         </div>
       </main>
     </div>
+
+    <!-- Back to top -->
+    <transition name="backtop-fade">
+      <button v-show="showBackTop" class="back-to-top" type="button" aria-label="Back to top" @click="scrollToTop">
+        <VaIcon name="arrow_upward" size="20px" />
+      </button>
+    </transition>
   </div>
 </template>
 
@@ -786,11 +816,18 @@ const activeSidebarItem = computed(() => (activeCategory.value === 'all' ? scrol
   cursor: pointer;
   transition: all 0.25s ease;
   box-shadow: 0 1px 4px rgba(0, 0, 0, 0.05);
+  text-decoration: none;
+  color: inherit;
 }
 
 .featured-card:hover {
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
   transform: translateY(-4px);
+}
+
+.featured-card:focus-visible {
+  outline: 2px solid var(--va-primary);
+  outline-offset: 2px;
 }
 
 .featured-card-icon {
@@ -975,11 +1012,18 @@ const activeSidebarItem = computed(() => (activeCategory.value === 'all' ? scrol
   flex-direction: column;
   gap: 10px;
   box-shadow: 0 1px 4px rgba(0, 0, 0, 0.05);
+  text-decoration: none;
+  color: inherit;
 }
 
 .tool-card:hover {
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
   transform: translateY(-4px);
+}
+
+.tool-card:focus-visible {
+  outline: 2px solid var(--va-primary);
+  outline-offset: 2px;
 }
 
 .tool-card-top {
@@ -1165,14 +1209,53 @@ const activeSidebarItem = computed(() => (activeCategory.value === 'all' ? scrol
   margin: 0;
 }
 
+/* ── Back to top ──────────────────────────── */
+.back-to-top {
+  position: fixed;
+  right: 24px;
+  bottom: 24px;
+  z-index: 50;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  background: var(--va-primary);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+  transition:
+    transform 0.18s ease,
+    box-shadow 0.18s ease;
+}
+.back-to-top:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.28);
+}
+.back-to-top:focus-visible {
+  outline: 2px solid var(--va-primary);
+  outline-offset: 3px;
+}
+.backtop-fade-enter-active,
+.backtop-fade-leave-active {
+  transition:
+    opacity 0.2s ease,
+    transform 0.2s ease;
+}
+.backtop-fade-enter-from,
+.backtop-fade-leave-to {
+  opacity: 0;
+  transform: translateY(10px);
+}
+
 /* ── Responsive ───────────────────────────── */
 @media (max-width: 1200px) {
   .tools-grid {
     grid-template-columns: repeat(2, 1fr);
   }
-}
-
-@media (max-width: 900px) {
+}@media (max-width: 900px) {
   .body-layout {
     flex-direction: column;
   }
