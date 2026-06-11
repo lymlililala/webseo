@@ -32,6 +32,18 @@
       "dest": "/$1/$2/index.html"
     },
     {
+      "src": "/zh/(articles|tutorials|news)/([^/]+)",
+      "dest": "/$1/$2/index.html"
+    },
+    {
+      "src": "/zh/(seo-nav|geo-nav|aeo-nav|schema-generator|ai-checker|llms-txt|glossary|articles|tutorials|news|faq)",
+      "dest": "/$1/index.html"
+    },
+    {
+      "src": "/zh(/)?",
+      "dest": "/seo-nav/index.html"
+    },
+    {
       "src": "^/$",
       "dest": "/seo-nav/index.html"
     },

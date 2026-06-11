@@ -3,6 +3,7 @@
  * 设置 title、meta description、canonical、Open Graph、Twitter Card、JSON-LD
  */
 import { onMounted, onUnmounted, watchEffect, type Ref } from 'vue'
+import { currentLocale } from '../i18n/useLocale'
 
 const BASE_URL = 'https://sgaindex.com'
 const SITE_NAME = 'SGAIndex'
@@ -64,11 +65,36 @@ function removeSeoTags() {
   document.querySelectorAll('[data-seo="true"]').forEach((el) => el.remove())
 }
 
+// 注入 hreflang alternates(en / zh / x-default),按无前缀 path 计算
+function injectHreflang(path: string) {
+  document.querySelectorAll('link[data-hreflang="true"]').forEach((el) => el.remove())
+  const enHref = `${BASE_URL}${path}`
+  const zhHref = path === '/' ? `${BASE_URL}/zh` : `${BASE_URL}/zh${path}`
+  const alts: Array<[string, string]> = [
+    ['en', enHref],
+    ['zh', zhHref],
+    ['x-default', enHref],
+  ]
+  for (const [lang, href] of alts) {
+    const el = document.createElement('link')
+    el.rel = 'alternate'
+    el.hreflang = lang
+    el.href = href
+    el.setAttribute('data-hreflang', 'true')
+    document.head.appendChild(el)
+  }
+}
+
 export function usePageSeo(options: SeoOptions | Ref<SeoOptions>) {
   const apply = (opts: SeoOptions) => {
     const { title, description, path, image = DEFAULT_IMAGE, jsonLd = [], keywords } = opts
-    const canonicalUrl = `${BASE_URL}${path}`
+    const locale = currentLocale()
+    const localizedPath = locale === 'zh' ? (path === '/' ? '/zh' : `/zh${path}`) : path
+    const canonicalUrl = `${BASE_URL}${localizedPath}`
     const fullTitle = `${title} | ${SITE_NAME}`
+
+    // <html lang>
+    document.documentElement.lang = locale === 'zh' ? 'zh-CN' : 'en'
 
     // Title
     document.title = fullTitle
@@ -78,8 +104,9 @@ export function usePageSeo(options: SeoOptions | Ref<SeoOptions>) {
     if (keywords) setMeta('keywords', keywords)
     setMeta('robots', 'index, follow')
 
-    // Canonical
+    // Canonical + hreflang
     setLink('canonical', canonicalUrl, 'canonical-link')
+    injectHreflang(path)
 
     // Open Graph
     setMeta('og:type', 'website', 'property')
@@ -88,7 +115,7 @@ export function usePageSeo(options: SeoOptions | Ref<SeoOptions>) {
     setMeta('og:description', description, 'property')
     setMeta('og:url', canonicalUrl, 'property')
     setMeta('og:image', image, 'property')
-    setMeta('og:locale', 'zh_CN', 'property')
+    setMeta('og:locale', locale === 'zh' ? 'zh_CN' : 'en_US', 'property')
 
     // Twitter Card
     setMeta('twitter:card', 'summary_large_image')
@@ -102,7 +129,7 @@ export function usePageSeo(options: SeoOptions | Ref<SeoOptions>) {
       '@type': 'WebSite',
       name: SITE_NAME,
       url: BASE_URL,
-      description: 'AI时代的SEO与GEO工具导航平台，收录SEO、GEO、AEO、Schema结构化数据工具',
+      description: 'A tools directory for the AI search era — SEO, GEO, AEO and Schema structured-data tools',
       potentialAction: {
         '@type': 'SearchAction',
         target: `${BASE_URL}/seo-nav?q={search_term_string}`,
@@ -128,6 +155,7 @@ export function usePageSeo(options: SeoOptions | Ref<SeoOptions>) {
   onUnmounted(() => {
     // 页面卸载时清理，防止标签堆积
     removeSeoTags()
-    document.title = `${SITE_NAME} — SEO/GEO/AEO 工具导航`
+    document.querySelectorAll('link[data-hreflang="true"]').forEach((el) => el.remove())
+    document.title = `${SITE_NAME} — SEO/GEO/AEO Tools Directory`
   })
 }
