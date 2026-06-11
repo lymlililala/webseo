@@ -18,6 +18,7 @@ const { t } = useI18n()
 const article = ref<Article | null>(null)
 const loading = ref(true)
 const notFound = ref(false)
+const coverError = ref(false)
 
 // 内链：相关推荐 + 上一篇/下一篇
 const relatedArticles = ref<Article[]>([])
@@ -237,6 +238,17 @@ watch(article, (a) => {
       <div class="content-wrapper">
         <Breadcrumb :items="breadcrumbItems" class="detail-breadcrumb" />
 
+        <!-- 封面图(有则显示,加载失败自动隐藏) -->
+        <img
+          v-if="(article as any).image && !coverError"
+          :src="(article as any).image"
+          :alt="article.title"
+          class="article-cover"
+          loading="lazy"
+          decoding="async"
+          @error="coverError = true"
+        />
+
         <article class="article-body">
           <!-- eslint-disable-next-line vue/no-v-html -->
           <div class="markdown-body" v-html="renderedContent" @click="onContentClick" />
@@ -399,6 +411,16 @@ watch(article, (a) => {
 
 .detail-breadcrumb {
   margin-bottom: 1.2rem;
+}
+
+.article-cover {
+  display: block;
+  width: 100%;
+  max-height: 380px;
+  object-fit: cover;
+  border-radius: 14px;
+  margin-bottom: 1.5rem;
+  background: var(--va-background-secondary);
 }
 
 .article-body {

@@ -2,6 +2,7 @@
 import { ref, computed, onMounted, onUnmounted } from 'vue'
 import { seoCategories, allTools, featuredTools, type SeoTool, type SeoCategory } from '../../data/seo-tools'
 import { usePageSeo } from '../../composables/usePageSeo'
+import ToolFavicon from '../../components/ToolFavicon.vue'
 
 usePageSeo({
   title: 'SEO Tools Directory — 100+ Curated SEO Tools',
@@ -261,10 +262,11 @@ const activeSidebarItem = computed(() => (activeCategory.value === 'all' ? scrol
                   borderColor: getCategoryColor(getToolCategory(tool)?.id || '') + '35',
                 }"
               >
-                <VaIcon
-                  :name="getToolCategory(tool)?.icon || 'link'"
-                  :color="getCategoryColor(getToolCategory(tool)?.id || '')"
-                  size="28px"
+                <ToolFavicon
+                  :url="tool.url"
+                  :fallback-icon="getToolCategory(tool)?.icon || 'link'"
+                  :fallback-color="getCategoryColor(getToolCategory(tool)?.id || '')"
+                  :size="28"
                 />
               </div>
               <div class="featured-card-content">
@@ -334,11 +336,8 @@ const activeSidebarItem = computed(() => (activeCategory.value === 'all' ? scrol
                 :aria-label="`Visit ${tool.name} (opens in a new tab)`"
               >
                 <div class="tool-card-top">
-                  <div
-                    class="tool-icon-wrap"
-                    :style="{ background: group.color + '14', borderColor: group.color + '30' }"
-                  >
-                    <VaIcon :name="group.icon" :style="{ color: group.color }" size="22px" />
+                  <div class="tool-icon-wrap" :style="{ background: group.color + '14', borderColor: group.color + '30' }">
+                    <ToolFavicon :url="tool.url" :fallback-icon="group.icon" :fallback-color="group.color" :size="22" />
                   </div>
                   <div class="tool-badges">
                     <span v-if="tool.isFree" class="badge badge-free">Free</span>

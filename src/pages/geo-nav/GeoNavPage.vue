@@ -2,6 +2,7 @@
 import { ref, computed, onMounted, onUnmounted } from 'vue'
 import { geoCategories, allGeoTools, featuredGeoTools, type GeoTool, type GeoCategory } from '../../data/geo-tools'
 import { usePageSeo } from '../../composables/usePageSeo'
+import ToolFavicon from '../../components/ToolFavicon.vue'
 
 usePageSeo({
   title: 'GEO Tools Directory — Generative Engine Optimization Tools',
@@ -321,10 +322,11 @@ const activeSidebarItem = computed(() => (activeCategory.value === 'all' ? scrol
                   borderColor: getCategoryColor(getToolCategory(tool)?.id || '') + '3a',
                 }"
               >
-                <VaIcon
-                  :name="getToolCategory(tool)?.icon || 'hub'"
-                  :color="getCategoryColor(getToolCategory(tool)?.id || '')"
-                  size="22px"
+                <ToolFavicon
+                  :url="tool.url"
+                  :fallback-icon="getToolCategory(tool)?.icon || 'hub'"
+                  :fallback-color="getCategoryColor(getToolCategory(tool)?.id || '')"
+                  :size="22"
                 />
               </div>
               <div class="geo-featured-info">
@@ -416,7 +418,7 @@ const activeSidebarItem = computed(() => (activeCategory.value === 'all' ? scrol
               <!-- Top row -->
               <div class="geo-tool-top">
                 <div class="geo-tool-icon" :style="{ background: group.color + '14', borderColor: group.color + '35' }">
-                  <VaIcon :name="group.icon" :style="{ color: group.color }" size="17px" />
+                  <ToolFavicon :url="tool.url" :fallback-icon="group.icon" :fallback-color="group.color" :size="17" />
                 </div>
                 <div class="geo-tool-badges">
                   <span v-if="tool.isFree" class="geo-badge geo-badge-free">Free</span>
