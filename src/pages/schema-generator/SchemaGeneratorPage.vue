@@ -77,7 +77,7 @@ function renderStars(n: number): string {
 }
 
 function getLevelLabel(level: SchemaTool['level']): string {
-  const map = { beginner: '适合新手', advanced: '进阶用', auto: '全自动' }
+  const map = { beginner: 'For beginners', advanced: 'Advanced', auto: 'Fully automated' }
   return map[level]
 }
 
@@ -95,38 +95,37 @@ function getLevelColor(level: SchemaTool['level']): string {
       <div class="schema-hero-content">
         <div class="schema-hero-badge">
           <VaIcon name="data_object" size="14px" />
-          <span>结构化数据 · Schema Markup 工具聚合</span>
+          <span>Structured Data · Schema Markup Tools</span>
         </div>
         <h1 class="schema-hero-title">
-          Schema 标记生成器<br />
-          <span class="schema-hero-accent">工具导航 & 模板中心</span>
+          Schema Markup Generator<br />
+          <span class="schema-hero-accent">Directory & Template Center</span>
         </h1>
         <p class="schema-hero-subtitle">
-          聚合 <strong>{{ schemaTools.length }}+</strong> 款 Schema 生成与验证工具，覆盖
-          <strong>{{ schemaTypes.length }}</strong> 种常用类型，含 JSON-LD 模板和字段说明，
-          帮助你快速为网站添加结构化数据，提升富结果展示和 AI 引用概率。
+          An aggregated <strong>{{ schemaTools.length }}+</strong> Schema generators and tools, covering
+          <strong>{{ schemaTypes.length }}</strong> common types with JSON-LD templates and field notes — quickly add structured data to your site and improve rich results and AI citations.
         </p>
 
         <!-- 工作流提示 -->
         <div class="schema-workflow">
           <div class="schema-workflow-step">
             <span class="schema-wf-num">1</span>
-            <span>选择 Schema 类型</span>
+            <span>Pick a Schema type</span>
           </div>
           <VaIcon name="chevron_right" size="14px" color="rgba(255,255,255,0.3)" />
           <div class="schema-workflow-step">
             <span class="schema-wf-num">2</span>
-            <span>用工具生成代码</span>
+            <span>Generate code with a tool</span>
           </div>
           <VaIcon name="chevron_right" size="14px" color="rgba(255,255,255,0.3)" />
           <div class="schema-workflow-step">
             <span class="schema-wf-num">3</span>
-            <span>复制 JSON-LD 模板</span>
+            <span>Copy the JSON-LD template</span>
           </div>
           <VaIcon name="chevron_right" size="14px" color="rgba(255,255,255,0.3)" />
           <div class="schema-workflow-step active">
             <span class="schema-wf-num">4</span>
-            <span>Google官方验证 ✅</span>
+            <span>Google official validation ✅</span>
           </div>
         </div>
       </div>
@@ -175,7 +174,7 @@ function getLevelColor(level: SchemaTool['level']): string {
           <div v-if="activeType.aeoTip" class="schema-aeo-tip">
             <div class="schema-aeo-tip-header">
               <VaIcon name="auto_awesome" size="15px" color="#10B981" />
-              <strong>AEO 核心技巧</strong>
+              <strong>AEO key tips</strong>
             </div>
             <p>{{ activeType.aeoTip }}</p>
             <button
@@ -188,11 +187,11 @@ function getLevelColor(level: SchemaTool['level']): string {
             </button>
           </div>
 
-          <!-- 必填字段说明 -->
+          <!-- Required fields -->
           <div class="schema-required-fields">
             <div class="schema-section-title">
               <VaIcon name="check_circle" size="14px" color="success" />
-              必填字段说明
+              Required fields
             </div>
             <div class="schema-fields-list">
               <div v-for="field in activeType.requiredFields" :key="field.name" class="schema-field-item">
@@ -207,7 +206,7 @@ function getLevelColor(level: SchemaTool['level']): string {
             <div class="schema-template-header">
               <div class="schema-section-title">
                 <VaIcon name="code" size="14px" color="primary" />
-                JSON-LD 模板代码
+                JSON-LD template code
               </div>
               <button
                 class="schema-copy-btn"
@@ -215,7 +214,7 @@ function getLevelColor(level: SchemaTool['level']): string {
                 @click="copyCode(activeType.jsonTemplate, activeType.id)"
               >
                 <VaIcon :name="copiedId === activeType.id ? 'check' : 'content_copy'" size="13px" />
-                {{ copiedId === activeType.id ? '已复制！' : '复制代码' }}
+                {{ copiedId === activeType.id ? 'Copied!' : 'Copy code' }}
               </button>
             </div>
             <pre class="schema-code-block"><code>{{ activeType.jsonTemplate }}</code></pre>
@@ -224,7 +223,7 @@ function getLevelColor(level: SchemaTool['level']): string {
           <!-- 推荐工具 -->
           <div class="schema-section-title" style="margin-top: 1.4rem">
             <VaIcon name="build" size="14px" color="warning" />
-            推荐生成工具
+            Recommended tools
           </div>
           <div class="schema-tools-grid">
             <div v-for="tool in activeTypeTools" :key="tool.id" class="schema-tool-card" @click="openTool(tool.url)">
@@ -262,29 +261,29 @@ function getLevelColor(level: SchemaTool['level']): string {
               <div class="schema-tool-footer">
                 <div class="schema-price-tag">
                   <VaIcon name="sell" size="11px" />
-                  {{ tool.isFree ? '免费' : tool.pricing || '付费' }}
+                  {{ tool.isFree ? 'Free' : tool.pricing || 'Paid' }}
                 </div>
                 <div class="schema-visit-btn">
                   <VaIcon name="open_in_new" size="11px" />
-                  前往使用
+                  Open tool
                 </div>
               </div>
             </div>
           </div>
 
-          <!-- 验证提示 -->
+          <!-- 提示 -->
           <div class="schema-validate-tip">
             <VaIcon name="verified" size="15px" color="#6366F1" />
             <span
-              >生成代码后，务必用 <strong>Google Rich Results Test</strong> 和
-              <strong>Schema.org Validator</strong> 验证</span
+              >After generating code, always validate with <strong>Google Rich Results Test</strong> and
+              <strong>Schema.org Validator</strong> </span
             >
             <div class="schema-validate-btns">
               <button class="schema-validate-btn" @click="openTool('https://search.google.com/test/rich-results')">
-                <VaIcon name="open_in_new" size="11px" />Google 验证
+                <VaIcon name="open_in_new" size="11px" />Google 
               </button>
               <button class="schema-validate-btn" @click="openTool('https://validator.schema.org/')">
-                <VaIcon name="open_in_new" size="11px" />Schema.org 验证
+                <VaIcon name="open_in_new" size="11px" />Schema.org 
               </button>
             </div>
           </div>
@@ -298,7 +297,7 @@ function getLevelColor(level: SchemaTool['level']): string {
           <div class="schema-sidebar-section">
             <div class="schema-sidebar-section-title">
               <VaIcon name="star" size="13px" color="warning" />
-              🥇 全能型首选
+              🥇 All-purpose pick
             </div>
             <div class="schema-sidebar-tools">
               <div
@@ -315,11 +314,11 @@ function getLevelColor(level: SchemaTool['level']): string {
                   <span class="schema-level-tag-sm" :style="{ color: getLevelColor(tool.level) }">{{
                     getLevelLabel(tool.level)
                   }}</span>
-                  <span class="schema-sidebar-free">{{ tool.isFree ? '免费' : tool.pricing }}</span>
+                  <span class="schema-sidebar-free">{{ tool.isFree ? 'Free' : tool.pricing }}</span>
                 </div>
                 <div class="schema-sidebar-tool-visit">
                   <VaIcon name="open_in_new" size="10px" />
-                  前往使用
+                  Open tool
                 </div>
               </div>
             </div>
@@ -331,9 +330,9 @@ function getLevelColor(level: SchemaTool['level']): string {
           <div class="schema-sidebar-section">
             <div class="schema-sidebar-section-title">
               <VaIcon name="auto_awesome" size="13px" color="primary" />
-              🤖 AI 全自动方案
+              🤖 AI automation
             </div>
-            <p class="schema-sidebar-tip">适合 WordPress 站长或希望"一次设置、永久生效"的用户</p>
+            <p class="schema-sidebar-tip">Great for WordPress owners or anyone who wants "set once, runs forever"</p>
             <div class="schema-sidebar-tools">
               <div v-for="tool in autoTools" :key="tool.id" class="schema-sidebar-tool" @click="openTool(tool.url)">
                 <div class="schema-sidebar-tool-top">
@@ -344,11 +343,11 @@ function getLevelColor(level: SchemaTool['level']): string {
                   <span class="schema-level-tag-sm" :style="{ color: getLevelColor(tool.level) }">{{
                     getLevelLabel(tool.level)
                   }}</span>
-                  <span class="schema-sidebar-free">{{ tool.hasFreeplan ? '含免费版' : tool.pricing }}</span>
+                  <span class="schema-sidebar-free">{{ tool.hasFreeplan ? 'Has free tier' : tool.pricing }}</span>
                 </div>
                 <div class="schema-sidebar-tool-visit">
                   <VaIcon name="open_in_new" size="10px" />
-                  前往使用
+                  Open tool
                 </div>
               </div>
             </div>
@@ -360,28 +359,28 @@ function getLevelColor(level: SchemaTool['level']): string {
           <div class="schema-sidebar-tips">
             <div class="schema-sidebar-section-title">
               <VaIcon name="lightbulb" size="13px" color="warning" />
-              实施小贴士
+              Implementation tips
             </div>
             <ul class="schema-tips-list">
               <li>
                 <VaIcon name="check" size="11px" color="success" />
-                <span>将 JSON-LD 放在 <code>&lt;head&gt;</code> 或 <code>&lt;body&gt;</code> 末尾均可</span>
+                <span>Place JSON-LD in the <code>&lt;head&gt;</code>  or  <code>&lt;body&gt;</code> — either works</span>
               </li>
               <li>
                 <VaIcon name="check" size="11px" color="success" />
-                <span>同一页面可叠加多种 Schema 类型</span>
+                <span>You can stack multiple Schema types on one page</span>
               </li>
               <li>
                 <VaIcon name="check" size="11px" color="success" />
-                <span>FAQ Schema 对 AI 搜索引用效果最佳</span>
+                <span>FAQ Schema works best for AI search citations</span>
               </li>
               <li>
                 <VaIcon name="check" size="11px" color="success" />
-                <span>部署后 1-2 周 Google 开始识别</span>
+                <span>Google starts recognizing it 1–2 weeks after deployment</span>
               </li>
               <li>
                 <VaIcon name="check" size="11px" color="success" />
-                <span>每次内容更新后重新验证 Schema</span>
+                <span>Re-validate Schema after every content update</span>
               </li>
             </ul>
           </div>
@@ -899,7 +898,7 @@ function getLevelColor(level: SchemaTool['level']): string {
   opacity: 1;
 }
 
-/* 验证提示 */
+/* 提示 */
 .schema-validate-tip {
   display: flex;
   align-items: center;

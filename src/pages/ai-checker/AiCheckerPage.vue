@@ -133,45 +133,45 @@ const activeSidebarItem = computed(() => (activeCategory.value === 'all' ? scrol
       <div class="checker-hero-content">
         <div class="checker-hero-badge">
           <VaIcon name="health_and_safety" size="14px" />
-          <span>AI 搜索可见度 · 聚合体检平台</span>
+          <span>AI Search Visibility · Aggregated Checkers</span>
         </div>
 
         <h1 class="checker-hero-title">
-          AI 搜索可见度<br />
-          <span class="checker-hero-accent">全景体检工具</span>
+          AI Search Visibility<br />
+          <span class="checker-hero-accent">Full Directory</span>
         </h1>
 
         <p class="checker-hero-subtitle">
-          聚合 <strong>{{ totalTools }}+</strong> 款 AI 可见度体检工具，覆盖 <strong>国内 9 大 AI 引擎</strong>和<strong
-            >国际主流 AI 平台</strong
-          >， 从免费快速体检到企业级监测，帮助品牌全面掌握在 AI 搜索中的曝光情况
+          An aggregated <strong>{{ totalTools }}+</strong> AI-visibility checkers covering <strong>9 major China AI engines</strong> and <strong
+            >major global AI platforms</strong
+          > — from free quick checks to enterprise monitoring, helping brands fully understand their AI-search exposure
         </p>
 
         <!-- 用户旅程提示 -->
         <div class="checker-journey">
           <div class="checker-journey-step">
             <span class="checker-journey-icon">🔍</span>
-            <span>选工具体检</span>
+            <span>Pick a checker</span>
           </div>
           <VaIcon name="chevron_right" size="14px" color="rgba(255,255,255,0.3)" />
           <div class="checker-journey-step">
             <span class="checker-journey-icon">📊</span>
-            <span>获取报告</span>
+            <span>Get a report</span>
           </div>
           <VaIcon name="chevron_right" size="14px" color="rgba(255,255,255,0.3)" />
           <div class="checker-journey-step">
             <span class="checker-journey-icon">⚡</span>
-            <span>发现差距</span>
+            <span>Find gaps</span>
           </div>
           <VaIcon name="chevron_right" size="14px" color="rgba(255,255,255,0.3)" />
           <div class="checker-journey-step">
             <span class="checker-journey-icon">📈</span>
-            <span>优化提升</span>
+            <span>Optimize</span>
           </div>
           <VaIcon name="chevron_right" size="14px" color="rgba(255,255,255,0.3)" />
           <div class="checker-journey-step active">
             <span class="checker-journey-icon">✅</span>
-            <span>复访监测</span>
+            <span>Re-check</span>
           </div>
         </div>
 
@@ -179,7 +179,7 @@ const activeSidebarItem = computed(() => (activeCategory.value === 'all' ? scrol
         <div class="checker-search-wrap">
           <VaInput
             v-model="searchQuery"
-            placeholder="搜索工具名称、平台、功能..."
+            placeholder="Search tools by name, platform or feature..."
             class="checker-search-input"
             clearable
           >
@@ -193,9 +193,9 @@ const activeSidebarItem = computed(() => (activeCategory.value === 'all' ? scrol
         <div class="checker-region-tabs">
           <button
             v-for="r in [
-              { key: 'all', label: '全部工具' },
-              { key: 'cn', label: '🇨🇳 国内工具' },
-              { key: 'global', label: '🌍 国际工具' },
+              { key: 'all', label: 'All tools' },
+              { key: 'cn', label: '🇨🇳 China Tools' },
+              { key: 'global', label: '🌍 Global Tools' },
             ]"
             :key="r.key"
             class="checker-region-tab"
@@ -210,22 +210,22 @@ const activeSidebarItem = computed(() => (activeCategory.value === 'all' ? scrol
         <div class="checker-stats">
           <div class="checker-stat">
             <span class="checker-stat-num">{{ totalTools }}+</span>
-            <span class="checker-stat-label">精选工具</span>
+            <span class="checker-stat-label">Curated Tools</span>
           </div>
           <div class="checker-stat-div" />
           <div class="checker-stat">
             <span class="checker-stat-num">{{ cnToolsCount }}</span>
-            <span class="checker-stat-label">🇨🇳 国内工具</span>
+            <span class="checker-stat-label">🇨🇳 China Tools</span>
           </div>
           <div class="checker-stat-div" />
           <div class="checker-stat">
             <span class="checker-stat-num">{{ globalToolsCount }}</span>
-            <span class="checker-stat-label">🌍 国际工具</span>
+            <span class="checker-stat-label">🌍 Global Tools</span>
           </div>
           <div class="checker-stat-div" />
           <div class="checker-stat">
             <span class="checker-stat-num">{{ freeCount }}</span>
-            <span class="checker-stat-label">含免费版</span>
+            <span class="checker-stat-label">Has Free Tier</span>
           </div>
         </div>
       </div>
@@ -239,7 +239,7 @@ const activeSidebarItem = computed(() => (activeCategory.value === 'all' ? scrol
           <!-- Free filter -->
           <label class="checker-filter-toggle" :class="{ active: showFreeOnly }" @click="showFreeOnly = !showFreeOnly">
             <VaIcon name="money_off" size="12px" />
-            只看免费
+            Free only
           </label>
 
           <div class="checker-sidebar-div" />
@@ -252,7 +252,7 @@ const activeSidebarItem = computed(() => (activeCategory.value === 'all' ? scrol
           >
             <span class="checker-sidebar-dot" style="background: #10b981" />
             <VaIcon name="apps" size="14px" class="checker-sidebar-icon" />
-            <span class="checker-sidebar-name">全部工具</span>
+            <span class="checker-sidebar-name">All tools</span>
             <span class="checker-sidebar-count">{{ totalTools }}</span>
           </button>
 
@@ -287,8 +287,8 @@ const activeSidebarItem = computed(() => (activeCategory.value === 'all' ? scrol
         <div v-if="activeCategory === 'all' && !searchQuery && activeRegion === 'all'" class="checker-section">
           <div class="checker-section-header">
             <VaIcon name="star" color="warning" size="17px" />
-            <h2 class="checker-section-title">快速体检入口</h2>
-            <span class="checker-section-badge">免费直达</span>
+            <h2 class="checker-section-title">Quick check</h2>
+            <span class="checker-section-badge">Free, direct</span>
           </div>
           <div class="checker-featured-grid">
             <div
@@ -315,13 +315,13 @@ const activeSidebarItem = computed(() => (activeCategory.value === 'all' ? scrol
                   <h3 class="checker-featured-name">{{ tool.name }}</h3>
                   <div class="checker-featured-badges">
                     <span v-if="tool.badge" class="checker-badge checker-badge-highlight">{{ tool.badge }}</span>
-                    <span v-if="tool.isFree" class="checker-badge checker-badge-free">免费</span>
-                    <span v-else-if="tool.hasFreeplan" class="checker-badge checker-badge-freeplan">含免费版</span>
+                    <span v-if="tool.isFree" class="checker-badge checker-badge-free">Free</span>
+                    <span v-else-if="tool.hasFreeplan" class="checker-badge checker-badge-freeplan">Has Free Tier</span>
                     <span
                       class="checker-badge"
                       :class="tool.region === 'cn' ? 'checker-badge-cn' : 'checker-badge-global'"
                     >
-                      {{ tool.region === 'cn' ? '🇨🇳 国内' : '🌍 国际' }}
+                      {{ tool.region === 'cn' ? '🇨🇳 China' : '🌍 Global' }}
                     </span>
                   </div>
                 </div>
@@ -346,7 +346,7 @@ const activeSidebarItem = computed(() => (activeCategory.value === 'all' ? scrol
         <div class="checker-result-bar">
           <span class="checker-result-count">
             <VaIcon name="format_list_bulleted" size="13px" />
-            找到 <strong>{{ filteredTools.length }}</strong> 个工具
+            Found <strong>{{ filteredTools.length }}</strong> tools
           </span>
           <button
             v-if="searchQuery || showFreeOnly || activeRegion !== 'all'"
@@ -354,15 +354,15 @@ const activeSidebarItem = computed(() => (activeCategory.value === 'all' ? scrol
             @click="clearFilters"
           >
             <VaIcon name="close" size="12px" />
-            清除筛选
+            Clear filters
           </button>
         </div>
 
         <!-- ── 空状态 ─── -->
         <div v-if="filteredTools.length === 0" class="checker-empty">
           <VaIcon name="search_off" size="50px" color="secondary" />
-          <p>没有找到匹配的工具，试试其他关键词</p>
-          <VaButton preset="secondary" size="small" @click="clearFilters">清除所有筛选</VaButton>
+          <p>No matching tools — try a different keyword</p>
+          <VaButton preset="secondary" size="small" @click="clearFilters">Clear all filters</VaButton>
         </div>
 
         <!-- ── 工具分层展示 ─── -->
@@ -386,7 +386,7 @@ const activeSidebarItem = computed(() => (activeCategory.value === 'all' ? scrol
               </div>
             </div>
             <span class="checker-cat-count" :style="{ background: group.color + '18', color: group.color }">
-              {{ group.tools.length }} 个工具
+              {{ group.tools.length }} tools
             </span>
           </div>
 
@@ -407,8 +407,8 @@ const activeSidebarItem = computed(() => (activeCategory.value === 'all' ? scrol
                 </div>
                 <div class="checker-tool-badges">
                   <span v-if="tool.badge" class="checker-badge checker-badge-highlight">{{ tool.badge }}</span>
-                  <span v-if="tool.isFree" class="checker-badge checker-badge-free">免费</span>
-                  <span v-else-if="tool.hasFreeplan" class="checker-badge checker-badge-freeplan">含免费</span>
+                  <span v-if="tool.isFree" class="checker-badge checker-badge-free">Free</span>
+                  <span v-else-if="tool.hasFreeplan" class="checker-badge checker-badge-freeplan">Has Free</span>
                   <span v-if="tool.hasApi" class="checker-badge checker-badge-api">API</span>
                   <span
                     class="checker-badge"
@@ -439,7 +439,7 @@ const activeSidebarItem = computed(() => (activeCategory.value === 'all' ? scrol
                   <span v-if="tool.pricing" class="checker-pricing-inline">{{ tool.pricing }}</span>
                   <div class="checker-tool-visit">
                     <VaIcon name="open_in_new" size="11px" />
-                    <span>访问</span>
+                    <span>Visit</span>
                   </div>
                 </div>
               </div>
@@ -451,55 +451,55 @@ const activeSidebarItem = computed(() => (activeCategory.value === 'all' ? scrol
         <div class="checker-tips-section">
           <div class="checker-tips-header">
             <VaIcon name="lightbulb" color="warning" size="17px" />
-            <h2 class="checker-section-title">体检后如何提升 AI 可见度？</h2>
+            <h2 class="checker-section-title">How to improve AI visibility after a check</h2>
           </div>
           <div class="checker-tips-grid">
             <div class="checker-tip-card">
               <div class="checker-tip-emoji">🔍</div>
-              <h3>第一步：免费体检基线</h3>
+              <h3>Step 1: Free baseline check</h3>
               <p>
-                用 <strong>透镜 GEO</strong>（国内）或 <strong>AppearOnAI</strong>（国际）免费获取品牌 AI
-                可见度基线报告，确认是否被主流 AI 引擎提及。
+                Use <strong>Lens GEO</strong> (China) or <strong>AppearOnAI</strong> (global, free) to get a baseline AI
+                visibility report and confirm whether major AI engines mention your brand.
               </p>
             </div>
             <div class="checker-tip-card">
               <div class="checker-tip-emoji">📄</div>
-              <h3>第二步：添加 llms.txt</h3>
+              <h3>Step 2: Add llms.txt</h3>
               <p>
-                使用 <strong>LLMs.txt 生成器</strong> 为网站创建 llms.txt 文件，主动告知 AI 爬虫网站核心内容，这是提升
-                AI 可见度的最基础步骤。
+                Use <strong>an llms.txt generator</strong> to create an llms.txt file that tells AI crawlers your site’s
+                core content — the most basic step toward better AI visibility.
               </p>
             </div>
             <div class="checker-tip-card">
               <div class="checker-tip-emoji">🏗️</div>
-              <h3>第三步：结构化数据</h3>
+              <h3>Step 3: Structured data</h3>
               <p>
-                为重要页面添加 JSON-LD Schema（Article、FAQ、Organization），用
-                <strong>Google Rich Results Test</strong> 验证，帮助 AI 引擎准确理解内容实体。
+                Add JSON-LD Schema (Article, FAQ, Organization) to important pages and validate with
+                <strong>the Google Rich Results Test</strong> to help AI engines understand your entities.
               </p>
             </div>
             <div class="checker-tip-card">
               <div class="checker-tip-emoji">✍️</div>
-              <h3>第四步：优化内容质量</h3>
+              <h3>Step 4: Improve content quality</h3>
               <p>
-                在内容中加入<strong>统计数据</strong>、<strong>FAQ 格式</strong>、<strong>权威引用</strong>，使用
-                <strong>Frase.io</strong> 分析 AI 引用的内容模式，大幅提升被引用概率。
+                Add <strong>statistics</strong>, <strong>FAQ format</strong> and <strong>authoritative citations</strong>,
+                and use <strong>Frase.io</strong> to analyze the content patterns AI cites — greatly raising citation odds.
               </p>
             </div>
             <div class="checker-tip-card">
               <div class="checker-tip-emoji">📊</div>
-              <h3>第五步：持续监测</h3>
+              <h3>Step 5: Monitor continuously</h3>
               <p>
-                国内用户选 <strong>SheepGeo</strong>（9大模型）或 <strong>ImpetaAI</strong>（50+指标）；国际用户选
-                <strong>Otterly.AI</strong>（$29/月）进行持续追踪，建立复访习惯。
+                For China, choose <strong>SheepGeo</strong> (9 models) or <strong>ImpetaAI</strong> (50+ metrics); for
+                global, choose <strong>Otterly.AI</strong> ($29/mo) for ongoing tracking and a re-check habit.
               </p>
             </div>
             <div class="checker-tip-card">
               <div class="checker-tip-emoji">🔄</div>
-              <h3>每月复查进度</h3>
+              <h3>Step 6: Re-check monthly</h3>
               <p>
-                AI
-                引擎每月更新模型和训练数据，建议<strong>每月一次</strong>用免费工具复查品牌可见度，追踪优化效果，及时调整策略。
+                AI engines update their models and training data monthly, so re-check your visibility with free tools
+                <strong>monthly</strong> to track results and adjust your strategy in time.
               </p>
             </div>
           </div>
