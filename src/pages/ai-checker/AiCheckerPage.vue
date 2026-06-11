@@ -8,6 +8,7 @@ import {
   type AiCheckerCategory,
 } from '../../data/ai-checker-tools'
 import { usePageSeo } from '../../composables/usePageSeo'
+import ToolFavicon from '../../components/ToolFavicon.vue'
 
 usePageSeo({
   title: 'AI Visibility Checker — Analyze AI Citations of Your Content',
@@ -303,10 +304,11 @@ const activeSidebarItem = computed(() => (activeCategory.value === 'all' ? scrol
                   borderColor: (getToolCategory(tool)?.color || '#10B981') + '3a',
                 }"
               >
-                <VaIcon
-                  :name="getToolCategory(tool)?.icon || 'health_and_safety'"
-                  :style="{ color: getToolCategory(tool)?.color || '#10B981' }"
-                  size="22px"
+                <ToolFavicon
+                  :url="tool.url"
+                  :fallback-icon="getToolCategory(tool)?.icon || 'health_and_safety'"
+                  :fallback-color="getToolCategory(tool)?.color || '#10B981'"
+                  :size="22"
                 />
               </div>
               <div class="checker-featured-info">
@@ -405,10 +407,9 @@ const activeSidebarItem = computed(() => (activeCategory.value === 'all' ? scrol
                   class="checker-tool-icon"
                   :style="{ background: group.color + '14', borderColor: group.color + '35' }"
                 >
-                  <VaIcon :name="group.icon" :style="{ color: group.color }" size="17px" />
+                  <ToolFavicon :url="tool.url" :fallback-icon="group.icon" :fallback-color="group.color" :size="17" />
                 </div>
-                <div class="checker-tool-badges">
-                  <span v-if="tool.badge" class="checker-badge checker-badge-highlight">{{ tool.badge }}</span>
+                <div class="checker-tool-badges">                  <span v-if="tool.badge" class="checker-badge checker-badge-highlight">{{ tool.badge }}</span>
                   <span v-if="tool.isFree" class="checker-badge checker-badge-free">Free</span>
                   <span v-else-if="tool.hasFreeplan" class="checker-badge checker-badge-freeplan">Has Free</span>
                   <span v-if="tool.hasApi" class="checker-badge checker-badge-api">API</span>

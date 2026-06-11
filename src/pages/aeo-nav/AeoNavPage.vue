@@ -2,6 +2,7 @@
 import { ref, computed, onMounted, onUnmounted } from 'vue'
 import { aeoCategories, allAeoTools, featuredAeoTools, type AeoTool, type AeoCategory } from '../../data/aeo-tools'
 import { usePageSeo } from '../../composables/usePageSeo'
+import ToolFavicon from '../../components/ToolFavicon.vue'
 
 usePageSeo({
   title: 'AEO Tools Directory — Answer Engine Optimization Tools',
@@ -303,10 +304,11 @@ const activeSidebarItem = computed(() => (activeCategory.value === 'all' ? scrol
                 }"
               >
                 <span class="aeo-icon-wrap">
-                  <VaIcon
-                    :name="getToolCategory(tool)?.icon || 'question_answer'"
-                    :color="getCategoryColor(getToolCategory(tool)?.id || '')"
-                    size="22px"
+                  <ToolFavicon
+                    :url="tool.url"
+                    :fallback-icon="getToolCategory(tool)?.icon || 'question_answer'"
+                    :fallback-color="getCategoryColor(getToolCategory(tool)?.id || '')"
+                    :size="22"
                   />
                 </span>
               </div>
@@ -397,7 +399,7 @@ const activeSidebarItem = computed(() => (activeCategory.value === 'all' ? scrol
               <div class="aeo-tool-top">
                 <div class="aeo-tool-icon" :style="{ background: group.color + '14', borderColor: group.color + '35' }">
                   <span class="aeo-icon-wrap"
-                    ><VaIcon :name="group.icon" :style="{ color: group.color }" size="17px"
+                    ><ToolFavicon :url="tool.url" :fallback-icon="group.icon" :fallback-color="group.color" :size="17"
                   /></span>
                 </div>
                 <div class="aeo-tool-badges">
