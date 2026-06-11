@@ -95,7 +95,7 @@ const categoryMeta: Record<string, { label: string; color: string; icon: string 
 watch(tutorial, (t) => {
   if (!t) return
   const canonicalUrl = `https://sgaindex.com/tutorials/${t.slug || t.id}`
-  const fullTitle = `${t.title} | SGAIndex教程`
+  const fullTitle = `${t.title} | SGAIndex Tutorials`
   document.title = fullTitle
   const setMeta = (name: string, content: string, attr = 'name') => {
     let el = document.querySelector(`meta[${attr}="${name}"]`) as HTMLMetaElement | null

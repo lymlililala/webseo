@@ -46,7 +46,7 @@ function linkifyText(text: string, used: Set<string>, counter: { n: number }, ma
     if (!href) return match
     used.add(key)
     counter.n++
-    return `<a href="${href}" class="glossary-autolink" title="查看术语解释">${match}</a>`
+    return `<a href="${href}" class="glossary-autolink" title="View term definition">${match}</a>`
   })
 }
 
