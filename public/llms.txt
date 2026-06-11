@@ -1,26 +1,26 @@
 # SGAIndex
 
-> AI时代的SEO与GEO工具导航平台，收录SEO、GEO（生成式引擎优化）、AEO（答案引擎优化）、Schema结构化数据工具，帮助网站在Google搜索和ChatGPT、Perplexity等AI引擎中获得更好的可见性。
+> A tools directory for the AI search era — curated SEO, GEO (Generative Engine Optimization), AEO (Answer Engine Optimization) and Schema structured-data tools to help your site gain better visibility in Google and AI engines like ChatGPT and Perplexity.
 
-## 核心工具导航
+## Core tool directories
 
-- [SEO工具导航](https://sgaindex.com/seo-nav): 收录100+主流SEO工具，涵盖综合平台、关键词研究、外链分析、技术SEO、本地SEO等分类
-- [GEO工具导航](https://sgaindex.com/geo-nav): 生成式引擎优化工具集合，帮助网站内容被ChatGPT、Perplexity、Gemini等AI引用
-- [AEO工具导航](https://sgaindex.com/aeo-nav): 答案引擎优化工具，优化内容结构以获得精选摘要、AI直接答案展示
-- [Schema结构化数据工具](https://sgaindex.com/schema-generator): Schema标记生成器与验证工具，支持Article、FAQ、Product、HowTo等20+类型
+- [SEO Tools Directory](https://sgaindex.com/seo-nav): 100+ curated SEO tools across all-in-one platforms, keyword research, backlink analysis, technical SEO and local SEO
+- [GEO Tools Directory](https://sgaindex.com/geo-nav): Generative Engine Optimization tools that help your content get cited by ChatGPT, Perplexity, Gemini and other AI engines
+- [AEO Tools Directory](https://sgaindex.com/aeo-nav): Answer Engine Optimization tools that structure content for featured snippets and direct AI answers
+- [Schema Structured Data Tools](https://sgaindex.com/schema-generator): Schema markup generators and validators supporting Article, FAQ, Product, HowTo and 20+ types
 
-## AI优化专题
+## AI optimization
 
-- [AI可见性检测](https://sgaindex.com/ai-checker): 检测网站内容在主流AI大模型中的引用和可见性表现
-- [llms.txt工具导航](https://sgaindex.com/llms-txt): llms.txt生成器、验证器、模板库，帮助网站建立AI可读的语义索引文件
+- [AI Visibility Checker](https://sgaindex.com/ai-checker): Check how your content is cited and how visible it is across major AI models
+- [llms.txt Tools](https://sgaindex.com/llms-txt): llms.txt generators, validators and templates to build an AI-readable semantic index file
 
-## 知识内容
+## Knowledge
 
-- [SEO文章](https://sgaindex.com/articles): AI时代SEO深度文章，涵盖GEO、AEO、LLM优化等前沿话题
-- [SEO教程](https://sgaindex.com/tutorials): 从基础到进阶的SEO操作教程，适合各层级从业者
-- [SEO资讯](https://sgaindex.com/news): 搜索引擎与AI引擎的最新动态和算法更新
-- [SEO词汇表](https://sgaindex.com/glossary): SEO/GEO/AEO专业术语中英对照解释
+- [Articles](https://sgaindex.com/articles): In-depth SEO articles for the AI era, covering GEO, AEO, LLM optimization and more
+- [Tutorials](https://sgaindex.com/tutorials): SEO tutorials from beginner to advanced, for practitioners at every level
+- [News](https://sgaindex.com/news): The latest updates and algorithm changes across search and AI engines
+- [Glossary](https://sgaindex.com/glossary): SEO/GEO/AEO terms explained
 
 ## Optional
 
-- [常见问题](https://sgaindex.com/faq): SEO与AI优化常见问题解答
+- [FAQ](https://sgaindex.com/faq): Common questions about SEO and AI optimization
