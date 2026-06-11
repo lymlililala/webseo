@@ -167,6 +167,7 @@ const activeSidebarItem = computed(() => (activeCategory.value === 'all' ? scrol
           <VaInput
             v-model="searchQuery"
             placeholder="Search tools by name, feature or tag..."
+            aria-label="Search GEO tools"
             class="geo-search-input"
             clearable
           >
@@ -1339,7 +1340,6 @@ const activeSidebarItem = computed(() => (activeCategory.value === 'all' ? scrol
   -webkit-box-orient: vertical;
   overflow: hidden;
   text-overflow: ellipsis;
-  flex: 1;
 }
 
 /* GitHub block */

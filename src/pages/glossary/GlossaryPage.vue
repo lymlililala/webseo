@@ -166,6 +166,7 @@ const hasFilter = computed(() => searchQuery.value || activeCategory.value !== '
           <VaInput
             v-model="searchQuery"
             placeholder="Search terms, names or definitions..."
+            aria-label="Search glossary terms"
             class="glossary-search-input"
             clearable
             @update:modelValue="activeLetter = ''"
