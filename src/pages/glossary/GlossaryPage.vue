@@ -148,24 +148,24 @@ const hasFilter = computed(() => searchQuery.value || activeCategory.value !== '
       <div class="glossary-hero-content">
         <div class="glossary-hero-badge">
           <VaIcon name="menu_book" size="14px" />
-          <span>AI SEO 词汇表 · {{ totalCount }}+ 术语</span>
+          <span>AI SEO Glossary · {{ totalCount }}+ terms</span>
         </div>
         <h1 class="glossary-hero-title">
-          AI SEO 完整词汇表<br />
-          <span class="glossary-hero-accent">GEO · AEO · LLMO & 更多</span>
+          The complete AI SEO glossary<br />
+          <span class="glossary-hero-accent">GEO · AEO · LLMO & more</span>
         </h1>
         <p class="glossary-hero-subtitle">
-          涵盖 <strong>{{ totalCount }}+</strong> 个核心术语，5 大分类覆盖 <strong>AI 搜索优化</strong>、<strong
-            >传统 SEO 基础</strong
-          >、<strong>LLM 技术</strong
-          >、<strong>结构化数据</strong>和<strong>监测指标</strong>，是全站文章内链的中转枢纽。
+          Covering <strong>{{ totalCount }}+</strong> core terms across 5 categories — <strong>AI Search Optimization</strong>、<strong
+            >Traditional SEO</strong
+          >、<strong>LLM Tech</strong
+          >、<strong>Structured Data</strong> and <strong>Metrics</strong> — the internal-linking hub for the whole site.
         </p>
 
         <!-- 搜索框 -->
         <div class="glossary-search-wrap">
           <VaInput
             v-model="searchQuery"
-            placeholder="搜索术语、中文名、定义关键词..."
+            placeholder="Search terms, names or definitions..."
             class="glossary-search-input"
             clearable
             @update:modelValue="activeLetter = ''"
@@ -192,11 +192,11 @@ const hasFilter = computed(() => searchQuery.value || activeCategory.value !== '
       <aside class="glossary-sidebar">
         <div class="glossary-sidebar-inner">
           <!-- 分类 -->
-          <div class="glossary-sidebar-section-title">按分类浏览</div>
+          <div class="glossary-sidebar-section-title">Browse by category</div>
 
           <button class="glossary-cat-btn" :class="{ active: activeCategory === 'all' }" @click="selectCategory('all')">
             <VaIcon name="apps" size="14px" />
-            <span>全部术语</span>
+            <span>All terms</span>
             <span class="glossary-cat-count">{{ totalCount }}</span>
           </button>
 
@@ -215,8 +215,8 @@ const hasFilter = computed(() => searchQuery.value || activeCategory.value !== '
 
           <div class="glossary-sidebar-div" />
 
-          <!-- 字母索引 -->
-          <div class="glossary-sidebar-section-title">字母索引</div>
+          <!-- Alphabetical index -->
+          <div class="glossary-sidebar-section-title">Alphabetical index</div>
           <div class="glossary-alphabet-grid">
             <button
               v-for="letter in alphabet"
@@ -241,19 +241,19 @@ const hasFilter = computed(() => searchQuery.value || activeCategory.value !== '
         <div class="glossary-result-bar">
           <span class="glossary-result-count">
             <VaIcon name="format_list_bulleted" size="13px" />
-            显示 <strong>{{ filteredTerms.length }}</strong> / {{ totalCount }} 个术语
+            Showing <strong>{{ filteredTerms.length }}</strong> / {{ totalCount }} terms
           </span>
           <button v-if="hasFilter" class="glossary-clear-btn" @click="clearFilters">
             <VaIcon name="close" size="12px" />
-            清除筛选
+            Clear filters
           </button>
         </div>
 
         <!-- 空状态 -->
         <div v-if="filteredTerms.length === 0" class="glossary-empty">
           <VaIcon name="search_off" size="50px" color="secondary" />
-          <p>没有找到匹配的术语</p>
-          <VaButton preset="secondary" size="small" @click="clearFilters">清除筛选</VaButton>
+          <p>No matching terms</p>
+          <VaButton preset="secondary" size="small" @click="clearFilters">Clear filters</VaButton>
         </div>
 
         <!-- 术语分组 -->
@@ -310,7 +310,7 @@ const hasFilter = computed(() => searchQuery.value || activeCategory.value !== '
                 <!-- 内链跳转按钮 -->
                 <button v-if="term.link" class="glossary-term-link-btn" @click.stop="navigateTo(term.link!)">
                   <VaIcon name="open_in_new" size="12px" />
-                  查看工具
+                  View tool
                 </button>
               </div>
 
@@ -325,7 +325,7 @@ const hasFilter = computed(() => searchQuery.value || activeCategory.value !== '
 
               <!-- 相关术语 -->
               <div v-if="term.related.length" class="glossary-term-related">
-                <span class="glossary-related-label">相关：</span>
+                <span class="glossary-related-label">Related:</span>
                 <button
                   v-for="relId in term.related"
                   :key="relId"
@@ -342,9 +342,9 @@ const hasFilter = computed(() => searchQuery.value || activeCategory.value !== '
         <!-- 底部提交入口 -->
         <div class="glossary-footer-cta">
           <VaIcon name="add_circle_outline" size="18px" color="primary" />
-          <span>没找到你要的术语？</span>
-          <a href="mailto:suggest@aiskillnav.com?subject=建议添加术语" class="glossary-submit-link"> 提交新词 → </a>
-          <span class="glossary-footer-meta">最后更新：2026年5月 · 共 {{ totalCount }} 个术语</span>
+          <span>Can’t find the term you need?</span>
+          <a href="mailto:suggest@aiskillnav.com?subject=Suggest a glossary term" class="glossary-submit-link"> Suggest a term → </a>
+          <span class="glossary-footer-meta">Last updated: May 2026 · {{ totalCount }} terms</span>
         </div>
       </main>
     </div>
