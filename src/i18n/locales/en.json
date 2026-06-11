@@ -1,4 +1,7 @@
 {
+  "nav": {
+    "section": "Navigation"
+  },
   "auth": {
     "agree": "I agree to",
     "createAccount": "Create account",

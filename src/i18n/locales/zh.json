@@ -1,4 +1,7 @@
 {
+  "nav": {
+    "section": "导航"
+  },
   "auth": {
     "agree": "我同意",
     "createAccount": "创建账号",
