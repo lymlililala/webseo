@@ -8,39 +8,23 @@
 </template>
 <script lang="ts" setup>
 import { computed } from 'vue'
+import { currentLocale, setLocale, type AppLocale } from '../../../i18n/useLocale'
 
-import { useI18n } from 'vue-i18n'
-
-type LanguageMap = Record<string, string>
-
-const { locale } = useI18n()
-
-const languages: LanguageMap = {
-  english: 'English',
-  spanish: 'Spanish',
-  brazilian_portuguese: 'Português',
-  simplified_chinese: 'Simplified Chinese',
-  persian: 'Persian',
+const labels: Record<AppLocale, string> = {
+  en: 'English',
+  zh: '简体中文',
 }
+const byLabel: Record<string, AppLocale> = { English: 'en', 简体中文: 'zh' }
 
-const languageCodes: LanguageMap = {
-  gb: languages.english,
-  es: languages.spanish,
-  br: languages.brazilian_portuguese,
-  cn: languages.simplified_chinese,
-  ir: languages.persian,
-}
-
-const languageName: LanguageMap = Object.fromEntries(Object.entries(languageCodes).map(([key, value]) => [value, key]))
-
-const options = Object.values(languageCodes)
+const options = Object.values(labels)
 
 const model = computed({
   get() {
-    return languageCodes[locale.value]
+    return labels[currentLocale()]
   },
-  set(value) {
-    locale.value = languageName[value]
+  set(value: string) {
+    const loc = byLabel[value]
+    if (loc) setLocale(loc)
   },
 })
 </script>

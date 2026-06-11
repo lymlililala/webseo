@@ -1,13 +1,13 @@
 <template>
   <VaSidebar v-model="writableVisible" :width="sidebarWidth" :color="color" minimized-width="0" class="app-sidebar">
     <!-- 导航分组标题 -->
-    <div class="sidebar-section-label">导航</div>
+    <div class="sidebar-section-label">{{ t('nav.section') }}</div>
 
     <VaAccordion v-model="value" multiple>
       <VaCollapse v-for="(route, index) in navigationRoutes.routes" :key="index">
         <template #header="{ value: isCollapsed }">
           <VaSidebarItem
-            :to="route.children ? undefined : { name: route.name }"
+            :to="route.children ? undefined : localePath('/' + route.name)"
             :active="routeHasActiveChild(route)"
             :active-color="activeColor"
             :text-color="textColor(route)"
@@ -33,7 +33,7 @@
         <template #body>
           <div v-for="(childRoute, index2) in route.children" :key="index2">
             <VaSidebarItem
-              :to="{ name: childRoute.name }"
+              :to="localePath('/' + childRoute.name)"
               :active="isActiveChildRoute(childRoute)"
               :active-color="activeColor"
               :text-color="textColor(childRoute)"
@@ -61,6 +61,7 @@ import { useI18n } from 'vue-i18n'
 import { useColors } from 'vuestic-ui'
 
 import navigationRoutes, { type INavigationRoute } from './NavigationRoutes'
+import { localePath } from '../../i18n/useLocale'
 
 export default defineComponent({
   name: 'Sidebar',
@@ -82,7 +83,7 @@ export default defineComponent({
       set: (v: boolean) => emit('update:visible', v),
     })
 
-    const isActiveChildRoute = (child: INavigationRoute) => route.name === child.name
+    const isActiveChildRoute = (child: INavigationRoute) => route.path.endsWith(`/${child.name}`)
 
     const routeHasActiveChild = (section: INavigationRoute) => {
       if (!section.children) {
@@ -118,6 +119,7 @@ export default defineComponent({
       iconColor,
       textColor,
       arrowDirection,
+      localePath,
     }
   },
 })
