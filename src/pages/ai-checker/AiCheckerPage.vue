@@ -79,10 +79,6 @@ const cnToolsCount = computed(() => allAiCheckerTools.filter((t) => t.region ===
 const globalToolsCount = computed(() => allAiCheckerTools.filter((t) => t.region === 'global').length)
 const freeCount = computed(() => allAiCheckerTools.filter((t) => t.isFree || t.hasFreeplan).length)
 
-function openTool(url: string) {
-  window.open(url, '_blank', 'noopener,noreferrer')
-}
-
 function getToolCategory(tool: AiCheckerTool): AiCheckerCategory | undefined {
   return aiCheckerCategories.find((c) => c.tools.some((t) => t.id === tool.id))
 }
@@ -291,11 +287,14 @@ const activeSidebarItem = computed(() => (activeCategory.value === 'all' ? scrol
             <span class="checker-section-badge">Free, direct</span>
           </div>
           <div class="checker-featured-grid">
-            <div
+            <a
               v-for="tool in featuredAiCheckerTools"
               :key="tool.id"
+              :href="tool.url"
+              target="_blank"
+              rel="noopener noreferrer"
               class="checker-featured-card"
-              @click="openTool(tool.url)"
+              :aria-label="`Visit ${tool.name} (opens in a new tab)`"
             >
               <div
                 class="checker-featured-icon"
@@ -338,7 +337,7 @@ const activeSidebarItem = computed(() => (activeCategory.value === 'all' ? scrol
                 </div>
               </div>
               <VaIcon name="open_in_new" size="14px" class="checker-featured-arrow" />
-            </div>
+            </a>
           </div>
         </div>
 
@@ -391,12 +390,15 @@ const activeSidebarItem = computed(() => (activeCategory.value === 'all' ? scrol
           </div>
 
           <div class="checker-tools-grid">
-            <div
+            <a
               v-for="tool in group.tools"
               :key="tool.id"
+              :href="tool.url"
+              target="_blank"
+              rel="noopener noreferrer"
               class="checker-tool-card"
               :style="{ '--tool-color': group.color }"
-              @click="openTool(tool.url)"
+              :aria-label="`Visit ${tool.name} (opens in a new tab)`"
             >
               <div class="checker-tool-top">
                 <div
@@ -443,7 +445,7 @@ const activeSidebarItem = computed(() => (activeCategory.value === 'all' ? scrol
                   </div>
                 </div>
               </div>
-            </div>
+            </a>
           </div>
         </div>
 
@@ -925,6 +927,13 @@ const activeSidebarItem = computed(() => (activeCategory.value === 'all' ? scrol
   border-radius: 11px;
   cursor: pointer;
   transition: all 0.2s ease;
+  text-decoration: none;
+  color: inherit;
+}
+.checker-featured-card:focus-visible,
+.checker-tool-card:focus-visible {
+  outline: 2px solid var(--va-primary);
+  outline-offset: 2px;
 }
 
 .checker-featured-card:hover {
@@ -1149,6 +1158,8 @@ const activeSidebarItem = computed(() => (activeCategory.value === 'all' ? scrol
   display: flex;
   flex-direction: column;
   gap: 7px;
+  text-decoration: none;
+  color: inherit;
 }
 
 .checker-tool-card:hover {
