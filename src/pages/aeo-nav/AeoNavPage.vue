@@ -286,7 +286,15 @@ const activeSidebarItem = computed(() => (activeCategory.value === 'all' ? scrol
             <span class="aeo-section-badge">Editor’s choice</span>
           </div>
           <div class="aeo-featured-grid">
-            <div v-for="tool in featuredAeoTools" :key="tool.id" class="aeo-featured-card" @click="openTool(tool.url)">
+            <a
+              v-for="tool in featuredAeoTools"
+              :key="tool.id"
+              :href="tool.url"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="aeo-featured-card"
+              :aria-label="`Visit ${tool.name} (opens in a new tab)`"
+            >
               <div
                 class="aeo-featured-icon"
                 :style="{
@@ -332,7 +340,7 @@ const activeSidebarItem = computed(() => (activeCategory.value === 'all' ? scrol
                 </div>
               </div>
               <VaIcon name="open_in_new" size="14px" class="aeo-featured-arrow" />
-            </div>
+            </a>
           </div>
         </div>
 
@@ -401,7 +409,16 @@ const activeSidebarItem = computed(() => (activeCategory.value === 'all' ? scrol
               </div>
 
               <!-- Name -->
-              <h3 class="aeo-tool-name">{{ tool.name }}</h3>
+              <a
+                :href="tool.url"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="aeo-tool-name-link"
+                :aria-label="`Visit ${tool.name} (opens in a new tab)`"
+                @click.stop
+              >
+                <h3 class="aeo-tool-name">{{ tool.name }}</h3>
+              </a>
               <p v-if="tool.nameEn && tool.nameEn !== tool.name" class="aeo-tool-name-en">{{ tool.nameEn }}</p>
 
               <!-- Highlights -->
@@ -419,7 +436,9 @@ const activeSidebarItem = computed(() => (activeCategory.value === 'all' ? scrol
                 <a
                   :href="`https://github.com/${tool.github.repo}`"
                   class="aeo-github-link"
-                  @click.stop="openTool(`https://github.com/${tool.github.repo}`)"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  @click.stop
                 >
                   <svg width="12" height="12" viewBox="0 0 16 16" fill="currentColor">
                     <path
@@ -915,6 +934,25 @@ const activeSidebarItem = computed(() => (activeCategory.value === 'all' ? scrol
   transition: all 0.25s ease;
   position: relative;
   box-shadow: 0 1px 4px rgba(0, 0, 0, 0.05);
+  text-decoration: none;
+  color: inherit;
+}
+.aeo-featured-card:focus-visible {
+  outline: 2px solid var(--va-primary);
+  outline-offset: 2px;
+}
+.aeo-tool-name-link {
+  text-decoration: none;
+  color: inherit;
+  display: inline-block;
+}
+.aeo-tool-name-link:hover .aeo-tool-name {
+  color: var(--tool-color, var(--va-primary));
+}
+.aeo-tool-name-link:focus-visible {
+  outline: 2px solid var(--va-primary);
+  outline-offset: 2px;
+  border-radius: 4px;
 }
 
 .aeo-featured-card:hover {
