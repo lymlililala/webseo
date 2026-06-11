@@ -36,12 +36,12 @@ export const schemaTools: SchemaTool[] = [
     id: 'merkle',
     name: 'Merkle Schema Generator',
     url: 'https://technicalseo.com/tools/schema-markup-generator/',
-    description: '最受站长欢迎的免费 Schema 生成器，支持 20+ 类型，界面清晰，无需注册即可生成标准 JSON-LD 代码。',
-    highlights: ['免费无需注册', '20+ Schema类型', '即时生成JSON-LD'],
-    tags: ['全能', '免费', 'JSON-LD'],
+    description: 'The most popular free Schema generator — supports 20+ types with a clean UI and standard JSON-LD, no signup required.',
+    highlights: ['Free, No Signup', '20+ Schema Types', 'Instant JSON-LD'],
+    tags: ['All-Purpose', 'Free', 'JSON-LD'],
     isFree: true,
     level: 'beginner',
-    badge: '站长首选',
+    badge: 'Top Pick',
     supportedTypes: [
       'article',
       'faq',
@@ -61,26 +61,26 @@ export const schemaTools: SchemaTool[] = [
     name: 'Google Rich Results Test',
     url: 'https://search.google.com/test/rich-results',
     description:
-      'Google 官方出品的富结果验证工具，生成 Schema 代码后必须在此验证，确保符合 Google 索引标准并能获得富结果展示。',
-    highlights: ['Google官方', '验证富结果资格', '实时预览效果'],
-    tags: ['官方验证', 'Google', '免费'],
+      'Google’s official Rich Results Test — validate your Schema here to ensure it meets Google’s indexing standards and qualifies for rich results.',
+    highlights: ['Google Official', 'Validates Rich Results', 'Live Preview'],
+    tags: ['Official Validator', 'Google', 'Free'],
     isFree: true,
     isOfficial: true,
     level: 'beginner',
-    badge: '官方必备',
+    badge: 'Official Essential',
     supportedTypes: ['article', 'faq', 'product', 'breadcrumb', 'howto', 'video', 'recipe', 'review', 'event'],
   },
   {
     id: 'schema-org-validator',
     name: 'Schema.org Validator',
     url: 'https://validator.schema.org/',
-    description: 'Schema.org 官方权威验证器，检查结构化数据是否完全符合 Schema.org 规范，是合规性验证的最终标准。',
-    highlights: ['Schema.org官方', '合规性权威验证', '支持所有类型'],
-    tags: ['官方验证', 'Schema.org', '免费'],
+    description: 'Schema.org’s official validator — checks whether your structured data fully complies with the Schema.org spec; the final word on compliance.',
+    highlights: ['Schema.org Official', 'Authoritative Compliance Check', 'All Types Supported'],
+    tags: ['Official Validator', 'Schema.org', 'Free'],
     isFree: true,
     isOfficial: true,
     level: 'advanced',
-    badge: '权威验证',
+    badge: 'Authoritative',
     supportedTypes: [
       'article',
       'faq',
@@ -101,9 +101,9 @@ export const schemaTools: SchemaTool[] = [
     name: 'Saijo George JSON-LD',
     url: 'https://saijogeorge.com/json-ld-schema-generator/',
     description:
-      '极简快速的 JSON-LD 生成器，界面简洁直观，无需注册，覆盖常用 Schema 类型，适合需要快速生成代码的场景。',
-    highlights: ['极简快速', '无需注册', '界面直观'],
-    tags: ['快速', '免费', '简洁'],
+      'A minimal, fast JSON-LD generator with a clean, intuitive UI and no signup, covering common Schema types — ideal when you need code quickly.',
+    highlights: ['Minimal & Fast', 'No Signup', 'Intuitive UI'],
+    tags: ['Fast', 'Free', 'Simple'],
     isFree: true,
     level: 'beginner',
     supportedTypes: ['article', 'faq', 'howto', 'product', 'localbusiness', 'review', 'event', 'person'],
@@ -112,9 +112,9 @@ export const schemaTools: SchemaTool[] = [
     id: 'hall-analysis',
     name: 'Hall Analysis Article Schema',
     url: 'https://hallanalysis.com/json-ld-generator/',
-    description: '专注文章类 Schema 的精准生成器，字段覆盖完整，支持 Article、BlogPosting、NewsArticle 等文章子类型。',
-    highlights: ['文章类型专精', '子类型支持', '字段完整'],
-    tags: ['Article专项', '免费', '文章'],
+    description: 'A precise generator focused on article Schema with complete field coverage, supporting Article, BlogPosting, NewsArticle and other subtypes.',
+    highlights: ['Article-Focused', 'Subtype Support', 'Complete Fields'],
+    tags: ['Article-Specific', 'Free', 'Articles'],
     isFree: true,
     level: 'beginner',
     supportedTypes: ['article'],
@@ -124,21 +124,21 @@ export const schemaTools: SchemaTool[] = [
     name: 'Whitespark Local Schema',
     url: 'https://whitespark.ca/',
     description:
-      'Whitespark 专为本地商家打造的 LocalBusiness Schema 生成器，字段覆盖全面，支持营业时间、服务区域、联系方式等本地 SEO 关键字段。',
-    highlights: ['本地商家专精', '营业时间支持', '本地SEO必备'],
-    tags: ['LocalBusiness', '本地SEO', '免费'],
+      'Whitespark’s LocalBusiness Schema generator for local businesses, with thorough field coverage including opening hours, service area and contact info.',
+    highlights: ['Local-Business Focused', 'Opening Hours', 'Local SEO Essential'],
+    tags: ['LocalBusiness', 'Local SEO', 'Free'],
     isFree: true,
     level: 'beginner',
-    badge: '本地SEO推荐',
+    badge: 'Local SEO Pick',
     supportedTypes: ['localbusiness'],
   },
   {
     id: 'recipeschema',
     name: 'RecipeSchema.org',
     url: 'https://recipeschema.com/',
-    description: '专为食谱网站设计的 Recipe Schema 生成器，支持食材、步骤、烹饪时间、营养信息等所有食谱相关字段。',
-    highlights: ['食谱专属', '营养信息支持', '步骤结构化'],
-    tags: ['Recipe专项', '食谱', '免费'],
+    description: 'A Recipe Schema generator for recipe sites, supporting ingredients, steps, cook time, nutrition and all recipe-related fields.',
+    highlights: ['Recipe-Specific', 'Nutrition Info', 'Structured Steps'],
+    tags: ['Recipe-Specific', 'Recipes', 'Free'],
     isFree: true,
     level: 'beginner',
     supportedTypes: ['recipe'],
@@ -149,13 +149,13 @@ export const schemaTools: SchemaTool[] = [
     name: 'Schema App',
     url: 'https://schemaapp.com/',
     description:
-      '全自动企业级 Schema 管理平台，AI 自动识别页面类型并生成结构化数据，支持大规模网站批量部署，提供持续监测。',
-    highlights: ['AI自动识别', '企业级管理', '批量部署监测'],
-    tags: ['AI自动化', '企业级', '全自动'],
+      'A fully automated enterprise Schema platform — AI auto-detects page types and generates structured data, with bulk deployment for large sites and ongoing monitoring.',
+    highlights: ['AI Auto-Detection', 'Enterprise Management', 'Bulk Deploy & Monitor'],
+    tags: ['AI Automation', 'Enterprise', 'Fully Automated'],
     hasFreeplan: false,
-    pricing: '$99/月起',
+    pricing: 'From $99/mo',
     level: 'auto',
-    badge: '全自动',
+    badge: 'Fully Automated',
     supportedTypes: ['article', 'faq', 'product', 'breadcrumb', 'howto', 'video', 'localbusiness'],
   },
   {
@@ -163,11 +163,11 @@ export const schemaTools: SchemaTool[] = [
     name: 'WordLift',
     url: 'https://wordlift.io/',
     description:
-      'AI 驱动的内容知识图谱和 Schema 自动标注平台，能自动识别内容实体并生成结构化数据，同时构建网站知识图谱。',
-    highlights: ['AI实体识别', '知识图谱构建', '内容语义分析'],
-    tags: ['AI自动化', '知识图谱', '实体识别'],
+      'An AI-driven content knowledge-graph and Schema auto-tagging platform that detects content entities, generates structured data and builds a site knowledge graph.',
+    highlights: ['AI Entity Detection', 'Knowledge-Graph Building', 'Content Semantics'],
+    tags: ['AI Automation', 'Knowledge Graph', 'Entity Detection'],
     hasFreeplan: true,
-    pricing: '$49/月起',
+    pricing: 'From $49/mo',
     level: 'auto',
     supportedTypes: ['article', 'product', 'organization', 'person'],
   },
@@ -176,13 +176,13 @@ export const schemaTools: SchemaTool[] = [
     name: 'RankMath',
     url: 'https://rankmath.com/wordpress/plugin/seo-suite/',
     description:
-      'WordPress 最流行的 SEO 插件，内置 Schema 自动生成模块，支持 20+ 类型，根据页面内容智能推荐 Schema 类型，设置一次持续生效。',
-    highlights: ['WordPress专属', '智能推荐类型', '设置一次持续'],
-    tags: ['WordPress', 'AI辅助', '插件'],
+      'The most popular WordPress SEO plugin, with a built-in Schema module supporting 20+ types and smart type recommendations based on page content — set it once.',
+    highlights: ['WordPress-Specific', 'Smart Type Recommendation', 'Set Once'],
+    tags: ['WordPress', 'AI-Assisted', 'Plugin'],
     hasFreeplan: true,
-    pricing: '免费版 + Pro $59/年',
+    pricing: 'Free + Pro $59/yr',
     level: 'auto',
-    badge: 'WordPress推荐',
+    badge: 'WordPress Pick',
     supportedTypes: ['article', 'faq', 'product', 'breadcrumb', 'howto', 'video', 'localbusiness', 'review', 'recipe'],
   },
   {
@@ -190,11 +190,11 @@ export const schemaTools: SchemaTool[] = [
     name: 'Yoast SEO',
     url: 'https://yoast.com/wordpress/plugins/seo/',
     description:
-      'WordPress 老牌 SEO 插件，支持 Schema 自动生成，与 RankMath 并列为 WordPress 站长的两大首选，稳定可靠。',
-    highlights: ['WordPress老牌', '稳定可靠', '自动生成'],
-    tags: ['WordPress', 'Schema自动化', '插件'],
+      'A veteran WordPress SEO plugin with automatic Schema generation; alongside RankMath it’s a top choice for WordPress owners — stable and reliable.',
+    highlights: ['WordPress Veteran', 'Stable & Reliable', 'Auto-Generation'],
+    tags: ['WordPress', 'Schema Automation', 'Plugin'],
     hasFreeplan: true,
-    pricing: '免费版 + Premium €99/年',
+    pricing: 'Free + Premium €99/yr',
     level: 'auto',
     supportedTypes: ['article', 'faq', 'product', 'breadcrumb', 'howto', 'localbusiness'],
   },
@@ -209,21 +209,21 @@ export const schemaTypes: SchemaType[] = [
     color: '#6366F1',
     stars: 5,
     description:
-      '文章、博客文章、新闻资讯页面的结构化标注。帮助搜索引擎识别发布时间、作者、内容类型，是内容站 SEO 的基础配置。',
+      'Structured markup for articles, blog posts and news pages. Helps search engines identify publish date, author and content type — a foundation for content-site SEO.',
     jsonTemplate: `{
   "@context": "https://schema.org",
   "@type": "Article",
-  "headline": "你的文章标题",
-  "description": "文章摘要描述（150字以内）",
+  "headline": "Your article title",
+  "description": "Article summary (under 150 characters)",
   "image": "https://example.com/image.jpg",
   "author": {
     "@type": "Person",
-    "name": "作者姓名",
+    "name": "Author name",
     "url": "https://example.com/author"
   },
   "publisher": {
     "@type": "Organization",
-    "name": "网站名称",
+    "name": "Site name",
     "logo": {
       "@type": "ImageObject",
       "url": "https://example.com/logo.png"
@@ -237,10 +237,10 @@ export const schemaTypes: SchemaType[] = [
   }
 }`,
     requiredFields: [
-      { name: 'headline', desc: '文章标题（必填，建议50-60字符）' },
-      { name: 'author', desc: '作者信息，用 Person 或 Organization 类型' },
-      { name: 'datePublished', desc: '首次发布日期，ISO 8601 格式' },
-      { name: 'image', desc: '文章特色图片 URL，推荐尺寸 1200×628px' },
+      { name: 'headline', desc: 'Article title (required, ideally 50–60 characters)' },
+      { name: 'author', desc: 'Author info, using the Person or Organization type' },
+      { name: 'datePublished', desc: 'Original publish date, in ISO 8601 format' },
+      { name: 'image', desc: 'Article featured-image URL, recommended 1200×628px' },
     ],
     tools: ['merkle', 'hall-analysis', 'saijo-george'],
   },
@@ -251,37 +251,37 @@ export const schemaTypes: SchemaType[] = [
     color: '#10B981',
     stars: 5,
     description:
-      '常见问题页面的结构化标注，让 Google 在搜索结果中展示可展开的 Q&A，同时是 AI 引擎（ChatGPT、Perplexity）最容易直接引用的内容格式。',
+      'Structured markup for FAQ pages — shows expandable Q&A in Google results and is the format AI engines (ChatGPT, Perplexity) cite most directly.',
     aeoTip:
-      'FAQ Schema 是 AEO 优化最高效的手段之一，问答格式与 AI 搜索的"直接回答"需求完美匹配，能大幅提升被 AI 引用的概率。',
+      'FAQ Schema is one of the most effective AEO tactics — the Q&A format matches AI search’s “direct answer” needs perfectly and greatly raises citation odds.',
     internalLink: '/aeo-nav',
-    internalLinkLabel: '查看 AEO 优化工具 →',
+    internalLinkLabel: 'View AEO optimization tools →',
     jsonTemplate: `{
   "@context": "https://schema.org",
   "@type": "FAQPage",
   "mainEntity": [
     {
       "@type": "Question",
-      "name": "问题一？",
+      "name": "Question 1?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "问题一的详细回答内容，建议50-300字，直接回答问题。"
+        "text": "A detailed answer to question 1 (50–300 chars), answering directly."
       }
     },
     {
       "@type": "Question",
-      "name": "问题二？",
+      "name": "Question 2?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "问题二的详细回答内容。"
+        "text": "A detailed answer to question 2."
       }
     }
   ]
 }`,
     requiredFields: [
-      { name: 'mainEntity', desc: '问答列表数组，每项包含 Question 和 Answer' },
-      { name: 'name', desc: '问题文本（Question.name），建议使用真实用户问题' },
-      { name: 'acceptedAnswer.text', desc: '回答内容，纯文本，建议50-300字' },
+      { name: 'mainEntity', desc: 'An array of Q&A items, each with a Question and Answer' },
+      { name: 'name', desc: 'Question text (Question.name) — use real user questions' },
+      { name: 'acceptedAnswer.text', desc: 'Answer text, plain text, ideally 50–300 characters' },
     ],
     tools: ['saijo-george', 'merkle', 'google-rich-results'],
   },
@@ -291,16 +291,16 @@ export const schemaTypes: SchemaType[] = [
     icon: 'shopping_bag',
     color: '#F59E0B',
     stars: 5,
-    description: '商品页面的结构化标注，在搜索结果中展示价格、评分、库存状态等购物信息，大幅提升电商页面的点击率。',
+    description: 'Structured markup for product pages — shows price, rating and stock in results to boost e-commerce click-through.',
     jsonTemplate: `{
   "@context": "https://schema.org",
   "@type": "Product",
-  "name": "产品名称",
-  "description": "产品描述",
+  "name": "Product name",
+  "description": "Product description",
   "image": "https://example.com/product.jpg",
   "brand": {
     "@type": "Brand",
-    "name": "品牌名称"
+    "name": "Brand name"
   },
   "offers": {
     "@type": "Offer",
@@ -316,10 +316,10 @@ export const schemaTypes: SchemaType[] = [
   }
 }`,
     requiredFields: [
-      { name: 'name', desc: '产品名称（必填）' },
-      { name: 'offers', desc: '价格和可用性信息，使用 Offer 类型' },
-      { name: 'image', desc: '产品图片 URL' },
-      { name: 'aggregateRating', desc: '评分数据，需有真实评论支撑' },
+      { name: 'name', desc: 'Product name (required)' },
+      { name: 'offers', desc: 'Price and availability info, using the Offer type' },
+      { name: 'image', desc: 'Product image URL' },
+      { name: 'aggregateRating', desc: 'Rating data, backed by real reviews' },
     ],
     tools: ['merkle', 'google-rich-results'],
   },
@@ -330,7 +330,7 @@ export const schemaTypes: SchemaType[] = [
     color: '#8B5CF6',
     stars: 4,
     description:
-      '页面面包屑导航的结构化标注，让搜索结果中显示清晰的页面路径层级，提升用户对页面位置的认知，改善点击率。',
+      'Structured markup for breadcrumb navigation — shows a clear page-path hierarchy in results, improving orientation and click-through.',
     jsonTemplate: `{
   "@context": "https://schema.org",
   "@type": "BreadcrumbList",
@@ -338,28 +338,28 @@ export const schemaTypes: SchemaType[] = [
     {
       "@type": "ListItem",
       "position": 1,
-      "name": "首页",
+      "name": "Home",
       "item": "https://example.com/"
     },
     {
       "@type": "ListItem",
       "position": 2,
-      "name": "分类页",
+      "name": "Category",
       "item": "https://example.com/category/"
     },
     {
       "@type": "ListItem",
       "position": 3,
-      "name": "当前页面标题",
+      "name": "Current page title",
       "item": "https://example.com/category/page/"
     }
   ]
 }`,
     requiredFields: [
-      { name: 'itemListElement', desc: '面包屑层级数组，按层级顺序排列' },
-      { name: 'position', desc: '层级位置编号，从 1 开始' },
-      { name: 'name', desc: '该层级的页面名称' },
-      { name: 'item', desc: '该层级的页面 URL' },
+      { name: 'itemListElement', desc: 'Breadcrumb hierarchy array, in order' },
+      { name: 'position', desc: 'Position number, starting from 1' },
+      { name: 'name', desc: 'The page name at this level' },
+      { name: 'item', desc: 'The page URL at this level' },
     ],
     tools: ['merkle', 'saijo-george'],
   },
@@ -370,38 +370,38 @@ export const schemaTypes: SchemaType[] = [
     color: '#06B6D4',
     stars: 4,
     description:
-      '教程、操作指南类内容的结构化标注，在搜索结果中展示步骤列表，适合"如何做XX"类内容，能获得特殊富结果展示。',
+      'Structured markup for tutorials and how-to content — shows a step list in results, ideal for “how to X” content and eligible for special rich results.',
     jsonTemplate: `{
   "@context": "https://schema.org",
   "@type": "HowTo",
-  "name": "如何做XXX — 完整教程",
-  "description": "教程简介描述",
+  "name": "How to do X — full tutorial",
+  "description": "Tutorial summary",
   "totalTime": "PT30M",
   "step": [
     {
       "@type": "HowToStep",
       "position": 1,
-      "name": "第一步标题",
-      "text": "第一步的详细操作说明。"
+      "name": "Step 1 title",
+      "text": "Detailed instructions for step 1."
     },
     {
       "@type": "HowToStep",
       "position": 2,
-      "name": "第二步标题",
-      "text": "第二步的详细操作说明。"
+      "name": "Step 2 title",
+      "text": "Detailed instructions for step 2."
     },
     {
       "@type": "HowToStep",
       "position": 3,
-      "name": "第三步标题",
-      "text": "第三步的详细操作说明。"
+      "name": "Step 3 title",
+      "text": "Detailed instructions for step 3."
     }
   ]
 }`,
     requiredFields: [
-      { name: 'name', desc: '教程标题（必填）' },
-      { name: 'step', desc: 'HowToStep 数组，包含 position、name、text' },
-      { name: 'totalTime', desc: '预计总耗时，ISO 8601 时长格式（如 PT30M = 30分钟）' },
+      { name: 'name', desc: 'Tutorial title (required)' },
+      { name: 'step', desc: 'HowToStep array, each with position, name and text' },
+      { name: 'totalTime', desc: 'Estimated total time, ISO 8601 duration (e.g. PT30M = 30 min)' },
     ],
     tools: ['saijo-george', 'merkle'],
   },
@@ -412,20 +412,20 @@ export const schemaTypes: SchemaType[] = [
     color: '#EF4444',
     stars: 4,
     description:
-      '本地商家信息的结构化标注，展示商家地址、电话、营业时间、评分等信息，是本地 SEO 的核心配置，影响 Google Maps 和本地搜索结果。',
+      'Structured markup for local-business info — shows address, phone, hours and rating; a core local-SEO config affecting Google Maps and local results.',
     jsonTemplate: `{
   "@context": "https://schema.org",
   "@type": "LocalBusiness",
-  "name": "商家名称",
-  "description": "商家简介",
+  "name": "Business name",
+  "description": "Business summary",
   "image": "https://example.com/shop.jpg",
   "telephone": "+86-xxx-xxxx-xxxx",
   "address": {
     "@type": "PostalAddress",
-    "streetAddress": "街道地址",
-    "addressLocality": "城市",
-    "addressRegion": "省份",
-    "postalCode": "邮政编码",
+    "streetAddress": "Street address",
+    "addressLocality": "City",
+    "addressRegion": "State/Province",
+    "postalCode": "Postal code",
     "addressCountry": "CN"
   },
   "geo": {
@@ -444,10 +444,10 @@ export const schemaTypes: SchemaType[] = [
   "url": "https://example.com"
 }`,
     requiredFields: [
-      { name: 'name', desc: '商家名称（必填）' },
-      { name: 'address', desc: '详细地址，使用 PostalAddress 类型' },
-      { name: 'telephone', desc: '联系电话' },
-      { name: 'openingHoursSpecification', desc: '营业时间，影响 Google 本地面板展示' },
+      { name: 'name', desc: 'Business name (required)' },
+      { name: 'address', desc: 'Full address, using the PostalAddress type' },
+      { name: 'telephone', desc: 'Contact phone number' },
+      { name: 'openingHoursSpecification', desc: 'Opening hours, affecting the Google local panel' },
     ],
     tools: ['whitespark', 'merkle', 'saijo-george'],
   },
@@ -458,12 +458,12 @@ export const schemaTypes: SchemaType[] = [
     color: '#EC4899',
     stars: 3,
     description:
-      '视频内容的结构化标注，在 Google 搜索结果中展示视频缩略图、时长、上传时间等信息，适合有视频内容的媒体站和教育站。',
+      'Structured markup for video content — shows thumbnail, duration and upload date in Google results; ideal for media and education sites with video.',
     jsonTemplate: `{
   "@context": "https://schema.org",
   "@type": "VideoObject",
-  "name": "视频标题",
-  "description": "视频描述内容",
+  "name": "Video title",
+  "description": "Video description",
   "thumbnailUrl": "https://example.com/thumbnail.jpg",
   "uploadDate": "2026-01-01",
   "duration": "PT10M30S",
@@ -471,10 +471,10 @@ export const schemaTypes: SchemaType[] = [
   "embedUrl": "https://www.youtube.com/embed/xxxxx"
 }`,
     requiredFields: [
-      { name: 'name', desc: '视频标题（必填）' },
-      { name: 'thumbnailUrl', desc: '缩略图 URL（必填），建议 1280×720px' },
-      { name: 'uploadDate', desc: '上传日期，ISO 8601 格式（必填）' },
-      { name: 'duration', desc: '视频时长，ISO 8601 时长格式' },
+      { name: 'name', desc: 'Video title (required)' },
+      { name: 'thumbnailUrl', desc: 'Thumbnail URL (required), recommended 1280×720px' },
+      { name: 'uploadDate', desc: 'Upload date, ISO 8601 format (required)' },
+      { name: 'duration', desc: 'Video duration, ISO 8601 duration format' },
     ],
     tools: ['merkle', 'google-rich-results'],
   },
@@ -485,38 +485,38 @@ export const schemaTypes: SchemaType[] = [
     color: '#F97316',
     stars: 3,
     description:
-      '食谱内容的结构化标注，在搜索结果中展示烹饪时间、卡路里、评分等信息，是美食博客和食谱网站的必备 Schema。',
+      'Structured markup for recipes — shows cook time, calories and rating in results; essential Schema for food blogs and recipe sites.',
     jsonTemplate: `{
   "@context": "https://schema.org",
   "@type": "Recipe",
-  "name": "食谱名称",
+  "name": "Recipe name",
   "image": "https://example.com/dish.jpg",
   "author": {
     "@type": "Person",
-    "name": "作者姓名"
+    "name": "Author name"
   },
   "datePublished": "2026-01-01",
-  "description": "菜品简介",
+  "description": "Dish summary",
   "prepTime": "PT15M",
   "cookTime": "PT30M",
   "totalTime": "PT45M",
-  "recipeYield": "4人份",
+  "recipeYield": "Serves 4",
   "recipeIngredient": [
-    "食材一 200g",
-    "食材二 适量"
+    "Ingredient 1 200g",
+    "Ingredient 2 to taste"
   ],
   "recipeInstructions": [
     {
       "@type": "HowToStep",
-      "text": "步骤一描述"
+      "text": "Step 1 description"
     }
   ]
 }`,
     requiredFields: [
-      { name: 'name', desc: '食谱名称（必填）' },
-      { name: 'image', desc: '菜品图片（必填，影响富结果展示）' },
-      { name: 'recipeIngredient', desc: '食材列表数组' },
-      { name: 'recipeInstructions', desc: '烹饪步骤，使用 HowToStep 数组' },
+      { name: 'name', desc: 'Recipe name (required)' },
+      { name: 'image', desc: 'Dish image (required, affects rich-result display)' },
+      { name: 'recipeIngredient', desc: 'Ingredient list array' },
+      { name: 'recipeInstructions', desc: 'Cooking steps, using a HowToStep array' },
     ],
     tools: ['recipeschema', 'merkle'],
   },
