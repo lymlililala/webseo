@@ -10,17 +10,17 @@ import {
 import { usePageSeo } from '../../composables/usePageSeo'
 
 usePageSeo({
-  title: 'AI可见度检测工具 — 网站内容AI引用分析',
+  title: 'AI Visibility Checker — Analyze AI Citations of Your Content',
   description:
-    '检测网站内容在ChatGPT、Perplexity、Claude、Gemini等主流AI大模型中的引用和可见度表现。了解品牌在AI搜索中的曝光情况，优化GEO策略。',
+    'Check how your content is cited and how visible it is across major AI models like ChatGPT, Perplexity, Claude and Gemini. Understand your brand exposure in AI search and refine your GEO strategy.',
   path: '/ai-checker',
-  keywords: 'AI可见度检测,品牌AI引用分析,ChatGPT品牌曝光,GEO效果检测,AI搜索可见度',
+  keywords: 'AI visibility checker,brand AI citation analysis,ChatGPT brand exposure,GEO measurement,AI search visibility',
   jsonLd: [
     {
       '@context': 'https://schema.org',
       '@type': 'SoftwareApplication',
-      name: 'AI可见度检测工具',
-      description: '检测网站内容在主流AI大模型中的引用和可见度表现',
+      name: 'AI Visibility Checker',
+      description: 'Check how your content is cited and how visible it is across major AI models',
       url: 'https://sgaindex.com/ai-checker',
       applicationCategory: 'BusinessApplication',
       operatingSystem: 'Web',

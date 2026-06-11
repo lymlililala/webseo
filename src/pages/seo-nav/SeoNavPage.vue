@@ -4,17 +4,17 @@ import { seoCategories, allTools, featuredTools, type SeoTool, type SeoCategory 
 import { usePageSeo } from '../../composables/usePageSeo'
 
 usePageSeo({
-  title: 'SEO工具导航 — 100+主流SEO工具精选',
+  title: 'SEO Tools Directory — 100+ Curated SEO Tools',
   description:
-    '精选100+款SEO工具，涵盖关键词研究、外链分析、技术SEO、内容优化、本地SEO等分类，帮助网站提升Google搜索排名。免费工具优先推荐。',
+    'A curated directory of 100+ SEO tools across keyword research, backlink analysis, technical SEO, content optimization and local SEO to help you rank higher in Google. Free tools highlighted.',
   path: '/seo-nav',
-  keywords: 'SEO工具,关键词研究工具,外链分析,技术SEO,Ahrefs,Semrush,Google Search Console',
+  keywords: 'SEO tools,keyword research tools,backlink analysis,technical SEO,Ahrefs,Semrush,Google Search Console',
   jsonLd: [
     {
       '@context': 'https://schema.org',
       '@type': 'CollectionPage',
-      name: 'SEO工具导航',
-      description: '精选100+款SEO工具，涵盖关键词研究、外链分析、技术SEO等分类',
+      name: 'SEO Tools Directory',
+      description: 'A curated directory of 100+ SEO tools across keyword research, backlink analysis and technical SEO',
       url: 'https://sgaindex.com/seo-nav',
       isPartOf: { '@type': 'WebSite', name: 'SGAIndex', url: 'https://sgaindex.com' },
     },
@@ -135,17 +135,17 @@ const activeSidebarItem = computed(() => (activeCategory.value === 'all' ? scrol
       <div class="hero-content">
         <div class="hero-badge">
           <VaIcon name="travel_explore" size="16px" />
-          <span>SEO 工具导航</span>
+          <span>SEO Tools Directory</span>
         </div>
-        <h1 class="hero-title">发现最优质的 SEO 工具</h1>
+        <h1 class="hero-title">Discover the best SEO tools</h1>
         <p class="hero-subtitle">
-          精心整合 {{ totalTools }}+ 款专业 SEO 工具，覆盖关键词研究、技术诊断、内容优化、AI搜索监测等
-          {{ seoCategories.length }} 大核心领域
+          {{ totalTools }}+ curated professional SEO tools across {{ seoCategories.length }} core areas — keyword
+          research, technical audits, content optimization and AI search monitoring
         </p>
 
         <!-- 搜索框：放大居中，成为视觉焦点 -->
         <div class="search-wrapper">
-          <VaInput v-model="searchQuery" placeholder="搜索工具名称、功能或标签..." class="search-input" clearable>
+          <VaInput v-model="searchQuery" placeholder="Search tools by name, feature or tag..." class="search-input" clearable>
             <template #prepend>
               <VaIcon name="search" size="22px" color="secondary" />
             </template>
@@ -156,19 +156,19 @@ const activeSidebarItem = computed(() => (activeCategory.value === 'all' ? scrol
         <div class="stats-row">
           <div class="stat-card">
             <span class="stat-number">{{ totalTools }}+</span>
-            <span class="stat-label">精选工具</span>
+            <span class="stat-label">Curated tools</span>
           </div>
           <div class="stat-card">
             <span class="stat-number">{{ freeToolsCount }}</span>
-            <span class="stat-label">免费可用</span>
+            <span class="stat-label">Free</span>
           </div>
           <div class="stat-card">
             <span class="stat-number">{{ aiToolsCount }}</span>
-            <span class="stat-label">AI 友好</span>
+            <span class="stat-label">AI-Friendly</span>
           </div>
           <div class="stat-card">
             <span class="stat-number">{{ seoCategories.length }}</span>
-            <span class="stat-label">专业分类</span>
+            <span class="stat-label">Categories</span>
           </div>
         </div>
       </div>
@@ -183,11 +183,11 @@ const activeSidebarItem = computed(() => (activeCategory.value === 'all' ? scrol
           <div class="sidebar-filters">
             <label class="filter-toggle" :class="{ active: showFreeOnly }" @click="showFreeOnly = !showFreeOnly">
               <VaIcon name="money_off" size="14px" />
-              仅免费
+              Free only
             </label>
             <label class="filter-toggle" :class="{ active: showAiOnly }" @click="showAiOnly = !showAiOnly">
               <VaIcon name="smart_toy" size="14px" />
-              AI 友好
+              AI-Friendly
             </label>
           </div>
 
@@ -197,7 +197,7 @@ const activeSidebarItem = computed(() => (activeCategory.value === 'all' ? scrol
           <button class="sidebar-item" :class="{ active: activeCategory === 'all' }" @click="selectCategory('all')">
             <span class="sidebar-active-bar" />
             <VaIcon name="apps" size="16px" class="sidebar-item-icon" />
-            <span class="sidebar-item-name">全部工具</span>
+            <span class="sidebar-item-name">All tools</span>
             <span class="sidebar-item-count">{{ totalTools }}</span>
           </button>
 
@@ -233,9 +233,9 @@ const activeSidebarItem = computed(() => (activeCategory.value === 'all' ? scrol
           <div class="section-header">
             <div class="section-title-group">
               <VaIcon name="star" color="warning" size="20px" />
-              <h2 class="section-title">精选推荐</h2>
+              <h2 class="section-title">Featured picks</h2>
             </div>
-            <p class="section-desc">站长必备的核心工具，每一款都经过实战验证</p>
+            <p class="section-desc">Core tools every site owner needs — each battle-tested in the field</p>
           </div>
           <div class="featured-grid">
             <div v-for="tool in featuredTools" :key="tool.id" class="featured-card" @click="openTool(tool.url)">
@@ -256,8 +256,8 @@ const activeSidebarItem = computed(() => (activeCategory.value === 'all' ? scrol
                 <div class="featured-card-header">
                   <h3 class="featured-card-title">{{ tool.name }}</h3>
                   <div class="featured-card-badges">
-                    <span v-if="tool.isFree" class="badge badge-free">免费</span>
-                    <span v-if="tool.isAiFriendly" class="badge badge-ai">AI 友好</span>
+                    <span v-if="tool.isFree" class="badge badge-free">Free</span>
+                    <span v-if="tool.isAiFriendly" class="badge badge-ai">AI-Friendly</span>
                   </div>
                 </div>
                 <p class="featured-card-desc">{{ tool.description }}</p>
@@ -276,11 +276,11 @@ const activeSidebarItem = computed(() => (activeCategory.value === 'all' ? scrol
         <div class="result-bar">
           <span class="result-count">
             <VaIcon name="format_list_bulleted" size="15px" />
-            找到 <strong>{{ filteredTools.length }}</strong> 个工具
+            <strong>{{ filteredTools.length }}</strong> tools found
           </span>
           <button v-if="searchQuery || showAiOnly || showFreeOnly" class="clear-btn" @click="clearFilters">
             <VaIcon name="close" size="13px" />
-            清除筛选
+            Clear filters
           </button>
         </div>
 
@@ -288,8 +288,8 @@ const activeSidebarItem = computed(() => (activeCategory.value === 'all' ? scrol
         <div class="tools-section">
           <div v-if="filteredTools.length === 0" class="empty-state">
             <VaIcon name="search_off" size="56px" color="secondary" />
-            <p class="empty-text">没有找到匹配的工具，试试其他关键词</p>
-            <VaButton preset="secondary" size="small" @click="clearFilters"> 清除筛选条件 </VaButton>
+            <p class="empty-text">No matching tools — try a different keyword</p>
+            <VaButton preset="secondary" size="small" @click="clearFilters"> Clear filters </VaButton>
           </div>
 
           <div v-for="group in groupedFilteredTools" :key="group.id" class="category-group" :data-cat-id="group.id">
@@ -304,7 +304,7 @@ const activeSidebarItem = computed(() => (activeCategory.value === 'all' ? scrol
                 </div>
               </div>
               <span class="category-count" :style="{ background: group.color + '18', color: group.color }">
-                {{ group.tools.length }} 个工具
+                {{ group.tools.length }} tools
               </span>
             </div>
 
@@ -318,7 +318,7 @@ const activeSidebarItem = computed(() => (activeCategory.value === 'all' ? scrol
                     <VaIcon :name="group.icon" :style="{ color: group.color }" size="22px" />
                   </div>
                   <div class="tool-badges">
-                    <span v-if="tool.isFree" class="badge badge-free">免费</span>
+                    <span v-if="tool.isFree" class="badge badge-free">Free</span>
                     <span v-if="tool.hasApi" class="badge badge-api">API</span>
                     <span v-if="tool.isAiFriendly" class="badge badge-ai">AI</span>
                   </div>
@@ -333,7 +333,7 @@ const activeSidebarItem = computed(() => (activeCategory.value === 'all' ? scrol
                   </div>
                   <div class="tool-link-hint">
                     <VaIcon name="open_in_new" size="13px" />
-                    <span>访问</span>
+                    <span>Visit</span>
                   </div>
                 </div>
               </div>
@@ -345,56 +345,55 @@ const activeSidebarItem = computed(() => (activeCategory.value === 'all' ? scrol
         <div class="section tips-section">
           <div class="tips-header">
             <VaIcon name="lightbulb" color="warning" size="20px" />
-            <h2 class="section-title">站长 SEO 使用建议</h2>
+            <h2 class="section-title">SEO tips for site owners</h2>
           </div>
           <div class="tips-grid">
             <div class="tip-card">
               <div class="tip-icon">🔍</div>
-              <h3 class="tip-title">从关键词研究开始</h3>
+              <h3 class="tip-title">Start with keyword research</h3>
               <p class="tip-content">
-                用 <strong>Exploding Topics</strong> 发现爆发词，再用
-                <strong>AnswerThePublic</strong> 挖掘用户真实问题，通过
-                <strong>Google Keyword Planner</strong> 验证搜索量。
+                Find breakout terms with <strong>Exploding Topics</strong>, uncover real user questions with
+                <strong>AnswerThePublic</strong>, and validate volume with <strong>Google Keyword Planner</strong>.
               </p>
             </div>
             <div class="tip-card">
               <div class="tip-icon">⚡</div>
-              <h3 class="tip-title">定期技术体检</h3>
+              <h3 class="tip-title">Run regular technical checks</h3>
               <p class="tip-content">
-                每月用 <strong>Screaming Frog</strong> 做全站爬取，配合 <strong>PageSpeed Insights</strong> 检查 Core
-                Web Vitals，及时修复技术 SEO 问题。
+                Crawl your whole site monthly with <strong>Screaming Frog</strong>, check Core Web Vitals with
+                <strong>PageSpeed Insights</strong>, and fix technical SEO issues promptly.
               </p>
             </div>
             <div class="tip-card">
               <div class="tip-icon">✍️</div>
-              <h3 class="tip-title">AI 辅助内容优化</h3>
+              <h3 class="tip-title">AI-assisted content optimization</h3>
               <p class="tip-content">
-                使用 <strong>SurferSEO</strong> 或 <strong>Clearscope</strong> 进行内容打分，结合
-                <strong>Frase.io</strong> 快速生成高排名文章框架。
+                Score your content with <strong>SurferSEO</strong> or <strong>Clearscope</strong>, and use
+                <strong>Frase.io</strong> to quickly draft high-ranking article outlines.
               </p>
             </div>
             <div class="tip-card">
               <div class="tip-icon">🤖</div>
-              <h3 class="tip-title">布局 AI 搜索时代</h3>
+              <h3 class="tip-title">Prepare for the AI search era</h3>
               <p class="tip-content">
-                使用 <strong>GEO/AEO Tracker</strong> 监测品牌在 AI 工具中的引用率，通过
-                <strong>SearchAttention</strong> 优化内容在 Google AI Overview 中的可见度。
+                Track how often your brand is cited across AI tools with <strong>GEO/AEO Tracker</strong>, and improve
+                visibility in Google AI Overviews with <strong>SearchAttention</strong>.
               </p>
             </div>
             <div class="tip-card">
               <div class="tip-icon">🔗</div>
-              <h3 class="tip-title">构建高质量外链</h3>
+              <h3 class="tip-title">Build high-quality backlinks</h3>
               <p class="tip-content">
-                用 <strong>Majestic</strong> 分析竞品反链来源，再通过 <strong>Respona</strong> 或
-                <strong>BacklinkGPT</strong> 自动化外链推广流程。
+                Analyze competitors' backlink sources with <strong>Majestic</strong>, then automate outreach with
+                <strong>Respona</strong> or <strong>BacklinkGPT</strong>.
               </p>
             </div>
             <div class="tip-card">
               <div class="tip-icon">📊</div>
-              <h3 class="tip-title">数据驱动决策</h3>
+              <h3 class="tip-title">Make data-driven decisions</h3>
               <p class="tip-content">
-                将 <strong>Google Search Console</strong> 数据与
-                <strong>Similarweb</strong> 竞品流量数据结合分析，精准找到最大增长机会点。
+                Combine <strong>Google Search Console</strong> data with competitor traffic from
+                <strong>Similarweb</strong> to pinpoint your biggest growth opportunities.
               </p>
             </div>
           </div>

@@ -4,17 +4,17 @@ import { useRouter } from 'vue-router'
 import { usePageSeo } from '../../composables/usePageSeo'
 
 usePageSeo({
-  title: 'SEO/GEO/AEO术语词典 — 搜索优化专业术语解释',
+  title: 'SEO/GEO/AEO Glossary — Search Optimization Terms Explained',
   description:
-    '200+条SEO、GEO、AEO专业术语中英对照解释，涵盖技术SEO、内容优化、生成式引擎优化、结构化数据等领域。新手和老手都适用的搜索优化字典。',
+    '200+ SEO, GEO and AEO terms explained, covering technical SEO, content optimization, generative engine optimization and structured data. A search optimization dictionary for beginners and pros alike.',
   path: '/glossary',
-  keywords: 'SEO术语,GEO术语,AEO术语,搜索优化词典,Schema术语解释,llms.txt是什么',
+  keywords: 'SEO glossary,GEO terms,AEO terms,search optimization dictionary,Schema terms,what is llms.txt',
   jsonLd: [
     {
       '@context': 'https://schema.org',
       '@type': 'DefinedTermSet',
-      name: 'SEO/GEO/AEO术语词典',
-      description: '200+条搜索优化专业术语中英对照解释',
+      name: 'SEO/GEO/AEO Glossary',
+      description: '200+ search optimization terms explained',
       url: 'https://sgaindex.com/glossary',
     },
   ],
