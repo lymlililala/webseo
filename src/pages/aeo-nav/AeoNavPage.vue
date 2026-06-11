@@ -78,7 +78,7 @@ const freeCount = computed(() => allAeoTools.filter((t) => t.isFree || t.hasFree
 const chinaCount = computed(
   () =>
     allAeoTools.filter((t) =>
-      t.tags.some((tag) => ['国内平台', '豆包', 'DeepSeek', 'Kimi', '国内AI平台'].includes(tag)),
+      t.tags.some((tag) => ['China Platforms', 'Doubao', 'DeepSeek', 'Kimi', 'China AI platforms'].includes(tag)),
     ).length,
 )
 
@@ -148,24 +148,24 @@ const activeSidebarItem = computed(() => (activeCategory.value === 'all' ? scrol
       <div class="aeo-hero-content">
         <div class="aeo-hero-badge">
           <VaIcon name="question_answer" size="14px" />
-          <span>AEO · Answer Engine Optimization 工具导航</span>
+          <span>AEO · Answer Engine Optimization Navigator</span>
         </div>
         <h1 class="aeo-hero-title">
-          答案引擎优化工具<br />
-          <span class="aeo-hero-title-accent">全景导航</span>
+          Answer Engine Optimization Tools<br />
+          <span class="aeo-hero-title-accent">Full Directory</span>
         </h1>
         <p class="aeo-hero-subtitle">
-          深度整合 <strong>{{ totalTools }}+</strong> 款工具与资源，6 大分类覆盖 <strong>AEO 专项 SaaS</strong>、<strong
-            >企业 SEO 模块</strong
-          >、<strong>内容优化</strong>、<strong>问题研究</strong>、<strong>结构化数据</strong>、<strong
-            >国内平台</strong
+          A curated set of <strong>{{ totalTools }}+</strong> tools and resources across 6 categories — <strong>AEO-Focused SaaS</strong>、<strong
+            >Enterprise SEO Modules</strong
+          >、<strong>Content Optimization</strong>、<strong>Question Research</strong>、<strong>Structured Data</strong>、<strong
+            >China Platforms</strong
           >
         </p>
 
         <div class="aeo-search-wrap">
           <VaInput
             v-model="searchQuery"
-            placeholder="搜索工具名称、功能特点、标签..."
+            placeholder="Search tools by name, feature or tag..."
             class="aeo-search-input"
             clearable
           >
@@ -184,38 +184,38 @@ const activeSidebarItem = computed(() => (activeCategory.value === 'all' ? scrol
           <span class="aeo-concept-sep">·</span>
           <div class="aeo-concept-item">
             <VaIcon name="description" size="15px" color="#60A5FA" />
-            <span><strong>llms.txt</strong> = AI 可读结构标准</span>
+            <span><strong>llms.txt</strong> = AI-readable structure standard</span>
           </div>
           <span class="aeo-concept-sep">·</span>
           <div class="aeo-concept-item">
             <VaIcon name="schema" size="15px" color="#34D399" />
-            <span><strong>JSON-LD</strong> = 结构化数据标记</span>
+            <span><strong>JSON-LD</strong> = structured-data markup</span>
           </div>
           <span class="aeo-concept-sep">·</span>
           <div class="aeo-concept-item">
             <VaIcon name="help_outline" size="15px" color="#FCD34D" />
-            <span><strong>PAA</strong> = People Also Ask 答案框</span>
+            <span><strong>PAA</strong> = People Also Ask answer box</span>
           </div>
         </div>
       </div>
 
-      <!-- Stats 通栏条：移出 hero-content 以实现全宽 -->
+      <!-- Stats bar (full-width) -->
       <div class="aeo-stats">
         <div class="aeo-stat">
           <span class="aeo-stat-num">{{ totalTools }}+</span>
-          <span class="aeo-stat-label">精选工具</span>
+          <span class="aeo-stat-label">Curated Tools</span>
         </div>
         <div class="aeo-stat">
           <span class="aeo-stat-num">{{ openSourceCount }}</span>
-          <span class="aeo-stat-label">⭐ 开源项目</span>
+          <span class="aeo-stat-label">⭐ Open-Source Projects</span>
         </div>
         <div class="aeo-stat">
           <span class="aeo-stat-num">{{ freeCount }}</span>
-          <span class="aeo-stat-label">🆓 含免费版</span>
+          <span class="aeo-stat-label">🆓 Has Free Tier</span>
         </div>
         <div class="aeo-stat">
           <span class="aeo-stat-num">{{ chinaCount }}</span>
-          <span class="aeo-stat-label">🇨🇳 国内平台</span>
+          <span class="aeo-stat-label">🇨🇳 China Platforms</span>
         </div>
       </div>
     </div>
@@ -229,7 +229,7 @@ const activeSidebarItem = computed(() => (activeCategory.value === 'all' ? scrol
           <div class="aeo-sidebar-filters">
             <label class="aeo-filter-toggle" :class="{ active: showFreeOnly }" @click="showFreeOnly = !showFreeOnly">
               <VaIcon name="money_off" size="12px" />
-              含免费
+              Has Free
             </label>
             <label
               class="aeo-filter-toggle"
@@ -237,7 +237,7 @@ const activeSidebarItem = computed(() => (activeCategory.value === 'all' ? scrol
               @click="showOpenSourceOnly = !showOpenSourceOnly"
             >
               <VaIcon name="code" size="12px" />
-              开源
+              Open Source
             </label>
           </div>
 
@@ -247,7 +247,7 @@ const activeSidebarItem = computed(() => (activeCategory.value === 'all' ? scrol
           <button class="aeo-sidebar-item" :class="{ active: activeCategory === 'all' }" @click="selectCategory('all')">
             <span class="aeo-sidebar-active-bar" />
             <VaIcon name="apps" size="16px" class="aeo-sidebar-icon" />
-            <span class="aeo-sidebar-name">全部工具</span>
+            <span class="aeo-sidebar-name">All tools</span>
             <span class="aeo-sidebar-count">{{ totalTools }}</span>
           </button>
 
@@ -282,8 +282,8 @@ const activeSidebarItem = computed(() => (activeCategory.value === 'all' ? scrol
         <div v-if="activeCategory === 'all' && !searchQuery" class="aeo-section">
           <div class="aeo-section-header">
             <VaIcon name="star" color="warning" size="17px" />
-            <h2 class="aeo-section-title">精选推荐</h2>
-            <span class="aeo-section-badge">编辑严选</span>
+            <h2 class="aeo-section-title">Featured picks</h2>
+            <span class="aeo-section-badge">Editor’s choice</span>
           </div>
           <div class="aeo-featured-grid">
             <div v-for="tool in featuredAeoTools" :key="tool.id" class="aeo-featured-card" @click="openTool(tool.url)">
@@ -306,9 +306,9 @@ const activeSidebarItem = computed(() => (activeCategory.value === 'all' ? scrol
                 <div class="aeo-featured-top">
                   <h3 class="aeo-featured-name">{{ tool.name }}</h3>
                   <div class="aeo-featured-badges">
-                    <span v-if="tool.isFree" class="aeo-badge aeo-badge-free">免费</span>
-                    <span v-else-if="tool.hasFreeplan" class="aeo-badge aeo-badge-freeplan">含免费版</span>
-                    <span v-if="tool.isOpenSource" class="aeo-badge aeo-badge-oss">开源</span>
+                    <span v-if="tool.isFree" class="aeo-badge aeo-badge-free">Free</span>
+                    <span v-else-if="tool.hasFreeplan" class="aeo-badge aeo-badge-freeplan">Has Free Tier</span>
+                    <span v-if="tool.isOpenSource" class="aeo-badge aeo-badge-oss">Open Source</span>
                     <span v-if="tool.hasApi" class="aeo-badge aeo-badge-api">API</span>
                   </div>
                 </div>
@@ -340,19 +340,19 @@ const activeSidebarItem = computed(() => (activeCategory.value === 'all' ? scrol
         <div class="aeo-result-bar">
           <span class="aeo-result-count">
             <VaIcon name="format_list_bulleted" size="13px" />
-            找到 <strong>{{ filteredTools.length }}</strong> 个工具
+            Found <strong>{{ filteredTools.length }}</strong> tools
           </span>
           <button v-if="searchQuery || showOpenSourceOnly || showFreeOnly" class="aeo-clear-btn" @click="clearFilters">
             <VaIcon name="close" size="12px" />
-            清除筛选
+            Clear filters
           </button>
         </div>
 
         <!-- Empty -->
         <div v-if="filteredTools.length === 0" class="aeo-empty">
           <VaIcon name="search_off" size="50px" color="secondary" />
-          <p>没有找到匹配的工具，试试其他关键词</p>
-          <VaButton preset="secondary" size="small" @click="clearFilters"> 清除所有筛选 </VaButton>
+          <p>No matching tools — try a different keyword</p>
+          <VaButton preset="secondary" size="small" @click="clearFilters"> Clear all filters </VaButton>
         </div>
 
         <!-- Tools by Category -->
@@ -373,7 +373,7 @@ const activeSidebarItem = computed(() => (activeCategory.value === 'all' ? scrol
               </div>
             </div>
             <span class="aeo-cat-count" :style="{ background: group.color + '18', color: group.color }">
-              {{ group.tools.length }} 个工具
+              {{ group.tools.length }} tools
             </span>
           </div>
 
@@ -393,9 +393,9 @@ const activeSidebarItem = computed(() => (activeCategory.value === 'all' ? scrol
                   /></span>
                 </div>
                 <div class="aeo-tool-badges">
-                  <span v-if="tool.isFree" class="aeo-badge aeo-badge-free">免费</span>
-                  <span v-else-if="tool.hasFreeplan" class="aeo-badge aeo-badge-freeplan">含免费</span>
-                  <span v-if="tool.isOpenSource" class="aeo-badge aeo-badge-oss">开源</span>
+                  <span v-if="tool.isFree" class="aeo-badge aeo-badge-free">Free</span>
+                  <span v-else-if="tool.hasFreeplan" class="aeo-badge aeo-badge-freeplan">Has Free</span>
+                  <span v-if="tool.isOpenSource" class="aeo-badge aeo-badge-oss">Open Source</span>
                   <span v-if="tool.hasApi" class="aeo-badge aeo-badge-api">API</span>
                 </div>
               </div>
@@ -443,7 +443,7 @@ const activeSidebarItem = computed(() => (activeCategory.value === 'all' ? scrol
                   <span v-if="tool.pricing" class="aeo-pricing-inline">{{ tool.pricing }}</span>
                   <div class="aeo-tool-visit">
                     <VaIcon name="open_in_new" size="11px" />
-                    <span>访问</span>
+                    <span>Visit</span>
                   </div>
                 </div>
               </div>
@@ -455,59 +455,59 @@ const activeSidebarItem = computed(() => (activeCategory.value === 'all' ? scrol
         <div class="aeo-tips-section">
           <div class="aeo-tips-header">
             <VaIcon name="lightbulb" color="warning" size="17px" />
-            <h2 class="aeo-section-title">AEO 实战路径</h2>
+            <h2 class="aeo-section-title">AEO playbook</h2>
           </div>
           <div class="aeo-tips-grid">
             <div class="aeo-tip-card">
               <div class="aeo-tip-emoji">📡</div>
-              <h3>第一步：监测 AI 可见度基线</h3>
+              <h3>Step 1: Baseline AI visibility</h3>
               <p>
-                用 <strong>Otterly.AI</strong>（$29/mo，15000+用户）或
-                <strong>GetCito/Elmo</strong>（开源免费）快速建立品牌在 ChatGPT、Perplexity、Gemini 等 AI
-                引擎中的曝光基线。国内品牌首选<strong>透镜 GEO</strong>（免费）。
+                Use <strong>Otterly.AI</strong> ($29/mo, 15,000+ users) or
+                <strong>GetCito/Elmo</strong> (open source, free) to quickly baseline your brand’s exposure across
+                ChatGPT, Perplexity and Gemini. For China-focused brands, <strong>Lens GEO</strong> (free) is a top pick.
               </p>
             </div>
             <div class="aeo-tip-card">
               <div class="aeo-tip-emoji">❓</div>
-              <h3>第二步：挖掘 AEO 问题关键词</h3>
+              <h3>Step 2: Mine AEO question keywords</h3>
               <p>
-                通过 <strong>AlsoAsked</strong> 可视化 PAA 问题树和 <strong>AnswerThePublic</strong>（5W1H
-                问题聚合）发现用户真实提问意图，优先布局高频被 AI 引用的答案型内容。
+                Use <strong>AlsoAsked</strong> (a visual PAA question tree) and <strong>AnswerThePublic</strong> (5W1H
+                question aggregation) to find real user intent and prioritize the high-frequency questions AI cites most.
               </p>
             </div>
             <div class="aeo-tip-card">
               <div class="aeo-tip-emoji">📝</div>
-              <h3>第三步：创作答案友好型内容</h3>
+              <h3>Step 3: Write answer-friendly content</h3>
               <p>
-                使用 <strong>Frase.io</strong>（AI 摘要+FAQ生成，$14.99/mo）或
-                <strong>Surfer SEO</strong>（内容评分+LLM优化）创作结构清晰、语义完整的内容，兼顾 Google 排名与 AI
-                引用。
+                Use <strong>Frase.io</strong> (AI summaries + FAQ generation, $14.99/mo) or
+                <strong>Surfer SEO</strong> (content scoring + LLM optimization) to write clear, semantically complete
+                content that ranks on Google and gets cited by AI.
               </p>
             </div>
             <div class="aeo-tip-card">
               <div class="aeo-tip-emoji">🗂️</div>
-              <h3>第四步：添加结构化数据</h3>
+              <h3>Step 4: Add structured data</h3>
               <p>
-                WordPress 站点用 <strong>Rank Math</strong> 自动生成 FAQ/HowTo Schema；现代框架用
-                <strong>aeo.js</strong>（⭐76）一键生成 llms.txt + JSON-LD；用
-                <strong>Google 富媒体结果测试</strong>（免费）验证标记是否生效。
+                On WordPress, use <strong>Rank Math</strong> to auto-generate FAQ/HowTo Schema; on modern frameworks use
+                <strong>aeo.js</strong> (⭐76) to one-click generate llms.txt + JSON-LD; then validate with
+                <strong>the Google Rich Results Test</strong> (free).
               </p>
             </div>
             <div class="aeo-tip-card">
               <div class="aeo-tip-emoji">🔧</div>
-              <h3>第五步：升级为企业级方案</h3>
+              <h3>Step 5: Scale to enterprise</h3>
               <p>
-                已有 SEO 工具链的企业可直接启用 <strong>Semrush AI Visibility</strong> 或
-                <strong>Ahrefs Brand Radar</strong> 中的 AEO 模块，无需替换现有系统即可平滑扩展 AEO 能力。
+                Teams with an existing SEO stack can enable the AEO modules in <strong>Semrush AI Visibility</strong> or
+                <strong>Ahrefs Brand Radar</strong> — extending into AEO without replacing current tools.
               </p>
             </div>
             <div class="aeo-tip-card">
               <div class="aeo-tip-emoji">🇨🇳</div>
-              <h3>第六步：覆盖国内 AI 引擎</h3>
+              <h3>Step 6: Cover China AI engines</h3>
               <p>
-                国内市场优先使用 <strong>AIDSO 爱搜</strong>（DSO+GEO+AEO 三合一）或
-                <strong>移山科技</strong>（7套自研系统），覆盖豆包、DeepSeek、Kimi、通义千问等主流国内 AI 平台，建立国内
-                AI 可见度优势。
+                For the China market, use <strong>AIDSO</strong> (DSO+GEO+AEO in one) or
+                <strong>Yishan Tech</strong> (7 proprietary systems) to cover major domestic platforms like Doubao,
+                DeepSeek, Kimi and Tongyi Qianwen and build AI-visibility advantage.
               </p>
             </div>
           </div>

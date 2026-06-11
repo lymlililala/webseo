@@ -149,23 +149,23 @@ const activeSidebarItem = computed(() => (activeCategory.value === 'all' ? scrol
       <div class="geo-hero-content">
         <div class="geo-hero-badge">
           <VaIcon name="auto_awesome" size="14px" />
-          <span>GEO · AEO · AI 搜索优化导航</span>
+          <span>GEO · AEO · AI Search Navigator</span>
         </div>
         <h1 class="geo-hero-title">
-          生成式引擎优化工具<br />
-          <span class="geo-hero-title-accent">全景导航</span>
+          Generative Engine Optimization Tools<br />
+          <span class="geo-hero-title-accent">Full Directory</span>
         </h1>
         <p class="geo-hero-subtitle">
-          深度整合 <strong>{{ totalTools }}+</strong> 款工具与资源，6 大分类覆盖
-          <strong>国内 SaaS</strong>、<strong>国内服务商</strong>、<strong>国际专项工具</strong>、<strong
-            >传统 SEO 升级</strong
-          >、<strong>免费工具</strong>、<strong>开源项目</strong>
+          A curated set of <strong>{{ totalTools }}+</strong> tools and resources across 6 categories —
+          <strong>China SaaS</strong>、<strong>China Providers</strong>、<strong>Global Tools</strong>、<strong
+            >SEO Add-ons</strong
+          >、<strong>Free Tools</strong>、<strong>Open-Source Projects</strong>
         </p>
 
         <div class="geo-search-wrap">
           <VaInput
             v-model="searchQuery"
-            placeholder="搜索工具名称、功能特点、标签..."
+            placeholder="Search tools by name, feature or tag..."
             class="geo-search-input"
             clearable
           >
@@ -179,9 +179,9 @@ const activeSidebarItem = computed(() => (activeCategory.value === 'all' ? scrol
         <div class="geo-region-tabs">
           <button
             v-for="r in [
-              { key: 'all', label: '全部', icon: 'public' },
-              { key: 'cn', label: '🇨🇳 国内工具', icon: '' },
-              { key: 'global', label: '🌍 国际工具', icon: '' },
+              { key: 'all', label: 'All', icon: 'public' },
+              { key: 'cn', label: '🇨🇳 China Tools', icon: '' },
+              { key: 'global', label: '🌍 Global Tools', icon: '' },
             ]"
             :key="r.key"
             class="geo-region-tab"
@@ -195,27 +195,27 @@ const activeSidebarItem = computed(() => (activeCategory.value === 'all' ? scrol
         <div class="geo-stats">
           <div class="geo-stat">
             <span class="geo-stat-num">{{ totalTools }}+</span>
-            <span class="geo-stat-label">精选工具</span>
+            <span class="geo-stat-label">Curated Tools</span>
           </div>
           <div class="geo-stat-div" />
           <div class="geo-stat">
             <span class="geo-stat-num">{{ cnToolsCount }}</span>
-            <span class="geo-stat-label">🇨🇳 国内工具</span>
+            <span class="geo-stat-label">🇨🇳 China Tools</span>
           </div>
           <div class="geo-stat-div" />
           <div class="geo-stat">
             <span class="geo-stat-num">{{ globalToolsCount }}</span>
-            <span class="geo-stat-label">🌍 国际工具</span>
+            <span class="geo-stat-label">🌍 Global Tools</span>
           </div>
           <div class="geo-stat-div" />
           <div class="geo-stat">
             <span class="geo-stat-num">{{ freeCount }}</span>
-            <span class="geo-stat-label">含免费版</span>
+            <span class="geo-stat-label">Has Free Tier</span>
           </div>
           <div class="geo-stat-div" />
           <div class="geo-stat">
             <span class="geo-stat-num">{{ openSourceCount }}</span>
-            <span class="geo-stat-label">开源项目</span>
+            <span class="geo-stat-label">Open-Source Projects</span>
           </div>
         </div>
 
@@ -233,7 +233,7 @@ const activeSidebarItem = computed(() => (activeCategory.value === 'all' ? scrol
           <span class="geo-concept-sep">·</span>
           <div class="geo-concept-item">
             <VaIcon name="description" size="15px" color="#60A5FA" />
-            <span><strong>llms.txt</strong> = AI 可读结构标准</span>
+            <span><strong>llms.txt</strong> = AI-readable structure standard</span>
           </div>
         </div>
       </div>
@@ -248,7 +248,7 @@ const activeSidebarItem = computed(() => (activeCategory.value === 'all' ? scrol
           <div class="geo-sidebar-filters">
             <label class="geo-filter-toggle" :class="{ active: showFreeOnly }" @click="showFreeOnly = !showFreeOnly">
               <VaIcon name="money_off" size="12px" />
-              含免费
+              Has Free
             </label>
             <label
               class="geo-filter-toggle"
@@ -256,7 +256,7 @@ const activeSidebarItem = computed(() => (activeCategory.value === 'all' ? scrol
               @click="showOpenSourceOnly = !showOpenSourceOnly"
             >
               <VaIcon name="code" size="12px" />
-              开源
+              Open Source
             </label>
           </div>
 
@@ -266,7 +266,7 @@ const activeSidebarItem = computed(() => (activeCategory.value === 'all' ? scrol
           <button class="geo-sidebar-item" :class="{ active: activeCategory === 'all' }" @click="selectCategory('all')">
             <span class="geo-sidebar-active-bar" />
             <VaIcon name="apps" size="16px" class="geo-sidebar-icon" />
-            <span class="geo-sidebar-name">全部工具</span>
+            <span class="geo-sidebar-name">All tools</span>
             <span class="geo-sidebar-count">{{ totalTools }}</span>
           </button>
 
@@ -301,8 +301,8 @@ const activeSidebarItem = computed(() => (activeCategory.value === 'all' ? scrol
         <div v-if="activeCategory === 'all' && !searchQuery && activeRegion === 'all'" class="geo-section">
           <div class="geo-section-header">
             <VaIcon name="star" color="warning" size="17px" />
-            <h2 class="geo-section-title">精选推荐</h2>
-            <span class="geo-section-badge">编辑严选</span>
+            <h2 class="geo-section-title">Featured picks</h2>
+            <span class="geo-section-badge">Editor’s choice</span>
           </div>
           <div class="geo-featured-grid">
             <div v-for="tool in featuredGeoTools" :key="tool.id" class="geo-featured-card" @click="openTool(tool.url)">
@@ -323,11 +323,11 @@ const activeSidebarItem = computed(() => (activeCategory.value === 'all' ? scrol
                 <div class="geo-featured-top">
                   <h3 class="geo-featured-name">{{ tool.name }}</h3>
                   <div class="geo-featured-badges">
-                    <span v-if="tool.isFree" class="geo-badge geo-badge-free">免费</span>
-                    <span v-else-if="tool.hasFreeplan" class="geo-badge geo-badge-freeplan">含免费版</span>
-                    <span v-if="tool.isOpenSource" class="geo-badge geo-badge-oss">开源</span>
+                    <span v-if="tool.isFree" class="geo-badge geo-badge-free">Free</span>
+                    <span v-else-if="tool.hasFreeplan" class="geo-badge geo-badge-freeplan">Has Free Tier</span>
+                    <span v-if="tool.isOpenSource" class="geo-badge geo-badge-oss">Open Source</span>
                     <span class="geo-badge" :class="tool.region === 'cn' ? 'geo-badge-cn' : 'geo-badge-global'">
-                      {{ tool.region === 'cn' ? '🇨🇳 国内' : '🌍 国际' }}
+                      {{ tool.region === 'cn' ? '🇨🇳 China' : '🌍 Global' }}
                     </span>
                   </div>
                 </div>
@@ -359,7 +359,7 @@ const activeSidebarItem = computed(() => (activeCategory.value === 'all' ? scrol
         <div class="geo-result-bar">
           <span class="geo-result-count">
             <VaIcon name="format_list_bulleted" size="13px" />
-            找到 <strong>{{ filteredTools.length }}</strong> 个工具
+            Found <strong>{{ filteredTools.length }}</strong> tools
           </span>
           <button
             v-if="searchQuery || showOpenSourceOnly || showFreeOnly || activeRegion !== 'all'"
@@ -367,15 +367,15 @@ const activeSidebarItem = computed(() => (activeCategory.value === 'all' ? scrol
             @click="clearFilters"
           >
             <VaIcon name="close" size="12px" />
-            清除筛选
+            Clear filters
           </button>
         </div>
 
         <!-- Tools by Category -->
         <div v-if="filteredTools.length === 0" class="geo-empty">
           <VaIcon name="search_off" size="50px" color="secondary" />
-          <p>没有找到匹配的工具，试试其他关键词</p>
-          <VaButton preset="secondary" size="small" @click="clearFilters"> 清除所有筛选 </VaButton>
+          <p>No matching tools — try a different keyword</p>
+          <VaButton preset="secondary" size="small" @click="clearFilters"> Clear all filters </VaButton>
         </div>
 
         <div v-for="group in groupedFilteredTools" :key="group.id" class="geo-category-group" :data-cat-id="group.id">
@@ -393,7 +393,7 @@ const activeSidebarItem = computed(() => (activeCategory.value === 'all' ? scrol
               </div>
             </div>
             <span class="geo-cat-count" :style="{ background: group.color + '18', color: group.color }">
-              {{ group.tools.length }} 个工具
+              {{ group.tools.length }} tools
             </span>
           </div>
 
@@ -411,9 +411,9 @@ const activeSidebarItem = computed(() => (activeCategory.value === 'all' ? scrol
                   <VaIcon :name="group.icon" :style="{ color: group.color }" size="17px" />
                 </div>
                 <div class="geo-tool-badges">
-                  <span v-if="tool.isFree" class="geo-badge geo-badge-free">免费</span>
-                  <span v-else-if="tool.hasFreeplan" class="geo-badge geo-badge-freeplan">含免费</span>
-                  <span v-if="tool.isOpenSource" class="geo-badge geo-badge-oss">开源</span>
+                  <span v-if="tool.isFree" class="geo-badge geo-badge-free">Free</span>
+                  <span v-else-if="tool.hasFreeplan" class="geo-badge geo-badge-freeplan">Has Free</span>
+                  <span v-if="tool.isOpenSource" class="geo-badge geo-badge-oss">Open Source</span>
                   <span v-if="tool.hasApi" class="geo-badge geo-badge-api">API</span>
                   <span class="geo-badge" :class="tool.region === 'cn' ? 'geo-badge-cn' : 'geo-badge-global'">
                     {{ tool.region === 'cn' ? '🇨🇳' : '🌍' }}
@@ -464,7 +464,7 @@ const activeSidebarItem = computed(() => (activeCategory.value === 'all' ? scrol
                   <span v-if="tool.pricing" class="geo-pricing-inline">{{ tool.pricing }}</span>
                   <div class="geo-tool-visit">
                     <VaIcon name="open_in_new" size="11px" />
-                    <span>访问</span>
+                    <span>Visit</span>
                   </div>
                 </div>
               </div>
@@ -476,57 +476,57 @@ const activeSidebarItem = computed(() => (activeCategory.value === 'all' ? scrol
         <div class="geo-tips-section">
           <div class="geo-tips-header">
             <VaIcon name="lightbulb" color="warning" size="17px" />
-            <h2 class="geo-section-title">GEO 实战路径</h2>
+            <h2 class="geo-section-title">GEO playbook</h2>
           </div>
           <div class="geo-tips-grid">
             <div class="geo-tip-card">
               <div class="geo-tip-emoji">🔍</div>
-              <h3>第一步：摸清现状</h3>
+              <h3>Step 1: Baseline your status</h3>
               <p>
-                用 <strong>透镜 GEO</strong>（免费）或 <strong>HubSpot AI Grader</strong>（免费）快速获取品牌当前在主流
-                AI 引擎中的可见度基线数据，判断是否需要系统优化。
+                Use <strong>Lens GEO</strong> (free) or  <strong>HubSpot AI Grader</strong> (free) to quickly baseline your brand’s visibility in major
+                AI engines and decide whether systematic optimization is needed.
               </p>
             </div>
             <div class="geo-tip-card">
               <div class="geo-tip-emoji">📄</div>
-              <h3>第二步：添加 llms.txt</h3>
+              <h3>Step 2: Add llms.txt</h3>
               <p>
-                通过 <strong>aeo.js</strong> 或 <strong>LLMrefs llms.txt 生成器</strong>（免费）为网站添加 llms.txt
-                文件，告知 AI 爬虫网站核心内容结构，这是 GEO 的基础建设。
+                Use  <strong>aeo.js</strong>  or  <strong>the LLMrefs llms.txt generator</strong> (free) to add an llms.txt
+                file that tells AI crawlers your site’s core structure — foundational GEO work.
               </p>
             </div>
             <div class="geo-tip-card">
               <div class="geo-tip-emoji">🏗️</div>
-              <h3>第三步：结构化数据</h3>
+              <h3>Step 3: Structured data</h3>
               <p>
-                为核心页面添加 JSON-LD Schema（Article、FAQ、Organization），结合
-                <strong>Google Rich Results Test</strong> 验证，结构化数据是 AI 引擎理解内容实体的关键。
+                Add JSON-LD Schema (Article, FAQ, Organization) to key pages and validate with
+                <strong>Google Rich Results Test</strong> — structured data is key for AI engines to understand your entities.
               </p>
             </div>
             <div class="geo-tip-card">
               <div class="geo-tip-emoji">✍️</div>
-              <h3>第四步：优化内容质量</h3>
+              <h3>Step 4: Improve content quality</h3>
               <p>
-                Princeton KDD 2024 研究证明：加入<strong>统计数据</strong>、<strong>FAQ 格式</strong
-                >、<strong>权威引用</strong>和清晰<strong>标题层级</strong>可显著提升 AI 引用率。使用
-                <strong>Frase.io</strong> 辅助内容分析。
+                Princeton’s KDD 2024 research shows that adding<strong>statistics</strong>、<strong>FAQ format</strong
+                >、<strong>authoritative citations</strong>and clear<strong>heading hierarchy</strong>significantly raises AI citation rates. Use
+                <strong>Frase.io</strong> to assist content analysis.
               </p>
             </div>
             <div class="geo-tip-card">
               <div class="geo-tip-emoji">📊</div>
-              <h3>第五步：持续监测</h3>
+              <h3>Step 5: Monitor continuously</h3>
               <p>
-                国内用户推荐 <strong>ImpetaAI</strong>（50+指标）或
-                <strong>新榜智汇</strong>（内容+监测一体）；国际用户推荐 <strong>Otterly.AI</strong>（$29/月）或
-                <strong>Profound</strong>（企业级）。
+                For China, try <strong>ImpetaAI</strong> (50+ metrics) or 
+                <strong>GEOWISE</strong> (content + monitoring); for global, try  <strong>Otterly.AI</strong> ($29/mo) or 
+                <strong>Profound</strong> (enterprise).
               </p>
             </div>
             <div class="geo-tip-card">
               <div class="geo-tip-emoji">🔐</div>
-              <h3>第六步：E-E-A-T 建设</h3>
+              <h3>Step 6: Build E-E-A-T</h3>
               <p>
-                在 <strong>Wikidata</strong> 建立品牌实体，通过
-                <strong>传声港</strong>（128家央媒资源）或高权威媒体发稿，提升品牌在 AI 引擎中的 E-E-A-T 可信度信号。
+                On  <strong>Wikidata</strong> establish your brand entity, and via
+                <strong>Chuanshenggang</strong> (128 state-media outlets) or other authoritative media, raise your brand’s E-E-A-T trust signals in AI engines.
               </p>
             </div>
           </div>
@@ -621,7 +621,7 @@ const activeSidebarItem = computed(() => (activeCategory.value === 'all' ? scrol
   width: 100%;
 }
 
-/* 搜索框在深色 Hero 背景下强制白色文字 */
+/* 搜索框On 深色 Hero 背景下强制白色文字 */
 .geo-search-input :deep(input) {
   color: #fff !important;
   font-size: 15px !important;
@@ -675,7 +675,7 @@ const activeSidebarItem = computed(() => (activeCategory.value === 'all' ? scrol
   color: #c7d2fe;
 }
 
-/* Stats 扁平横向条 — 悬浮在 Hero/Body 交界处 */
+/* Stats 扁平横向条 — 悬浮On  Hero/Body 交界处 */
 .geo-stats {
   display: flex;
   align-items: center;
@@ -876,7 +876,7 @@ const activeSidebarItem = computed(() => (activeCategory.value === 'all' ? scrol
   transform: translateY(-50%) scaleY(1);
 }
 
-/* 兼容旧的 dot 元素（已在模板中替换，此处保留以防万一） */
+/* 兼容旧的 dot 元素（已On 模板中替换，此处保留以防万一） */
 .geo-sidebar-dot {
   display: none;
 }
