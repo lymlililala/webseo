@@ -1,5 +1,5 @@
 <template>
-  <h1 class="page-title">常见问题 — SEO/GEO/AEO FAQ</h1>
+  <h1 class="page-title">FAQ — SEO/GEO/AEO</h1>
   <Categories />
   <RequestDemo />
   <Questions />
@@ -14,17 +14,18 @@ import Navigation from './widgets/Navigation.vue'
 import { usePageSeo } from '../../composables/usePageSeo'
 
 usePageSeo({
-  title: 'FAQ — SEO/GEO/AEO 常见问题解答',
-  description: '解答SEO、GEO生成式引擎优化、AEO答案引擎优化的常见问题，帮助你快速了解AI搜索时代的网站优化策略。',
+  title: 'FAQ — SEO/GEO/AEO Frequently Asked Questions',
+  description:
+    'Answers to common questions about SEO, GEO (Generative Engine Optimization) and AEO (Answer Engine Optimization) to help you optimize for the AI search era.',
   path: '/faq',
-  keywords: 'SEO常见问题,GEO优化FAQ,AEO问答,AI搜索优化,SGAIndex帮助',
+  keywords: 'SEO FAQ,GEO optimization FAQ,AEO Q&A,AI search optimization,SGAIndex help',
   jsonLd: [
     {
       '@context': 'https://schema.org',
       '@type': 'FAQPage',
-      name: 'SEO/GEO/AEO 常见问题',
+      name: 'SEO/GEO/AEO FAQ',
       url: 'https://sgaindex.com/faq',
-      description: '解答SEO、GEO、AEO领域的常见问题',
+      description: 'Answers to common questions about SEO, GEO and AEO',
     },
   ],
 })

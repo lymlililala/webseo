@@ -157,7 +157,7 @@ watch(article, (a) => {
     description: a.description,
     datePublished: a.date,
     dateModified: a.date,
-    author: { '@type': 'Organization', name: a.author || 'SGAIndex团队', url: 'https://sgaindex.com' },
+    author: { '@type': 'Organization', name: a.author || 'SGAIndex', url: 'https://sgaindex.com' },
     publisher: { '@type': 'Organization', name: 'SGAIndex', url: 'https://sgaindex.com' },
     mainEntityOfPage: { '@type': 'WebPage', '@id': canonicalUrl },
     url: canonicalUrl,
