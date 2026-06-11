@@ -76,14 +76,14 @@ function buildInternalLinks({ base, listName, related, prev, next }) {
   }
   let html = ''
   // 面包屑
-  html += `<a href="/">首页</a><a href="${base}">${escapeHtml(listName)}</a>`
+  html += `<a href="/">Home</a><a href="${base}">${escapeHtml(listName)}</a>`
   // 相关内容
   if (related && related.length) {
     html += related.map((r) => link(r)).join('')
   }
   // 上一篇 / 下一篇
-  if (prev) html += link(prev, `上一篇：${prev.title}`)
-  if (next) html += link(next, `下一篇：${next.title}`)
+  if (prev) html += link(prev, `Previous: ${prev.title}`)
+  if (next) html += link(next, `Next: ${next.title}`)
   return html
 }
 
@@ -139,9 +139,10 @@ function computeRelations(list, limit = 6) {
  *   ogType       - OG type，默认 'website'
  *   keywords     - 关键词，可选
  */
-function buildHtml({ title, description, canonicalUrl, h1, jsonld, ogType = 'website', keywords, internalLinks, breadcrumbJsonld }) {
-  // 1. 替换 <title>
+function buildHtml({ title, description, canonicalUrl, h1, jsonld, ogType = 'website', keywords, internalLinks, breadcrumbJsonld, lang = 'en', altPath }) {
+  // 1. 替换 <title> 与 <html lang>
   let html = template.replace(/<title>[^<]*<\/title>/, `<title>${escapeHtml(title)}</title>`)
+  html = html.replace(/<html lang="[^"]*">/, `<html lang="${lang === 'zh' ? 'zh-CN' : 'en'}">`)
 
   // 2. 移除模板中所有旧的 SEO 标签（防止重复）
   html = html
@@ -149,6 +150,7 @@ function buildHtml({ title, description, canonicalUrl, h1, jsonld, ogType = 'web
     .replace(/<meta\s+name="keywords"[^>]*>/gi, '')
     .replace(/<meta\s+name="robots"[^>]*>/gi, '')
     .replace(/<link\s+rel="canonical"[^>]*>/gi, '')
+    .replace(/<link\s+rel="alternate"[^>]*>/gi, '')
     .replace(/<meta\s+property="og:[^"]*"[^>]*>/gi, '')
     .replace(/<meta\s+name="twitter:[^"]*"[^>]*>/gi, '')
     // 移除模板中内联的 JSON-LD（首页的 Organization + WebSite Schema）
@@ -165,18 +167,29 @@ function buildHtml({ title, description, canonicalUrl, h1, jsonld, ogType = 'web
 
   const keywordsMeta = keywords ? `\n    <meta name="keywords" content="${escapeAttr(keywords)}" />` : ''
 
+  // hreflang alternates(altPath 为无前缀路径，如 / 或 /seo-nav 或 /articles/<slug>）
+  let hreflangStr = ''
+  if (altPath) {
+    const enHref = altPath === '/' ? SITE : `${SITE}${altPath}`
+    const zhHref = altPath === '/' ? `${SITE}/zh` : `${SITE}/zh${altPath}`
+    hreflangStr =
+      `\n    <link rel="alternate" hreflang="en" href="${enHref}" />` +
+      `\n    <link rel="alternate" hreflang="zh" href="${zhHref}" />` +
+      `\n    <link rel="alternate" hreflang="x-default" href="${enHref}" />`
+  }
+
   const seoBlock = `
     <!-- ═══ 预渲染 SEO（${canonicalUrl}）═══ -->
     <meta name="description" content="${escapeAttr(description)}" />${keywordsMeta}
     <meta name="robots" content="index, follow" />
-    <link rel="canonical" href="${canonicalUrl}" id="canonical-link" />
+    <link rel="canonical" href="${canonicalUrl}" id="canonical-link" />${hreflangStr}
     <meta property="og:type" content="${ogType}" />
     <meta property="og:site_name" content="${SITE_NAME}" />
     <meta property="og:title" content="${escapeAttr(title)}" />
     <meta property="og:description" content="${escapeAttr(description)}" />
     <meta property="og:url" content="${canonicalUrl}" />
     <meta property="og:image" content="${OG_IMAGE}" />
-    <meta property="og:locale" content="zh_CN" />
+    <meta property="og:locale" content="${lang === 'zh' ? 'zh_CN' : 'en_US'}" />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="${escapeAttr(title)}" />
     <meta name="twitter:description" content="${escapeAttr(description)}" />
@@ -191,7 +204,7 @@ function buildHtml({ title, description, canonicalUrl, h1, jsonld, ogType = 'web
     'position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;pointer-events:none'
   let crawlerBlock = ''
   if (h1) crawlerBlock += `\n    <h1 style="${hiddenStyle}">${escapeHtml(h1)}</h1>`
-  if (internalLinks) crawlerBlock += `\n    <nav aria-label="内部链接" style="${hiddenStyle}">${internalLinks}</nav>`
+  if (internalLinks) crawlerBlock += `\n    <nav aria-label="Internal links" style="${hiddenStyle}">${internalLinks}</nav>`
   if (crawlerBlock) {
     html = html.replace('<div id="app"></div>', `<div id="app"></div>${crawlerBlock}`)
   }
@@ -214,20 +227,21 @@ function writeHtml(routePath, html) {
   }
 }
 
-// ── 静态路由配置 ─────────────────────────────────────────────────────────────
+// ── 静态路由配置（英文为默认/规范版本）──────────────────────────────────────
 const staticRoutes = [
   {
     path: '/',
-    title: 'SGAIndex — SEO/GEO/AEO 工具导航 | AI搜索时代优化平台',
-    description: 'AI时代的SEO与GEO工具导航平台，收录100+款SEO、GEO（生成式引擎优化）、AEO（答案引擎优化）工具，帮助网站在Google和ChatGPT等AI引擎中获得更好的可见性。',
-    h1: 'SEO/GEO/AEO 工具导航',
-    keywords: 'SEO工具导航,GEO优化,AEO工具,AI搜索优化,Schema结构化数据,llms.txt',
+    title: 'SGAIndex — SEO/GEO/AEO Tools Directory | AI Search Optimization',
+    description:
+      'A tools directory for the AI search era: 100+ curated SEO, GEO (Generative Engine Optimization) and AEO (Answer Engine Optimization) tools to improve your visibility in Google and AI engines like ChatGPT and Perplexity.',
+    h1: 'SEO/GEO/AEO Tools Directory',
+    keywords: 'SEO tools,GEO optimization,AEO tools,AI search optimization,Schema structured data,llms.txt',
     jsonld: {
       '@context': 'https://schema.org',
       '@type': 'WebSite',
       name: SITE_NAME,
       url: SITE,
-      description: 'AI时代的SEO与GEO工具导航平台，收录SEO、GEO、AEO、Schema结构化数据工具',
+      description: 'A tools directory for the AI search era — SEO, GEO, AEO and Schema structured-data tools',
       potentialAction: {
         '@type': 'SearchAction',
         target: `${SITE}/seo-nav?q={search_term_string}`,
@@ -237,69 +251,74 @@ const staticRoutes = [
   },
   {
     path: '/seo-nav',
-    title: 'SEO工具导航 — 100+主流SEO工具精选 | SGAIndex',
-    description: '精选100+款SEO工具，涵盖关键词研究、外链分析、技术SEO、内容优化等分类，帮助网站提升Google搜索排名。',
-    h1: 'SEO工具导航',
-    keywords: 'SEO工具,关键词研究工具,外链分析工具,技术SEO工具',
+    title: 'SEO Tools Directory — 100+ Curated SEO Tools | SGAIndex',
+    description:
+      'A curated directory of 100+ SEO tools across keyword research, backlink analysis, technical SEO and content optimization to help you rank higher in Google.',
+    h1: 'SEO Tools Directory',
+    keywords: 'SEO tools,keyword research tools,backlink analysis,technical SEO,Ahrefs,Semrush',
     jsonld: {
       '@context': 'https://schema.org',
       '@type': 'CollectionPage',
-      name: 'SEO工具导航',
+      name: 'SEO Tools Directory',
       url: `${SITE}/seo-nav`,
     },
   },
   {
     path: '/geo-nav',
-    title: 'GEO工具导航 — 生成式引擎优化工具精选 | SGAIndex',
-    description: '收录60+款GEO工具，帮助网站内容被ChatGPT、Perplexity、Google AI Overview等AI搜索引擎引用。',
-    h1: 'GEO工具导航',
-    keywords: 'GEO工具,生成式引擎优化,AI搜索优化工具,ChatGPT SEO',
+    title: 'GEO Tools Directory — Generative Engine Optimization Tools | SGAIndex',
+    description:
+      'A directory of 60+ GEO tools to help your content get cited by AI search engines like ChatGPT, Perplexity and Google AI Overviews.',
+    h1: 'GEO Tools Directory',
+    keywords: 'GEO tools,generative engine optimization,AI search tools,ChatGPT SEO',
     jsonld: {
       '@context': 'https://schema.org',
       '@type': 'CollectionPage',
-      name: 'GEO工具导航',
+      name: 'GEO Tools Directory',
       url: `${SITE}/geo-nav`,
     },
   },
   {
     path: '/aeo-nav',
-    title: 'AEO工具导航 — 答案引擎优化工具精选 | SGAIndex',
-    description: '收录50+款AEO工具，帮助内容出现在Google精选摘要、AI直接答案和语音搜索结果中。',
-    h1: 'AEO工具导航',
-    keywords: 'AEO工具,答案引擎优化,精选摘要优化,语音搜索优化',
+    title: 'AEO Tools Directory — Answer Engine Optimization Tools | SGAIndex',
+    description:
+      'A directory of 50+ AEO tools to help your content appear in Google featured snippets, AI direct answers and voice search results.',
+    h1: 'AEO Tools Directory',
+    keywords: 'AEO tools,answer engine optimization,featured snippet optimization,voice search optimization',
     jsonld: {
       '@context': 'https://schema.org',
       '@type': 'CollectionPage',
-      name: 'AEO工具导航',
+      name: 'AEO Tools Directory',
       url: `${SITE}/aeo-nav`,
     },
   },
   {
     path: '/schema-generator',
-    title: 'Schema结构化数据生成工具 — 免费JSON-LD生成 | SGAIndex',
-    description: '免费Schema结构化数据工具，支持Article、FAQ、Product、HowTo等20+类型JSON-LD生成和验证。',
-    h1: 'Schema结构化数据生成工具',
-    keywords: 'Schema生成器,JSON-LD工具,结构化数据,FAQ Schema,Article Schema',
+    title: 'Schema Structured Data Generator — Free JSON-LD Tool | SGAIndex',
+    description:
+      'A free Schema structured-data tool supporting Article, FAQ, Product, HowTo and 20+ JSON-LD types with generation and validation.',
+    h1: 'Schema Structured Data Generator',
+    keywords: 'Schema generator,JSON-LD tool,structured data,FAQ Schema,Article Schema',
     jsonld: {
       '@context': 'https://schema.org',
       '@type': 'SoftwareApplication',
-      name: 'SGAIndex Schema生成器',
+      name: 'SGAIndex Schema Generator',
       url: `${SITE}/schema-generator`,
       applicationCategory: 'DeveloperApplication',
       operatingSystem: 'Web',
-      offers: { '@type': 'Offer', price: '0', priceCurrency: 'CNY' },
+      offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
     },
   },
   {
     path: '/ai-checker',
-    title: 'AI可见度检测工具 — 网站内容AI引用分析 | SGAIndex',
-    description: '检测网站内容在ChatGPT、Perplexity、Claude、Gemini等主流AI模型中的引用和可见度表现。',
-    h1: 'AI可见度检测',
-    keywords: 'AI可见度检测,AI引用分析,GEO检测,ChatGPT可见度',
+    title: 'AI Visibility Checker — Analyze AI Citations of Your Content | SGAIndex',
+    description:
+      'Check how your content is cited and how visible it is across major AI models like ChatGPT, Perplexity, Claude and Gemini.',
+    h1: 'AI Visibility Checker',
+    keywords: 'AI visibility checker,AI citation analysis,GEO checker,ChatGPT visibility',
     jsonld: {
       '@context': 'https://schema.org',
       '@type': 'SoftwareApplication',
-      name: 'AI可见度检测工具',
+      name: 'AI Visibility Checker',
       url: `${SITE}/ai-checker`,
       applicationCategory: 'BusinessApplication',
       operatingSystem: 'Web',
@@ -307,84 +326,90 @@ const staticRoutes = [
   },
   {
     path: '/llms-txt',
-    title: 'llms.txt工具导航 — AI爬虫网站索引配置 | SGAIndex',
-    description: 'llms.txt生成器、验证器、模板库一站汇集，帮助网站建立AI可读的语义索引文件，提升AI引用率。',
-    h1: 'llms.txt工具导航',
-    keywords: 'llms.txt生成器,llms.txt工具,AI爬虫配置,AI网站索引',
+    title: 'llms.txt Tools — AI Crawler Site Index Configuration | SGAIndex',
+    description:
+      'llms.txt generators, validators and templates in one place — build an AI-readable semantic index file for your site to boost AI citation rates.',
+    h1: 'llms.txt Tools',
+    keywords: 'llms.txt generator,llms.txt tools,AI crawler configuration,AI site index',
     jsonld: {
       '@context': 'https://schema.org',
       '@type': 'SoftwareApplication',
-      name: 'llms.txt生成工具',
+      name: 'llms.txt Generator',
       url: `${SITE}/llms-txt`,
       applicationCategory: 'DeveloperApplication',
       operatingSystem: 'Web',
-      offers: { '@type': 'Offer', price: '0', priceCurrency: 'CNY' },
+      offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
     },
   },
   {
     path: '/glossary',
-    title: 'SEO/GEO/AEO术语词典 — 搜索优化专业术语解释 | SGAIndex',
-    description: '200+条SEO、GEO、AEO专业术语中英对照解释，涵盖技术SEO、内容优化、生成式引擎优化等领域。',
-    h1: 'SEO/GEO/AEO 术语词典',
-    keywords: 'SEO术语,GEO词汇,AEO定义,搜索优化词典,AI SEO词汇表',
+    title: 'SEO/GEO/AEO Glossary — Search Optimization Terms Explained | SGAIndex',
+    description:
+      '200+ SEO, GEO and AEO terms explained, covering technical SEO, content optimization and generative engine optimization.',
+    h1: 'SEO/GEO/AEO Glossary',
+    keywords: 'SEO glossary,GEO terms,AEO definitions,search optimization dictionary,AI SEO glossary',
     jsonld: {
       '@context': 'https://schema.org',
       '@type': 'DefinedTermSet',
-      name: 'SEO/GEO/AEO术语词典',
+      name: 'SEO/GEO/AEO Glossary',
       url: `${SITE}/glossary`,
     },
   },
   {
     path: '/articles',
-    title: 'SEO/GEO/AEO深度文章 — AI搜索时代实操指南 | SGAIndex',
-    description: '收录60+篇SEO、GEO、AEO深度分析文章，分享AI搜索时代的网站优化实战经验与行业洞察。',
-    h1: 'SEO/GEO/AEO 深度文章',
-    keywords: 'SEO文章,GEO优化指南,AEO策略,AI搜索优化教程',
+    title: 'SEO/GEO/AEO In-Depth Articles — Hands-On Guides | SGAIndex',
+    description:
+      '60+ in-depth SEO, GEO and AEO articles sharing real-world optimization experience and industry insight for the AI search era.',
+    h1: 'SEO/GEO/AEO In-Depth Articles',
+    keywords: 'SEO articles,GEO guides,AEO strategy,AI search optimization tutorials',
     jsonld: {
       '@context': 'https://schema.org',
       '@type': 'Blog',
-      name: 'SGAIndex文章中心',
+      name: 'SGAIndex Articles',
       url: `${SITE}/articles`,
       publisher: { '@type': 'Organization', name: SITE_NAME, url: SITE },
     },
   },
   {
     path: '/tutorials',
-    title: 'SEO/GEO/AEO教程 — 搜索优化实战课程 | SGAIndex',
-    description: '系统化SEO、GEO、AEO实操教程，从入门到进阶，覆盖技术SEO、关键词研究、GA4数据分析等核心技能。',
-    h1: 'SEO/GEO/AEO 教程',
-    keywords: 'SEO教程,GEO优化课程,AEO学习,搜索优化入门',
+    title: 'SEO/GEO/AEO Tutorials — Hands-On Optimization Courses | SGAIndex',
+    description:
+      'Systematic SEO, GEO and AEO tutorials from beginner to advanced, covering technical SEO, keyword research and GA4 analytics.',
+    h1: 'SEO/GEO/AEO Tutorials',
+    keywords: 'SEO tutorials,GEO courses,AEO learning,search optimization basics',
     jsonld: {
       '@context': 'https://schema.org',
       '@type': 'ItemList',
-      name: 'SEO/GEO/AEO教程列表',
+      name: 'SEO/GEO/AEO Tutorials',
       url: `${SITE}/tutorials`,
     },
   },
   {
     path: '/news',
-    title: 'SEO/GEO资讯 — 搜索引擎与AI最新动态 | SGAIndex',
-    description: '跟踪Google算法更新、ChatGPT新功能、Perplexity动态、Claude搜索等AI搜索行业最新资讯。',
-    h1: '搜索引擎与AI最新资讯',
-    keywords: 'SEO资讯,Google算法更新,AI搜索动态,GEO新闻',
+    title: 'SEO/GEO News — Latest Search Engine & AI Updates | SGAIndex',
+    description:
+      'Track Google algorithm updates, ChatGPT and Perplexity features, Claude search and the latest AI search industry news.',
+    h1: 'Latest Search Engine & AI News',
+    keywords: 'SEO news,Google algorithm updates,AI search trends,GEO news',
     jsonld: {
       '@context': 'https://schema.org',
       '@type': 'Blog',
-      name: 'SGAIndex搜索资讯',
+      name: 'SGAIndex News',
       url: `${SITE}/news`,
       publisher: { '@type': 'Organization', name: SITE_NAME, url: SITE },
     },
   },
   {
     path: '/faq',
-    title: 'FAQ — SEO/GEO/AEO 常见问题解答 | SGAIndex',
-    description: '解答SEO、GEO生成式引擎优化、AEO答案引擎优化的常见问题，帮助快速了解AI搜索时代的网站优化策略。',
-    h1: '常见问题 — SEO/GEO/AEO FAQ',
-    keywords: 'SEO FAQ,GEO常见问题,AEO问答,AI搜索优化FAQ',
+    title: 'FAQ — SEO/GEO/AEO Frequently Asked Questions | SGAIndex',
+    description:
+      'Answers to common questions about SEO, GEO (Generative Engine Optimization) and AEO (Answer Engine Optimization) for the AI search era.',
+    h1: 'FAQ — SEO/GEO/AEO',
+    keywords: 'SEO FAQ,GEO questions,AEO Q&A,AI search optimization FAQ',
     jsonld: {
       '@context': 'https://schema.org',
       '@type': 'FAQPage',
-      name: 'SEO/GEO/AEO 常见问题',
+      name: 'SEO/GEO/AEO FAQ',
       url: `${SITE}/faq`,
     },
   },
@@ -407,6 +432,8 @@ async function main() {
         h1: route.h1,
         jsonld: route.jsonld,
         keywords: route.keywords,
+        lang: 'en',
+        altPath: route.path,
       })
     )
     totalCount++
@@ -434,21 +461,23 @@ async function main() {
         routePath,
         buildHtml({
           title: `${a.title} | SGAIndex`,
-          description: a.description || `${a.title} — SGAIndex深度文章`,
+          description: a.description || `${a.title} — SGAIndex article`,
           canonicalUrl,
           h1: a.title,
           ogType: 'article',
           keywords: tags.join(','),
+          lang: 'en',
+          altPath: routePath,
           internalLinks: buildInternalLinks({
             base: '/articles',
-            listName: '文章',
+            listName: 'Articles',
             related: rel.related,
             prev: rel.prev,
             next: rel.next,
           }),
           breadcrumbJsonld: buildBreadcrumbJsonld([
-            { name: '首页', path: '/' },
-            { name: '文章', path: '/articles' },
+            { name: 'Home', path: '/' },
+            { name: 'Articles', path: '/articles' },
             { name: a.title },
           ]),
           jsonld: {
@@ -458,7 +487,7 @@ async function main() {
             description: a.description || '',
             datePublished: a.date,
             dateModified: a.date,
-            author: { '@type': 'Organization', name: a.author || 'SGAIndex团队', url: SITE },
+            author: { '@type': 'Organization', name: a.author || 'SGAIndex', url: SITE },
             publisher: { '@type': 'Organization', name: SITE_NAME, url: SITE },
             mainEntityOfPage: { '@type': 'WebPage', '@id': canonicalUrl },
             url: canonicalUrl,
@@ -491,21 +520,23 @@ async function main() {
       writeHtml(
         routePath,
         buildHtml({
-          title: `${t.title} | SGAIndex教程`,
-          description: t.description || `${t.title} — SGAIndex实操教程`,
+          title: `${t.title} | SGAIndex Tutorials`,
+          description: t.description || `${t.title} — SGAIndex tutorial`,
           canonicalUrl,
           h1: t.title,
           keywords: tags.join(','),
+          lang: 'en',
+          altPath: routePath,
           internalLinks: buildInternalLinks({
             base: '/tutorials',
-            listName: '教程',
+            listName: 'Tutorials',
             related: rel.related,
             prev: rel.prev,
             next: rel.next,
           }),
           breadcrumbJsonld: buildBreadcrumbJsonld([
-            { name: '首页', path: '/' },
-            { name: '教程', path: '/tutorials' },
+            { name: 'Home', path: '/' },
+            { name: 'Tutorials', path: '/tutorials' },
             { name: t.title },
           ]),
           jsonld: {
@@ -544,22 +575,24 @@ async function main() {
       writeHtml(
         routePath,
         buildHtml({
-          title: `${n.title} | SGAIndex资讯`,
-          description: n.description || `${n.title} — SGAIndex搜索资讯`,
+          title: `${n.title} | SGAIndex News`,
+          description: n.description || `${n.title} — SGAIndex news`,
           canonicalUrl,
           h1: n.title,
           ogType: 'article',
           keywords: tags.join(','),
+          lang: 'en',
+          altPath: routePath,
           internalLinks: buildInternalLinks({
             base: '/news',
-            listName: '资讯',
+            listName: 'News',
             related: rel.related,
             prev: rel.prev,
             next: rel.next,
           }),
           breadcrumbJsonld: buildBreadcrumbJsonld([
-            { name: '首页', path: '/' },
-            { name: '资讯', path: '/news' },
+            { name: 'Home', path: '/' },
+            { name: 'News', path: '/news' },
             { name: n.title },
           ]),
           jsonld: {
@@ -582,7 +615,7 @@ async function main() {
   // 5. 生成 404.html
   console.log('\n🚫 生成 404.html...')
   const html404 = template
-    .replace(/<title>[^<]*<\/title>/, `<title>页面未找到 — ${SITE_NAME}</title>`)
+    .replace(/<title>[^<]*<\/title>/, `<title>Page Not Found — ${SITE_NAME}</title>`)
     .replace(/<meta\s+name="description"[^>]*>/gi, '')
     .replace(/<meta\s+name="robots"[^>]*>/gi, '')
     .replace(/<link\s+rel="canonical"[^>]*>/gi, '')
@@ -591,7 +624,7 @@ async function main() {
     .replace(
       '</head>',
       `
-    <meta name="description" content="您访问的页面不存在，请返回 SGAIndex 主页继续探索SEO、GEO、AEO工具导航。" />
+    <meta name="description" content="The page you're looking for doesn't exist. Return to the SGAIndex homepage to explore SEO, GEO and AEO tools." />
     <meta name="robots" content="noindex, follow" />
   </head>`
     )
