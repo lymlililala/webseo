@@ -4,17 +4,17 @@ import { aeoCategories, allAeoTools, featuredAeoTools, type AeoTool, type AeoCat
 import { usePageSeo } from '../../composables/usePageSeo'
 
 usePageSeo({
-  title: 'AEO工具导航 — 答案引擎优化工具精选',
+  title: 'AEO Tools Directory — Answer Engine Optimization Tools',
   description:
-    '收录50+款AEO（答案引擎优化）工具，帮助内容出现在Google精选摘要、AI直接答案和语音搜索结果中。工具分类包含Schema生成器、精选摘要优化、结构化数据验证等。',
+    'A directory of 50+ AEO (Answer Engine Optimization) tools to help your content appear in Google featured snippets, AI direct answers and voice search — including Schema generators, snippet optimization and structured-data validators.',
   path: '/aeo-nav',
-  keywords: 'AEO工具,答案引擎优化,精选摘要,Schema标记,结构化数据,语音搜索优化',
+  keywords: 'AEO tools,answer engine optimization,featured snippets,Schema markup,structured data,voice search optimization',
   jsonLd: [
     {
       '@context': 'https://schema.org',
       '@type': 'CollectionPage',
-      name: 'AEO工具导航',
-      description: '收录50+款AEO工具，帮助内容出现在Google精选摘要和AI答案中',
+      name: 'AEO Tools Directory',
+      description: 'A directory of 50+ AEO tools to help content appear in Google featured snippets and AI answers',
       url: 'https://sgaindex.com/aeo-nav',
       isPartOf: { '@type': 'WebSite', name: 'SGAIndex', url: 'https://sgaindex.com' },
     },

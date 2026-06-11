@@ -5,21 +5,21 @@ import { schemaTypes, schemaTools, getToolsForType, type SchemaType, type Schema
 import { usePageSeo } from '../../composables/usePageSeo'
 
 usePageSeo({
-  title: 'Schema结构化数据工具 — JSON-LD生成和验证',
+  title: 'Schema Structured Data Tool — JSON-LD Generation & Validation',
   description:
-    '免费Schema结构化数据工具，支掐1JSON-LD、Microdata等格式。支持Article、FAQ、Product、HowTo、BreadcrumbList等20+类Schema类型生成和验证，提升搜索结果展示效果。',
+    'A free Schema structured-data tool supporting JSON-LD and Microdata. Generate and validate 20+ Schema types including Article, FAQ, Product, HowTo and BreadcrumbList to improve your search result appearance.',
   path: '/schema-generator',
-  keywords: 'Schema生成器,JSON-LD生成,结构化数据,FAQ Schema,Article Schema,丰富摘要',
+  keywords: 'Schema generator,JSON-LD generation,structured data,FAQ Schema,Article Schema,rich results',
   jsonLd: [
     {
       '@context': 'https://schema.org',
       '@type': 'SoftwareApplication',
-      name: 'SGAIndex Schema结构化数据生成器',
-      description: '免费Schema JSON-LD生成工具，支持20+类Schema类型',
+      name: 'SGAIndex Schema Generator',
+      description: 'A free Schema JSON-LD generator supporting 20+ Schema types',
       url: 'https://sgaindex.com/schema-generator',
       applicationCategory: 'DeveloperApplication',
       operatingSystem: 'Web',
-      offers: { '@type': 'Offer', price: '0', priceCurrency: 'CNY' },
+      offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
     },
   ],
 })
