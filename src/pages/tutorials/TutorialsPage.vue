@@ -1,23 +1,26 @@
 <script setup lang="ts">
 import { ref, computed, onMounted, watch } from 'vue'
 import { useRouter } from 'vue-router'
+import { useI18n } from 'vue-i18n'
 import { type Tutorial } from '../../data/tutorials'
 import { tutorialsAPI } from '../../services/supabase'
 import SkeletonLoader from '../../components/SkeletonLoader.vue'
 import { usePageSeo } from '../../composables/usePageSeo'
+import { localePath } from '../../i18n/useLocale'
+
+const { t } = useI18n()
 
 usePageSeo({
-  title: 'SEO教程 — 从入门到进阶的搜索优化实战指南',
-  description:
-    '深入浅击SEO、GEO、AEO实操教程，适合初学者和中级从业者。包含技术SEO设置、关键词研究、GEO内容优化、Schema标记添加、llms.txt配置等实操教程。',
+  title: t('tutorialsPage.seoTitle'),
+  description: t('tutorialsPage.seoDescription'),
   path: '/tutorials',
-  keywords: 'SEO教程,搜索优化教程,GEO实操,技术SEO设置,Schema标记教程,初学者SEO',
+  keywords: t('tutorialsPage.seoKeywords'),
   jsonLd: [
     {
       '@context': 'https://schema.org',
       '@type': 'ItemList',
-      name: 'SEO教程列表',
-      description: '从入门到进阶的SEO实操教程，包含GEO、AEO实操指南',
+      name: 'SGAIndex Tutorials',
+      description: t('tutorialsPage.seoDescription'),
       url: 'https://sgaindex.com/tutorials',
     },
   ],
@@ -89,11 +92,11 @@ function goToPage(page: number) {
   window.scrollTo({ top: 0, behavior: 'smooth' })
 }
 
-const difficultyLabel = {
-  beginner: '初级',
-  intermediate: '中级',
-  advanced: '高级',
-}
+const difficultyLabel = computed<Record<string, string>>(() => ({
+  beginner: t('tutorialsPage.levelBeginner'),
+  intermediate: t('tutorialsPage.levelIntermediate'),
+  advanced: t('tutorialsPage.levelAdvanced'),
+}))
 </script>
 
 <template>
@@ -103,13 +106,13 @@ const difficultyLabel = {
       <div class="hero-content">
         <div class="hero-badge">
           <VaIcon name="school" size="16px" />
-          <span>在线课程</span>
+          <span>{{ t('tutorialsPage.badge') }}</span>
         </div>
-        <h1 class="hero-title">SEO/GEO/AEO 完整课程体系</h1>
-        <p class="hero-subtitle">从入门到精通，系统化学习最新搜索优化技能</p>
+        <h1 class="hero-title">{{ t('tutorialsPage.heroTitle') }}</h1>
+        <p class="hero-subtitle">{{ t('tutorialsPage.heroSubtitle') }}</p>
 
         <div class="search-wrapper">
-          <VaInput v-model="searchQuery" placeholder="搜索课程..." class="search-input" clearable>
+          <VaInput v-model="searchQuery" :placeholder="t('tutorialsPage.searchPlaceholder')" class="search-input" clearable>
             <template #prepend>
               <VaIcon name="search" size="20px" color="secondary" />
             </template>
@@ -122,13 +125,13 @@ const difficultyLabel = {
     <div class="content-wrapper">
       <aside class="sidebar">
         <div class="filter-group">
-          <h3>课程分类</h3>
+          <h3>{{ t('tutorialsPage.categories') }}</h3>
           <button
             v-for="cat in [
-              { id: 'all', label: '全部课程' },
-              { id: 'seo', label: 'SEO 课程' },
-              { id: 'geo', label: 'GEO 课程' },
-              { id: 'aeo', label: 'AEO 课程' },
+              { id: 'all', label: t('tutorialsPage.all') },
+              { id: 'seo', label: t('tutorialsPage.catSeo') },
+              { id: 'geo', label: t('tutorialsPage.catGeo') },
+              { id: 'aeo', label: t('tutorialsPage.catAeo') },
             ]"
             :key="cat.id"
             class="filter-btn"
@@ -140,13 +143,13 @@ const difficultyLabel = {
         </div>
 
         <div class="filter-group">
-          <h3>难度等级</h3>
+          <h3>{{ t('tutorialsPage.level') }}</h3>
           <button
             v-for="level in [
-              { id: 'all', label: '全部等级' },
-              { id: 'beginner', label: '初级' },
-              { id: 'intermediate', label: '中级' },
-              { id: 'advanced', label: '高级' },
+              { id: 'all', label: t('tutorialsPage.levelAll') },
+              { id: 'beginner', label: t('tutorialsPage.levelBeginner') },
+              { id: 'intermediate', label: t('tutorialsPage.levelIntermediate') },
+              { id: 'advanced', label: t('tutorialsPage.levelAdvanced') },
             ]"
             :key="level.id"
             class="filter-btn"
@@ -165,7 +168,7 @@ const difficultyLabel = {
 
         <div v-else-if="filteredTutorials.length === 0" class="empty-state">
           <VaIcon name="school" size="56px" color="secondary" />
-          <p>暂无匹配课程</p>
+          <p>{{ t('tutorialsPage.empty') }}</p>
         </div>
 
         <div v-else>
@@ -174,7 +177,7 @@ const difficultyLabel = {
               v-for="tutorial in paginatedTutorials"
               :key="tutorial.id"
               class="tutorial-card"
-              @click="router.push({ name: 'tutorial-detail', params: { id: (tutorial as any).slug || tutorial.id } })"
+              @click="router.push(localePath('/tutorials/' + ((tutorial as any).slug || tutorial.id)))"
             >
               <div class="tutorial-header">
                 <div class="difficulty-badge" :class="tutorial.difficulty">
@@ -187,7 +190,7 @@ const difficultyLabel = {
               </div>
 
               <RouterLink
-                :to="{ name: 'tutorial-detail', params: { id: (tutorial as any).slug || tutorial.id } }"
+                :to="localePath('/tutorials/' + ((tutorial as any).slug || tutorial.id))"
                 class="tutorial-title-link"
                 @click.stop
               >
@@ -202,20 +205,20 @@ const difficultyLabel = {
                 </span>
                 <span class="info-item">
                   <VaIcon name="schedule" size="14px" />
-                  {{ tutorial.duration }} 分钟
+                  {{ t('tutorialsPage.minutes', { n: tutorial.duration }) }}
                 </span>
                 <span class="info-item">
                   <VaIcon name="group" size="14px" />
-                  {{ tutorial.students.toLocaleString() }} 学生
+                  {{ t('tutorialsPage.students', { n: tutorial.students.toLocaleString() }) }}
                 </span>
               </div>
 
               <div class="lessons-count">
                 <VaIcon name="list" size="14px" />
-                {{ tutorial.lessons.length }} 节课程
+                {{ t('tutorialsPage.lessons', { n: tutorial.lessons.length }) }}
               </div>
 
-              <VaButton class="enroll-btn" preset="secondary"> 查看课程 </VaButton>
+              <VaButton class="enroll-btn" preset="secondary"> {{ t('tutorialsPage.viewCourse') }} </VaButton>
             </div>
           </div>
 
@@ -225,7 +228,7 @@ const difficultyLabel = {
               <VaIcon name="arrow_back" size="16px" />
             </VaButton>
             <div class="page-info">
-              第 {{ currentPage }} / {{ totalPages }} 页（共 {{ filteredTutorials.length }} 门课程）
+              {{ t('articlesPage.pageInfo', { current: currentPage, total: totalPages, count: filteredTutorials.length }) }}
             </div>
             <VaButton
               preset="secondary"

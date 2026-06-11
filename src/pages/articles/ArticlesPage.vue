@@ -1,22 +1,25 @@
 <script setup lang="ts">
 import { ref, computed, onMounted, watch } from 'vue'
+import { useI18n } from 'vue-i18n'
 import { type Article } from '../../data/articles'
 import { articlesAPI } from '../../services/supabase'
 import SkeletonLoader from '../../components/SkeletonLoader.vue'
 import { usePageSeo } from '../../composables/usePageSeo'
+import { localePath } from '../../i18n/useLocale'
+
+const { t } = useI18n()
 
 usePageSeo({
-  title: 'SEO/GEO/AEO 深度文章 — AI搜索时代实操指南',
-  description:
-    '收录30+篇SEO、GEO、AEO深度分析文章，分享AI搜索时代的网站优化实战经验。包含GEO优化指南、AEO策略、llms.txt配置、Schema标记等前沿话题。',
+  title: t('articlesPage.seoTitle'),
+  description: t('articlesPage.seoDescription'),
   path: '/articles',
-  keywords: 'SEO文章,GEO优化,AEO策略,AI搜索优化,llms.txt,结构化数据',
+  keywords: t('articlesPage.seoKeywords'),
   jsonLd: [
     {
       '@context': 'https://schema.org',
       '@type': 'Blog',
-      name: 'SGAIndex文章中心',
-      description: 'SEO、GEO、AEO深度分析文章，分享AI搜索时代的网站优化实战',
+      name: 'SGAIndex',
+      description: t('articlesPage.seoDescription'),
       url: 'https://sgaindex.com/articles',
       publisher: { '@type': 'Organization', name: 'SGAIndex', url: 'https://sgaindex.com' },
     },
@@ -76,7 +79,7 @@ const paginatedArticles = computed(() => {
 const totalPages = computed(() => Math.ceil(filteredArticles.value.length / pageSize))
 
 function articleLink(article: Article) {
-  return { name: 'article-detail', params: { id: (article as any).slug || article.id } }
+  return localePath('/articles/' + ((article as any).slug || article.id))
 }
 
 // 筛选条件变化时重置到第一页
@@ -97,11 +100,11 @@ function goToPage(page: number) {
 }
 
 const categories = [
-  { id: 'all', name: '全部文章', icon: 'article', color: '#6366F1' },
-  { id: 'seo', name: 'SEO', icon: 'travel_explore', color: '#3B82F6' },
-  { id: 'geo', name: 'GEO', icon: 'auto_awesome', color: '#10B981' },
-  { id: 'aeo', name: 'AEO', icon: 'question_answer', color: '#EC4899' },
-  { id: 'tools', name: '工具相关', icon: 'build', color: '#F59E0B' },
+  { id: 'all', labelKey: 'articlesPage.all', icon: 'article', color: '#6366F1' },
+  { id: 'seo', labelKey: 'articlesPage.catSeo', icon: 'travel_explore', color: '#3B82F6' },
+  { id: 'geo', labelKey: 'articlesPage.catGeo', icon: 'auto_awesome', color: '#10B981' },
+  { id: 'aeo', labelKey: 'articlesPage.catAeo', icon: 'question_answer', color: '#EC4899' },
+  { id: 'tools', labelKey: 'articlesPage.catTools', icon: 'build', color: '#F59E0B' },
 ] as const
 </script>
 
@@ -112,13 +115,13 @@ const categories = [
       <div class="hero-content">
         <div class="hero-badge">
           <VaIcon name="article" size="16px" />
-          <span>技术文章</span>
+          <span>{{ t('articlesPage.badge') }}</span>
         </div>
-        <h1 class="hero-title">SEO/GEO/AEO 深度文章库</h1>
-        <p class="hero-subtitle">最新的搜索优化洞察、行业趋势分析和实战指南，帮助您紧跟 AI 搜索变化</p>
+        <h1 class="hero-title">{{ t('articlesPage.heroTitle') }}</h1>
+        <p class="hero-subtitle">{{ t('articlesPage.heroSubtitle') }}</p>
 
         <div class="search-wrapper">
-          <VaInput v-model="searchQuery" placeholder="搜索文章标题、标签..." class="search-input" clearable>
+          <VaInput v-model="searchQuery" :placeholder="t('articlesPage.searchPlaceholder')" class="search-input" clearable>
             <template #prepend>
               <VaIcon name="search" size="20px" color="secondary" />
             </template>
@@ -131,7 +134,7 @@ const categories = [
     <div class="content-wrapper">
       <!-- Sidebar Categories -->
       <aside class="articles-sidebar">
-        <div class="sidebar-header">分类</div>
+        <div class="sidebar-header">{{ t('articlesPage.categories') }}</div>
         <button
           v-for="cat in categories"
           :key="cat.id"
@@ -140,7 +143,7 @@ const categories = [
           @click="selectedCategory = cat.id"
         >
           <VaIcon :name="cat.icon" size="16px" />
-          <span>{{ cat.name }}</span>
+          <span>{{ t(cat.labelKey) }}</span>
           <span class="count">{{ allArticles.filter((a) => cat.id === 'all' || a.category === cat.id).length }}</span>
         </button>
       </aside>
@@ -153,8 +156,8 @@ const categories = [
 
         <div v-else-if="filteredArticles.length === 0" class="empty-state">
           <VaIcon name="search_off" size="56px" color="secondary" />
-          <p>没有找到匹配的文章</p>
-          <VaButton preset="secondary" size="small" @click="clearFilters"> 清除筛选 </VaButton>
+          <p>{{ t('articlesPage.empty') }}</p>
+          <VaButton preset="secondary" size="small" @click="clearFilters"> {{ t('common.clearFilters') }} </VaButton>
         </div>
 
         <div v-else>
@@ -186,8 +189,8 @@ const categories = [
                       }[article.category],
                     }"
                   />
-                  <span class="date">{{ new Date(article.date).toLocaleDateString('zh-CN') }}</span>
-                  <span class="read-time">{{ article.readTime }} 分钟阅读</span>
+                  <span class="date">{{ new Date(article.date).toLocaleDateString() }}</span>
+                  <span class="read-time">{{ t('articlesPage.readTime', { n: article.readTime }) }}</span>
                 </div>
                 <div v-if="article.category === 'tools'" class="impact-badge">
                   <VaIcon name="star" size="12px" />
@@ -202,7 +205,7 @@ const categories = [
               </div>
 
               <div class="article-footer">
-                <span class="author">作者：{{ article.author }}</span>
+                <span class="author">{{ t('articlesPage.author', { name: article.author }) }}</span>
                 <VaIcon name="open_in_new" size="16px" color="secondary" />
               </div>
             </RouterLink>
@@ -215,7 +218,7 @@ const categories = [
             </VaButton>
 
             <div class="page-info">
-              第 {{ currentPage }} / {{ totalPages }} 页（共 {{ filteredArticles.length }} 篇）
+              {{ t('articlesPage.pageInfo', { current: currentPage, total: totalPages, count: filteredArticles.length }) }}
             </div>
 
             <VaButton

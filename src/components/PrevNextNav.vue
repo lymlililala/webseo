@@ -1,5 +1,6 @@
 <script setup lang="ts">
-import { computed } from 'vue'
+import { useI18n } from 'vue-i18n'
+import { localePath } from '../i18n/useLocale'
 
 interface NavItem {
   id: string | number
@@ -14,21 +15,19 @@ const props = defineProps<{
   next?: NavItem | null
 }>()
 
-const routeName = computed(
-  () => ({ articles: 'article-detail', news: 'news-detail', tutorials: 'tutorial-detail' })[props.type],
-)
+const { t } = useI18n()
 
 function linkTo(item: NavItem) {
-  return { name: routeName.value, params: { id: item.slug || String(item.id) } }
+  return localePath('/' + props.type + '/' + (item.slug || String(item.id)))
 }
 </script>
 
 <template>
-  <nav v-if="prev || next" class="prev-next-nav" aria-label="上一篇下一篇">
+  <nav v-if="prev || next" class="prev-next-nav" :aria-label="t('detail.related')">
     <RouterLink v-if="prev" :to="linkTo(prev)" class="pn-link pn-prev">
       <VaIcon name="arrow_back" size="16px" />
       <span class="pn-text">
-        <span class="pn-label">上一篇</span>
+        <span class="pn-label">{{ t('detail.prev') }}</span>
         <span class="pn-title">{{ prev.title }}</span>
       </span>
     </RouterLink>
@@ -36,7 +35,7 @@ function linkTo(item: NavItem) {
 
     <RouterLink v-if="next" :to="linkTo(next)" class="pn-link pn-next">
       <span class="pn-text">
-        <span class="pn-label">下一篇</span>
+        <span class="pn-label">{{ t('detail.next') }}</span>
         <span class="pn-title">{{ next.title }}</span>
       </span>
       <VaIcon name="arrow_forward" size="16px" />
