@@ -112,7 +112,7 @@ const difficultyLabel = computed<Record<string, string>>(() => ({
         <p class="hero-subtitle">{{ t('tutorialsPage.heroSubtitle') }}</p>
 
         <div class="search-wrapper">
-          <VaInput v-model="searchQuery" :placeholder="t('tutorialsPage.searchPlaceholder')" class="search-input" clearable>
+          <VaInput v-model="searchQuery" :placeholder="t('tutorialsPage.searchPlaceholder')" :aria-label="t('tutorialsPage.searchPlaceholder')" class="search-input" clearable>
             <template #prepend>
               <VaIcon name="search" size="20px" color="secondary" />
             </template>

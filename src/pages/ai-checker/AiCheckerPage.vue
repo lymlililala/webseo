@@ -177,6 +177,7 @@ const activeSidebarItem = computed(() => (activeCategory.value === 'all' ? scrol
           <VaInput
             v-model="searchQuery"
             placeholder="Search tools by name, platform or feature..."
+            aria-label="Search AI visibility tools"
             class="checker-search-input"
             clearable
           >
@@ -1232,7 +1233,6 @@ const activeSidebarItem = computed(() => (activeCategory.value === 'all' ? scrol
   -webkit-line-clamp: 3;
   -webkit-box-orient: vertical;
   overflow: hidden;
-  flex: 1;
 }
 
 .checker-tool-footer {

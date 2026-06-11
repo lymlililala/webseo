@@ -167,6 +167,7 @@ const activeSidebarItem = computed(() => (activeCategory.value === 'all' ? scrol
           <VaInput
             v-model="searchQuery"
             placeholder="Search tools by name, feature or tag..."
+            aria-label="Search AEO tools"
             class="aeo-search-input"
             clearable
           >
@@ -1280,7 +1281,6 @@ const activeSidebarItem = computed(() => (activeCategory.value === 'all' ? scrol
   color: var(--va-text-secondary);
   line-height: 1.55;
   margin: 0;
-  flex: 1;
   display: -webkit-box;
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
@@ -1345,7 +1345,7 @@ const activeSidebarItem = computed(() => (activeCategory.value === 'all' ? scrol
   align-items: center;
   justify-content: space-between;
   gap: 6px;
-  margin-top: 2px;
+  margin-top: auto;
 }
 
 .aeo-tool-tags {

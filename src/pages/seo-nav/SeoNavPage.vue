@@ -153,7 +153,7 @@ const activeSidebarItem = computed(() => (activeCategory.value === 'all' ? scrol
 
         <!-- 搜索框：放大居中，成为视觉焦点 -->
         <div class="search-wrapper">
-          <VaInput v-model="searchQuery" placeholder="Search tools by name, feature or tag..." class="search-input" clearable>
+          <VaInput v-model="searchQuery" placeholder="Search tools by name, feature or tag..." aria-label="Search SEO tools" class="search-input" clearable>
             <template #prepend>
               <VaIcon name="search" size="22px" color="secondary" />
             </template>
@@ -1065,7 +1065,6 @@ const activeSidebarItem = computed(() => (activeCategory.value === 'all' ? scrol
   -webkit-box-orient: vertical;
   overflow: hidden;
   text-overflow: ellipsis;
-  flex: 1;
 }
 
 .tool-footer {

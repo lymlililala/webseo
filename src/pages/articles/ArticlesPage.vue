@@ -121,7 +121,7 @@ const categories = [
         <p class="hero-subtitle">{{ t('articlesPage.heroSubtitle') }}</p>
 
         <div class="search-wrapper">
-          <VaInput v-model="searchQuery" :placeholder="t('articlesPage.searchPlaceholder')" class="search-input" clearable>
+          <VaInput v-model="searchQuery" :placeholder="t('articlesPage.searchPlaceholder')" :aria-label="t('articlesPage.searchPlaceholder')" class="search-input" clearable>
             <template #prepend>
               <VaIcon name="search" size="20px" color="secondary" />
             </template>

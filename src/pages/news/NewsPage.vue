@@ -115,7 +115,7 @@ function openNewsLink(link?: string) {
         <p class="hero-subtitle">{{ t('newsPage.heroSubtitle') }}</p>
 
         <div class="search-wrapper">
-          <VaInput v-model="searchQuery" :placeholder="t('newsPage.searchPlaceholder')" class="search-input" clearable>
+          <VaInput v-model="searchQuery" :placeholder="t('newsPage.searchPlaceholder')" :aria-label="t('newsPage.searchPlaceholder')" class="search-input" clearable>
             <template #prepend>
               <VaIcon name="search" size="20px" color="secondary" />
             </template>
