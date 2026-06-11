@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { computed } from 'vue'
+import { localePath } from '../i18n/useLocale'
 
 interface RelatedItem {
   id: string | number
@@ -17,11 +17,7 @@ const props = withDefaults(
     type: 'articles' | 'news' | 'tutorials'
     title?: string
   }>(),
-  { title: '相关内容' },
-)
-
-const routeName = computed(
-  () => ({ articles: 'article-detail', news: 'news-detail', tutorials: 'tutorial-detail' })[props.type],
+  { title: 'Related content' },
 )
 
 const categoryColor: Record<string, string> = {
@@ -34,7 +30,7 @@ const categoryColor: Record<string, string> = {
 }
 
 function linkTo(item: RelatedItem) {
-  return { name: routeName.value, params: { id: item.slug || String(item.id) } }
+  return localePath('/' + props.type + '/' + (item.slug || String(item.id)))
 }
 </script>
 

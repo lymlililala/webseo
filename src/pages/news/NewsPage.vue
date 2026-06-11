@@ -1,23 +1,26 @@
 <script setup lang="ts">
 import { ref, computed, onMounted, watch } from 'vue'
 import { useRouter } from 'vue-router'
+import { useI18n } from 'vue-i18n'
 import { type News } from '../../data/news'
 import { newsAPI } from '../../services/supabase'
 import SkeletonLoader from '../../components/SkeletonLoader.vue'
 import { usePageSeo } from '../../composables/usePageSeo'
+import { localePath } from '../../i18n/useLocale'
+
+const { t } = useI18n()
 
 usePageSeo({
-  title: 'SEO资讯 — 搜索引擎与AI动态最新动态',
-  description:
-    '跟踪搜索引擎和AI引擎最新动态：Google算法更新、ChatGPT新功能、Perplexity动态、AI搜索行业趋势。让您第一时间了解搜索优化行业变化。',
+  title: t('newsPage.seoTitle'),
+  description: t('newsPage.seoDescription'),
   path: '/news',
-  keywords: 'SEO资讯,Google算法更新,AI搜索动态,ChatGPT更新,Perplexity资讯,搜索行业新闻',
+  keywords: t('newsPage.seoKeywords'),
   jsonLd: [
     {
       '@context': 'https://schema.org',
       '@type': 'Blog',
-      name: 'SGAIndex搜索资讯',
-      description: '搜索引擎和AI引擎最新动态和行业趋势',
+      name: 'SGAIndex',
+      description: t('newsPage.seoDescription'),
       url: 'https://sgaindex.com/news',
       publisher: { '@type': 'Organization', name: 'SGAIndex', url: 'https://sgaindex.com' },
     },
@@ -86,11 +89,11 @@ function goToPage(page: number) {
   window.scrollTo({ top: 0, behavior: 'smooth' })
 }
 
-const impactLabel = {
-  high: '高影响',
-  medium: '中影响',
-  low: '低影响',
-}
+const impactLabel = computed<Record<string, string>>(() => ({
+  high: t('newsPage.impactHigh'),
+  medium: t('newsPage.impactMedium'),
+  low: t('newsPage.impactLow'),
+}))
 
 function openNewsLink(link?: string) {
   if (link) {
@@ -106,13 +109,13 @@ function openNewsLink(link?: string) {
       <div class="hero-content">
         <div class="hero-badge">
           <VaIcon name="newspaper" size="16px" />
-          <span>行业新闻</span>
+          <span>{{ t('newsPage.badge') }}</span>
         </div>
-        <h1 class="hero-title">SEO/GEO/AEO 行业动态</h1>
-        <p class="hero-subtitle">关注最新的搜索引擎算法更新和 AI 搜索发展趋势</p>
+        <h1 class="hero-title">{{ t('newsPage.heroTitle') }}</h1>
+        <p class="hero-subtitle">{{ t('newsPage.heroSubtitle') }}</p>
 
         <div class="search-wrapper">
-          <VaInput v-model="searchQuery" placeholder="搜索新闻..." class="search-input" clearable>
+          <VaInput v-model="searchQuery" :placeholder="t('newsPage.searchPlaceholder')" class="search-input" clearable>
             <template #prepend>
               <VaIcon name="search" size="20px" color="secondary" />
             </template>
@@ -125,15 +128,15 @@ function openNewsLink(link?: string) {
     <div class="content-wrapper">
       <aside class="sidebar">
         <div class="filter-group">
-          <h3>分类</h3>
+          <h3>{{ t('newsPage.categories') }}</h3>
           <button
             v-for="cat in [
-              { id: 'all', label: '全部新闻' },
+              { id: 'all', label: t('newsPage.all') },
               { id: 'seo', label: 'SEO' },
               { id: 'geo', label: 'GEO' },
               { id: 'aeo', label: 'AEO' },
               { id: 'ai', label: 'AI' },
-              { id: 'industry', label: '行业' },
+              { id: 'industry', label: t('articlesPage.catTools') },
             ]"
             :key="cat.id"
             class="filter-btn"
@@ -145,13 +148,13 @@ function openNewsLink(link?: string) {
         </div>
 
         <div class="filter-group">
-          <h3>影响程度</h3>
+          <h3>{{ t('newsPage.impact') }}</h3>
           <button
             v-for="impact in [
-              { id: 'all', label: '全部' },
-              { id: 'high', label: '高影响' },
-              { id: 'medium', label: '中影响' },
-              { id: 'low', label: '低影响' },
+              { id: 'all', label: t('newsPage.impactAll') },
+              { id: 'high', label: t('newsPage.impactHigh') },
+              { id: 'medium', label: t('newsPage.impactMedium') },
+              { id: 'low', label: t('newsPage.impactLow') },
             ]"
             :key="impact.id"
             class="filter-btn"
@@ -170,7 +173,7 @@ function openNewsLink(link?: string) {
 
         <div v-else-if="filteredNews.length === 0" class="empty-state">
           <VaIcon name="newspaper" size="56px" color="secondary" />
-          <p>暂无匹配新闻</p>
+          <p>{{ t('newsPage.empty') }}</p>
         </div>
 
         <div v-else>
@@ -179,12 +182,12 @@ function openNewsLink(link?: string) {
               v-for="item in paginatedNews"
               :key="item.id"
               class="news-item"
-              @click="router.push({ name: 'news-detail', params: { id: (item as any).slug || item.id } })"
+              @click="router.push(localePath('/news/' + ((item as any).slug || item.id)))"
             >
               <div class="news-header">
                 <div class="news-meta">
                   <span class="category-tag">{{ item.category.toUpperCase() }}</span>
-                  <span class="date">{{ new Date(item.date).toLocaleDateString('zh-CN') }}</span>
+                  <span class="date">{{ new Date(item.date).toLocaleDateString() }}</span>
                 </div>
                 <div class="impact-badge" :class="item.impact">
                   {{ impactLabel[item.impact] }}
@@ -192,7 +195,7 @@ function openNewsLink(link?: string) {
               </div>
 
               <RouterLink
-                :to="{ name: 'news-detail', params: { id: (item as any).slug || item.id } }"
+                :to="localePath('/news/' + ((item as any).slug || item.id))"
                 class="news-title-link"
                 @click.stop
               >
@@ -218,9 +221,9 @@ function openNewsLink(link?: string) {
                   @click.stop="openNewsLink(item.link)"
                 >
                   <VaIcon name="open_in_new" size="14px" />
-                  阅读全文
+                  {{ t('newsPage.readOriginal') }}
                 </VaButton>
-                <span v-else class="no-link">暂无原文链接</span>
+                <span v-else class="no-link">{{ t('newsPage.noLink') }}</span>
               </div>
             </article>
           </div>
@@ -231,7 +234,7 @@ function openNewsLink(link?: string) {
               <VaIcon name="arrow_back" size="16px" />
             </VaButton>
             <div class="page-info">
-              第 {{ currentPage }} / {{ totalPages }} 页（共 {{ filteredNews.length }} 条新闻）
+              {{ t('newsPage.pageInfo', { current: currentPage, total: totalPages, count: filteredNews.length }) }}
             </div>
             <VaButton
               preset="secondary"

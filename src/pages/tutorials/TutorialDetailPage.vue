@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { ref, computed, onMounted, watch } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
+import { useI18n } from 'vue-i18n'
 import { type Tutorial } from '../../data/tutorials'
 import { tutorialsAPI } from '../../services/supabase'
 import { marked } from 'marked'
@@ -8,9 +9,11 @@ import Breadcrumb from '../../components/Breadcrumb.vue'
 import RelatedContent from '../../components/RelatedContent.vue'
 import PrevNextNav from '../../components/PrevNextNav.vue'
 import { autolinkGlossary } from '../../utils/glossaryAutolink'
+import { localePath } from '../../i18n/useLocale'
 
 const route = useRoute()
 const router = useRouter()
+const { t } = useI18n()
 
 const tutorial = ref<Tutorial | null>(null)
 const loading = ref(true)
@@ -22,8 +25,8 @@ const prevTutorial = ref<Tutorial | null>(null)
 const nextTutorial = ref<Tutorial | null>(null)
 
 const breadcrumbItems = computed(() => [
-  { name: '首页', to: '/' },
-  { name: '教程', to: '/tutorials' },
+  { name: t('detail.home'), to: localePath('/') },
+  { name: t('detail.tutorials'), to: localePath('/tutorials') },
   { name: tutorial.value?.title || '' },
 ])
 
@@ -141,17 +144,17 @@ watch(tutorial, (t) => {
   document.head.appendChild(script)
 })
 
-const difficultyMeta: Record<string, { label: string; color: string }> = {
-  beginner: { label: '初级', color: '#10B981' },
-  intermediate: { label: '中级', color: '#F59E0B' },
-  advanced: { label: '高级', color: '#EF4444' },
-}
+const difficultyMeta = computed<Record<string, { label: string; color: string }>>(() => ({
+  beginner: { label: t('tutorialsPage.levelBeginner'), color: '#10B981' },
+  intermediate: { label: t('tutorialsPage.levelIntermediate'), color: '#F59E0B' },
+  advanced: { label: t('tutorialsPage.levelAdvanced'), color: '#EF4444' },
+}))
 
 function formatDuration(minutes: number) {
-  if (minutes < 60) return `${minutes} 分钟`
+  if (minutes < 60) return t('detail.durationMin', { n: minutes })
   const h = Math.floor(minutes / 60)
   const m = minutes % 60
-  return m > 0 ? `${h} 小时 ${m} 分钟` : `${h} 小时`
+  return m > 0 ? t('detail.durationHourMin', { h, m }) : t('detail.durationHour', { h })
 }
 </script>
 
@@ -159,22 +162,22 @@ function formatDuration(minutes: number) {
   <div class="tutorial-detail-page">
     <div v-if="loading" class="state-center">
       <VaIcon name="hourglass_empty" size="56px" color="secondary" />
-      <p>加载中...</p>
+      <p>{{ t('common.loading') }}</p>
     </div>
 
     <div v-else-if="notFound" class="state-center">
       <VaIcon name="search_off" size="56px" color="secondary" />
-      <p>教程不存在</p>
-      <VaButton preset="secondary" @click="router.push({ name: 'tutorials' })">返回教程列表</VaButton>
+      <p>{{ t('detail.notFoundTutorial') }}</p>
+      <VaButton preset="secondary" @click="router.push(localePath('/tutorials'))">{{ t('detail.backToTutorials') }}</VaButton>
     </div>
 
     <template v-else-if="tutorial">
       <!-- Hero -->
       <div class="hero-section">
         <div class="hero-content">
-          <button class="back-btn" @click="router.push({ name: 'tutorials' })">
+          <button class="back-btn" @click="router.push(localePath('/tutorials'))">
             <VaIcon name="arrow_back" size="16px" />
-            返回教程列表
+            {{ t('detail.backToTutorials') }}
           </button>
 
           <div class="badges">
@@ -208,7 +211,7 @@ function formatDuration(minutes: number) {
           <div class="tutorial-stats">
             <span class="stat-item">
               <VaIcon name="person" size="14px" />
-              讲师：{{ tutorial.instructor }}
+              {{ t('detail.instructor', { name: tutorial.instructor }) }}
             </span>
             <span class="stat-divider">·</span>
             <span class="stat-item">
@@ -218,12 +221,12 @@ function formatDuration(minutes: number) {
             <span class="stat-divider">·</span>
             <span class="stat-item">
               <VaIcon name="menu_book" size="14px" />
-              {{ tutorial.lessons.length }} 节课
+              {{ t('detail.lessonsCount', { n: tutorial.lessons.length }) }}
             </span>
             <span class="stat-divider">·</span>
             <span class="stat-item">
               <VaIcon name="people" size="14px" />
-              {{ tutorial.students.toLocaleString() }} 学员
+              {{ t('detail.studentsCount', { n: tutorial.students.toLocaleString() }) }}
             </span>
             <span class="stat-divider">·</span>
             <span class="stat-item rating">
@@ -246,7 +249,7 @@ function formatDuration(minutes: number) {
         <div v-if="tutorial.description" class="tutorial-body overview-section">
           <div class="section-header">
             <VaIcon name="info_outline" size="20px" color="primary" />
-            <h2>课程概述</h2>
+            <h2>{{ t('detail.overview') }}</h2>
           </div>
           <div class="description-content" v-html="descriptionHtml" @click="onContentClick"></div>
         </div>
@@ -257,8 +260,8 @@ function formatDuration(minutes: number) {
           <template v-if="tutorial.lessons && tutorial.lessons.length > 0">
             <div class="section-header">
               <VaIcon name="format_list_numbered" size="20px" color="primary" />
-              <h2>课程大纲</h2>
-              <span class="lesson-count">共 {{ tutorial.lessons.length }} 节</span>
+              <h2>{{ t('detail.outline') }}</h2>
+              <span class="lesson-count">{{ t('detail.lessonsTotal', { n: tutorial.lessons.length }) }}</span>
             </div>
 
             <div class="lessons-list">
@@ -272,7 +275,7 @@ function formatDuration(minutes: number) {
                   <span class="lesson-level" :class="lesson.level">{{ difficultyMeta[lesson.level]?.label }}</span>
                   <span class="lesson-duration">
                     <VaIcon name="schedule" size="12px" />
-                    {{ lesson.duration }} 分钟
+                    {{ t('detail.durationMin', { n: lesson.duration }) }}
                   </span>
                 </div>
               </div>
@@ -282,18 +285,18 @@ function formatDuration(minutes: number) {
           <!-- 无课程列表时显示说明 -->
           <div v-else class="no-lessons">
             <VaIcon name="school" size="48px" color="secondary" />
-            <p>课程内容正在整理中，敬请期待</p>
+            <p>{{ t('detail.comingSoon') }}</p>
           </div>
         </div>
 
         <!-- 相关推荐 + 上一篇/下一篇 -->
-        <RelatedContent :items="relatedTutorials" type="tutorials" title="相关教程" />
+        <RelatedContent :items="relatedTutorials" type="tutorials" :title="t('detail.relatedTutorials')" />
         <PrevNextNav type="tutorials" :prev="prevTutorial" :next="nextTutorial" />
 
         <div class="page-footer">
-          <VaButton preset="secondary" @click="router.push({ name: 'tutorials' })">
+          <VaButton preset="secondary" @click="router.push(localePath('/tutorials'))">
             <VaIcon name="arrow_back" size="16px" />
-            返回教程列表
+            {{ t('detail.backToTutorials') }}
           </VaButton>
         </div>
       </div>

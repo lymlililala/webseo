@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { ref, computed, onMounted, watch } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
+import { useI18n } from 'vue-i18n'
 import { marked } from 'marked'
 import { type Article } from '../../data/articles'
 import { articlesAPI } from '../../services/supabase'
@@ -8,9 +9,11 @@ import Breadcrumb from '../../components/Breadcrumb.vue'
 import RelatedContent from '../../components/RelatedContent.vue'
 import PrevNextNav from '../../components/PrevNextNav.vue'
 import { autolinkGlossary } from '../../utils/glossaryAutolink'
+import { localePath } from '../../i18n/useLocale'
 
 const route = useRoute()
 const router = useRouter()
+const { t } = useI18n()
 
 const article = ref<Article | null>(null)
 const loading = ref(true)
@@ -22,8 +25,8 @@ const prevArticle = ref<Article | null>(null)
 const nextArticle = ref<Article | null>(null)
 
 const breadcrumbItems = computed(() => [
-  { name: '首页', to: '/' },
-  { name: '文章', to: '/articles' },
+  { name: t('detail.home'), to: localePath('/') },
+  { name: t('detail.articles'), to: localePath('/articles') },
   { name: article.value?.title || '' },
 ])
 
@@ -100,7 +103,7 @@ const categoryMeta: Record<string, { label: string; color: string; icon: string 
   seo: { label: 'SEO', color: '#3B82F6', icon: 'travel_explore' },
   geo: { label: 'GEO', color: '#10B981', icon: 'auto_awesome' },
   aeo: { label: 'AEO', color: '#EC4899', icon: 'question_answer' },
-  tools: { label: '工具', color: '#F59E0B', icon: 'build' },
+  tools: { label: t('articlesPage.catTools'), color: '#F59E0B', icon: 'build' },
 }
 
 // 文章加载后动态更新 SEO
@@ -168,14 +171,14 @@ watch(article, (a) => {
     <!-- 加载中 -->
     <div v-if="loading" class="state-center">
       <VaIcon name="hourglass_empty" size="56px" color="secondary" />
-      <p>加载中...</p>
+      <p>{{ t('common.loading') }}</p>
     </div>
 
     <!-- 404 -->
     <div v-else-if="notFound" class="state-center">
       <VaIcon name="search_off" size="56px" color="secondary" />
-      <p>文章不存在</p>
-      <VaButton preset="secondary" @click="router.push({ name: 'articles' })">返回文章列表</VaButton>
+      <p>{{ t('detail.notFoundArticle') }}</p>
+      <VaButton preset="secondary" @click="router.push(localePath('/articles'))">{{ t('detail.backToArticles') }}</VaButton>
     </div>
 
     <!-- 文章内容 -->
@@ -184,9 +187,9 @@ watch(article, (a) => {
       <div class="hero-section">
         <div class="hero-content">
           <!-- 返回按钮 -->
-          <button class="back-btn" @click="router.push({ name: 'articles' })">
+          <button class="back-btn" @click="router.push(localePath('/articles'))">
             <VaIcon name="arrow_back" size="16px" />
-            返回文章列表
+            {{ t('detail.backToArticles') }}
           </button>
 
           <!-- 分类标签 -->
@@ -214,12 +217,12 @@ watch(article, (a) => {
             <span class="meta-divider">·</span>
             <span class="meta-item">
               <VaIcon name="calendar_today" size="14px" />
-              {{ new Date(article.date).toLocaleDateString('zh-CN') }}
+              {{ new Date(article.date).toLocaleDateString() }}
             </span>
             <span class="meta-divider">·</span>
             <span class="meta-item">
               <VaIcon name="schedule" size="14px" />
-              {{ article.readTime }} 分钟阅读
+              {{ t('articlesPage.readTime', { n: article.readTime }) }}
             </span>
           </div>
 
@@ -240,14 +243,14 @@ watch(article, (a) => {
         </article>
 
         <!-- 相关推荐 + 上一篇/下一篇 -->
-        <RelatedContent :items="relatedArticles" type="articles" title="相关文章" />
+        <RelatedContent :items="relatedArticles" type="articles" :title="t('detail.relatedArticles')" />
         <PrevNextNav type="articles" :prev="prevArticle" :next="nextArticle" />
 
         <!-- 底部导航 -->
         <div class="article-footer">
-          <VaButton preset="secondary" @click="router.push({ name: 'articles' })">
+          <VaButton preset="secondary" @click="router.push(localePath('/articles'))">
             <VaIcon name="arrow_back" size="16px" />
-            返回文章列表
+            {{ t('detail.backToArticles') }}
           </VaButton>
         </div>
       </div>

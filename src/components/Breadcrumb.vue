@@ -41,7 +41,7 @@ onUnmounted(() => {
 </script>
 
 <template>
-  <nav class="breadcrumb" aria-label="面包屑导航">
+  <nav class="breadcrumb" aria-label="Breadcrumb">
     <template v-for="(crumb, i) in items" :key="i">
       <RouterLink v-if="crumb.to" :to="crumb.to" class="crumb-link">{{ crumb.name }}</RouterLink>
       <span v-else class="crumb-current">{{ crumb.name }}</span>

@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { ref, computed, onMounted, watch } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
+import { useI18n } from 'vue-i18n'
 import { marked } from 'marked'
 import { type News } from '../../data/news'
 import { newsAPI } from '../../services/supabase'
@@ -8,9 +9,11 @@ import Breadcrumb from '../../components/Breadcrumb.vue'
 import RelatedContent from '../../components/RelatedContent.vue'
 import PrevNextNav from '../../components/PrevNextNav.vue'
 import { autolinkGlossary } from '../../utils/glossaryAutolink'
+import { localePath } from '../../i18n/useLocale'
 
 const route = useRoute()
 const router = useRouter()
+const { t } = useI18n()
 
 const newsItem = ref<News | null>(null)
 const loading = ref(true)
@@ -22,8 +25,8 @@ const prevNews = ref<News | null>(null)
 const nextNews = ref<News | null>(null)
 
 const breadcrumbItems = computed(() => [
-  { name: '首页', to: '/' },
-  { name: '资讯', to: '/news' },
+  { name: t('detail.home'), to: localePath('/') },
+  { name: t('detail.news'), to: localePath('/news') },
   { name: newsItem.value?.title || '' },
 ])
 
@@ -96,7 +99,7 @@ const categoryMeta: Record<string, { label: string; color: string }> = {
   geo: { label: 'GEO', color: '#10B981' },
   aeo: { label: 'AEO', color: '#EC4899' },
   ai: { label: 'AI', color: '#8B5CF6' },
-  industry: { label: '行业', color: '#F59E0B' },
+  industry: { label: t('articlesPage.catTools'), color: '#F59E0B' },
 }
 
 // 数据加载后动态更新 SEO
@@ -155,9 +158,9 @@ watch(newsItem, (n) => {
 })
 
 const impactMeta: Record<string, { label: string; color: string }> = {
-  high: { label: '高影响', color: '#EF4444' },
-  medium: { label: '中影响', color: '#F59E0B' },
-  low: { label: '低影响', color: '#10B981' },
+  high: { label: t('newsPage.impactHigh'), color: '#EF4444' },
+  medium: { label: t('newsPage.impactMedium'), color: '#F59E0B' },
+  low: { label: t('newsPage.impactLow'), color: '#10B981' },
 }
 </script>
 
@@ -165,22 +168,22 @@ const impactMeta: Record<string, { label: string; color: string }> = {
   <div class="news-detail-page">
     <div v-if="loading" class="state-center">
       <VaIcon name="hourglass_empty" size="56px" color="secondary" />
-      <p>加载中...</p>
+      <p>{{ t('common.loading') }}</p>
     </div>
 
     <div v-else-if="notFound" class="state-center">
       <VaIcon name="search_off" size="56px" color="secondary" />
-      <p>新闻不存在</p>
-      <VaButton preset="secondary" @click="router.push({ name: 'news' })">返回新闻列表</VaButton>
+      <p>{{ t('detail.notFoundNews') }}</p>
+      <VaButton preset="secondary" @click="router.push(localePath('/news'))">{{ t('detail.backToNews') }}</VaButton>
     </div>
 
     <template v-else-if="newsItem">
       <!-- Hero -->
       <div class="hero-section">
         <div class="hero-content">
-          <button class="back-btn" @click="router.push({ name: 'news' })">
+          <button class="back-btn" @click="router.push(localePath('/news'))">
             <VaIcon name="arrow_back" size="16px" />
-            返回新闻列表
+            {{ t('detail.backToNews') }}
           </button>
 
           <div class="badges">
@@ -217,7 +220,7 @@ const impactMeta: Record<string, { label: string; color: string }> = {
             <span class="meta-divider">·</span>
             <span class="meta-item">
               <VaIcon name="calendar_today" size="14px" />
-              {{ new Date(newsItem.date).toLocaleDateString('zh-CN') }}
+              {{ new Date(newsItem.date).toLocaleDateString() }}
             </span>
           </div>
 
@@ -237,13 +240,13 @@ const impactMeta: Record<string, { label: string; color: string }> = {
         </article>
 
         <!-- 相关推荐 + 上一篇/下一篇 -->
-        <RelatedContent :items="relatedNews" type="news" title="相关资讯" />
+        <RelatedContent :items="relatedNews" type="news" :title="t('detail.relatedNews')" />
         <PrevNextNav type="news" :prev="prevNews" :next="nextNews" />
 
         <div class="news-footer">
-          <VaButton preset="secondary" @click="router.push({ name: 'news' })">
+          <VaButton preset="secondary" @click="router.push(localePath('/news'))">
             <VaIcon name="arrow_back" size="16px" />
-            返回新闻列表
+            {{ t('detail.backToNews') }}
           </VaButton>
         </div>
       </div>
