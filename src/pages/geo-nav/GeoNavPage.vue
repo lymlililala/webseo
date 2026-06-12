@@ -1024,7 +1024,7 @@ const activeSidebarItem = computed(() => (activeCategory.value === 'all' ? scrol
 
 .geo-featured-card:hover {
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
-  transform: translateY(-4px);
+  transform: translateY(-2px);
 }
 
 .geo-featured-icon {
@@ -1267,7 +1267,7 @@ const activeSidebarItem = computed(() => (activeCategory.value === 'all' ? scrol
 
 .geo-tool-card:hover {
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
-  transform: translateY(-4px);
+  transform: translateY(-2px);
 }
 
 .geo-tool-top {

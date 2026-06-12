@@ -821,7 +821,7 @@ const activeSidebarItem = computed(() => (activeCategory.value === 'all' ? scrol
 
 .featured-card:hover {
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
-  transform: translateY(-4px);
+  transform: translateY(-2px);
 }
 
 .featured-card:focus-visible {
@@ -1017,7 +1017,7 @@ const activeSidebarItem = computed(() => (activeCategory.value === 'all' ? scrol
 
 .tool-card:hover {
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
-  transform: translateY(-4px);
+  transform: translateY(-2px);
 }
 
 .tool-card:focus-visible {
