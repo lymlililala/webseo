@@ -4887,4 +4887,31 @@
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
+  <url>
+    <loc>https://sgaindex.com/articles/how-to-use-ga4-for-seo-step-by-step-tutorial</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://sgaindex.com/articles/how-to-use-ga4-for-seo-step-by-step-tutorial" />
+    <xhtml:link rel="alternate" hreflang="zh" href="https://sgaindex.com/zh/articles/how-to-use-ga4-for-seo-step-by-step-tutorial" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://sgaindex.com/articles/how-to-use-ga4-for-seo-step-by-step-tutorial" />
+    <lastmod>2026-06-09</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://sgaindex.com/articles/build-free-seo-dashboard-looker-studio-template</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://sgaindex.com/articles/build-free-seo-dashboard-looker-studio-template" />
+    <xhtml:link rel="alternate" hreflang="zh" href="https://sgaindex.com/zh/articles/build-free-seo-dashboard-looker-studio-template" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://sgaindex.com/articles/build-free-seo-dashboard-looker-studio-template" />
+    <lastmod>2026-06-10</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://sgaindex.com/articles/local-seo-audit-checklist</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://sgaindex.com/articles/local-seo-audit-checklist" />
+    <xhtml:link rel="alternate" hreflang="zh" href="https://sgaindex.com/zh/articles/local-seo-audit-checklist" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://sgaindex.com/articles/local-seo-audit-checklist" />
+    <lastmod>2026-06-11</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
 </urlset>
