@@ -33,7 +33,7 @@
     },
     {
       "src": "/zh/(articles|tutorials|news)/([^/]+)",
-      "dest": "/$1/$2/index.html"
+      "dest": "/zh/$1/$2/index.html"
     },
     {
       "src": "/zh/(seo-nav|geo-nav|aeo-nav|schema-generator|ai-checker|llms-txt|glossary|articles|tutorials|news|faq)",
