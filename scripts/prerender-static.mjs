@@ -522,7 +522,7 @@ async function main() {
   console.log('\n📰 从数据库查询文章并预渲染...')
   const { data: articles, error: aErr } = await supabase
     .from('wseo_articles')
-    .select('id, slug, title, description, date, author, tags, category')
+    .select('id, slug, title, description, date, author, tags, category, title_zh, description_zh, content_zh')
     .order('date', { ascending: false })
 
   if (aErr) {
@@ -536,6 +536,7 @@ async function main() {
       const canonicalUrl = `${SITE}${routePath}`
       const tags = Array.isArray(a.tags) ? a.tags : []
       const rel = relations[i]
+      const hasZh = !!(a.title_zh && a.title_zh.trim())
       writeHtml(
         routePath,
         buildHtml({
@@ -546,7 +547,7 @@ async function main() {
           ogType: 'article',
           keywords: tags.join(','),
           lang: 'en',
-          altPath: routePath,
+          altPath: hasZh ? routePath : undefined,
           internalLinks: buildInternalLinks({
             base: '/articles',
             listName: 'Articles',
@@ -574,6 +575,49 @@ async function main() {
         })
       )
       totalCount++
+      if (hasZh) {
+        const zhPath = `/zh${routePath}`
+        const zhCanonical = `${SITE}${zhPath}`
+        writeHtml(
+          zhPath,
+          buildHtml({
+            title: `${a.title_zh} | SGAIndex`,
+            description: a.description_zh || a.description || `${a.title_zh} — SGAIndex 文章`,
+            canonicalUrl: zhCanonical,
+            h1: a.title_zh,
+            ogType: 'article',
+            keywords: tags.join(','),
+            lang: 'zh',
+            altPath: routePath,
+            internalLinks: buildInternalLinks({
+              base: '/zh/articles',
+              listName: '文章',
+              related: rel.related,
+              prev: rel.prev,
+              next: rel.next,
+            }),
+            breadcrumbJsonld: buildBreadcrumbJsonld([
+              { name: '首页', path: '/zh' },
+              { name: '文章', path: '/zh/articles' },
+              { name: a.title_zh },
+            ]),
+            jsonld: {
+              '@context': 'https://schema.org',
+              '@type': 'Article',
+              headline: a.title_zh,
+              description: a.description_zh || '',
+              datePublished: a.date,
+              dateModified: a.date,
+              inLanguage: 'zh-CN',
+              author: { '@type': 'Organization', name: a.author || 'SGAIndex', url: SITE },
+              publisher: { '@type': 'Organization', name: SITE_NAME, url: SITE },
+              mainEntityOfPage: { '@type': 'WebPage', '@id': zhCanonical },
+              url: zhCanonical,
+            },
+          })
+        )
+        totalCount++
+      }
     })
     console.log(`  → 共生成 ${list.length} 篇文章`)
   }
@@ -582,7 +626,7 @@ async function main() {
   console.log('\n📚 从数据库查询教程并预渲染...')
   const { data: tutorials, error: tErr } = await supabase
     .from('wseo_tutorials')
-    .select('id, slug, title, description, tags, category, difficulty')
+    .select('id, slug, title, description, tags, category, difficulty, title_zh, description_zh')
     .order('id', { ascending: true })
 
   if (tErr) {
@@ -596,6 +640,7 @@ async function main() {
       const canonicalUrl = `${SITE}${routePath}`
       const tags = Array.isArray(t.tags) ? t.tags : []
       const rel = relations[i]
+      const hasZh = !!(t.title_zh && t.title_zh.trim())
       writeHtml(
         routePath,
         buildHtml({
@@ -605,7 +650,7 @@ async function main() {
           h1: t.title,
           keywords: tags.join(','),
           lang: 'en',
-          altPath: routePath,
+          altPath: hasZh ? routePath : undefined,
           internalLinks: buildInternalLinks({
             base: '/tutorials',
             listName: 'Tutorials',
@@ -629,6 +674,44 @@ async function main() {
         })
       )
       totalCount++
+      if (hasZh) {
+        const zhPath = `/zh${routePath}`
+        const zhCanonical = `${SITE}${zhPath}`
+        writeHtml(
+          zhPath,
+          buildHtml({
+            title: `${t.title_zh} | SGAIndex Tutorials`,
+            description: t.description_zh || t.description || `${t.title_zh} — SGAIndex 教程`,
+            canonicalUrl: zhCanonical,
+            h1: t.title_zh,
+            keywords: tags.join(','),
+            lang: 'zh',
+            altPath: routePath,
+            internalLinks: buildInternalLinks({
+              base: '/zh/tutorials',
+              listName: '教程',
+              related: rel.related,
+              prev: rel.prev,
+              next: rel.next,
+            }),
+            breadcrumbJsonld: buildBreadcrumbJsonld([
+              { name: '首页', path: '/zh' },
+              { name: '教程', path: '/zh/tutorials' },
+              { name: t.title_zh },
+            ]),
+            jsonld: {
+              '@context': 'https://schema.org',
+              '@type': 'Course',
+              name: t.title_zh,
+              description: t.description_zh || '',
+              inLanguage: 'zh-CN',
+              url: zhCanonical,
+              provider: { '@type': 'Organization', name: SITE_NAME, url: SITE },
+            },
+          })
+        )
+        totalCount++
+      }
     })
     console.log(`  → 共生成 ${list.length} 个教程`)
   }
@@ -637,7 +720,7 @@ async function main() {
   console.log('\n📡 从数据库查询资讯并预渲染...')
   const { data: news, error: nErr } = await supabase
     .from('wseo_news')
-    .select('id, slug, title, description, date, tags, category')
+    .select('id, slug, title, description, date, tags, category, title_zh, description_zh, content_zh')
     .order('date', { ascending: false })
 
   if (nErr) {
@@ -651,6 +734,7 @@ async function main() {
       const canonicalUrl = `${SITE}${routePath}`
       const tags = Array.isArray(n.tags) ? n.tags : []
       const rel = relations[i]
+      const hasZh = !!(n.title_zh && n.title_zh.trim())
       writeHtml(
         routePath,
         buildHtml({
@@ -661,7 +745,7 @@ async function main() {
           ogType: 'article',
           keywords: tags.join(','),
           lang: 'en',
-          altPath: routePath,
+          altPath: hasZh ? routePath : undefined,
           internalLinks: buildInternalLinks({
             base: '/news',
             listName: 'News',
@@ -687,6 +771,47 @@ async function main() {
         })
       )
       totalCount++
+      if (hasZh) {
+        const zhPath = `/zh${routePath}`
+        const zhCanonical = `${SITE}${zhPath}`
+        writeHtml(
+          zhPath,
+          buildHtml({
+            title: `${n.title_zh} | SGAIndex News`,
+            description: n.description_zh || n.description || `${n.title_zh} — SGAIndex 资讯`,
+            canonicalUrl: zhCanonical,
+            h1: n.title_zh,
+            ogType: 'article',
+            keywords: tags.join(','),
+            lang: 'zh',
+            altPath: routePath,
+            internalLinks: buildInternalLinks({
+              base: '/zh/news',
+              listName: '资讯',
+              related: rel.related,
+              prev: rel.prev,
+              next: rel.next,
+            }),
+            breadcrumbJsonld: buildBreadcrumbJsonld([
+              { name: '首页', path: '/zh' },
+              { name: '资讯', path: '/zh/news' },
+              { name: n.title_zh },
+            ]),
+            jsonld: {
+              '@context': 'https://schema.org',
+              '@type': 'NewsArticle',
+              headline: n.title_zh,
+              description: n.description_zh || '',
+              datePublished: n.date,
+              inLanguage: 'zh-CN',
+              url: zhCanonical,
+              publisher: { '@type': 'Organization', name: SITE_NAME, url: SITE },
+              mainEntityOfPage: { '@type': 'WebPage', '@id': zhCanonical },
+            },
+          })
+        )
+        totalCount++
+      }
     })
     console.log(`  → 共生成 ${list.length} 条资讯`)
   }

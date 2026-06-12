@@ -1,4 +1,5 @@
 import { createClient } from '@supabase/supabase-js'
+import { currentLocale } from '../i18n/useLocale'
 
 const supabaseUrl = import.meta.env.VITE_SUPABASE_URL || ''
 // 优先用新版 publishable 公钥；legacy anon JWT 已于 2026-06-08 被 Supabase 禁用
@@ -19,7 +20,7 @@ interface CacheEntry<T> {
 const memCache = new Map<string, CacheEntry<any>>()
 
 function getCached<T>(key: string): T | null {
-  const entry = memCache.get(key)
+  const entry = memCache.get(currentLocale() + ':' + key)
   if (entry && Date.now() - entry.ts < CACHE_TTL) {
     return entry.data as T
   }
@@ -27,12 +28,14 @@ function getCached<T>(key: string): T | null {
 }
 
 function setCache<T>(key: string, data: T): void {
-  memCache.set(key, { data, ts: Date.now() })
+  memCache.set(currentLocale() + ':' + key, { data, ts: Date.now() })
 }
 
 export function clearCache(key?: string): void {
   if (key) {
-    memCache.delete(key)
+    // 按语言命名空间存储，清理时清掉两种语言的副本
+    memCache.delete('en:' + key)
+    memCache.delete('zh:' + key)
   } else {
     memCache.clear()
   }
@@ -53,8 +56,21 @@ export { SUPABASE_CONFIGURED }
 // ============================================================================
 // 数据规范化：tags 字段在数据库中可能以 JSON 字符串形式存储，统一解析为数组
 // ============================================================================
+
+// 当前语言为 zh 时，用 *_zh 列覆盖基础字段（译文非空才覆盖，未译则回退英文）
+const LOCALIZED_FIELDS = ['title', 'description', 'content']
+function localizeRow(row: any): any {
+  if (!row || currentLocale() !== 'zh') return row
+  for (const f of LOCALIZED_FIELDS) {
+    const zh = row[`${f}_zh`]
+    if (zh != null && String(zh).trim() !== '') row[f] = zh
+  }
+  return row
+}
+
 function parseTags(row: any): any {
   if (!row) return row
+  localizeRow(row)
   if (typeof row.tags === 'string') {
     try {
       row.tags = JSON.parse(row.tags)
