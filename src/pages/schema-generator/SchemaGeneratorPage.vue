@@ -1,15 +1,17 @@
 <script setup lang="ts">
 import { ref, computed } from 'vue'
 import { useRouter } from 'vue-router'
+import { useI18n } from 'vue-i18n'
 import { schemaTypes, schemaTools, getToolsForType, type SchemaType, type SchemaTool } from '../../data/schema-tools'
 import { usePageSeo } from '../../composables/usePageSeo'
 
+const { t } = useI18n()
+
 usePageSeo({
-  title: 'Schema Structured Data Tool — JSON-LD Generation & Validation',
-  description:
-    'A free Schema structured-data tool supporting JSON-LD and Microdata. Generate and validate 20+ Schema types including Article, FAQ, Product, HowTo and BreadcrumbList to improve your search result appearance.',
+  title: t('schemaGeneratorPage.seoTitle'),
+  description: t('schemaGeneratorPage.seoDescription'),
   path: '/schema-generator',
-  keywords: 'Schema generator,JSON-LD generation,structured data,FAQ Schema,Article Schema,rich results',
+  keywords: t('schemaGeneratorPage.seoKeywords'),
   jsonLd: [
     {
       '@context': 'https://schema.org',
@@ -77,7 +79,7 @@ function renderStars(n: number): string {
 }
 
 function getLevelLabel(level: SchemaTool['level']): string {
-  const map = { beginner: 'For beginners', advanced: 'Advanced', auto: 'Fully automated' }
+  const map = { beginner: t('schemaGeneratorPage.levelBeginner'), advanced: t('schemaGeneratorPage.levelAdvanced'), auto: t('schemaGeneratorPage.levelAuto') }
   return map[level]
 }
 
@@ -95,37 +97,34 @@ function getLevelColor(level: SchemaTool['level']): string {
       <div class="schema-hero-content">
         <div class="schema-hero-badge">
           <VaIcon name="data_object" size="14px" />
-          <span>Structured Data · Schema Markup Tools</span>
+          <span>{{ t('schemaGeneratorPage.badge') }}</span>
         </div>
         <h1 class="schema-hero-title">
-          Schema Markup Generator<br />
-          <span class="schema-hero-accent">Directory & Template Center</span>
+          {{ t('schemaGeneratorPage.heroTitleMain') }}<br />
+          <span class="schema-hero-accent">{{ t('schemaGeneratorPage.heroTitleAccent') }}</span>
         </h1>
-        <p class="schema-hero-subtitle">
-          An aggregated <strong>{{ schemaTools.length }}+</strong> Schema generators and tools, covering
-          <strong>{{ schemaTypes.length }}</strong> common types with JSON-LD templates and field notes — quickly add structured data to your site and improve rich results and AI citations.
-        </p>
+        <p class="schema-hero-subtitle" v-html="t('schemaGeneratorPage.heroSubtitle', { n: schemaTools.length, c: schemaTypes.length })"></p>
 
         <!-- 工作流提示 -->
         <div class="schema-workflow">
           <div class="schema-workflow-step">
             <span class="schema-wf-num">1</span>
-            <span>Pick a Schema type</span>
+            <span>{{ t('schemaGeneratorPage.wf1') }}</span>
           </div>
           <VaIcon name="chevron_right" size="14px" color="rgba(255,255,255,0.3)" />
           <div class="schema-workflow-step">
             <span class="schema-wf-num">2</span>
-            <span>Generate code with a tool</span>
+            <span>{{ t('schemaGeneratorPage.wf2') }}</span>
           </div>
           <VaIcon name="chevron_right" size="14px" color="rgba(255,255,255,0.3)" />
           <div class="schema-workflow-step">
             <span class="schema-wf-num">3</span>
-            <span>Copy the JSON-LD template</span>
+            <span>{{ t('schemaGeneratorPage.wf3') }}</span>
           </div>
           <VaIcon name="chevron_right" size="14px" color="rgba(255,255,255,0.3)" />
           <div class="schema-workflow-step active">
             <span class="schema-wf-num">4</span>
-            <span>Google official validation ✅</span>
+            <span>{{ t('schemaGeneratorPage.wf4') }}</span>
           </div>
         </div>
       </div>
@@ -162,7 +161,7 @@ function getLevelColor(level: SchemaTool['level']): string {
               </div>
               <div>
                 <div class="schema-detail-name-row">
-                  <h2 class="schema-detail-name">{{ activeType.name }} Schema</h2>
+                  <h2 class="schema-detail-name">{{ activeType.name }} {{ t('schemaGeneratorPage.schemaSuffix') }}</h2>
                   <span class="schema-detail-stars">{{ renderStars(activeType.stars) }}</span>
                 </div>
                 <p class="schema-detail-desc">{{ activeType.description }}</p>
@@ -174,7 +173,7 @@ function getLevelColor(level: SchemaTool['level']): string {
           <div v-if="activeType.aeoTip" class="schema-aeo-tip">
             <div class="schema-aeo-tip-header">
               <VaIcon name="auto_awesome" size="15px" color="#10B981" />
-              <strong>AEO key tips</strong>
+              <strong>{{ t('schemaGeneratorPage.aeoTipTitle') }}</strong>
             </div>
             <p>{{ activeType.aeoTip }}</p>
             <button
@@ -191,7 +190,7 @@ function getLevelColor(level: SchemaTool['level']): string {
           <div class="schema-required-fields">
             <div class="schema-section-title">
               <VaIcon name="check_circle" size="14px" color="success" />
-              Required fields
+              {{ t('schemaGeneratorPage.requiredFields') }}
             </div>
             <div class="schema-fields-list">
               <div v-for="field in activeType.requiredFields" :key="field.name" class="schema-field-item">
@@ -206,7 +205,7 @@ function getLevelColor(level: SchemaTool['level']): string {
             <div class="schema-template-header">
               <div class="schema-section-title">
                 <VaIcon name="code" size="14px" color="primary" />
-                JSON-LD template code
+                {{ t('schemaGeneratorPage.jsonLdTemplate') }}
               </div>
               <button
                 class="schema-copy-btn"
@@ -214,7 +213,7 @@ function getLevelColor(level: SchemaTool['level']): string {
                 @click="copyCode(activeType.jsonTemplate, activeType.id)"
               >
                 <VaIcon :name="copiedId === activeType.id ? 'check' : 'content_copy'" size="13px" />
-                {{ copiedId === activeType.id ? 'Copied!' : 'Copy code' }}
+                {{ copiedId === activeType.id ? t('schemaGeneratorPage.copiedCode') : t('schemaGeneratorPage.copyCode') }}
               </button>
             </div>
             <pre class="schema-code-block"><code>{{ activeType.jsonTemplate }}</code></pre>
@@ -223,7 +222,7 @@ function getLevelColor(level: SchemaTool['level']): string {
           <!-- 推荐工具 -->
           <div class="schema-section-title" style="margin-top: 1.4rem">
             <VaIcon name="build" size="14px" color="warning" />
-            Recommended tools
+            {{ t('schemaGeneratorPage.recommendedTools') }}
           </div>
           <div class="schema-tools-grid">
             <div v-for="tool in activeTypeTools" :key="tool.id" class="schema-tool-card" @click="openTool(tool.url)">
@@ -261,11 +260,11 @@ function getLevelColor(level: SchemaTool['level']): string {
               <div class="schema-tool-footer">
                 <div class="schema-price-tag">
                   <VaIcon name="sell" size="11px" />
-                  {{ tool.isFree ? 'Free' : tool.pricing || 'Paid' }}
+                  {{ tool.isFree ? t('schemaGeneratorPage.priceFree') : tool.pricing || t('schemaGeneratorPage.pricePaid') }}
                 </div>
                 <div class="schema-visit-btn">
                   <VaIcon name="open_in_new" size="11px" />
-                  Open tool
+                  {{ t('schemaGeneratorPage.openTool') }}
                 </div>
               </div>
             </div>
@@ -274,10 +273,7 @@ function getLevelColor(level: SchemaTool['level']): string {
           <!-- 提示 -->
           <div class="schema-validate-tip">
             <VaIcon name="verified" size="15px" color="#6366F1" />
-            <span
-              >After generating code, always validate with <strong>Google Rich Results Test</strong> and
-              <strong>Schema.org Validator</strong> </span
-            >
+            <span v-html="t('schemaGeneratorPage.validateTip')"></span>
             <div class="schema-validate-btns">
               <button class="schema-validate-btn" @click="openTool('https://search.google.com/test/rich-results')">
                 <VaIcon name="open_in_new" size="11px" />Google 
@@ -297,7 +293,7 @@ function getLevelColor(level: SchemaTool['level']): string {
           <div class="schema-sidebar-section">
             <div class="schema-sidebar-section-title">
               <VaIcon name="star" size="13px" color="warning" />
-              🥇 All-purpose pick
+              {{ t('schemaGeneratorPage.allPurpose') }}
             </div>
             <div class="schema-sidebar-tools">
               <div
@@ -314,11 +310,11 @@ function getLevelColor(level: SchemaTool['level']): string {
                   <span class="schema-level-tag-sm" :style="{ color: getLevelColor(tool.level) }">{{
                     getLevelLabel(tool.level)
                   }}</span>
-                  <span class="schema-sidebar-free">{{ tool.isFree ? 'Free' : tool.pricing }}</span>
+                  <span class="schema-sidebar-free">{{ tool.isFree ? t('schemaGeneratorPage.priceFree') : tool.pricing }}</span>
                 </div>
                 <div class="schema-sidebar-tool-visit">
                   <VaIcon name="open_in_new" size="10px" />
-                  Open tool
+                  {{ t('schemaGeneratorPage.openTool') }}
                 </div>
               </div>
             </div>
@@ -330,9 +326,9 @@ function getLevelColor(level: SchemaTool['level']): string {
           <div class="schema-sidebar-section">
             <div class="schema-sidebar-section-title">
               <VaIcon name="auto_awesome" size="13px" color="primary" />
-              🤖 AI automation
+              {{ t('schemaGeneratorPage.aiAuto') }}
             </div>
-            <p class="schema-sidebar-tip">Great for WordPress owners or anyone who wants "set once, runs forever"</p>
+            <p class="schema-sidebar-tip">{{ t('schemaGeneratorPage.aiAutoTip') }}</p>
             <div class="schema-sidebar-tools">
               <div v-for="tool in autoTools" :key="tool.id" class="schema-sidebar-tool" @click="openTool(tool.url)">
                 <div class="schema-sidebar-tool-top">
@@ -343,11 +339,11 @@ function getLevelColor(level: SchemaTool['level']): string {
                   <span class="schema-level-tag-sm" :style="{ color: getLevelColor(tool.level) }">{{
                     getLevelLabel(tool.level)
                   }}</span>
-                  <span class="schema-sidebar-free">{{ tool.hasFreeplan ? 'Has free tier' : tool.pricing }}</span>
+                  <span class="schema-sidebar-free">{{ tool.hasFreeplan ? t('schemaGeneratorPage.hasFreeTier') : tool.pricing }}</span>
                 </div>
                 <div class="schema-sidebar-tool-visit">
                   <VaIcon name="open_in_new" size="10px" />
-                  Open tool
+                  {{ t('schemaGeneratorPage.openTool') }}
                 </div>
               </div>
             </div>
@@ -359,28 +355,28 @@ function getLevelColor(level: SchemaTool['level']): string {
           <div class="schema-sidebar-tips">
             <div class="schema-sidebar-section-title">
               <VaIcon name="lightbulb" size="13px" color="warning" />
-              Implementation tips
+              {{ t('schemaGeneratorPage.implTips') }}
             </div>
             <ul class="schema-tips-list">
               <li>
                 <VaIcon name="check" size="11px" color="success" />
-                <span>Place JSON-LD in the <code>&lt;head&gt;</code>  or  <code>&lt;body&gt;</code> — either works</span>
+                <span v-html="t('schemaGeneratorPage.tip1')"></span>
               </li>
               <li>
                 <VaIcon name="check" size="11px" color="success" />
-                <span>You can stack multiple Schema types on one page</span>
+                <span>{{ t('schemaGeneratorPage.tip2') }}</span>
               </li>
               <li>
                 <VaIcon name="check" size="11px" color="success" />
-                <span>FAQ Schema works best for AI search citations</span>
+                <span>{{ t('schemaGeneratorPage.tip3') }}</span>
               </li>
               <li>
                 <VaIcon name="check" size="11px" color="success" />
-                <span>Google starts recognizing it 1–2 weeks after deployment</span>
+                <span>{{ t('schemaGeneratorPage.tip4') }}</span>
               </li>
               <li>
                 <VaIcon name="check" size="11px" color="success" />
-                <span>Re-validate Schema after every content update</span>
+                <span>{{ t('schemaGeneratorPage.tip5') }}</span>
               </li>
             </ul>
           </div>
