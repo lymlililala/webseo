@@ -206,14 +206,14 @@ export const tutorialsAPI = {
     // 2. 查询所有 lessons（仅 id + tutorial_id 用于计数）
     const { data: allLessons } = await supabase
       .from('wseo_tutorial_lessons')
-      .select('id, tutorial_id, lesson_number, title, description, level, duration')
+      .select('id, tutorial_id, lesson_number, title, description, level, duration, title_zh, description_zh')
       .order('lesson_number', { ascending: true })
 
     // 3. 将 lessons 按 tutorial_id 分组后合并
     const lessonMap: Record<string, any[]> = {}
     for (const l of allLessons || []) {
       if (!lessonMap[l.tutorial_id]) lessonMap[l.tutorial_id] = []
-      lessonMap[l.tutorial_id].push({ ...l, number: l.lesson_number })
+      lessonMap[l.tutorial_id].push(localizeRow({ ...l, number: l.lesson_number }))
     }
 
     const result = tutorials.map((t: any) =>
@@ -248,10 +248,12 @@ export const tutorialsAPI = {
     if (lessonsError) throw lessonsError
 
     // 将数据库字段 lesson_number 映射为前端接口字段 number
-    const mappedLessons = (lessons || []).map((l: any) => ({
-      ...l,
-      number: l.lesson_number,
-    }))
+    const mappedLessons = (lessons || []).map((l: any) =>
+      localizeRow({
+        ...l,
+        number: l.lesson_number,
+      }),
+    )
 
     const tutorialResult = parseTags({ ...tutorial, lessons: mappedLessons })
     setCache(cacheKey, tutorialResult)
@@ -279,7 +281,7 @@ export const tutorialsAPI = {
 
     if (lessonsError) throw lessonsError
 
-    const mappedLessons = (lessons || []).map((l: any) => ({ ...l, number: l.lesson_number }))
+    const mappedLessons = (lessons || []).map((l: any) => localizeRow({ ...l, number: l.lesson_number }))
     const result = parseTags({ ...tutorial, lessons: mappedLessons })
     setCache(cacheKey, result)
     return result
