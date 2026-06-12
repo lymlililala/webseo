@@ -218,7 +218,14 @@ const difficultyLabel = computed<Record<string, string>>(() => ({
                 {{ t('tutorialsPage.lessons', { n: tutorial.lessons.length }) }}
               </div>
 
-              <VaButton class="enroll-btn" preset="secondary"> {{ t('tutorialsPage.viewCourse') }} </VaButton>
+              <VaButton
+                class="enroll-btn"
+                preset="secondary"
+                :to="localePath('/tutorials/' + ((tutorial as any).slug || tutorial.id))"
+                @click.stop
+              >
+                {{ t('tutorialsPage.viewCourse') }}
+              </VaButton>
             </div>
           </div>
 
