@@ -1,13 +1,15 @@
 <script setup lang="ts">
 import { ref } from 'vue'
+import { useI18n } from 'vue-i18n'
 import { usePageSeo } from '../../composables/usePageSeo'
 
+const { t } = useI18n()
+
 usePageSeo({
-  title: 'llms.txt Tools — AI Crawler Site Index Configuration',
-  description:
-    'llms.txt generators, validators and templates in one place. Build an AI-readable semantic index file so ChatGPT, Perplexity, Claude and other AI models understand and cite your site content better.',
+  title: t('llmsTxtPage.seoTitle'),
+  description: t('llmsTxtPage.seoDescription'),
   path: '/llms-txt',
-  keywords: 'llms.txt,AI crawler configuration,AI index file,ChatGPT site index,Perplexity,AI visibility',
+  keywords: t('llmsTxtPage.seoKeywords'),
   jsonLd: [
     {
       '@context': 'https://schema.org',
@@ -129,46 +131,38 @@ async function copyTemplate(tpl: (typeof templates)[0]) {
       <div class="llms-hero-content">
         <div class="llms-hero-badge">
           <VaIcon name="description" size="14px" />
-          <span>llms.txt · AI-readable site card</span>
+          <span>{{ t('llmsTxtPage.badge') }}</span>
         </div>
-        <h1 class="llms-hero-title">llms.txt<br /><span class="llms-hero-accent">Tools directory</span></h1>
-        <p class="llms-hero-sub">
-          Like <strong>robots.txt</strong>, but built for <strong>large AI models</strong> — it tells ChatGPT,
-          Perplexity and Gemini what your site offers. Proposed by <strong>Jeremy Howard (fast.ai)</strong> in 2024, it
-          has become a core GEO/AEO infrastructure standard.
-        </p>
+        <h1 class="llms-hero-title">{{ t('llmsTxtPage.heroTitleMain') }}<br /><span class="llms-hero-accent">{{ t('llmsTxtPage.heroTitleAccent') }}</span></h1>
+        <p class="llms-hero-sub" v-html="t('llmsTxtPage.heroSub')"></p>
         <div class="llms-stats">
           <div class="llms-stat">
-            <span class="llms-stat-n">2024</span><span class="llms-stat-l">📅 Spec year</span>
+            <span class="llms-stat-n">2024</span><span class="llms-stat-l">{{ t('llmsTxtPage.statSpecYear') }}</span>
           </div>
           <div class="llms-stat-sep" />
           <div class="llms-stat">
             <span class="llms-stat-n">{{ toolGroups.reduce((s, g) => s + g.tools.length, 0) }}</span
-            ><span class="llms-stat-l">🔧 Tools listed</span>
+            ><span class="llms-stat-l">{{ t('llmsTxtPage.statToolsListed') }}</span>
           </div>
           <div class="llms-stat-sep" />
           <div class="llms-stat">
             <span class="llms-stat-n">{{ templates.length }}</span
-            ><span class="llms-stat-l">📋 Built-in templates</span>
+            ><span class="llms-stat-l">{{ t('llmsTxtPage.statTemplates') }}</span>
           </div>
           <div class="llms-stat-sep" />
-          <div class="llms-stat"><span class="llms-stat-n">Free</span><span class="llms-stat-l">✨ All free</span></div>
+          <div class="llms-stat"><span class="llms-stat-n">{{ t('llmsTxtPage.statFreeVal') }}</span><span class="llms-stat-l">{{ t('llmsTxtPage.statAllFree') }}</span></div>
         </div>
         <div class="llms-concept-bar">
           <div class="llms-ci">
-            <VaIcon name="description" size="14px" color="#60A5FA" /><span
-              ><strong>llms.txt</strong> = AI-readable structure standard</span
-            >
+            <VaIcon name="description" size="14px" color="#60A5FA" /><span v-html="t('llmsTxtPage.concept1')"></span>
           </div>
           <span class="llms-sep">·</span>
           <div class="llms-ci">
-            <VaIcon name="smart_toy" size="14px" color="#A78BFA" /><span
-              ><strong>GEO/AEO</strong> infrastructure essential</span
-            >
+            <VaIcon name="smart_toy" size="14px" color="#A78BFA" /><span v-html="t('llmsTxtPage.concept2')"></span>
           </div>
           <span class="llms-sep">·</span>
           <div class="llms-ci">
-            <VaIcon name="bolt" size="14px" color="#FCD34D" /><span>Format: Markdown + link list</span>
+            <VaIcon name="bolt" size="14px" color="#FCD34D" /><span>{{ t('llmsTxtPage.concept3') }}</span>
           </div>
         </div>
       </div>
@@ -177,13 +171,13 @@ async function copyTemplate(tpl: (typeof templates)[0]) {
     <!-- ── Tab directory ─────────────────────────────────────── -->
     <div class="llms-tabs">
       <button class="llms-tab" :class="{ active: activeTab === 'tools' }" @click="activeTab = 'tools'">
-        <VaIcon name="grid_view" size="14px" />Recommended tools
+        <VaIcon name="grid_view" size="14px" />{{ t('llmsTxtPage.tabTools') }}
       </button>
       <button class="llms-tab" :class="{ active: activeTab === 'templates' }" @click="activeTab = 'templates'">
-        <VaIcon name="description" size="14px" />Template library
+        <VaIcon name="description" size="14px" />{{ t('llmsTxtPage.tabTemplates') }}
       </button>
       <button class="llms-tab" :class="{ active: activeTab === 'guide' }" @click="activeTab = 'guide'">
-        <VaIcon name="menu_book" size="14px" />Format guide
+        <VaIcon name="menu_book" size="14px" />{{ t('llmsTxtPage.tabGuide') }}
       </button>
     </div>
 
@@ -233,7 +227,7 @@ async function copyTemplate(tpl: (typeof templates)[0]) {
     <div v-if="activeTab === 'templates'" class="llms-tpl-body">
       <p class="llms-tpl-intro">
         <VaIcon name="info_outline" size="14px" color="#60A5FA" />
-        llms.txt templates by industry — click to copy, paste into any editor to adjust, then upload to your site root.
+        {{ t('llmsTxtPage.tplIntro') }}
       </p>
       <div class="llms-tpl-grid">
         <div v-for="tpl in templates" :key="tpl.id" class="llms-tpl-card" :style="{ '--tc': tpl.color }">
@@ -253,7 +247,7 @@ async function copyTemplate(tpl: (typeof templates)[0]) {
             @click="copyTemplate(tpl)"
           >
             <VaIcon :name="copyingId === tpl.id ? 'check' : 'content_copy'" size="13px" />
-            {{ copyingId === tpl.id ? 'Copied!' : 'Copy template' }}
+            {{ copyingId === tpl.id ? t('llmsTxtPage.copiedBtn') : t('llmsTxtPage.copyBtn') }}
           </button>
         </div>
       </div>
@@ -262,13 +256,13 @@ async function copyTemplate(tpl: (typeof templates)[0]) {
       <div class="llms-tpl-tip">
         <VaIcon name="lightbulb_outline" size="15px" color="#F59E0B" />
         <div>
-          <strong>How to use the templates</strong>
+          <strong>{{ t('llmsTxtPage.tplHowTitle') }}</strong>
           <ol>
-            <li>Click "Copy template" to copy the content to your clipboard</li>
-            <li>Paste into any text editor and edit the site name, links and descriptions to match your site</li>
-            <li>Save the file as <code>llms.txt</code> and upload it to your site root</li>
-            <li>Visit <code>https://yoursite.com/llms.txt</code> to verify it’s accessible</li>
-            <li>Open "Recommended tools" → "Submit &amp; indexing platforms" to submit it for indexing</li>
+            <li>{{ t('llmsTxtPage.tplHow1') }}</li>
+            <li>{{ t('llmsTxtPage.tplHow2') }}</li>
+            <li v-html="t('llmsTxtPage.tplHow3')"></li>
+            <li v-html="t('llmsTxtPage.tplHow4')"></li>
+            <li>{{ t('llmsTxtPage.tplHow5') }}</li>
           </ol>
         </div>
       </div>
@@ -281,77 +275,43 @@ async function copyTemplate(tpl: (typeof templates)[0]) {
         <div class="llms-gc llms-gc--wide">
           <div class="llms-gc-hd">
             <VaIcon name="help_outline" size="18px" color="#60A5FA" />
-            <h3>What is llms.txt?</h3>
+            <h3>{{ t('llmsTxtPage.gWhatTitle') }}</h3>
           </div>
-          <p>
-            <code>llms.txt</code> is a plain-text file in your site root, designed specifically for large AI models — it
-            tells the LLM "<strong>what this site is about, which pages are worth reading, and how to understand it</strong>".
-          </p>
-          <p>
-            Proposed by <strong>Jeremy Howard (fast.ai founder)</strong> in 2024. Just as <code>robots.txt</code> is for
-            search engine crawlers, <code>llms.txt</code> is a semantic index for AI models. Cloudflare, Anthropic,
-            Perplexity and other ecosystem tools already read it.
-          </p>
+          <p v-html="t('llmsTxtPage.gWhatP1')"></p>
+          <p v-html="t('llmsTxtPage.gWhatP2')"></p>
         </div>
 
         <!-- Format spec -->
         <div class="llms-gc">
           <div class="llms-gc-hd">
             <VaIcon name="code" size="18px" color="#A78BFA" />
-            <h3>Standard format</h3>
+            <h3>{{ t('llmsTxtPage.gFormatTitle') }}</h3>
           </div>
-          <pre class="llms-code">
-# Site name
-
-&gt; Describe in one sentence what this site is about
-
-## Key pages
-- [page name](URL): short note
-- [about us](https://example.com/about): company intro
-
-## Products / Services
-- [Product A](https://example.com/product): feature notes
-
-## Optional
-- [Blog](https://example.com/blog): articles</pre
-          >
-          <p class="llms-note">Minimal format: Markdown + a link list, so LLMs can read your site structure at a glance.</p>
+          <pre class="llms-code">{{ t('llmsTxtPage.gFormatCode') }}</pre>
+          <p class="llms-note">{{ t('llmsTxtPage.gFormatNote') }}</p>
         </div>
 
         <!-- Best practices -->
         <div class="llms-gc">
           <div class="llms-gc-hd">
             <VaIcon name="tips_and_updates" size="18px" color="#10B981" />
-            <h3>Writing best practices</h3>
+            <h3>{{ t('llmsTxtPage.gBestTitle') }}</h3>
           </div>
           <ul class="llms-best">
             <li>
-              <VaIcon name="check_circle" size="13px" color="#10B981" /><span
-                ><strong>Make the one-line description precise</strong>: include business type + target users + core
-                value</span
-              >
+              <VaIcon name="check_circle" size="13px" color="#10B981" /><span v-html="t('llmsTxtPage.gBest1')"></span>
             </li>
             <li>
-              <VaIcon name="check_circle" size="13px" color="#10B981" /><span
-                ><strong>Make link descriptions specific</strong>: avoid "Read more"; clearly describe the page
-                content</span
-              >
+              <VaIcon name="check_circle" size="13px" color="#10B981" /><span v-html="t('llmsTxtPage.gBest2')"></span>
             </li>
             <li>
-              <VaIcon name="check_circle" size="13px" color="#10B981" /><span
-                ><strong>Use Optional to set priority</strong>: core content first, secondary content under
-                Optional</span
-              >
+              <VaIcon name="check_circle" size="13px" color="#10B981" /><span v-html="t('llmsTxtPage.gBest3')"></span>
             </li>
             <li>
-              <VaIcon name="check_circle" size="13px" color="#10B981" /><span
-                ><strong>Keep it concise</strong>: 3–8 links per section is ideal</span
-              >
+              <VaIcon name="check_circle" size="13px" color="#10B981" /><span v-html="t('llmsTxtPage.gBest4')"></span>
             </li>
             <li>
-              <VaIcon name="check_circle" size="13px" color="#10B981" /><span
-                ><strong>Update regularly</strong>: refresh your llms.txt after any major site redesign</span
-              >
+              <VaIcon name="check_circle" size="13px" color="#10B981" /><span v-html="t('llmsTxtPage.gBest5')"></span>
             </li>
           </ul>
         </div>
@@ -360,21 +320,19 @@ async function copyTemplate(tpl: (typeof templates)[0]) {
         <div class="llms-gc">
           <div class="llms-gc-hd">
             <VaIcon name="cloud_upload" size="18px" color="#F59E0B" />
-            <h3>How to deploy</h3>
+            <h3>{{ t('llmsTxtPage.gDeployTitle') }}</h3>
           </div>
           <ol class="llms-steps">
             <li>
-              <span class="llms-step-n">1</span
-              ><span>Use the template library to write or copy an <code>llms.txt</code> that fits your site</span>
+              <span class="llms-step-n">1</span><span v-html="t('llmsTxtPage.gDeploy1')"></span>
             </li>
             <li>
-              <span class="llms-step-n">2</span
-              ><span>Upload the file to your site root (next to <code>robots.txt</code>)</span>
+              <span class="llms-step-n">2</span><span v-html="t('llmsTxtPage.gDeploy2')"></span>
             </li>
             <li>
-              <span class="llms-step-n">3</span><span>Verify it’s accessible: <code>https://yoursite.com/llms.txt</code></span>
+              <span class="llms-step-n">3</span><span v-html="t('llmsTxtPage.gDeploy3')"></span>
             </li>
-            <li><span class="llms-step-n">4</span><span>Submit to AI indexing platforms for more exposure</span></li>
+            <li><span class="llms-step-n">4</span><span>{{ t('llmsTxtPage.gDeploy4') }}</span></li>
           </ol>
         </div>
 
@@ -382,20 +340,20 @@ async function copyTemplate(tpl: (typeof templates)[0]) {
         <div class="llms-gc llms-gc--wide">
           <div class="llms-gc-hd">
             <VaIcon name="compare_arrows" size="18px" color="#EC4899" />
-            <h3>vs robots.txt</h3>
+            <h3>{{ t('llmsTxtPage.gVsTitle') }}</h3>
           </div>
           <div class="llms-cmp-table">
-            <div class="llms-cmp-row llms-cmp-hd"><span>Dimension</span><span>robots.txt</span><span>llms.txt</span></div>
+            <div class="llms-cmp-row llms-cmp-hd"><span>{{ t('llmsTxtPage.cmpDimension') }}</span><span>robots.txt</span><span>llms.txt</span></div>
             <div class="llms-cmp-row">
-              <span>Audience</span><span>search engine crawlers</span><span>large AI models (LLMs)</span>
+              <span>{{ t('llmsTxtPage.cmpAudience') }}</span><span>{{ t('llmsTxtPage.cmpAudienceR') }}</span><span>{{ t('llmsTxtPage.cmpAudienceL') }}</span>
             </div>
             <div class="llms-cmp-row">
-              <span>Core function</span><span>controls crawl permissions</span><span>provides semantic understanding</span>
+              <span>{{ t('llmsTxtPage.cmpFunc') }}</span><span>{{ t('llmsTxtPage.cmpFuncR') }}</span><span>{{ t('llmsTxtPage.cmpFuncL') }}</span>
             </div>
-            <div class="llms-cmp-row"><span>Format</span><span>directive syntax</span><span>Markdown description</span></div>
-            <div class="llms-cmp-row"><span>Introduced</span><span>1994</span><span>2024</span></div>
+            <div class="llms-cmp-row"><span>{{ t('llmsTxtPage.cmpFormat') }}</span><span>{{ t('llmsTxtPage.cmpFormatR') }}</span><span>{{ t('llmsTxtPage.cmpFormatL') }}</span></div>
+            <div class="llms-cmp-row"><span>{{ t('llmsTxtPage.cmpIntro') }}</span><span>1994</span><span>2024</span></div>
             <div class="llms-cmp-row">
-              <span>GEO/AEO role</span><span>Indirect</span><span>Directly raises AI citation rate</span>
+              <span>{{ t('llmsTxtPage.cmpRole') }}</span><span>{{ t('llmsTxtPage.cmpRoleR') }}</span><span>{{ t('llmsTxtPage.cmpRoleL') }}</span>
             </div>
           </div>
         </div>
