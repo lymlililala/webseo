@@ -15,6 +15,9 @@ export default defineConfig({
     vue(),
     VueI18nPlugin({
       include: resolve(dirname(fileURLToPath(import.meta.url)), './src/i18n/locales/**'),
+      // 词条中含 <strong> 等富文本(配合模板 v-html 渲染),关闭默认的 HTML 检测报错
+      strictMessage: false,
+      escapeHtml: false,
     }),
   ],
 })
