@@ -415,6 +415,65 @@ const staticRoutes = [
   },
 ]
 
+// ── 中文版静态路由 meta（/zh/...，title/description/h1 用中文，canonical 自指）──
+const zhMeta = {
+  '/seo-nav': {
+    title: 'SEO 工具导航 — 100+ 精选 SEO 工具 | SGAIndex',
+    description: '精选 100+ 款 SEO 工具,涵盖关键词研究、外链分析、技术 SEO 与内容优化,助你在 Google 获得更高排名。',
+    h1: 'SEO 工具导航',
+  },
+  '/geo-nav': {
+    title: 'GEO 工具导航 — 生成式引擎优化工具 | SGAIndex',
+    description: '精选 60+ 款 GEO 工具,助你的内容被 ChatGPT、Perplexity、Google AI Overviews 等 AI 搜索引擎引用。',
+    h1: 'GEO 工具导航',
+  },
+  '/aeo-nav': {
+    title: 'AEO 工具导航 — 答案引擎优化工具 | SGAIndex',
+    description: '精选 50+ 款 AEO 工具,助你的内容出现在 Google 精选摘要、AI 直接回答与语音搜索结果中。',
+    h1: 'AEO 工具导航',
+  },
+  '/schema-generator': {
+    title: 'Schema 结构化数据生成器 — 免费 JSON-LD 工具 | SGAIndex',
+    description: '免费的 Schema 结构化数据工具,支持 Article、FAQ、Product、HowTo 等 20+ 种 JSON-LD 类型的生成与校验。',
+    h1: 'Schema 结构化数据生成器',
+  },
+  '/ai-checker': {
+    title: 'AI 可见度检测 — 分析内容的 AI 引用情况 | SGAIndex',
+    description: '检测你的内容在 ChatGPT、Perplexity、Claude、Gemini 等主流 AI 模型中的被引用情况与可见度。',
+    h1: 'AI 可见度检测',
+  },
+  '/llms-txt': {
+    title: 'llms.txt 工具 — AI 爬虫网站索引配置 | SGAIndex',
+    description: 'llms.txt 生成器、校验器与模板一站集合——构建 AI 可读的语义索引文件,提升 AI 引用率。',
+    h1: 'llms.txt 工具',
+  },
+  '/glossary': {
+    title: 'SEO/GEO/AEO 术语库 — 搜索优化术语详解 | SGAIndex',
+    description: '详解 200+ 条 SEO、GEO、AEO 术语,涵盖技术 SEO、内容优化与生成式引擎优化。',
+    h1: 'SEO/GEO/AEO 术语库',
+  },
+  '/articles': {
+    title: 'SEO/GEO/AEO 深度文章 — 实战指南 | SGAIndex',
+    description: '60+ 篇 SEO、GEO、AEO 深度文章,分享 AI 搜索时代的实战优化经验与行业洞察。',
+    h1: 'SEO/GEO/AEO 深度文章',
+  },
+  '/tutorials': {
+    title: 'SEO/GEO/AEO 教程 — 实操优化课程 | SGAIndex',
+    description: '系统的 SEO、GEO、AEO 教程,从入门到进阶,涵盖技术 SEO、关键词研究与 GA4 分析。',
+    h1: 'SEO/GEO/AEO 教程',
+  },
+  '/news': {
+    title: 'SEO/GEO 资讯 — 搜索引擎与 AI 最新动态 | SGAIndex',
+    description: '追踪 Google 算法更新、ChatGPT 与 Perplexity 功能、Claude 搜索及最新 AI 搜索行业资讯。',
+    h1: '搜索引擎与 AI 最新资讯',
+  },
+  '/faq': {
+    title: '常见问题 — SEO/GEO/AEO 问答 | SGAIndex',
+    description: '关于 SEO、GEO(生成式引擎优化)与 AEO(答案引擎优化)在 AI 搜索时代的常见问题解答。',
+    h1: '常见问题 — SEO/GEO/AEO',
+  },
+}
+
 // ── 主逻辑 ──────────────────────────────────────────────────────────────────
 async function main() {
   let totalCount = 0
@@ -437,6 +496,26 @@ async function main() {
       })
     )
     totalCount++
+
+    // 同时生成中文版（/zh/...）：中文 title/description/h1 + 自指 canonical + 互指 hreflang
+    const zh = zhMeta[route.path]
+    if (zh) {
+      const zhPath = `/zh${route.path}`
+      writeHtml(
+        zhPath,
+        buildHtml({
+          title: zh.title,
+          description: zh.description,
+          canonicalUrl: `${SITE}${zhPath}`,
+          h1: zh.h1,
+          jsonld: route.jsonld,
+          keywords: route.keywords,
+          lang: 'zh',
+          altPath: route.path,
+        })
+      )
+      totalCount++
+    }
   }
 
   // 2. 动态路由：文章详情
