@@ -1,15 +1,17 @@
 <script setup lang="ts">
 import { ref, computed, onMounted, onUnmounted } from 'vue'
+import { useI18n } from 'vue-i18n'
 import { geoCategories, allGeoTools, featuredGeoTools, type GeoTool, type GeoCategory } from '../../data/geo-tools'
 import { usePageSeo } from '../../composables/usePageSeo'
 import ToolFavicon from '../../components/ToolFavicon.vue'
 
+const { t } = useI18n()
+
 usePageSeo({
-  title: 'GEO Tools Directory — Generative Engine Optimization Tools',
-  description:
-    'A directory of 60+ GEO (Generative Engine Optimization) tools to help your content get cited by AI search engines like ChatGPT, Perplexity and Google AI Overviews — covering AI visibility monitoring, brand mention analysis and llms.txt.',
+  title: t('geoNavPage.seoTitle'),
+  description: t('geoNavPage.seoDescription'),
   path: '/geo-nav',
-  keywords: 'GEO tools,generative engine optimization,AI search optimization,ChatGPT SEO,Perplexity optimization,AI visibility',
+  keywords: t('geoNavPage.seoKeywords'),
   jsonLd: [
     {
       '@context': 'https://schema.org',
@@ -150,24 +152,19 @@ const activeSidebarItem = computed(() => (activeCategory.value === 'all' ? scrol
       <div class="geo-hero-content">
         <div class="geo-hero-badge">
           <VaIcon name="auto_awesome" size="14px" />
-          <span>GEO · AEO · AI Search Navigator</span>
+          <span>{{ t('geoNavPage.badge') }}</span>
         </div>
         <h1 class="geo-hero-title">
-          Generative Engine Optimization Tools<br />
-          <span class="geo-hero-title-accent">Full Directory</span>
+          {{ t('geoNavPage.heroTitleMain') }}<br />
+          <span class="geo-hero-title-accent">{{ t('geoNavPage.heroTitleAccent') }}</span>
         </h1>
-        <p class="geo-hero-subtitle">
-          A curated set of <strong>{{ totalTools }}+</strong> tools and resources across 6 categories —
-          <strong>China SaaS</strong>、<strong>China Providers</strong>、<strong>Global Tools</strong>、<strong
-            >SEO Add-ons</strong
-          >、<strong>Free Tools</strong>、<strong>Open-Source Projects</strong>
-        </p>
+        <p class="geo-hero-subtitle" v-html="t('geoNavPage.heroSubtitle', { n: totalTools })"></p>
 
         <div class="geo-search-wrap">
           <VaInput
             v-model="searchQuery"
-            placeholder="Search tools by name, feature or tag..."
-            aria-label="Search GEO tools"
+            :placeholder="t('geoNavPage.searchPlaceholder')"
+            :aria-label="t('geoNavPage.searchAria')"
             class="geo-search-input"
             clearable
           >
@@ -181,9 +178,9 @@ const activeSidebarItem = computed(() => (activeCategory.value === 'all' ? scrol
         <div class="geo-region-tabs">
           <button
             v-for="r in [
-              { key: 'all', label: 'All', icon: 'public' },
-              { key: 'cn', label: '🇨🇳 China Tools', icon: '' },
-              { key: 'global', label: '🌍 Global Tools', icon: '' },
+              { key: 'all', label: t('geoNavPage.regionAll'), icon: 'public' },
+              { key: 'cn', label: t('geoNavPage.regionCn'), icon: '' },
+              { key: 'global', label: t('geoNavPage.regionGlobal'), icon: '' },
             ]"
             :key="r.key"
             class="geo-region-tab"
@@ -197,27 +194,27 @@ const activeSidebarItem = computed(() => (activeCategory.value === 'all' ? scrol
         <div class="geo-stats">
           <div class="geo-stat">
             <span class="geo-stat-num">{{ totalTools }}+</span>
-            <span class="geo-stat-label">Curated Tools</span>
+            <span class="geo-stat-label">{{ t('geoNavPage.statTools') }}</span>
           </div>
           <div class="geo-stat-div" />
           <div class="geo-stat">
             <span class="geo-stat-num">{{ cnToolsCount }}</span>
-            <span class="geo-stat-label">🇨🇳 China Tools</span>
+            <span class="geo-stat-label">{{ t('geoNavPage.regionCn') }}</span>
           </div>
           <div class="geo-stat-div" />
           <div class="geo-stat">
             <span class="geo-stat-num">{{ globalToolsCount }}</span>
-            <span class="geo-stat-label">🌍 Global Tools</span>
+            <span class="geo-stat-label">{{ t('geoNavPage.regionGlobal') }}</span>
           </div>
           <div class="geo-stat-div" />
           <div class="geo-stat">
             <span class="geo-stat-num">{{ freeCount }}</span>
-            <span class="geo-stat-label">Has Free Tier</span>
+            <span class="geo-stat-label">{{ t('geoNavPage.statFree') }}</span>
           </div>
           <div class="geo-stat-div" />
           <div class="geo-stat">
             <span class="geo-stat-num">{{ openSourceCount }}</span>
-            <span class="geo-stat-label">Open-Source Projects</span>
+            <span class="geo-stat-label">{{ t('geoNavPage.statOss') }}</span>
           </div>
         </div>
 
@@ -225,17 +222,17 @@ const activeSidebarItem = computed(() => (activeCategory.value === 'all' ? scrol
         <div class="geo-concept-bar">
           <div class="geo-concept-item">
             <VaIcon name="psychology" size="15px" color="#818CF8" />
-            <span><strong>GEO</strong> = Generative Engine Optimization</span>
+            <span v-html="t('geoNavPage.concept1')"></span>
           </div>
           <span class="geo-concept-sep">·</span>
           <div class="geo-concept-item">
             <VaIcon name="question_answer" size="15px" color="#34D399" />
-            <span><strong>AEO</strong> = Answer Engine Optimization</span>
+            <span v-html="t('geoNavPage.concept2')"></span>
           </div>
           <span class="geo-concept-sep">·</span>
           <div class="geo-concept-item">
             <VaIcon name="description" size="15px" color="#60A5FA" />
-            <span><strong>llms.txt</strong> = AI-readable structure standard</span>
+            <span v-html="t('geoNavPage.concept3')"></span>
           </div>
         </div>
       </div>
@@ -250,7 +247,7 @@ const activeSidebarItem = computed(() => (activeCategory.value === 'all' ? scrol
           <div class="geo-sidebar-filters">
             <label class="geo-filter-toggle" :class="{ active: showFreeOnly }" @click="showFreeOnly = !showFreeOnly">
               <VaIcon name="money_off" size="12px" />
-              Has Free
+              {{ t('geoNavPage.filterHasFree') }}
             </label>
             <label
               class="geo-filter-toggle"
@@ -258,7 +255,7 @@ const activeSidebarItem = computed(() => (activeCategory.value === 'all' ? scrol
               @click="showOpenSourceOnly = !showOpenSourceOnly"
             >
               <VaIcon name="code" size="12px" />
-              Open Source
+              {{ t('geoNavPage.filterOpenSource') }}
             </label>
           </div>
 
@@ -268,7 +265,7 @@ const activeSidebarItem = computed(() => (activeCategory.value === 'all' ? scrol
           <button class="geo-sidebar-item" :class="{ active: activeCategory === 'all' }" @click="selectCategory('all')">
             <span class="geo-sidebar-active-bar" />
             <VaIcon name="apps" size="16px" class="geo-sidebar-icon" />
-            <span class="geo-sidebar-name">All tools</span>
+            <span class="geo-sidebar-name">{{ t('geoNavPage.allTools') }}</span>
             <span class="geo-sidebar-count">{{ totalTools }}</span>
           </button>
 
@@ -303,8 +300,8 @@ const activeSidebarItem = computed(() => (activeCategory.value === 'all' ? scrol
         <div v-if="activeCategory === 'all' && !searchQuery && activeRegion === 'all'" class="geo-section">
           <div class="geo-section-header">
             <VaIcon name="star" color="warning" size="17px" />
-            <h2 class="geo-section-title">Featured picks</h2>
-            <span class="geo-section-badge">Editor’s choice</span>
+            <h2 class="geo-section-title">{{ t('geoNavPage.featuredTitle') }}</h2>
+            <span class="geo-section-badge">{{ t('geoNavPage.featuredBadge') }}</span>
           </div>
           <div class="geo-featured-grid">
             <a
@@ -314,7 +311,7 @@ const activeSidebarItem = computed(() => (activeCategory.value === 'all' ? scrol
               target="_blank"
               rel="noopener noreferrer"
               class="geo-featured-card"
-              :aria-label="`Visit ${tool.name} (opens in a new tab)`"
+              :aria-label="t('geoNavPage.visitAria', { name: tool.name })"
             >
               <div
                 class="geo-featured-icon"
@@ -334,11 +331,11 @@ const activeSidebarItem = computed(() => (activeCategory.value === 'all' ? scrol
                 <div class="geo-featured-top">
                   <h3 class="geo-featured-name">{{ tool.name }}</h3>
                   <div class="geo-featured-badges">
-                    <span v-if="tool.isFree" class="geo-badge geo-badge-free">Free</span>
-                    <span v-else-if="tool.hasFreeplan" class="geo-badge geo-badge-freeplan">Has Free Tier</span>
-                    <span v-if="tool.isOpenSource" class="geo-badge geo-badge-oss">Open Source</span>
+                    <span v-if="tool.isFree" class="geo-badge geo-badge-free">{{ t('geoNavPage.badgeFree') }}</span>
+                    <span v-else-if="tool.hasFreeplan" class="geo-badge geo-badge-freeplan">{{ t('geoNavPage.badgeFreeTier') }}</span>
+                    <span v-if="tool.isOpenSource" class="geo-badge geo-badge-oss">{{ t('geoNavPage.badgeOss') }}</span>
                     <span class="geo-badge" :class="tool.region === 'cn' ? 'geo-badge-cn' : 'geo-badge-global'">
-                      {{ tool.region === 'cn' ? '🇨🇳 China' : '🌍 Global' }}
+                      {{ tool.region === 'cn' ? t('geoNavPage.badgeCn') : t('geoNavPage.badgeGlobal') }}
                     </span>
                   </div>
                 </div>
@@ -370,7 +367,7 @@ const activeSidebarItem = computed(() => (activeCategory.value === 'all' ? scrol
         <div class="geo-result-bar">
           <span class="geo-result-count">
             <VaIcon name="format_list_bulleted" size="13px" />
-            Found <strong>{{ filteredTools.length }}</strong> tools
+            <span v-html="t('geoNavPage.resultCount', { n: filteredTools.length })"></span>
           </span>
           <button
             v-if="searchQuery || showOpenSourceOnly || showFreeOnly || activeRegion !== 'all'"
@@ -378,15 +375,15 @@ const activeSidebarItem = computed(() => (activeCategory.value === 'all' ? scrol
             @click="clearFilters"
           >
             <VaIcon name="close" size="12px" />
-            Clear filters
+            {{ t('geoNavPage.clearFilters') }}
           </button>
         </div>
 
         <!-- Tools by Category -->
         <div v-if="filteredTools.length === 0" class="geo-empty">
           <VaIcon name="search_off" size="50px" color="secondary" />
-          <p>No matching tools — try a different keyword</p>
-          <VaButton preset="secondary" size="small" @click="clearFilters"> Clear all filters </VaButton>
+          <p>{{ t('geoNavPage.empty') }}</p>
+          <VaButton preset="secondary" size="small" @click="clearFilters"> {{ t('geoNavPage.clearAllFilters') }} </VaButton>
         </div>
 
         <div v-for="group in groupedFilteredTools" :key="group.id" class="geo-category-group" :data-cat-id="group.id">
@@ -404,7 +401,7 @@ const activeSidebarItem = computed(() => (activeCategory.value === 'all' ? scrol
               </div>
             </div>
             <span class="geo-cat-count" :style="{ background: group.color + '18', color: group.color }">
-              {{ group.tools.length }} tools
+              {{ group.tools.length }} {{ t('geoNavPage.toolsUnit') }}
             </span>
           </div>
 
@@ -422,10 +419,10 @@ const activeSidebarItem = computed(() => (activeCategory.value === 'all' ? scrol
                   <ToolFavicon :url="tool.url" :fallback-icon="group.icon" :fallback-color="group.color" :size="17" />
                 </div>
                 <div class="geo-tool-badges">
-                  <span v-if="tool.isFree" class="geo-badge geo-badge-free">Free</span>
-                  <span v-else-if="tool.hasFreeplan" class="geo-badge geo-badge-freeplan">Has Free</span>
-                  <span v-if="tool.isOpenSource" class="geo-badge geo-badge-oss">Open Source</span>
-                  <span v-if="tool.hasApi" class="geo-badge geo-badge-api">API</span>
+                  <span v-if="tool.isFree" class="geo-badge geo-badge-free">{{ t('geoNavPage.badgeFree') }}</span>
+                  <span v-else-if="tool.hasFreeplan" class="geo-badge geo-badge-freeplan">{{ t('geoNavPage.badgeHasFree') }}</span>
+                  <span v-if="tool.isOpenSource" class="geo-badge geo-badge-oss">{{ t('geoNavPage.badgeOss') }}</span>
+                  <span v-if="tool.hasApi" class="geo-badge geo-badge-api">{{ t('geoNavPage.badgeApi') }}</span>
                   <span class="geo-badge" :class="tool.region === 'cn' ? 'geo-badge-cn' : 'geo-badge-global'">
                     {{ tool.region === 'cn' ? '🇨🇳' : '🌍' }}
                   </span>
@@ -438,7 +435,7 @@ const activeSidebarItem = computed(() => (activeCategory.value === 'all' ? scrol
                 target="_blank"
                 rel="noopener noreferrer"
                 class="geo-tool-name-link"
-                :aria-label="`Visit ${tool.name} (opens in a new tab)`"
+                :aria-label="t('geoNavPage.visitAria', { name: tool.name })"
                 @click.stop
               >
                 <h3 class="geo-tool-name">{{ tool.name }}</h3>
@@ -486,7 +483,7 @@ const activeSidebarItem = computed(() => (activeCategory.value === 'all' ? scrol
                   <span v-if="tool.pricing" class="geo-pricing-inline">{{ tool.pricing }}</span>
                   <div class="geo-tool-visit">
                     <VaIcon name="open_in_new" size="11px" />
-                    <span>Visit</span>
+                    <span>{{ t('geoNavPage.visitHint') }}</span>
                   </div>
                 </div>
               </div>
@@ -498,58 +495,38 @@ const activeSidebarItem = computed(() => (activeCategory.value === 'all' ? scrol
         <div class="geo-tips-section">
           <div class="geo-tips-header">
             <VaIcon name="lightbulb" color="warning" size="17px" />
-            <h2 class="geo-section-title">GEO playbook</h2>
+            <h2 class="geo-section-title">{{ t('geoNavPage.tipsTitle') }}</h2>
           </div>
           <div class="geo-tips-grid">
             <div class="geo-tip-card">
               <div class="geo-tip-emoji">🔍</div>
-              <h3>Step 1: Baseline your status</h3>
-              <p>
-                Use <strong>Lens GEO</strong> (free) or  <strong>HubSpot AI Grader</strong> (free) to quickly baseline your brand’s visibility in major
-                AI engines and decide whether systematic optimization is needed.
-              </p>
+              <h3>{{ t('geoNavPage.tip1Title') }}</h3>
+              <p v-html="t('geoNavPage.tip1Body')"></p>
             </div>
             <div class="geo-tip-card">
               <div class="geo-tip-emoji">📄</div>
-              <h3>Step 2: Add llms.txt</h3>
-              <p>
-                Use  <strong>aeo.js</strong>  or  <strong>the LLMrefs llms.txt generator</strong> (free) to add an llms.txt
-                file that tells AI crawlers your site’s core structure — foundational GEO work.
-              </p>
+              <h3>{{ t('geoNavPage.tip2Title') }}</h3>
+              <p v-html="t('geoNavPage.tip2Body')"></p>
             </div>
             <div class="geo-tip-card">
               <div class="geo-tip-emoji">🏗️</div>
-              <h3>Step 3: Structured data</h3>
-              <p>
-                Add JSON-LD Schema (Article, FAQ, Organization) to key pages and validate with
-                <strong>Google Rich Results Test</strong> — structured data is key for AI engines to understand your entities.
-              </p>
+              <h3>{{ t('geoNavPage.tip3Title') }}</h3>
+              <p v-html="t('geoNavPage.tip3Body')"></p>
             </div>
             <div class="geo-tip-card">
               <div class="geo-tip-emoji">✍️</div>
-              <h3>Step 4: Improve content quality</h3>
-              <p>
-                Princeton’s KDD 2024 research shows that adding<strong>statistics</strong>、<strong>FAQ format</strong
-                >、<strong>authoritative citations</strong>and clear<strong>heading hierarchy</strong>significantly raises AI citation rates. Use
-                <strong>Frase.io</strong> to assist content analysis.
-              </p>
+              <h3>{{ t('geoNavPage.tip4Title') }}</h3>
+              <p v-html="t('geoNavPage.tip4Body')"></p>
             </div>
             <div class="geo-tip-card">
               <div class="geo-tip-emoji">📊</div>
-              <h3>Step 5: Monitor continuously</h3>
-              <p>
-                For China, try <strong>ImpetaAI</strong> (50+ metrics) or 
-                <strong>GEOWISE</strong> (content + monitoring); for global, try  <strong>Otterly.AI</strong> ($29/mo) or 
-                <strong>Profound</strong> (enterprise).
-              </p>
+              <h3>{{ t('geoNavPage.tip5Title') }}</h3>
+              <p v-html="t('geoNavPage.tip5Body')"></p>
             </div>
             <div class="geo-tip-card">
               <div class="geo-tip-emoji">🔐</div>
-              <h3>Step 6: Build E-E-A-T</h3>
-              <p>
-                On  <strong>Wikidata</strong> establish your brand entity, and via
-                <strong>Chuanshenggang</strong> (128 state-media outlets) or other authoritative media, raise your brand’s E-E-A-T trust signals in AI engines.
-              </p>
+              <h3>{{ t('geoNavPage.tip6Title') }}</h3>
+              <p v-html="t('geoNavPage.tip6Body')"></p>
             </div>
           </div>
         </div>

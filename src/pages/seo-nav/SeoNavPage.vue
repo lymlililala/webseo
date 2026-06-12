@@ -1,15 +1,17 @@
 <script setup lang="ts">
 import { ref, computed, onMounted, onUnmounted } from 'vue'
+import { useI18n } from 'vue-i18n'
 import { seoCategories, allTools, featuredTools, type SeoTool, type SeoCategory } from '../../data/seo-tools'
 import { usePageSeo } from '../../composables/usePageSeo'
 import ToolFavicon from '../../components/ToolFavicon.vue'
 
+const { t } = useI18n()
+
 usePageSeo({
-  title: 'SEO Tools Directory — 100+ Curated SEO Tools',
-  description:
-    'A curated directory of 100+ SEO tools across keyword research, backlink analysis, technical SEO, content optimization and local SEO to help you rank higher in Google. Free tools highlighted.',
+  title: t('seoNavPage.seoTitle'),
+  description: t('seoNavPage.seoDescription'),
   path: '/seo-nav',
-  keywords: 'SEO tools,keyword research tools,backlink analysis,technical SEO,Ahrefs,Semrush,Google Search Console',
+  keywords: t('seoNavPage.seoKeywords'),
   jsonLd: [
     {
       '@context': 'https://schema.org',
@@ -143,17 +145,16 @@ const activeSidebarItem = computed(() => (activeCategory.value === 'all' ? scrol
       <div class="hero-content">
         <div class="hero-badge">
           <VaIcon name="travel_explore" size="16px" />
-          <span>SEO Tools Directory</span>
+          <span>{{ t('seoNavPage.badge') }}</span>
         </div>
-        <h1 class="hero-title">Discover the best SEO tools</h1>
+        <h1 class="hero-title">{{ t('seoNavPage.heroTitle') }}</h1>
         <p class="hero-subtitle">
-          {{ totalTools }}+ curated professional SEO tools across {{ seoCategories.length }} core areas — keyword
-          research, technical audits, content optimization and AI search monitoring
+          {{ t('seoNavPage.heroSubtitle', { n: totalTools, c: seoCategories.length }) }}
         </p>
 
         <!-- 搜索框：放大居中，成为视觉焦点 -->
         <div class="search-wrapper">
-          <VaInput v-model="searchQuery" placeholder="Search tools by name, feature or tag..." aria-label="Search SEO tools" class="search-input" clearable>
+          <VaInput v-model="searchQuery" :placeholder="t('seoNavPage.searchPlaceholder')" :aria-label="t('seoNavPage.searchAria')" class="search-input" clearable>
             <template #prepend>
               <VaIcon name="search" size="22px" color="secondary" />
             </template>
@@ -164,19 +165,19 @@ const activeSidebarItem = computed(() => (activeCategory.value === 'all' ? scrol
         <div class="stats-row">
           <div class="stat-card">
             <span class="stat-number">{{ totalTools }}+</span>
-            <span class="stat-label">Curated tools</span>
+            <span class="stat-label">{{ t('seoNavPage.statTools') }}</span>
           </div>
           <div class="stat-card">
             <span class="stat-number">{{ freeToolsCount }}</span>
-            <span class="stat-label">Free</span>
+            <span class="stat-label">{{ t('seoNavPage.statFree') }}</span>
           </div>
           <div class="stat-card">
             <span class="stat-number">{{ aiToolsCount }}</span>
-            <span class="stat-label">AI-Friendly</span>
+            <span class="stat-label">{{ t('seoNavPage.statAi') }}</span>
           </div>
           <div class="stat-card">
             <span class="stat-number">{{ seoCategories.length }}</span>
-            <span class="stat-label">Categories</span>
+            <span class="stat-label">{{ t('seoNavPage.statCategories') }}</span>
           </div>
         </div>
       </div>
@@ -191,11 +192,11 @@ const activeSidebarItem = computed(() => (activeCategory.value === 'all' ? scrol
           <div class="sidebar-filters">
             <label class="filter-toggle" :class="{ active: showFreeOnly }" @click="showFreeOnly = !showFreeOnly">
               <VaIcon name="money_off" size="14px" />
-              Free only
+              {{ t('seoNavPage.filterFreeOnly') }}
             </label>
             <label class="filter-toggle" :class="{ active: showAiOnly }" @click="showAiOnly = !showAiOnly">
               <VaIcon name="smart_toy" size="14px" />
-              AI-Friendly
+              {{ t('seoNavPage.filterAi') }}
             </label>
           </div>
 
@@ -205,7 +206,7 @@ const activeSidebarItem = computed(() => (activeCategory.value === 'all' ? scrol
           <button class="sidebar-item" :class="{ active: activeCategory === 'all' }" @click="selectCategory('all')">
             <span class="sidebar-active-bar" />
             <VaIcon name="apps" size="16px" class="sidebar-item-icon" />
-            <span class="sidebar-item-name">All tools</span>
+            <span class="sidebar-item-name">{{ t('seoNavPage.allTools') }}</span>
             <span class="sidebar-item-count">{{ totalTools }}</span>
           </button>
 
@@ -241,9 +242,9 @@ const activeSidebarItem = computed(() => (activeCategory.value === 'all' ? scrol
           <div class="section-header">
             <div class="section-title-group">
               <VaIcon name="star" color="warning" size="20px" />
-              <h2 class="section-title">Featured picks</h2>
+              <h2 class="section-title">{{ t('seoNavPage.featuredTitle') }}</h2>
             </div>
-            <p class="section-desc">Core tools every site owner needs — each battle-tested in the field</p>
+            <p class="section-desc">{{ t('seoNavPage.featuredDesc') }}</p>
           </div>
           <div class="featured-grid">
             <a
@@ -253,7 +254,7 @@ const activeSidebarItem = computed(() => (activeCategory.value === 'all' ? scrol
               target="_blank"
               rel="noopener noreferrer"
               class="featured-card"
-              :aria-label="`Visit ${tool.name} (opens in a new tab)`"
+              :aria-label="t('seoNavPage.visitAria', { name: tool.name })"
             >
               <div
                 class="featured-card-icon"
@@ -273,8 +274,8 @@ const activeSidebarItem = computed(() => (activeCategory.value === 'all' ? scrol
                 <div class="featured-card-header">
                   <h3 class="featured-card-title">{{ tool.name }}</h3>
                   <div class="featured-card-badges">
-                    <span v-if="tool.isFree" class="badge badge-free">Free</span>
-                    <span v-if="tool.isAiFriendly" class="badge badge-ai">AI-Friendly</span>
+                    <span v-if="tool.isFree" class="badge badge-free">{{ t('seoNavPage.badgeFree') }}</span>
+                    <span v-if="tool.isAiFriendly" class="badge badge-ai">{{ t('seoNavPage.badgeAi') }}</span>
                   </div>
                 </div>
                 <p class="featured-card-desc">{{ tool.description }}</p>
@@ -293,11 +294,11 @@ const activeSidebarItem = computed(() => (activeCategory.value === 'all' ? scrol
         <div class="result-bar">
           <span class="result-count">
             <VaIcon name="format_list_bulleted" size="15px" />
-            <strong>{{ filteredTools.length }}</strong> tools found
+            <strong>{{ filteredTools.length }}</strong> {{ t('seoNavPage.toolsFound') }}
           </span>
           <button v-if="searchQuery || showAiOnly || showFreeOnly" class="clear-btn" @click="clearFilters">
             <VaIcon name="close" size="13px" />
-            Clear filters
+            {{ t('seoNavPage.clearFilters') }}
           </button>
         </div>
 
@@ -305,8 +306,8 @@ const activeSidebarItem = computed(() => (activeCategory.value === 'all' ? scrol
         <div class="tools-section">
           <div v-if="filteredTools.length === 0" class="empty-state">
             <VaIcon name="search_off" size="56px" color="secondary" />
-            <p class="empty-text">No matching tools — try a different keyword</p>
-            <VaButton preset="secondary" size="small" @click="clearFilters"> Clear filters </VaButton>
+            <p class="empty-text">{{ t('seoNavPage.empty') }}</p>
+            <VaButton preset="secondary" size="small" @click="clearFilters"> {{ t('seoNavPage.clearFilters') }} </VaButton>
           </div>
 
           <div v-for="group in groupedFilteredTools" :key="group.id" class="category-group" :data-cat-id="group.id">
@@ -321,7 +322,7 @@ const activeSidebarItem = computed(() => (activeCategory.value === 'all' ? scrol
                 </div>
               </div>
               <span class="category-count" :style="{ background: group.color + '18', color: group.color }">
-                {{ group.tools.length }} tools
+                {{ group.tools.length }} {{ t('seoNavPage.toolsUnit') }}
               </span>
             </div>
 
@@ -333,16 +334,16 @@ const activeSidebarItem = computed(() => (activeCategory.value === 'all' ? scrol
                 target="_blank"
                 rel="noopener noreferrer"
                 class="tool-card"
-                :aria-label="`Visit ${tool.name} (opens in a new tab)`"
+                :aria-label="t('seoNavPage.visitAria', { name: tool.name })"
               >
                 <div class="tool-card-top">
                   <div class="tool-icon-wrap" :style="{ background: group.color + '14', borderColor: group.color + '30' }">
                     <ToolFavicon :url="tool.url" :fallback-icon="group.icon" :fallback-color="group.color" :size="22" />
                   </div>
                   <div class="tool-badges">
-                    <span v-if="tool.isFree" class="badge badge-free">Free</span>
-                    <span v-if="tool.hasApi" class="badge badge-api">API</span>
-                    <span v-if="tool.isAiFriendly" class="badge badge-ai">AI</span>
+                    <span v-if="tool.isFree" class="badge badge-free">{{ t('seoNavPage.badgeFree') }}</span>
+                    <span v-if="tool.hasApi" class="badge badge-api">{{ t('seoNavPage.badgeApi') }}</span>
+                    <span v-if="tool.isAiFriendly" class="badge badge-ai">{{ t('seoNavPage.badgeAiShort') }}</span>
                   </div>
                 </div>
 
@@ -355,7 +356,7 @@ const activeSidebarItem = computed(() => (activeCategory.value === 'all' ? scrol
                   </div>
                   <div class="tool-link-hint">
                     <VaIcon name="open_in_new" size="13px" />
-                    <span>Visit</span>
+                    <span>{{ t('seoNavPage.visitHint') }}</span>
                   </div>
                 </div>
               </a>
@@ -367,56 +368,38 @@ const activeSidebarItem = computed(() => (activeCategory.value === 'all' ? scrol
         <div class="section tips-section">
           <div class="tips-header">
             <VaIcon name="lightbulb" color="warning" size="20px" />
-            <h2 class="section-title">SEO tips for site owners</h2>
+            <h2 class="section-title">{{ t('seoNavPage.tipsTitle') }}</h2>
           </div>
           <div class="tips-grid">
             <div class="tip-card">
               <div class="tip-icon">🔍</div>
-              <h3 class="tip-title">Start with keyword research</h3>
-              <p class="tip-content">
-                Find breakout terms with <strong>Exploding Topics</strong>, uncover real user questions with
-                <strong>AnswerThePublic</strong>, and validate volume with <strong>Google Keyword Planner</strong>.
-              </p>
+              <h3 class="tip-title">{{ t('seoNavPage.tip1Title') }}</h3>
+              <p class="tip-content" v-html="t('seoNavPage.tip1Body')"></p>
             </div>
             <div class="tip-card">
               <div class="tip-icon">⚡</div>
-              <h3 class="tip-title">Run regular technical checks</h3>
-              <p class="tip-content">
-                Crawl your whole site monthly with <strong>Screaming Frog</strong>, check Core Web Vitals with
-                <strong>PageSpeed Insights</strong>, and fix technical SEO issues promptly.
-              </p>
+              <h3 class="tip-title">{{ t('seoNavPage.tip2Title') }}</h3>
+              <p class="tip-content" v-html="t('seoNavPage.tip2Body')"></p>
             </div>
             <div class="tip-card">
               <div class="tip-icon">✍️</div>
-              <h3 class="tip-title">AI-assisted content optimization</h3>
-              <p class="tip-content">
-                Score your content with <strong>SurferSEO</strong> or <strong>Clearscope</strong>, and use
-                <strong>Frase.io</strong> to quickly draft high-ranking article outlines.
-              </p>
+              <h3 class="tip-title">{{ t('seoNavPage.tip3Title') }}</h3>
+              <p class="tip-content" v-html="t('seoNavPage.tip3Body')"></p>
             </div>
             <div class="tip-card">
               <div class="tip-icon">🤖</div>
-              <h3 class="tip-title">Prepare for the AI search era</h3>
-              <p class="tip-content">
-                Track how often your brand is cited across AI tools with <strong>GEO/AEO Tracker</strong>, and improve
-                visibility in Google AI Overviews with <strong>SearchAttention</strong>.
-              </p>
+              <h3 class="tip-title">{{ t('seoNavPage.tip4Title') }}</h3>
+              <p class="tip-content" v-html="t('seoNavPage.tip4Body')"></p>
             </div>
             <div class="tip-card">
               <div class="tip-icon">🔗</div>
-              <h3 class="tip-title">Build high-quality backlinks</h3>
-              <p class="tip-content">
-                Analyze competitors' backlink sources with <strong>Majestic</strong>, then automate outreach with
-                <strong>Respona</strong> or <strong>BacklinkGPT</strong>.
-              </p>
+              <h3 class="tip-title">{{ t('seoNavPage.tip5Title') }}</h3>
+              <p class="tip-content" v-html="t('seoNavPage.tip5Body')"></p>
             </div>
             <div class="tip-card">
               <div class="tip-icon">📊</div>
-              <h3 class="tip-title">Make data-driven decisions</h3>
-              <p class="tip-content">
-                Combine <strong>Google Search Console</strong> data with competitor traffic from
-                <strong>Similarweb</strong> to pinpoint your biggest growth opportunities.
-              </p>
+              <h3 class="tip-title">{{ t('seoNavPage.tip6Title') }}</h3>
+              <p class="tip-content" v-html="t('seoNavPage.tip6Body')"></p>
             </div>
           </div>
         </div>

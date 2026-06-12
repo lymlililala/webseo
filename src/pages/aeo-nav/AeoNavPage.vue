@@ -1,15 +1,17 @@
 <script setup lang="ts">
 import { ref, computed, onMounted, onUnmounted } from 'vue'
+import { useI18n } from 'vue-i18n'
 import { aeoCategories, allAeoTools, featuredAeoTools, type AeoTool, type AeoCategory } from '../../data/aeo-tools'
 import { usePageSeo } from '../../composables/usePageSeo'
 import ToolFavicon from '../../components/ToolFavicon.vue'
 
+const { t } = useI18n()
+
 usePageSeo({
-  title: 'AEO Tools Directory — Answer Engine Optimization Tools',
-  description:
-    'A directory of 50+ AEO (Answer Engine Optimization) tools to help your content appear in Google featured snippets, AI direct answers and voice search — including Schema generators, snippet optimization and structured-data validators.',
+  title: t('aeoNavPage.seoTitle'),
+  description: t('aeoNavPage.seoDescription'),
   path: '/aeo-nav',
-  keywords: 'AEO tools,answer engine optimization,featured snippets,Schema markup,structured data,voice search optimization',
+  keywords: t('aeoNavPage.seoKeywords'),
   jsonLd: [
     {
       '@context': 'https://schema.org',
@@ -149,25 +151,19 @@ const activeSidebarItem = computed(() => (activeCategory.value === 'all' ? scrol
       <div class="aeo-hero-content">
         <div class="aeo-hero-badge">
           <VaIcon name="question_answer" size="14px" />
-          <span>AEO · Answer Engine Optimization Navigator</span>
+          <span>{{ t('aeoNavPage.badge') }}</span>
         </div>
         <h1 class="aeo-hero-title">
-          Answer Engine Optimization Tools<br />
-          <span class="aeo-hero-title-accent">Full Directory</span>
+          {{ t('aeoNavPage.heroTitleMain') }}<br />
+          <span class="aeo-hero-title-accent">{{ t('aeoNavPage.heroTitleAccent') }}</span>
         </h1>
-        <p class="aeo-hero-subtitle">
-          A curated set of <strong>{{ totalTools }}+</strong> tools and resources across 6 categories — <strong>AEO-Focused SaaS</strong>、<strong
-            >Enterprise SEO Modules</strong
-          >、<strong>Content Optimization</strong>、<strong>Question Research</strong>、<strong>Structured Data</strong>、<strong
-            >China Platforms</strong
-          >
-        </p>
+        <p class="aeo-hero-subtitle" v-html="t('aeoNavPage.heroSubtitle', { n: totalTools })"></p>
 
         <div class="aeo-search-wrap">
           <VaInput
             v-model="searchQuery"
-            placeholder="Search tools by name, feature or tag..."
-            aria-label="Search AEO tools"
+            :placeholder="t('aeoNavPage.searchPlaceholder')"
+            :aria-label="t('aeoNavPage.searchAria')"
             class="aeo-search-input"
             clearable
           >
@@ -181,22 +177,22 @@ const activeSidebarItem = computed(() => (activeCategory.value === 'all' ? scrol
         <div class="aeo-concept-bar">
           <div class="aeo-concept-item">
             <VaIcon name="question_answer" size="15px" color="#F9A8D4" />
-            <span><strong>AEO</strong> = Answer Engine Optimization</span>
+            <span v-html="t('aeoNavPage.concept1')"></span>
           </div>
           <span class="aeo-concept-sep">·</span>
           <div class="aeo-concept-item">
             <VaIcon name="description" size="15px" color="#60A5FA" />
-            <span><strong>llms.txt</strong> = AI-readable structure standard</span>
+            <span v-html="t('aeoNavPage.concept2')"></span>
           </div>
           <span class="aeo-concept-sep">·</span>
           <div class="aeo-concept-item">
             <VaIcon name="schema" size="15px" color="#34D399" />
-            <span><strong>JSON-LD</strong> = structured-data markup</span>
+            <span v-html="t('aeoNavPage.concept3')"></span>
           </div>
           <span class="aeo-concept-sep">·</span>
           <div class="aeo-concept-item">
             <VaIcon name="help_outline" size="15px" color="#FCD34D" />
-            <span><strong>PAA</strong> = People Also Ask answer box</span>
+            <span v-html="t('aeoNavPage.concept4')"></span>
           </div>
         </div>
       </div>
@@ -205,19 +201,19 @@ const activeSidebarItem = computed(() => (activeCategory.value === 'all' ? scrol
       <div class="aeo-stats">
         <div class="aeo-stat">
           <span class="aeo-stat-num">{{ totalTools }}+</span>
-          <span class="aeo-stat-label">Curated Tools</span>
+          <span class="aeo-stat-label">{{ t('aeoNavPage.statTools') }}</span>
         </div>
         <div class="aeo-stat">
           <span class="aeo-stat-num">{{ openSourceCount }}</span>
-          <span class="aeo-stat-label">⭐ Open-Source Projects</span>
+          <span class="aeo-stat-label">{{ t('aeoNavPage.statOss') }}</span>
         </div>
         <div class="aeo-stat">
           <span class="aeo-stat-num">{{ freeCount }}</span>
-          <span class="aeo-stat-label">🆓 Has Free Tier</span>
+          <span class="aeo-stat-label">{{ t('aeoNavPage.statFree') }}</span>
         </div>
         <div class="aeo-stat">
           <span class="aeo-stat-num">{{ chinaCount }}</span>
-          <span class="aeo-stat-label">🇨🇳 China Platforms</span>
+          <span class="aeo-stat-label">{{ t('aeoNavPage.statChina') }}</span>
         </div>
       </div>
     </div>
@@ -231,7 +227,7 @@ const activeSidebarItem = computed(() => (activeCategory.value === 'all' ? scrol
           <div class="aeo-sidebar-filters">
             <label class="aeo-filter-toggle" :class="{ active: showFreeOnly }" @click="showFreeOnly = !showFreeOnly">
               <VaIcon name="money_off" size="12px" />
-              Has Free
+              {{ t('aeoNavPage.filterHasFree') }}
             </label>
             <label
               class="aeo-filter-toggle"
@@ -239,7 +235,7 @@ const activeSidebarItem = computed(() => (activeCategory.value === 'all' ? scrol
               @click="showOpenSourceOnly = !showOpenSourceOnly"
             >
               <VaIcon name="code" size="12px" />
-              Open Source
+              {{ t('aeoNavPage.filterOpenSource') }}
             </label>
           </div>
 
@@ -249,7 +245,7 @@ const activeSidebarItem = computed(() => (activeCategory.value === 'all' ? scrol
           <button class="aeo-sidebar-item" :class="{ active: activeCategory === 'all' }" @click="selectCategory('all')">
             <span class="aeo-sidebar-active-bar" />
             <VaIcon name="apps" size="16px" class="aeo-sidebar-icon" />
-            <span class="aeo-sidebar-name">All tools</span>
+            <span class="aeo-sidebar-name">{{ t('aeoNavPage.allTools') }}</span>
             <span class="aeo-sidebar-count">{{ totalTools }}</span>
           </button>
 
@@ -284,8 +280,8 @@ const activeSidebarItem = computed(() => (activeCategory.value === 'all' ? scrol
         <div v-if="activeCategory === 'all' && !searchQuery" class="aeo-section">
           <div class="aeo-section-header">
             <VaIcon name="star" color="warning" size="17px" />
-            <h2 class="aeo-section-title">Featured picks</h2>
-            <span class="aeo-section-badge">Editor’s choice</span>
+            <h2 class="aeo-section-title">{{ t('aeoNavPage.featuredTitle') }}</h2>
+            <span class="aeo-section-badge">{{ t('aeoNavPage.featuredBadge') }}</span>
           </div>
           <div class="aeo-featured-grid">
             <a
@@ -295,7 +291,7 @@ const activeSidebarItem = computed(() => (activeCategory.value === 'all' ? scrol
               target="_blank"
               rel="noopener noreferrer"
               class="aeo-featured-card"
-              :aria-label="`Visit ${tool.name} (opens in a new tab)`"
+              :aria-label="t('aeoNavPage.visitAria', { name: tool.name })"
             >
               <div
                 class="aeo-featured-icon"
@@ -317,10 +313,10 @@ const activeSidebarItem = computed(() => (activeCategory.value === 'all' ? scrol
                 <div class="aeo-featured-top">
                   <h3 class="aeo-featured-name">{{ tool.name }}</h3>
                   <div class="aeo-featured-badges">
-                    <span v-if="tool.isFree" class="aeo-badge aeo-badge-free">Free</span>
-                    <span v-else-if="tool.hasFreeplan" class="aeo-badge aeo-badge-freeplan">Has Free Tier</span>
-                    <span v-if="tool.isOpenSource" class="aeo-badge aeo-badge-oss">Open Source</span>
-                    <span v-if="tool.hasApi" class="aeo-badge aeo-badge-api">API</span>
+                    <span v-if="tool.isFree" class="aeo-badge aeo-badge-free">{{ t('aeoNavPage.badgeFree') }}</span>
+                    <span v-else-if="tool.hasFreeplan" class="aeo-badge aeo-badge-freeplan">{{ t('aeoNavPage.badgeFreeTier') }}</span>
+                    <span v-if="tool.isOpenSource" class="aeo-badge aeo-badge-oss">{{ t('aeoNavPage.badgeOss') }}</span>
+                    <span v-if="tool.hasApi" class="aeo-badge aeo-badge-api">{{ t('aeoNavPage.badgeApi') }}</span>
                   </div>
                 </div>
                 <!-- Highlights -->
@@ -351,19 +347,19 @@ const activeSidebarItem = computed(() => (activeCategory.value === 'all' ? scrol
         <div class="aeo-result-bar">
           <span class="aeo-result-count">
             <VaIcon name="format_list_bulleted" size="13px" />
-            Found <strong>{{ filteredTools.length }}</strong> tools
+            <span v-html="t('aeoNavPage.resultCount', { n: filteredTools.length })"></span>
           </span>
           <button v-if="searchQuery || showOpenSourceOnly || showFreeOnly" class="aeo-clear-btn" @click="clearFilters">
             <VaIcon name="close" size="12px" />
-            Clear filters
+            {{ t('aeoNavPage.clearFilters') }}
           </button>
         </div>
 
         <!-- Empty -->
         <div v-if="filteredTools.length === 0" class="aeo-empty">
           <VaIcon name="search_off" size="50px" color="secondary" />
-          <p>No matching tools — try a different keyword</p>
-          <VaButton preset="secondary" size="small" @click="clearFilters"> Clear all filters </VaButton>
+          <p>{{ t('aeoNavPage.empty') }}</p>
+          <VaButton preset="secondary" size="small" @click="clearFilters"> {{ t('aeoNavPage.clearAllFilters') }} </VaButton>
         </div>
 
         <!-- Tools by Category -->
@@ -384,7 +380,7 @@ const activeSidebarItem = computed(() => (activeCategory.value === 'all' ? scrol
               </div>
             </div>
             <span class="aeo-cat-count" :style="{ background: group.color + '18', color: group.color }">
-              {{ group.tools.length }} tools
+              {{ group.tools.length }} {{ t('aeoNavPage.toolsUnit') }}
             </span>
           </div>
 
@@ -404,10 +400,10 @@ const activeSidebarItem = computed(() => (activeCategory.value === 'all' ? scrol
                   /></span>
                 </div>
                 <div class="aeo-tool-badges">
-                  <span v-if="tool.isFree" class="aeo-badge aeo-badge-free">Free</span>
-                  <span v-else-if="tool.hasFreeplan" class="aeo-badge aeo-badge-freeplan">Has Free</span>
-                  <span v-if="tool.isOpenSource" class="aeo-badge aeo-badge-oss">Open Source</span>
-                  <span v-if="tool.hasApi" class="aeo-badge aeo-badge-api">API</span>
+                  <span v-if="tool.isFree" class="aeo-badge aeo-badge-free">{{ t('aeoNavPage.badgeFree') }}</span>
+                  <span v-else-if="tool.hasFreeplan" class="aeo-badge aeo-badge-freeplan">{{ t('aeoNavPage.badgeHasFree') }}</span>
+                  <span v-if="tool.isOpenSource" class="aeo-badge aeo-badge-oss">{{ t('aeoNavPage.badgeOss') }}</span>
+                  <span v-if="tool.hasApi" class="aeo-badge aeo-badge-api">{{ t('aeoNavPage.badgeApi') }}</span>
                 </div>
               </div>
 
@@ -417,7 +413,7 @@ const activeSidebarItem = computed(() => (activeCategory.value === 'all' ? scrol
                 target="_blank"
                 rel="noopener noreferrer"
                 class="aeo-tool-name-link"
-                :aria-label="`Visit ${tool.name} (opens in a new tab)`"
+                :aria-label="t('aeoNavPage.visitAria', { name: tool.name })"
                 @click.stop
               >
                 <h3 class="aeo-tool-name">{{ tool.name }}</h3>
@@ -465,7 +461,7 @@ const activeSidebarItem = computed(() => (activeCategory.value === 'all' ? scrol
                   <span v-if="tool.pricing" class="aeo-pricing-inline">{{ tool.pricing }}</span>
                   <div class="aeo-tool-visit">
                     <VaIcon name="open_in_new" size="11px" />
-                    <span>Visit</span>
+                    <span>{{ t('aeoNavPage.visitHint') }}</span>
                   </div>
                 </div>
               </div>
@@ -477,60 +473,38 @@ const activeSidebarItem = computed(() => (activeCategory.value === 'all' ? scrol
         <div class="aeo-tips-section">
           <div class="aeo-tips-header">
             <VaIcon name="lightbulb" color="warning" size="17px" />
-            <h2 class="aeo-section-title">AEO playbook</h2>
+            <h2 class="aeo-section-title">{{ t('aeoNavPage.tipsTitle') }}</h2>
           </div>
           <div class="aeo-tips-grid">
             <div class="aeo-tip-card">
               <div class="aeo-tip-emoji">📡</div>
-              <h3>Step 1: Baseline AI visibility</h3>
-              <p>
-                Use <strong>Otterly.AI</strong> ($29/mo, 15,000+ users) or
-                <strong>GetCito/Elmo</strong> (open source, free) to quickly baseline your brand’s exposure across
-                ChatGPT, Perplexity and Gemini. For China-focused brands, <strong>Lens GEO</strong> (free) is a top pick.
-              </p>
+              <h3>{{ t('aeoNavPage.tip1Title') }}</h3>
+              <p v-html="t('aeoNavPage.tip1Body')"></p>
             </div>
             <div class="aeo-tip-card">
               <div class="aeo-tip-emoji">❓</div>
-              <h3>Step 2: Mine AEO question keywords</h3>
-              <p>
-                Use <strong>AlsoAsked</strong> (a visual PAA question tree) and <strong>AnswerThePublic</strong> (5W1H
-                question aggregation) to find real user intent and prioritize the high-frequency questions AI cites most.
-              </p>
+              <h3>{{ t('aeoNavPage.tip2Title') }}</h3>
+              <p v-html="t('aeoNavPage.tip2Body')"></p>
             </div>
             <div class="aeo-tip-card">
               <div class="aeo-tip-emoji">📝</div>
-              <h3>Step 3: Write answer-friendly content</h3>
-              <p>
-                Use <strong>Frase.io</strong> (AI summaries + FAQ generation, $14.99/mo) or
-                <strong>Surfer SEO</strong> (content scoring + LLM optimization) to write clear, semantically complete
-                content that ranks on Google and gets cited by AI.
-              </p>
+              <h3>{{ t('aeoNavPage.tip3Title') }}</h3>
+              <p v-html="t('aeoNavPage.tip3Body')"></p>
             </div>
             <div class="aeo-tip-card">
               <div class="aeo-tip-emoji">🗂️</div>
-              <h3>Step 4: Add structured data</h3>
-              <p>
-                On WordPress, use <strong>Rank Math</strong> to auto-generate FAQ/HowTo Schema; on modern frameworks use
-                <strong>aeo.js</strong> (⭐76) to one-click generate llms.txt + JSON-LD; then validate with
-                <strong>the Google Rich Results Test</strong> (free).
-              </p>
+              <h3>{{ t('aeoNavPage.tip4Title') }}</h3>
+              <p v-html="t('aeoNavPage.tip4Body')"></p>
             </div>
             <div class="aeo-tip-card">
               <div class="aeo-tip-emoji">🔧</div>
-              <h3>Step 5: Scale to enterprise</h3>
-              <p>
-                Teams with an existing SEO stack can enable the AEO modules in <strong>Semrush AI Visibility</strong> or
-                <strong>Ahrefs Brand Radar</strong> — extending into AEO without replacing current tools.
-              </p>
+              <h3>{{ t('aeoNavPage.tip5Title') }}</h3>
+              <p v-html="t('aeoNavPage.tip5Body')"></p>
             </div>
             <div class="aeo-tip-card">
               <div class="aeo-tip-emoji">🇨🇳</div>
-              <h3>Step 6: Cover China AI engines</h3>
-              <p>
-                For the China market, use <strong>AIDSO</strong> (DSO+GEO+AEO in one) or
-                <strong>Yishan Tech</strong> (7 proprietary systems) to cover major domestic platforms like Doubao,
-                DeepSeek, Kimi and Tongyi Qianwen and build AI-visibility advantage.
-              </p>
+              <h3>{{ t('aeoNavPage.tip6Title') }}</h3>
+              <p v-html="t('aeoNavPage.tip6Body')"></p>
             </div>
           </div>
         </div>
