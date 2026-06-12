@@ -9,7 +9,7 @@
         <VaButton @click="showModal = !showModal">Request a demo</VaButton>
       </VaCardActions>
     </div>
-    <img alt="Send a message" src="../request-demo.svg" />
+    <img alt="Send a message" src="../request-demo.svg" loading="lazy" />
   </VaCard>
   <VaModal v-model="showModal" :before-ok="submit" close-button ok-text="Request demo" size="small">
     <VaForm ref="form" @submit.prevent="submit">
