@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { ref, computed, onMounted, onUnmounted } from 'vue'
+import { useI18n } from 'vue-i18n'
 import {
   aiCheckerCategories,
   allAiCheckerTools,
@@ -10,12 +11,13 @@ import {
 import { usePageSeo } from '../../composables/usePageSeo'
 import ToolFavicon from '../../components/ToolFavicon.vue'
 
+const { t } = useI18n()
+
 usePageSeo({
-  title: 'AI Visibility Checker — Analyze AI Citations of Your Content',
-  description:
-    'Check how your content is cited and how visible it is across major AI models like ChatGPT, Perplexity, Claude and Gemini. Understand your brand exposure in AI search and refine your GEO strategy.',
+  title: t('aiCheckerPage.seoTitle'),
+  description: t('aiCheckerPage.seoDescription'),
   path: '/ai-checker',
-  keywords: 'AI visibility checker,brand AI citation analysis,ChatGPT brand exposure,GEO measurement,AI search visibility',
+  keywords: t('aiCheckerPage.seoKeywords'),
   jsonLd: [
     {
       '@context': 'https://schema.org',
@@ -130,45 +132,41 @@ const activeSidebarItem = computed(() => (activeCategory.value === 'all' ? scrol
       <div class="checker-hero-content">
         <div class="checker-hero-badge">
           <VaIcon name="health_and_safety" size="14px" />
-          <span>AI Search Visibility · Aggregated Checkers</span>
+          <span>{{ t('aiCheckerPage.badge') }}</span>
         </div>
 
         <h1 class="checker-hero-title">
-          AI Search Visibility<br />
-          <span class="checker-hero-accent">Full Directory</span>
+          {{ t('aiCheckerPage.heroTitleMain') }}<br />
+          <span class="checker-hero-accent">{{ t('aiCheckerPage.heroTitleAccent') }}</span>
         </h1>
 
-        <p class="checker-hero-subtitle">
-          An aggregated <strong>{{ totalTools }}+</strong> AI-visibility checkers covering <strong>9 major China AI engines</strong> and <strong
-            >major global AI platforms</strong
-          > — from free quick checks to enterprise monitoring, helping brands fully understand their AI-search exposure
-        </p>
+        <p class="checker-hero-subtitle" v-html="t('aiCheckerPage.heroSubtitle', { n: totalTools })"></p>
 
         <!-- 用户旅程提示 -->
         <div class="checker-journey">
           <div class="checker-journey-step">
             <span class="checker-journey-icon">🔍</span>
-            <span>Pick a checker</span>
+            <span>{{ t('aiCheckerPage.journey1') }}</span>
           </div>
           <VaIcon name="chevron_right" size="14px" color="rgba(255,255,255,0.3)" />
           <div class="checker-journey-step">
             <span class="checker-journey-icon">📊</span>
-            <span>Get a report</span>
+            <span>{{ t('aiCheckerPage.journey2') }}</span>
           </div>
           <VaIcon name="chevron_right" size="14px" color="rgba(255,255,255,0.3)" />
           <div class="checker-journey-step">
             <span class="checker-journey-icon">⚡</span>
-            <span>Find gaps</span>
+            <span>{{ t('aiCheckerPage.journey3') }}</span>
           </div>
           <VaIcon name="chevron_right" size="14px" color="rgba(255,255,255,0.3)" />
           <div class="checker-journey-step">
             <span class="checker-journey-icon">📈</span>
-            <span>Optimize</span>
+            <span>{{ t('aiCheckerPage.journey4') }}</span>
           </div>
           <VaIcon name="chevron_right" size="14px" color="rgba(255,255,255,0.3)" />
           <div class="checker-journey-step active">
             <span class="checker-journey-icon">✅</span>
-            <span>Re-check</span>
+            <span>{{ t('aiCheckerPage.journey5') }}</span>
           </div>
         </div>
 
@@ -176,8 +174,8 @@ const activeSidebarItem = computed(() => (activeCategory.value === 'all' ? scrol
         <div class="checker-search-wrap">
           <VaInput
             v-model="searchQuery"
-            placeholder="Search tools by name, platform or feature..."
-            aria-label="Search AI visibility tools"
+            :placeholder="t('aiCheckerPage.searchPlaceholder')"
+            :aria-label="t('aiCheckerPage.searchAria')"
             class="checker-search-input"
             clearable
           >
@@ -191,9 +189,9 @@ const activeSidebarItem = computed(() => (activeCategory.value === 'all' ? scrol
         <div class="checker-region-tabs">
           <button
             v-for="r in [
-              { key: 'all', label: 'All tools' },
-              { key: 'cn', label: '🇨🇳 China Tools' },
-              { key: 'global', label: '🌍 Global Tools' },
+              { key: 'all', label: t('aiCheckerPage.allTools') },
+              { key: 'cn', label: t('aiCheckerPage.regionCn') },
+              { key: 'global', label: t('aiCheckerPage.regionGlobal') },
             ]"
             :key="r.key"
             class="checker-region-tab"
@@ -208,22 +206,22 @@ const activeSidebarItem = computed(() => (activeCategory.value === 'all' ? scrol
         <div class="checker-stats">
           <div class="checker-stat">
             <span class="checker-stat-num">{{ totalTools }}+</span>
-            <span class="checker-stat-label">Curated Tools</span>
+            <span class="checker-stat-label">{{ t('aiCheckerPage.statTools') }}</span>
           </div>
           <div class="checker-stat-div" />
           <div class="checker-stat">
             <span class="checker-stat-num">{{ cnToolsCount }}</span>
-            <span class="checker-stat-label">🇨🇳 China Tools</span>
+            <span class="checker-stat-label">{{ t('aiCheckerPage.regionCn') }}</span>
           </div>
           <div class="checker-stat-div" />
           <div class="checker-stat">
             <span class="checker-stat-num">{{ globalToolsCount }}</span>
-            <span class="checker-stat-label">🌍 Global Tools</span>
+            <span class="checker-stat-label">{{ t('aiCheckerPage.regionGlobal') }}</span>
           </div>
           <div class="checker-stat-div" />
           <div class="checker-stat">
             <span class="checker-stat-num">{{ freeCount }}</span>
-            <span class="checker-stat-label">Has Free Tier</span>
+            <span class="checker-stat-label">{{ t('aiCheckerPage.statFree') }}</span>
           </div>
         </div>
       </div>
@@ -237,7 +235,7 @@ const activeSidebarItem = computed(() => (activeCategory.value === 'all' ? scrol
           <!-- Free filter -->
           <label class="checker-filter-toggle" :class="{ active: showFreeOnly }" @click="showFreeOnly = !showFreeOnly">
             <VaIcon name="money_off" size="12px" />
-            Free only
+            {{ t('aiCheckerPage.filterFreeOnly') }}
           </label>
 
           <div class="checker-sidebar-div" />
@@ -250,7 +248,7 @@ const activeSidebarItem = computed(() => (activeCategory.value === 'all' ? scrol
           >
             <span class="checker-sidebar-dot" style="background: #10b981" />
             <VaIcon name="apps" size="14px" class="checker-sidebar-icon" />
-            <span class="checker-sidebar-name">All tools</span>
+            <span class="checker-sidebar-name">{{ t('aiCheckerPage.allTools') }}</span>
             <span class="checker-sidebar-count">{{ totalTools }}</span>
           </button>
 
@@ -285,8 +283,8 @@ const activeSidebarItem = computed(() => (activeCategory.value === 'all' ? scrol
         <div v-if="activeCategory === 'all' && !searchQuery && activeRegion === 'all'" class="checker-section">
           <div class="checker-section-header">
             <VaIcon name="star" color="warning" size="17px" />
-            <h2 class="checker-section-title">Quick check</h2>
-            <span class="checker-section-badge">Free, direct</span>
+            <h2 class="checker-section-title">{{ t('aiCheckerPage.featuredTitle') }}</h2>
+            <span class="checker-section-badge">{{ t('aiCheckerPage.featuredBadge') }}</span>
           </div>
           <div class="checker-featured-grid">
             <a
@@ -296,7 +294,7 @@ const activeSidebarItem = computed(() => (activeCategory.value === 'all' ? scrol
               target="_blank"
               rel="noopener noreferrer"
               class="checker-featured-card"
-              :aria-label="`Visit ${tool.name} (opens in a new tab)`"
+              :aria-label="t('aiCheckerPage.visitAria', { name: tool.name })"
             >
               <div
                 class="checker-featured-icon"
@@ -317,13 +315,13 @@ const activeSidebarItem = computed(() => (activeCategory.value === 'all' ? scrol
                   <h3 class="checker-featured-name">{{ tool.name }}</h3>
                   <div class="checker-featured-badges">
                     <span v-if="tool.badge" class="checker-badge checker-badge-highlight">{{ tool.badge }}</span>
-                    <span v-if="tool.isFree" class="checker-badge checker-badge-free">Free</span>
-                    <span v-else-if="tool.hasFreeplan" class="checker-badge checker-badge-freeplan">Has Free Tier</span>
+                    <span v-if="tool.isFree" class="checker-badge checker-badge-free">{{ t('aiCheckerPage.badgeFree') }}</span>
+                    <span v-else-if="tool.hasFreeplan" class="checker-badge checker-badge-freeplan">{{ t('aiCheckerPage.badgeFreeTier') }}</span>
                     <span
                       class="checker-badge"
                       :class="tool.region === 'cn' ? 'checker-badge-cn' : 'checker-badge-global'"
                     >
-                      {{ tool.region === 'cn' ? '🇨🇳 China' : '🌍 Global' }}
+                      {{ tool.region === 'cn' ? t('aiCheckerPage.badgeCn') : t('aiCheckerPage.badgeGlobal') }}
                     </span>
                   </div>
                 </div>
@@ -348,7 +346,7 @@ const activeSidebarItem = computed(() => (activeCategory.value === 'all' ? scrol
         <div class="checker-result-bar">
           <span class="checker-result-count">
             <VaIcon name="format_list_bulleted" size="13px" />
-            Found <strong>{{ filteredTools.length }}</strong> tools
+            <span v-html="t('aiCheckerPage.resultCount', { n: filteredTools.length })"></span>
           </span>
           <button
             v-if="searchQuery || showFreeOnly || activeRegion !== 'all'"
@@ -356,15 +354,15 @@ const activeSidebarItem = computed(() => (activeCategory.value === 'all' ? scrol
             @click="clearFilters"
           >
             <VaIcon name="close" size="12px" />
-            Clear filters
+            {{ t('aiCheckerPage.clearFilters') }}
           </button>
         </div>
 
         <!-- ── 空状态 ─── -->
         <div v-if="filteredTools.length === 0" class="checker-empty">
           <VaIcon name="search_off" size="50px" color="secondary" />
-          <p>No matching tools — try a different keyword</p>
-          <VaButton preset="secondary" size="small" @click="clearFilters">Clear all filters</VaButton>
+          <p>{{ t('aiCheckerPage.empty') }}</p>
+          <VaButton preset="secondary" size="small" @click="clearFilters">{{ t('aiCheckerPage.clearAllFilters') }}</VaButton>
         </div>
 
         <!-- ── 工具分层展示 ─── -->
@@ -388,7 +386,7 @@ const activeSidebarItem = computed(() => (activeCategory.value === 'all' ? scrol
               </div>
             </div>
             <span class="checker-cat-count" :style="{ background: group.color + '18', color: group.color }">
-              {{ group.tools.length }} tools
+              {{ group.tools.length }} {{ t('aiCheckerPage.toolsUnit') }}
             </span>
           </div>
 
@@ -401,7 +399,7 @@ const activeSidebarItem = computed(() => (activeCategory.value === 'all' ? scrol
               rel="noopener noreferrer"
               class="checker-tool-card"
               :style="{ '--tool-color': group.color }"
-              :aria-label="`Visit ${tool.name} (opens in a new tab)`"
+              :aria-label="t('aiCheckerPage.visitAria', { name: tool.name })"
             >
               <div class="checker-tool-top">
                 <div
@@ -411,9 +409,9 @@ const activeSidebarItem = computed(() => (activeCategory.value === 'all' ? scrol
                   <ToolFavicon :url="tool.url" :fallback-icon="group.icon" :fallback-color="group.color" :size="17" />
                 </div>
                 <div class="checker-tool-badges">                  <span v-if="tool.badge" class="checker-badge checker-badge-highlight">{{ tool.badge }}</span>
-                  <span v-if="tool.isFree" class="checker-badge checker-badge-free">Free</span>
-                  <span v-else-if="tool.hasFreeplan" class="checker-badge checker-badge-freeplan">Has Free</span>
-                  <span v-if="tool.hasApi" class="checker-badge checker-badge-api">API</span>
+                  <span v-if="tool.isFree" class="checker-badge checker-badge-free">{{ t('aiCheckerPage.badgeFree') }}</span>
+                  <span v-else-if="tool.hasFreeplan" class="checker-badge checker-badge-freeplan">{{ t('aiCheckerPage.badgeHasFree') }}</span>
+                  <span v-if="tool.hasApi" class="checker-badge checker-badge-api">{{ t('aiCheckerPage.badgeApi') }}</span>
                   <span
                     class="checker-badge"
                     :class="tool.region === 'cn' ? 'checker-badge-cn' : 'checker-badge-global'"
@@ -443,7 +441,7 @@ const activeSidebarItem = computed(() => (activeCategory.value === 'all' ? scrol
                   <span v-if="tool.pricing" class="checker-pricing-inline">{{ tool.pricing }}</span>
                   <div class="checker-tool-visit">
                     <VaIcon name="open_in_new" size="11px" />
-                    <span>Visit</span>
+                    <span>{{ t('aiCheckerPage.visitHint') }}</span>
                   </div>
                 </div>
               </div>
@@ -455,56 +453,38 @@ const activeSidebarItem = computed(() => (activeCategory.value === 'all' ? scrol
         <div class="checker-tips-section">
           <div class="checker-tips-header">
             <VaIcon name="lightbulb" color="warning" size="17px" />
-            <h2 class="checker-section-title">How to improve AI visibility after a check</h2>
+            <h2 class="checker-section-title">{{ t('aiCheckerPage.tipsTitle') }}</h2>
           </div>
           <div class="checker-tips-grid">
             <div class="checker-tip-card">
               <div class="checker-tip-emoji">🔍</div>
-              <h3>Step 1: Free baseline check</h3>
-              <p>
-                Use <strong>Lens GEO</strong> (China) or <strong>AppearOnAI</strong> (global, free) to get a baseline AI
-                visibility report and confirm whether major AI engines mention your brand.
-              </p>
+              <h3>{{ t('aiCheckerPage.tip1Title') }}</h3>
+              <p v-html="t('aiCheckerPage.tip1Body')"></p>
             </div>
             <div class="checker-tip-card">
               <div class="checker-tip-emoji">📄</div>
-              <h3>Step 2: Add llms.txt</h3>
-              <p>
-                Use <strong>an llms.txt generator</strong> to create an llms.txt file that tells AI crawlers your site’s
-                core content — the most basic step toward better AI visibility.
-              </p>
+              <h3>{{ t('aiCheckerPage.tip2Title') }}</h3>
+              <p v-html="t('aiCheckerPage.tip2Body')"></p>
             </div>
             <div class="checker-tip-card">
               <div class="checker-tip-emoji">🏗️</div>
-              <h3>Step 3: Structured data</h3>
-              <p>
-                Add JSON-LD Schema (Article, FAQ, Organization) to important pages and validate with
-                <strong>the Google Rich Results Test</strong> to help AI engines understand your entities.
-              </p>
+              <h3>{{ t('aiCheckerPage.tip3Title') }}</h3>
+              <p v-html="t('aiCheckerPage.tip3Body')"></p>
             </div>
             <div class="checker-tip-card">
               <div class="checker-tip-emoji">✍️</div>
-              <h3>Step 4: Improve content quality</h3>
-              <p>
-                Add <strong>statistics</strong>, <strong>FAQ format</strong> and <strong>authoritative citations</strong>,
-                and use <strong>Frase.io</strong> to analyze the content patterns AI cites — greatly raising citation odds.
-              </p>
+              <h3>{{ t('aiCheckerPage.tip4Title') }}</h3>
+              <p v-html="t('aiCheckerPage.tip4Body')"></p>
             </div>
             <div class="checker-tip-card">
               <div class="checker-tip-emoji">📊</div>
-              <h3>Step 5: Monitor continuously</h3>
-              <p>
-                For China, choose <strong>SheepGeo</strong> (9 models) or <strong>ImpetaAI</strong> (50+ metrics); for
-                global, choose <strong>Otterly.AI</strong> ($29/mo) for ongoing tracking and a re-check habit.
-              </p>
+              <h3>{{ t('aiCheckerPage.tip5Title') }}</h3>
+              <p v-html="t('aiCheckerPage.tip5Body')"></p>
             </div>
             <div class="checker-tip-card">
               <div class="checker-tip-emoji">🔄</div>
-              <h3>Step 6: Re-check monthly</h3>
-              <p>
-                AI engines update their models and training data monthly, so re-check your visibility with free tools
-                <strong>monthly</strong> to track results and adjust your strategy in time.
-              </p>
+              <h3>{{ t('aiCheckerPage.tip6Title') }}</h3>
+              <p v-html="t('aiCheckerPage.tip6Body')"></p>
             </div>
           </div>
         </div>
