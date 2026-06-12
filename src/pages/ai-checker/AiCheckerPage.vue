@@ -634,6 +634,7 @@ const activeSidebarItem = computed(() => (activeCategory.value === 'all' ? scrol
   display: flex;
   align-items: center;
   justify-content: center;
+  flex-wrap: wrap;
   gap: 6px;
   margin-bottom: 1.1rem;
 }
@@ -685,7 +686,7 @@ const activeSidebarItem = computed(() => (activeCategory.value === 'all' ? scrol
 
 .checker-stat-label {
   font-size: 10.5px;
-  color: rgba(255, 255, 255, 0.4);
+  color: rgba(255, 255, 255, 0.6);
   text-transform: uppercase;
   letter-spacing: 0.4px;
 }
