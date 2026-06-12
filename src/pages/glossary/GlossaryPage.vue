@@ -477,7 +477,7 @@ const hasFilter = computed(() => searchQuery.value || activeCategory.value !== '
 
 .glossary-stat-label {
   font-size: 10px;
-  color: rgba(255, 255, 255, 0.4);
+  color: rgba(255, 255, 255, 0.6);
   text-transform: uppercase;
   letter-spacing: 0.3px;
   white-space: nowrap;
