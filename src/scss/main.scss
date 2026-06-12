@@ -55,3 +55,18 @@ pre {
   font-size: 0.8125rem;
   line-height: 1rem;
 }
+
+// 尊重系统「减少动态效果」偏好(WCAG 2.3.3 / prefers-reduced-motion):
+// 关闭过渡/关键帧动画与平滑滚动,避免前庭功能敏感用户因卡片悬停位移、
+// 骨架屏 shimmer、平滑滚动等产生不适。悬停状态仍生效,只是不再有动画过渡。
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    transition-delay: 0ms !important;
+    scroll-behavior: auto !important;
+  }
+}
