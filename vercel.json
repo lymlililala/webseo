@@ -24,7 +24,7 @@
       "dest": "/$1"
     },
     {
-      "src": "/(seo-nav|geo-nav|aeo-nav|schema-generator|ai-checker|llms-txt|glossary|articles|tutorials|news|faq)",
+      "src": "/(seo-nav|geo-nav|aeo-nav|schema-generator|ai-checker|llms-txt|glossary|articles|tutorials|news|faq|about|contact|privacy|terms)",
       "dest": "/$1/index.html"
     },
     {
@@ -36,7 +36,7 @@
       "dest": "/zh/$1/$2/index.html"
     },
     {
-      "src": "/zh/(seo-nav|geo-nav|aeo-nav|schema-generator|ai-checker|llms-txt|glossary|articles|tutorials|news|faq)",
+      "src": "/zh/(seo-nav|geo-nav|aeo-nav|schema-generator|ai-checker|llms-txt|glossary|articles|tutorials|news|faq|about|contact|privacy|terms)",
       "dest": "/zh/$1/index.html"
     },
     {

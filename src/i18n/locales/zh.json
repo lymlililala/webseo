@@ -125,6 +125,16 @@
     "404": "404 页面",
     "faq": "常见问题解答"
   },
+  "footer": {
+    "home": "首页",
+    "about": "关于我们",
+    "contact": "联系我们",
+    "privacy": "隐私政策",
+    "terms": "服务条款",
+    "rights": "保留所有权利。",
+    "tagline": "面向 AI 搜索时代的 SEO/GEO/AEO 工具导航与知识平台。",
+    "lastUpdated": "最后更新"
+  },
   "messages": {
     "all": "查看所有消息",
     "new": "来自 {name} 的新消息",

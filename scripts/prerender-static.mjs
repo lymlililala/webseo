@@ -413,6 +413,77 @@ const staticRoutes = [
       url: `${SITE}/faq`,
     },
   },
+  {
+    path: '/about',
+    title: 'About Us — What SGAIndex Is & How We Curate | SGAIndex',
+    description:
+      'SGAIndex is a tools directory and knowledge hub for the AI search era. Learn what we do, our philosophy, and our listing & editorial principles.',
+    h1: 'About Us',
+    keywords: 'SGAIndex,about us,SEO tools directory,GEO,AEO,about the team',
+    jsonld: {
+      '@context': 'https://schema.org',
+      '@type': 'AboutPage',
+      name: 'About SGAIndex',
+      url: `${SITE}/about`,
+      publisher: { '@type': 'Organization', name: SITE_NAME, url: SITE, email: 'contact@sgaindex.com' },
+    },
+  },
+  {
+    path: '/contact',
+    title: 'Contact Us — SGAIndex',
+    description:
+      'Get in touch with SGAIndex at contact@sgaindex.com for tool listings, content corrections, partnerships or privacy & data requests.',
+    h1: 'Contact Us',
+    keywords: 'SGAIndex,contact us,get in touch,email',
+    jsonld: {
+      '@context': 'https://schema.org',
+      '@type': 'ContactPage',
+      name: 'Contact SGAIndex',
+      url: `${SITE}/contact`,
+      publisher: {
+        '@type': 'Organization',
+        name: SITE_NAME,
+        url: SITE,
+        email: 'contact@sgaindex.com',
+        contactPoint: {
+          '@type': 'ContactPoint',
+          email: 'contact@sgaindex.com',
+          contactType: 'customer support',
+          availableLanguage: ['English', 'Chinese'],
+        },
+      },
+    },
+  },
+  {
+    path: '/privacy',
+    title: 'Privacy Policy — SGAIndex',
+    description:
+      'SGAIndex Privacy Policy: what data we collect, how we use analytics and cookies, the third parties involved, and your data rights.',
+    h1: 'Privacy Policy',
+    keywords: 'SGAIndex,privacy policy,cookies,data protection,GDPR,CCPA',
+    jsonld: {
+      '@context': 'https://schema.org',
+      '@type': 'WebPage',
+      name: 'Privacy Policy',
+      url: `${SITE}/privacy`,
+      publisher: { '@type': 'Organization', name: SITE_NAME, url: SITE, email: 'contact@sgaindex.com' },
+    },
+  },
+  {
+    path: '/terms',
+    title: 'Terms of Service — SGAIndex',
+    description:
+      'SGAIndex Terms of Service: scope of service, content disclaimer, third-party & affiliate links, acceptable use, IP and limitation of liability.',
+    h1: 'Terms of Service',
+    keywords: 'SGAIndex,terms of service,terms of use,disclaimer,affiliate disclosure',
+    jsonld: {
+      '@context': 'https://schema.org',
+      '@type': 'WebPage',
+      name: 'Terms of Service',
+      url: `${SITE}/terms`,
+      publisher: { '@type': 'Organization', name: SITE_NAME, url: SITE, email: 'contact@sgaindex.com' },
+    },
+  },
 ]
 
 // ── 中文版静态路由 meta（/zh/...，title/description/h1 用中文，canonical 自指）──
@@ -471,6 +542,26 @@ const zhMeta = {
     title: '常见问题 — SEO/GEO/AEO 问答 | SGAIndex',
     description: '关于 SEO、GEO(生成式引擎优化)与 AEO(答案引擎优化)在 AI 搜索时代的常见问题解答。',
     h1: '常见问题 — SEO/GEO/AEO',
+  },
+  '/about': {
+    title: '关于我们 — SGAIndex 简介与编辑原则 | SGAIndex',
+    description: 'SGAIndex 是面向 AI 搜索时代的 SEO/GEO/AEO 工具导航与知识平台。了解我们做什么、我们的理念,以及工具收录与编辑原则。',
+    h1: '关于我们',
+  },
+  '/contact': {
+    title: '联系我们 — SGAIndex',
+    description: '通过 contact@sgaindex.com 联系 SGAIndex,咨询工具收录、内容纠错、商务合作或隐私数据相关事宜。',
+    h1: '联系我们',
+  },
+  '/privacy': {
+    title: '隐私政策 — SGAIndex',
+    description: 'SGAIndex 隐私政策:说明我们收集哪些数据、如何使用分析与 Cookie、第三方服务,以及你的数据权利。',
+    h1: '隐私政策',
+  },
+  '/terms': {
+    title: '服务条款 — SGAIndex',
+    description: 'SGAIndex 服务条款:服务说明、内容免责、第三方与联盟链接、可接受使用、知识产权与责任限制。',
+    h1: '服务条款',
   },
 }
 

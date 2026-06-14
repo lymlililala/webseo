@@ -23,6 +23,7 @@
           <RouterView />
         </article>
       </main>
+      <AppFooter />
     </template>
   </VaLayout>
 </template>
@@ -37,6 +38,7 @@ import { useGlobalStore } from '../stores/global-store'
 
 import AppNavbar from '../components/navbar/AppNavbar.vue'
 import AppSidebar from '../components/sidebar/AppSidebar.vue'
+import AppFooter from '../components/AppFooter.vue'
 
 const GlobalStore = useGlobalStore()
 

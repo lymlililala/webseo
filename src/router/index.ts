@@ -63,6 +63,10 @@ function makeChildren(suffix = ''): RouteRecordRaw[] {
       ],
     },
     { name: n('faq'), path: 'faq', component: () => import('../pages/faq/FaqPage.vue') },
+    { name: n('about'), path: 'about', component: () => import('../pages/legal/AboutPage.vue') },
+    { name: n('contact'), path: 'contact', component: () => import('../pages/legal/ContactPage.vue') },
+    { name: n('privacy'), path: 'privacy', component: () => import('../pages/legal/PrivacyPage.vue') },
+    { name: n('terms'), path: 'terms', component: () => import('../pages/legal/TermsPage.vue') },
   ]
 }
 

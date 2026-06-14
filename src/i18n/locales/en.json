@@ -69,6 +69,16 @@
     "users": "Users",
     "projects": "Projects"
   },
+  "footer": {
+    "home": "Home",
+    "about": "About Us",
+    "contact": "Contact Us",
+    "privacy": "Privacy Policy",
+    "terms": "Terms of Service",
+    "rights": "All rights reserved.",
+    "tagline": "A tools directory and knowledge hub for the AI search era — SEO, GEO and AEO.",
+    "lastUpdated": "Last updated"
+  },
   "messages": {
     "all": "See all messages",
     "new": "New messages from {name}",

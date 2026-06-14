@@ -24,3 +24,7 @@
 ## Optional
 
 - [FAQ](https://sgaindex.com/faq): Common questions about SEO and AI optimization
+- [About Us](https://sgaindex.com/about): What SGAIndex is, our philosophy and editorial principles
+- [Contact](https://sgaindex.com/contact): Reach us at contact@sgaindex.com for listings, corrections and partnerships
+- [Privacy Policy](https://sgaindex.com/privacy): How we handle data, cookies and analytics
+- [Terms of Service](https://sgaindex.com/terms): Terms governing use of the site

@@ -100,6 +100,42 @@
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://sgaindex.com/about</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://sgaindex.com/about" />
+    <xhtml:link rel="alternate" hreflang="zh" href="https://sgaindex.com/zh/about" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://sgaindex.com/about" />
+    <lastmod>2026-06-14</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://sgaindex.com/contact</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://sgaindex.com/contact" />
+    <xhtml:link rel="alternate" hreflang="zh" href="https://sgaindex.com/zh/contact" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://sgaindex.com/contact" />
+    <lastmod>2026-06-14</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://sgaindex.com/privacy</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://sgaindex.com/privacy" />
+    <xhtml:link rel="alternate" hreflang="zh" href="https://sgaindex.com/zh/privacy" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://sgaindex.com/privacy" />
+    <lastmod>2026-06-14</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+  </url>
+  <url>
+    <loc>https://sgaindex.com/terms</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://sgaindex.com/terms" />
+    <xhtml:link rel="alternate" hreflang="zh" href="https://sgaindex.com/zh/terms" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://sgaindex.com/terms" />
+    <lastmod>2026-06-14</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+  </url>
+  <url>
     <loc>https://sgaindex.com/articles/moz-introduces-ai-powered-site-audit-recommendations</loc>
     <xhtml:link rel="alternate" hreflang="en" href="https://sgaindex.com/articles/moz-introduces-ai-powered-site-audit-recommendations" />
     <xhtml:link rel="alternate" hreflang="zh" href="https://sgaindex.com/zh/articles/moz-introduces-ai-powered-site-audit-recommendations" />
