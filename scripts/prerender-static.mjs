@@ -13,6 +13,7 @@ import fs from 'fs'
 import path from 'path'
 import { fileURLToPath } from 'url'
 import { createClient } from '@supabase/supabase-js'
+import { marked } from 'marked'
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url))
 const distDir = path.join(__dirname, '..', 'dist')
@@ -58,6 +59,16 @@ function escapeAttr(str) {
 function escapeHtml(str) {
   if (!str) return ''
   return String(str).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
+}
+
+// 把正文 markdown 渲染为 HTML（供爬虫可见的预渲染正文）；空内容返回空串
+function renderBody(md) {
+  if (!md || !String(md).trim()) return ''
+  try {
+    return marked.parse(String(md))
+  } catch (_) {
+    return ''
+  }
 }
 
 // ── 内链构建 ────────────────────────────────────────────────────────────────
@@ -139,7 +150,7 @@ function computeRelations(list, limit = 6) {
  *   ogType       - OG type，默认 'website'
  *   keywords     - 关键词，可选
  */
-function buildHtml({ title, description, canonicalUrl, h1, jsonld, ogType = 'website', keywords, internalLinks, breadcrumbJsonld, lang = 'en', altPath }) {
+function buildHtml({ title, description, canonicalUrl, h1, jsonld, ogType = 'website', keywords, internalLinks, bodyHtml, breadcrumbJsonld, lang = 'en', altPath }) {
   // 1. 替换 <title> 与 <html lang>
   let html = template.replace(/<title>[^<]*<\/title>/, `<title>${escapeHtml(title)}</title>`)
   html = html.replace(/<html lang="[^"]*">/, `<html lang="${lang === 'zh' ? 'zh-CN' : 'en'}">`)
@@ -205,6 +216,9 @@ function buildHtml({ title, description, canonicalUrl, h1, jsonld, ogType = 'web
   let crawlerBlock = ''
   if (h1) crawlerBlock += `\n    <h1 style="${hiddenStyle}">${escapeHtml(h1)}</h1>`
   if (internalLinks) crawlerBlock += `\n    <nav aria-label="Internal links" style="${hiddenStyle}">${internalLinks}</nav>`
+  // 正文：marked 渲染后的真实 HTML，可见注入（位于 #app 之外，Vue 挂载后由可见 UI 接管），
+  // 让爬虫能读到完整正文，解决「软 404」（此前详情页预渲染仅含 meta + 隐藏 H1/内链）
+  if (bodyHtml) crawlerBlock += `\n    <article class="prerender-content">${bodyHtml}</article>`
   if (crawlerBlock) {
     html = html.replace('<div id="app"></div>', `<div id="app"></div>${crawlerBlock}`)
   }
@@ -613,7 +627,7 @@ async function main() {
   console.log('\n📰 从数据库查询文章并预渲染...')
   const { data: articles, error: aErr } = await supabase
     .from('wseo_articles')
-    .select('id, slug, title, description, date, author, tags, category, title_zh, description_zh, content_zh')
+    .select('id, slug, title, description, date, author, tags, category, content, title_zh, description_zh, content_zh')
     .order('date', { ascending: false })
 
   if (aErr) {
@@ -639,6 +653,7 @@ async function main() {
           keywords: tags.join(','),
           lang: 'en',
           altPath: hasZh ? routePath : undefined,
+          bodyHtml: renderBody(a.content),
           internalLinks: buildInternalLinks({
             base: '/articles',
             listName: 'Articles',
@@ -680,6 +695,7 @@ async function main() {
             keywords: tags.join(','),
             lang: 'zh',
             altPath: routePath,
+            bodyHtml: renderBody(a.content_zh || a.content),
             internalLinks: buildInternalLinks({
               base: '/zh/articles',
               listName: '文章',
@@ -742,6 +758,7 @@ async function main() {
           keywords: tags.join(','),
           lang: 'en',
           altPath: hasZh ? routePath : undefined,
+          bodyHtml: renderBody(t.description),
           internalLinks: buildInternalLinks({
             base: '/tutorials',
             listName: 'Tutorials',
@@ -778,6 +795,7 @@ async function main() {
             keywords: tags.join(','),
             lang: 'zh',
             altPath: routePath,
+            bodyHtml: renderBody(t.description_zh || t.description),
             internalLinks: buildInternalLinks({
               base: '/zh/tutorials',
               listName: '教程',
@@ -811,7 +829,7 @@ async function main() {
   console.log('\n📡 从数据库查询资讯并预渲染...')
   const { data: news, error: nErr } = await supabase
     .from('wseo_news')
-    .select('id, slug, title, description, date, tags, category, title_zh, description_zh, content_zh')
+    .select('id, slug, title, description, date, tags, category, content, title_zh, description_zh, content_zh')
     .order('date', { ascending: false })
 
   if (nErr) {
@@ -837,6 +855,7 @@ async function main() {
           keywords: tags.join(','),
           lang: 'en',
           altPath: hasZh ? routePath : undefined,
+          bodyHtml: renderBody(n.content),
           internalLinks: buildInternalLinks({
             base: '/news',
             listName: 'News',
@@ -876,6 +895,7 @@ async function main() {
             keywords: tags.join(','),
             lang: 'zh',
             altPath: routePath,
+            bodyHtml: renderBody(n.content_zh || n.content),
             internalLinks: buildInternalLinks({
               base: '/zh/news',
               listName: '资讯',
