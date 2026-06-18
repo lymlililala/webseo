@@ -48,6 +48,36 @@
       "dest": "/seo-nav/index.html"
     },
     {
+      "src": "/news/d7e8f9a0-b1c2-3456-abcd-ef0123456901",
+      "status": 301,
+      "headers": { "Location": "/news/googleai-overview-d7e8f9a0" }
+    },
+    {
+      "src": "/news/d7e8f9a0-b1c2-3456-abcd-ef0123456902",
+      "status": 301,
+      "headers": { "Location": "/news/perplexitysonar-proseo-d7e8f9a0" }
+    },
+    {
+      "src": "/news/d7e8f9a0-b1c2-3456-abcd-ef0123456903",
+      "status": 301,
+      "headers": { "Location": "/news/openai-searchgpt5000seo-d7e8f9a0" }
+    },
+    {
+      "src": "/tutorials/e9d1c2b3-a4f5-6789-abcd-ef0123456802",
+      "status": 301,
+      "headers": { "Location": "/tutorials/article-e9d1c2b3" }
+    },
+    {
+      "src": "/tutorials/f6a7b8c9-5001-4001-8001-600200000001",
+      "status": 301,
+      "headers": { "Location": "/tutorials/article-f6a7b8c9" }
+    },
+    {
+      "src": "/tutorials/f6a7b8c9-5002-4002-8002-600200000002",
+      "status": 301,
+      "headers": { "Location": "/tutorials/ga4-seo-f6a7b8c9" }
+    },
+    {
       "src": "/(.*)",
       "dest": "/404.html",
       "status": 404
