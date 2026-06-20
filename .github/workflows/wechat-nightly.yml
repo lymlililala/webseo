@@ -1,0 +1,123 @@
+name: WeChat → SEO content pipeline (nightly)
+
+# 每晚自动：采集 SEO/营销公众号原文 → DeepSeek 聚类 → 合成英文原创(含对 wseo_articles 判重)
+# → 质量闸门 + AI 评分发布(过线写入 Supabase wseo_articles，不过线留草稿不入库)
+# → 触发 Vercel 重新构建（prerender-static 拉库重渲染详情页 + generate-sitemap 刷新 sitemap）。
+#
+# 内容存 Supabase（不在 git），故本流水线**不 commit**；新文在 SPA 立即可见，
+# SEO 静态化/收录靠末尾的 Vercel Deploy Hook 触发一次构建。
+#
+# 前置（仓库 Settings → Secrets and variables → Actions）：
+#   CIMIDATA_APP_ID, CIMIDATA_APP_SECRET   采集凭证（必填）
+#   DEEPSEEK_API_KEY                       合成/聚类/评分（必填）；可选 DEEPSEEK_BASE_URL / DEEPSEEK_MODEL
+#   VITE_SUPABASE_URL, SUPABASE_SECRET_KEY 写库 + 判重（必填）
+#   PEXELS_API_KEY                         配图主源（可选，缺则文章无图）；可选 UNSPLASH_ACCESS_KEY
+#   VERCEL_DEPLOY_HOOK                      触发生产构建（可选但强烈建议；Vercel 项目 Settings → Git → Deploy Hooks 创建）
+# 密钥只进 GitHub Secrets，绝不入仓。
+#
+# ⚠️ 采集源 cimidata 可能对部分出口 IP 风控；首次启用前先手动跑 "Verify cimidata IP" workflow 确认可用。
+
+on:
+  schedule:
+    - cron: '17 14 * * *' # UTC 14:17 = 北京 22:17（避开整点高峰）
+  workflow_dispatch:
+    inputs:
+      days:
+        description: '聚类回看天数（滚动窗口）'
+        required: true
+        default: '7'
+      max_clusters:
+        description: '本次最多聚多少簇'
+        required: true
+        default: '6'
+      max_publish:
+        description: '本次最多发布几篇（其余留草稿）'
+        required: true
+        default: '3'
+      max_pages:
+        description: '每个公众号采集多少页历史'
+        required: true
+        default: '1'
+      threshold:
+        description: 'AI 评分发布阈值'
+        required: true
+        default: '80'
+
+concurrency:
+  group: wechat-seo-nightly
+  cancel-in-progress: false
+
+jobs:
+  pipeline:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      # 跨运行持久化 data/（sources.json 增量去重 + image-cache.json 省 Pexels 配额）。
+      # cache 可能被驱逐；丢失时只会多采一轮、不影响正确性。
+      - name: Restore pipeline data cache
+        uses: actions/cache@v4
+        with:
+          path: scripts/wechat/data
+          key: wechat-data-${{ github.run_id }}
+          restore-keys: |
+            wechat-data-
+
+      - name: Install pipeline dependencies
+        run: npm install --prefix scripts/wechat --no-audit --no-fund
+
+      - name: Run pipeline
+        env:
+          CIMIDATA_APP_ID: ${{ secrets.CIMIDATA_APP_ID }}
+          CIMIDATA_APP_SECRET: ${{ secrets.CIMIDATA_APP_SECRET }}
+          DEEPSEEK_API_KEY: ${{ secrets.DEEPSEEK_API_KEY }}
+          DEEPSEEK_BASE_URL: ${{ secrets.DEEPSEEK_BASE_URL }}
+          DEEPSEEK_MODEL: ${{ secrets.DEEPSEEK_MODEL }}
+          VITE_SUPABASE_URL: ${{ secrets.VITE_SUPABASE_URL }}
+          SUPABASE_SECRET_KEY: ${{ secrets.SUPABASE_SECRET_KEY }}
+          PEXELS_API_KEY: ${{ secrets.PEXELS_API_KEY }}
+          UNSPLASH_ACCESS_KEY: ${{ secrets.UNSPLASH_ACCESS_KEY }}
+          DAYS: ${{ github.event.inputs.days || '7' }}
+          MAX_CLUSTERS: ${{ github.event.inputs.max_clusters || '6' }}
+          MAX_PUBLISH: ${{ github.event.inputs.max_publish || '3' }}
+          MAX_PAGES: ${{ github.event.inputs.max_pages || '1' }}
+          THRESHOLD: ${{ github.event.inputs.threshold || '80' }}
+        run: |
+          set -euo pipefail
+          # 必填密钥自检
+          for k in CIMIDATA_APP_ID CIMIDATA_APP_SECRET DEEPSEEK_API_KEY VITE_SUPABASE_URL SUPABASE_SECRET_KEY; do
+            if [ -z "${!k:-}" ]; then echo "::error::缺少 Secret $k"; exit 1; fi
+          done
+
+          echo "==> 1) 采集（写本地 data/sources.json，按 sn 去重）"
+          node scripts/wechat/1-crawl.mjs --max-pages "$MAX_PAGES"
+
+          echo "==> 2) 聚类（最近 $DAYS 天，最多 $MAX_CLUSTERS 簇）"
+          node scripts/wechat/2-cluster.mjs --days "$DAYS" --max-clusters "$MAX_CLUSTERS"
+
+          echo "==> 3) 合成（含对 wseo_articles 判重）"
+          node scripts/wechat/3-synthesize.mjs --days "$DAYS"
+
+          echo "==> 4) 发布（质量闸门 + AI 评分阈值 $THRESHOLD + 单次上限 $MAX_PUBLISH；过线写 wseo_articles）"
+          node scripts/wechat/4-publish.mjs --threshold "$THRESHOLD" --max-publish "$MAX_PUBLISH"
+
+      # 触发 Vercel 生产构建：build:ci 会 prerender-static 拉库重渲染 + 重生成 sitemap，
+      # 让新文章进入预渲染快照与 sitemap（SEO 收录）。每天一次，空跑成本可忽略。
+      - name: Trigger Vercel deploy
+        env:
+          HOOK: ${{ secrets.VERCEL_DEPLOY_HOOK }}
+        run: |
+          set -euo pipefail
+          if [ -z "${HOOK:-}" ]; then
+            echo "未配置 VERCEL_DEPLOY_HOOK，跳过（新文已在 SPA 可见，但预渲染/sitemap 需手动部署刷新）。"
+            exit 0
+          fi
+          code=$(curl -sS -X POST -o /tmp/hook_resp.json -w '%{http_code}' "$HOOK")
+          echo "HTTP $code"; cat /tmp/hook_resp.json || true
+          case "$code" in 2*) echo "✅ 已触发部署";; *) echo "::warning::Deploy Hook 返回 $code";; esac

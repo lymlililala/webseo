@@ -1,0 +1,8 @@
+{
+  "name": "webseo-wechat-pipeline",
+  "private": true,
+  "description": "SEO 公众号采集→英文文章合成→写入 Supabase 流水线(独立依赖，隔离主项目)",
+  "dependencies": {
+    "@supabase/supabase-js": "^2.106.1"
+  }
+}

@@ -1,0 +1,10 @@
+# 采集产物 & 凭证（勿提交）
+data/
+.env
+cimidata/.env
+
+# 独立依赖（package.json 入库，node_modules 不入库）
+node_modules/
+
+# accounts.json 入库（供复核/CI），不忽略
+!accounts.json
