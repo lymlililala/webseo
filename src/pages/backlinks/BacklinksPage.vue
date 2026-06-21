@@ -14,15 +14,6 @@
       </ul>
     </section>
 
-    <!-- ═══ 价值点 ═══ -->
-    <section class="bl-benefits">
-      <article v-for="b in t.benefits" :key="b.title" class="bl-benefit">
-        <VaIcon :name="b.icon" size="28px" color="primary" />
-        <h3>{{ b.title }}</h3>
-        <p>{{ b.desc }}</p>
-      </article>
-    </section>
-
     <!-- ═══ 套餐 ═══ -->
     <section id="packages" class="bl-packages">
       <header class="bl-section-head">
@@ -71,19 +62,13 @@
       </div>
     </section>
 
-    <!-- ═══ 流程 ═══ -->
+    <!-- ═══ 流程(精简横条) ═══ -->
     <section class="bl-process">
-      <header class="bl-section-head">
-        <h2>{{ t.processTitle }}</h2>
-        <p>{{ t.processSubtitle }}</p>
-      </header>
+      <h2 class="bl-process-title">{{ t.processTitle }}</h2>
       <ol class="bl-steps">
         <li v-for="(s, i) in t.steps" :key="s.title">
           <span class="bl-step-num">{{ i + 1 }}</span>
-          <div>
-            <h3>{{ s.title }}</h3>
-            <p>{{ s.desc }}</p>
-          </div>
+          <span class="bl-step-label">{{ s.title }}</span>
         </li>
       </ol>
     </section>
@@ -188,34 +173,12 @@ const en = {
   kicker: 'SGAIndex Link-Building Service',
   heroTitle: 'Backlink Publishing on Real, High-Authority Sites',
   heroSubtitle:
-    'Editorially placed guest posts and niche edits on indexed, traffic-bearing websites — manually vetted, white-hat, and built to move your rankings in both Google and AI search.',
+    'White-hat guest posts and niche edits on real, traffic-bearing sites — built to lift your rankings in Google and AI search.',
   heroCta: 'Get a free quote',
   heroCta2: 'See packages',
   trust: ['White-hat & manual outreach', 'DA / DR-filtered domains', 'Dofollow, contextual links', 'Full transparency report'],
-  benefits: [
-    {
-      icon: 'verified',
-      title: 'Real sites, real traffic',
-      desc: 'Every domain is screened for organic traffic, indexing and topical relevance — no PBNs or link farms.',
-    },
-    {
-      icon: 'trending_up',
-      title: 'Rankings that compound',
-      desc: 'Contextual, dofollow links from relevant niches that build authority for Google and AI engines alike.',
-    },
-    {
-      icon: 'description',
-      title: 'Done-for-you content',
-      desc: 'Native writers craft the article and naturally embed your link — you only approve and relax.',
-    },
-    {
-      icon: 'lock',
-      title: 'Safe & transparent',
-      desc: 'Manual outreach, gradual velocity, and a live-link report for every placement we deliver.',
-    },
-  ],
   packagesTitle: 'Backlink Packages',
-  packagesSubtitle: 'Pick the scope that fits, then email us for a tailored quote. No fixed price — you only pay for what your goals need.',
+  packagesSubtitle: 'Pick the scope that fits — email us for a tailored quote.',
   priceNote: 'Custom quote',
   popular: 'Most popular',
   packageCta: 'Get a quote by email',
@@ -267,20 +230,18 @@ const en = {
   customSubject: 'Custom Plan',
   customCta: 'Request a custom plan',
   processTitle: 'How it works',
-  processSubtitle: 'From brief to live links in four simple steps.',
   steps: [
-    { title: 'Send your brief', desc: 'Email us your site, target pages, keywords and niche. We reply with a tailored plan and quote within 1–2 business days.' },
-    { title: 'We find the sites', desc: 'We hand-pick relevant, traffic-bearing domains and share the shortlist for your approval before anything goes live.' },
-    { title: 'Content & placement', desc: 'Our writers produce the article, embed your link naturally, and publish it on the agreed sites.' },
-    { title: 'Report & repeat', desc: 'You receive a full report of live URLs. We monitor and keep the momentum going each month.' },
+    { title: 'Send your brief' },
+    { title: 'We shortlist sites' },
+    { title: 'Content & placement' },
+    { title: 'Report & repeat' },
   ],
   faqTitle: 'Frequently asked questions',
   faq: [
     { q: 'Are these white-hat backlinks?', a: 'Yes. We only use manual outreach to real, editorially-run websites with genuine traffic. No PBNs, link farms or automated tools.' },
     { q: 'How do you choose the domains?', a: 'We filter by Domain Authority / Domain Rating, organic traffic, indexing status and topical relevance to your niche, and share the list for your approval.' },
     { q: 'When will I see results?', a: 'Link building compounds over time. Most clients notice ranking movement within 4–12 weeks, depending on competition and on-page health.' },
-    { q: 'How do I pay and get started?', a: 'Just email us — we’ll confirm scope, send an invoice, and kick off once payment is received. Packages are billed monthly and you can cancel anytime.' },
-    { q: 'Do you offer refunds if a link drops?', a: 'Yes. If a placed link is removed within 6 months, we replace it free of charge on an equivalent domain.' },
+    { q: 'How do I get started?', a: 'Just email us — we’ll confirm scope, send a quote, and kick off once you approve. Billed monthly, cancel anytime.' },
   ],
   finalTitle: 'Ready to build authority that lasts?',
   finalDesc: 'Get a free, no-obligation quote tailored to your site and goals.',
@@ -302,30 +263,8 @@ const zh = {
   heroCta: '免费获取报价',
   heroCta2: '查看套餐',
   trust: ['白帽 · 人工外联', 'DA / DR 域名筛选', 'Dofollow 上下文链接', '完整交付报告'],
-  benefits: [
-    {
-      icon: 'verified',
-      title: '真实网站 · 真实流量',
-      desc: '每个域名都经过自然流量、收录状态与主题相关性筛选——拒绝站群与链接农场。',
-    },
-    {
-      icon: 'trending_up',
-      title: '排名持续累积',
-      desc: '来自相关领域的上下文 Dofollow 链接，为 Google 与 AI 引擎同步积累权威度。',
-    },
-    {
-      icon: 'description',
-      title: '内容代写代发',
-      desc: '母语写手撰写文章并自然植入你的链接——你只需确认，剩下交给我们。',
-    },
-    {
-      icon: 'lock',
-      title: '安全 · 透明',
-      desc: '人工外联、平稳的增长节奏，每条外链都附上可访问的交付报告。',
-    },
-  ],
   packagesTitle: '外链发布套餐',
-  packagesSubtitle: '挑一个合适的量级，再邮件咨询获取专属报价。没有固定价格——按你的目标需要付费即可。',
+  packagesSubtitle: '挑一个合适的量级，再邮件咨询获取专属报价。',
   priceNote: '报价邮件咨询',
   popular: '最受欢迎',
   packageCta: '邮件咨询报价',
@@ -370,20 +309,18 @@ const zh = {
   customSubject: '定制方案',
   customCta: '咨询定制方案',
   processTitle: '服务流程',
-  processSubtitle: '从需求到外链上线，只需四步。',
   steps: [
-    { title: '提交需求', desc: '邮件告知网站、目标页面、关键词与行业，我们将在 1–2 个工作日内回复定制方案与报价。' },
-    { title: '筛选网站', desc: '我们人工挑选相关、有流量的域名，并在投放前把候选清单交给你确认。' },
-    { title: '内容与投放', desc: '写手撰写文章、自然植入你的链接，并发布在双方确认的网站上。' },
-    { title: '报告与续期', desc: '你将收到全部上线 URL 的完整报告，我们持续监测并按月保持势头。' },
+    { title: '提交需求' },
+    { title: '筛选网站' },
+    { title: '内容与投放' },
+    { title: '报告与续期' },
   ],
   faqTitle: '常见问题',
   faq: [
     { q: '这些是白帽外链吗？', a: '是的。我们仅通过人工外联，投放在有真实流量、编辑运营的网站上——不使用站群、链接农场或自动化工具。' },
     { q: '你们如何挑选域名？', a: '我们按域名权重（DA / DR）、自然流量、收录状态与主题相关性筛选，并把清单交给你确认后再投放。' },
     { q: '多久能看到效果？', a: '外链效果会随时间累积。多数客户在 4–12 周内观察到排名变化，具体取决于竞争程度与页面本身的优化情况。' },
-    { q: '如何付款和开始？', a: '直接邮件联系我们即可——确认范围后开具账单，收款后启动。套餐按月计费，可随时取消。' },
-    { q: '外链掉了会补吗？', a: '会。若已投放的链接在 6 个月内被移除，我们将在同等权重的域名上免费补发。' },
+    { q: '如何开始？', a: '直接邮件联系我们即可——确认范围后发送报价，你确认后即启动。按月计费，可随时取消。' },
   ],
   finalTitle: '准备好积累长期权威度了吗？',
   finalDesc: '获取一份针对你网站与目标的免费报价，无需任何承诺。',
@@ -508,7 +445,7 @@ usePageSeo(
 /* ── Hero ── */
 .bl-hero {
   text-align: center;
-  padding: 2.5rem 1rem 1.5rem;
+  padding: 2rem 1rem 1rem;
 }
 
 .bl-kicker {
@@ -569,34 +506,6 @@ usePageSeo(
   }
 }
 
-/* ── 价值点 ── */
-.bl-benefits {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: 1.25rem;
-  margin: 3rem 0;
-}
-
-.bl-benefit {
-  padding: 1.5rem;
-  border: 1px solid rgba(0, 0, 0, 0.08);
-  border-radius: 14px;
-  background: var(--va-background-element, #f8fafc);
-
-  h3 {
-    font-size: 1.05rem;
-    font-weight: 700;
-    margin: 0.75rem 0 0.4rem;
-  }
-
-  p {
-    margin: 0;
-    font-size: 0.92rem;
-    line-height: 1.6;
-    color: var(--va-secondary, #6b7280);
-  }
-}
-
 /* ── 区块标题 ── */
 .bl-section-head {
   text-align: center;
@@ -618,7 +527,7 @@ usePageSeo(
 
 /* ── 套餐 ── */
 .bl-packages {
-  margin: 3.5rem 0;
+  margin: 2.5rem 0;
 }
 
 .bl-grid {
@@ -734,53 +643,59 @@ usePageSeo(
 
 /* ── 流程 ── */
 .bl-process {
-  margin: 3.5rem 0;
+  margin: 2.5rem 0;
+  text-align: center;
+}
+
+.bl-process-title {
+  font-size: 1.3rem;
+  font-weight: 800;
+  margin: 0 0 1.25rem;
 }
 
 .bl-steps {
   list-style: none;
   padding: 0;
   margin: 0;
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
-  gap: 1.5rem;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.6rem 0.5rem;
 
   li {
     display: flex;
-    gap: 0.9rem;
-    align-items: flex-start;
-
-    h3 {
-      margin: 0 0 0.3rem;
-      font-size: 1.05rem;
-      font-weight: 700;
-    }
-
-    p {
-      margin: 0;
-      font-size: 0.92rem;
-      line-height: 1.6;
-      color: var(--va-secondary, #6b7280);
-    }
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem 1rem 0.5rem 0.5rem;
+    border: 1px solid rgba(0, 0, 0, 0.08);
+    border-radius: 999px;
+    background: var(--va-background-element, #f8fafc);
+    font-size: 0.92rem;
+    font-weight: 600;
   }
 }
 
 .bl-step-num {
   flex-shrink: 0;
-  width: 2.2rem;
-  height: 2.2rem;
+  width: 1.7rem;
+  height: 1.7rem;
   border-radius: 50%;
   background: var(--va-primary, #2563eb);
   color: #fff;
   font-weight: 700;
+  font-size: 0.85rem;
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
+.bl-step-label {
+  white-space: nowrap;
+}
+
 /* ── FAQ ── */
 .bl-faq {
-  margin: 3.5rem 0;
+  margin: 3rem 0;
   max-width: 760px;
   margin-left: auto;
   margin-right: auto;
