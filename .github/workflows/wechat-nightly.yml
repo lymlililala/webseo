@@ -2,7 +2,7 @@ name: WeChat → SEO content pipeline (nightly)
 
 # 每晚自动：采集 SEO/营销公众号原文 → DeepSeek 聚类 → 合成英文原创(含对 wseo_articles 判重)
 # → 质量闸门 + AI 评分发布(过线写入 Supabase wseo_articles，不过线留草稿不入库)
-# → 触发 Vercel 重新构建（prerender-static 拉库重渲染详情页 + generate-sitemap 刷新 sitemap）。
+# → 触发 Vercel 重新构建（prerender-static 拉库重渲染详情页 + 自动重生成 sitemap.xml）。
 #
 # 内容存 Supabase（不在 git），故本流水线**不 commit**；新文在 SPA 立即可见，
 # SEO 静态化/收录靠末尾的 Vercel Deploy Hook 触发一次构建。
