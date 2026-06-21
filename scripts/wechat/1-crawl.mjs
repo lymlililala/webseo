@@ -82,16 +82,21 @@ if (!NO_BODY) {
       bodyCount++
     } catch (e) {
       console.log(`  正文失败 [${s.account}] ${s.title?.slice(0, 20)}: ${e.message}`)
+      // 5022「内容异常，无法获取非文本内容」= 纯图片/视频/卡片，永久无正文：
+      // 标记后仍写入库（body_text 空），下次 existingSns 即跳过，不再重复拉取。
+      // 500 等临时错误不标记（client 已内部重试），不入库，下次仍会重试。
+      if (e.code === 5022) s.noText = true
     }
     if (bodyCount % 20 === 0 && bodyCount) {
       // 阶段性写库，防中断丢失（只写已拿到正文的）
-      await upsertSources(recs.filter(r => r.body_text))
+      await upsertSources(recs.filter(r => r.body_text || r.noText))
       console.log(`  …${bodyCount}/${recs.length}  余额 ${cimi.balance}`)
     }
   }
 }
 
-// 最终写库（有正文的入库；--no-body 时也写入元数据）
-const toWrite = NO_BODY ? recs : recs.filter(r => r.body_text)
+// 最终写库（有正文的 + 永久无正文 5022 的都入库；--no-body 时也写入元数据）
+const noTextCount = recs.filter(r => r.noText).length
+const toWrite = NO_BODY ? recs : recs.filter(r => r.body_text || r.noText)
 const written = await upsertSources(toWrite)
-console.log(`\n写入 data/sources.json：${written} 篇（本次新发现 ${recs.length}，拉正文 ${bodyCount}），余额 ${cimi.balance}`)
+console.log(`\n写入源文库：${written} 篇（本次新发现 ${recs.length}，拉正文 ${bodyCount}，永久无正文记录 ${noTextCount}），余额 ${cimi.balance}`)
