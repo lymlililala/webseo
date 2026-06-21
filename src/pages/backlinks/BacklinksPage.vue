@@ -40,8 +40,7 @@
           <h3 class="bl-card-name">{{ pkg.name }}</h3>
           <p class="bl-card-tagline">{{ pkg.tagline }}</p>
           <div class="bl-price">
-            <span class="bl-price-amount">${{ pkg.price }}</span>
-            <span class="bl-price-unit">{{ t.perMonth }}</span>
+            <span class="bl-price-quote">{{ t.priceNote }}</span>
           </div>
           <ul class="bl-features">
             <li v-for="f in pkg.features" :key="f">
@@ -216,15 +215,14 @@ const en = {
     },
   ],
   packagesTitle: 'Backlink Packages',
-  packagesSubtitle: 'Flat monthly pricing. Cancel anytime. Start small, scale when you see results.',
-  perMonth: '/mo',
+  packagesSubtitle: 'Pick the scope that fits, then email us for a tailored quote. No fixed price — you only pay for what your goals need.',
+  priceNote: 'Custom quote',
   popular: 'Most popular',
-  packageCta: 'Order via email',
+  packageCta: 'Get a quote by email',
   packages: [
     {
       name: 'Starter',
       tagline: 'For new sites testing the waters',
-      price: '199',
       featured: false,
       features: [
         '5 backlinks / month',
@@ -238,7 +236,6 @@ const en = {
     {
       name: 'Growth',
       tagline: 'Best for sites ready to rank',
-      price: '449',
       featured: true,
       features: [
         '12 backlinks / month',
@@ -253,7 +250,6 @@ const en = {
     {
       name: 'Authority',
       tagline: 'For competitive niches & agencies',
-      price: '899',
       featured: false,
       features: [
         '25 backlinks / month',
@@ -329,22 +325,20 @@ const zh = {
     },
   ],
   packagesTitle: '外链发布套餐',
-  packagesSubtitle: '统一月付，随时取消。先小规模试水，见效后再扩量。',
-  perMonth: '/月',
+  packagesSubtitle: '挑一个合适的量级，再邮件咨询获取专属报价。没有固定价格——按你的目标需要付费即可。',
+  priceNote: '报价邮件咨询',
   popular: '最受欢迎',
-  packageCta: '邮件下单',
+  packageCta: '邮件咨询报价',
   packages: [
     {
       name: '入门版 Starter',
       tagline: '适合新站小步试水',
-      price: '199',
       featured: false,
       features: ['每月 5 条外链', 'DA / DR 30+ 域名', 'Dofollow 上下文链接', '原创 600+ 字文章', '外链交付报告', '邮件支持'],
     },
     {
       name: '成长版 Growth',
       tagline: '适合准备冲排名的站点',
-      price: '449',
       featured: true,
       features: [
         '每月 12 条外链',
@@ -359,7 +353,6 @@ const zh = {
     {
       name: '权威版 Authority',
       tagline: '适合竞争激烈的行业与代理商',
-      price: '899',
       featured: false,
       features: [
         '每月 25 条外链',
@@ -427,13 +420,15 @@ usePageSeo(
         url: 'https://sgaindex.com/backlinks',
         provider: { '@type': 'Organization', name: 'SGAIndex', url: 'https://sgaindex.com', email: CONTACT },
         areaServed: 'Worldwide',
-        offers: t.value.packages.map((p) => ({
-          '@type': 'Offer',
-          name: p.name,
-          price: p.price,
-          priceCurrency: 'USD',
-          url: 'https://sgaindex.com/backlinks',
-        })),
+        hasOfferCatalog: {
+          '@type': 'OfferCatalog',
+          name: isZh.value ? '外链发布套餐' : 'Backlink Packages',
+          itemListElement: t.value.packages.map((p) => ({
+            '@type': 'Offer',
+            name: p.name,
+            url: 'https://sgaindex.com/backlinks',
+          })),
+        },
       },
       {
         '@context': 'https://schema.org',
@@ -685,15 +680,10 @@ usePageSeo(
   margin: 1.1rem 0 1.25rem;
 }
 
-.bl-price-amount {
-  font-size: 2.4rem;
-  font-weight: 800;
-  line-height: 1;
-}
-
-.bl-price-unit {
-  color: var(--va-secondary, #6b7280);
-  font-size: 1rem;
+.bl-price-quote {
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--va-primary, #2563eb);
 }
 
 .bl-features {
