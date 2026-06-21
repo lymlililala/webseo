@@ -19,7 +19,7 @@ name: WeChat → SEO content pipeline (nightly)
 
 on:
   schedule:
-    - cron: '17 14 * * *' # UTC 14:17 = 北京 22:17（避开整点高峰）
+    - cron: '17 14 * * 1,3,5' # 周一/三/五 UTC 14:17 = 北京 22:17（每周三次：省 cimidata 余额 + 自然发文节奏）
   workflow_dispatch:
     inputs:
       days:
@@ -31,9 +31,9 @@ on:
         required: true
         default: '6'
       max_publish:
-        description: '本次最多发布几篇（0=不限制，过线全发）'
+        description: '本次最多发布几篇（0=不限制；默认 3 控节奏）'
         required: true
-        default: '0'
+        default: '3'
       max_pages:
         description: '每个公众号采集多少页历史'
         required: true
@@ -86,7 +86,7 @@ jobs:
           UNSPLASH_ACCESS_KEY: ${{ secrets.UNSPLASH_ACCESS_KEY }}
           DAYS: ${{ github.event.inputs.days || '14' }}
           MAX_CLUSTERS: ${{ github.event.inputs.max_clusters || '6' }}
-          MAX_PUBLISH: ${{ github.event.inputs.max_publish || '0' }}
+          MAX_PUBLISH: ${{ github.event.inputs.max_publish || '3' }}
           MAX_PAGES: ${{ github.event.inputs.max_pages || '1' }}
           THRESHOLD: ${{ github.event.inputs.threshold || '80' }}
         run: |
