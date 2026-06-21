@@ -93,6 +93,14 @@ function selectCategory(catId: string) {
   if (el) el.scrollTo({ top: 0, behavior: 'smooth' })
 }
 
+// 「全部工具」浏览视图(无搜索)下,每个分类只预览前 N 个,避免首页一次铺开 100+ 卡片导致页面过长;
+// 点击「查看全部」切到该分类即展开完整列表。搜索/筛选时不限制,确保能看到全部匹配结果。
+const PREVIEW_PER_CATEGORY = 6
+const isBrowseAll = computed(() => activeCategory.value === 'all' && !searchQuery.value.trim())
+function visibleTools(group: { tools: SeoTool[] }) {
+  return isBrowseAll.value ? group.tools.slice(0, PREVIEW_PER_CATEGORY) : group.tools
+}
+
 function clearFilters() {
   searchQuery.value = ''
   showAiOnly.value = false
@@ -328,7 +336,7 @@ const activeSidebarItem = computed(() => (activeCategory.value === 'all' ? scrol
 
             <div class="tools-grid">
               <a
-                v-for="tool in group.tools"
+                v-for="tool in visibleTools(group)"
                 :key="tool.id"
                 :href="tool.url"
                 target="_blank"
@@ -361,6 +369,16 @@ const activeSidebarItem = computed(() => (activeCategory.value === 'all' ? scrol
                 </div>
               </a>
             </div>
+
+            <button
+              v-if="isBrowseAll && group.tools.length > PREVIEW_PER_CATEGORY"
+              class="cat-viewall"
+              :style="{ color: group.color }"
+              @click="selectCategory(group.id)"
+            >
+              {{ t('seoNavPage.viewAllInCategory', { count: group.tools.length }) }}
+              <VaIcon name="arrow_forward" size="15px" />
+            </button>
           </div>
         </div>
 
@@ -980,6 +998,27 @@ const activeSidebarItem = computed(() => (activeCategory.value === 'all' ? scrol
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 14px;
+}
+
+/* 「查看全部 N 个」按钮：全部视图下每分类预览后引导进入完整列表 */
+.cat-viewall {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  margin-top: 12px;
+  padding: 8px 16px;
+  background: transparent;
+  border: 1px solid var(--va-background-border, rgba(0, 0, 0, 0.1));
+  border-radius: 999px;
+  font-size: 0.88rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.cat-viewall:hover {
+  background: var(--va-background-secondary);
+  transform: translateX(2px);
 }
 
 /* 卡片：去掉硬边框，改为圆角 + 悬浮阴影 */

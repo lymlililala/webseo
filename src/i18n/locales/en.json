@@ -397,6 +397,7 @@
     "badgeAiShort": "AI",
     "toolsFound": "tools found",
     "toolsUnit": "tools",
+    "viewAllInCategory": "View all {count}",
     "clearFilters": "Clear filters",
     "empty": "No matching tools — try a different keyword",
     "visitHint": "Visit",
