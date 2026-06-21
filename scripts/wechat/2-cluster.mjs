@@ -19,7 +19,7 @@ mkdirSync(DATA_DIR, { recursive: true })
 const OUT = join(DATA_DIR, 'clusters.json')
 
 const sources = await fetchSources({ sinceDays: DAYS, minBodyLen: 300 })
-console.log(`读取源文最近 ${DAYS} 天：${sources.length} 篇（本地 sources.json）`)
+console.log(`读取源文最近 ${DAYS} 天：${sources.length} 篇（源文库 wseo_wx_sources / 本地）`)
 // 给模型的精简清单（不含全文，省 token）
 const list = sources.map((s, i) => ({ id: i, account: s.account, title: s.title, digest: (s.digest || '').slice(0, 80) }))
 
@@ -46,7 +46,7 @@ Task: cluster them by topic into themes that can each be written up as an EVERGR
 
 Requirements:
 1. Each cluster picks 3-6 semantically related source articles that complement each other (give their ids).
-2. Exclude: time-sensitive news, product promotions/ads, recruitment, event recaps, anything China-only or with no lasting value to an international SEO/marketing reader (don't force weak clusters).
+2. Exclude (do NOT cluster these): time-sensitive news, **news roundups / weekly or daily digests / "本周·快讯·周报" recaps**, product promotions/ads, recruitment, event recaps, holiday greetings, anything China-only or with no lasting value to an international SEO/marketing reader. Only EVERGREEN how-to/strategy topics. Don't force weak clusters.
 3. Prefer evergreen, globally-applicable angles: SEO how-tos, keyword/content strategy, technical SEO, analytics (GA4/Search Console), link building, ecommerce/independent-site growth, paid ads, conversion, and AI-search optimization (GEO/AEO). Translate China-specific tactics into platform-neutral principles (e.g. Google, not Baidu).
 4. Tags should map to these on-site tags where relevant: ${PILLAR_TAGS.join(', ')}.
 5. Category MUST be one of: seo | geo | aeo | tools  (geo = Generative Engine Optimization / AI-search; aeo = Answer Engine Optimization; tools = tool tutorials/reviews; everything else = seo).
