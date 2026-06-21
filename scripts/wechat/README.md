@@ -57,7 +57,7 @@ node scripts/wechat/4-publish.mjs --threshold 80 --max-publish 3
 
 ## 前置
 
-- Node 20+。脚本除 `@supabase/supabase-js` 外零依赖（原生 fetch）。
+- **Node 22+**（`@supabase/supabase-js` 的 realtime 需原生 WebSocket，Node 20 会报错）。脚本除它外零依赖（原生 fetch）。
 - **独立依赖**：本目录有自己的 `package.json` + `node_modules`（隔离主项目依赖冲突）。
   首次：`npm install --prefix scripts/wechat`
 - 凭证：

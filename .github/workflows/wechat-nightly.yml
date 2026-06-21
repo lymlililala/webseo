@@ -55,9 +55,10 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Setup Node
+        # Node 22+：@supabase/supabase-js 的 realtime 客户端需原生 WebSocket（Node 20 会抛错）
         uses: actions/setup-node@v4
         with:
-          node-version: 20
+          node-version: 22
 
       # 跨运行持久化 data/（sources.json 增量去重 + image-cache.json 省 Pexels 配额）。
       # cache 可能被驱逐；丢失时只会多采一轮、不影响正确性。
