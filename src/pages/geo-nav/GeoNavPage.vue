@@ -104,6 +104,16 @@ function selectCategory(catId: string) {
   if (el) el.scrollTo({ top: 0, behavior: 'smooth' })
 }
 
+// 「全部」浏览态(无搜索、无地区筛选)下每分类只预览前 N 个,避免一次铺开全部工具导致页面过长;
+// 「查看全部」切到该分类展开完整列表。搜索/筛选时不限制。
+const PREVIEW_PER_CATEGORY = 3
+const isBrowseAll = computed(
+  () => activeCategory.value === 'all' && !searchQuery.value.trim() && activeRegion.value === 'all',
+)
+function visibleTools(group: { tools: GeoTool[] }) {
+  return isBrowseAll.value ? group.tools.slice(0, PREVIEW_PER_CATEGORY) : group.tools
+}
+
 function clearFilters() {
   searchQuery.value = ''
   showOpenSourceOnly.value = false
@@ -305,7 +315,7 @@ const activeSidebarItem = computed(() => (activeCategory.value === 'all' ? scrol
           </div>
           <div class="geo-featured-grid">
             <a
-              v-for="tool in featuredGeoTools"
+              v-for="tool in featuredGeoTools.slice(0, 4)"
               :key="tool.id"
               :href="tool.url"
               target="_blank"
@@ -407,7 +417,7 @@ const activeSidebarItem = computed(() => (activeCategory.value === 'all' ? scrol
 
           <div class="geo-tools-grid">
             <div
-              v-for="tool in group.tools"
+              v-for="tool in visibleTools(group)"
               :key="tool.id"
               class="geo-tool-card"
               :style="{ '--tool-color': group.color }"
@@ -489,6 +499,16 @@ const activeSidebarItem = computed(() => (activeCategory.value === 'all' ? scrol
               </div>
             </div>
           </div>
+
+          <button
+            v-if="isBrowseAll && group.tools.length > PREVIEW_PER_CATEGORY"
+            class="geo-cat-viewall"
+            :style="{ color: group.color }"
+            @click="selectCategory(group.id)"
+          >
+            {{ t('geoNavPage.viewAllInCategory', { count: group.tools.length }) }}
+            <VaIcon name="arrow_forward" size="15px" />
+          </button>
         </div>
 
         <!-- Tips Section -->
@@ -963,7 +983,7 @@ const activeSidebarItem = computed(() => (activeCategory.value === 'all' ? scrol
 /* ── Featured ──────────────────────────────── */
 .geo-featured-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(380px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
   gap: 12px;
 }
 
@@ -1226,6 +1246,26 @@ const activeSidebarItem = computed(() => (activeCategory.value === 'all' ? scrol
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 14px;
+}
+
+.geo-cat-viewall {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  margin-top: 12px;
+  padding: 8px 16px;
+  background: transparent;
+  border: 1px solid var(--va-background-border, rgba(0, 0, 0, 0.1));
+  border-radius: 999px;
+  font-size: 0.88rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.geo-cat-viewall:hover {
+  background: var(--va-background-secondary);
+  transform: translateX(2px);
 }
 
 /* 卡片：去掉边框，改为阴影 */

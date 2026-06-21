@@ -95,7 +95,7 @@ function selectCategory(catId: string) {
 
 // 「全部工具」浏览视图(无搜索)下,每个分类只预览前 N 个,避免首页一次铺开 100+ 卡片导致页面过长;
 // 点击「查看全部」切到该分类即展开完整列表。搜索/筛选时不限制,确保能看到全部匹配结果。
-const PREVIEW_PER_CATEGORY = 6
+const PREVIEW_PER_CATEGORY = 3
 const isBrowseAll = computed(() => activeCategory.value === 'all' && !searchQuery.value.trim())
 function visibleTools(group: { tools: SeoTool[] }) {
   return isBrowseAll.value ? group.tools.slice(0, PREVIEW_PER_CATEGORY) : group.tools
@@ -256,7 +256,7 @@ const activeSidebarItem = computed(() => (activeCategory.value === 'all' ? scrol
           </div>
           <div class="featured-grid">
             <a
-              v-for="tool in featuredTools"
+              v-for="tool in featuredTools.slice(0, 4)"
               :key="tool.id"
               :href="tool.url"
               target="_blank"
@@ -801,7 +801,7 @@ const activeSidebarItem = computed(() => (activeCategory.value === 'all' ? scrol
 /* ── Featured ─────────────────────────────── */
 .featured-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(380px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
   gap: 12px;
 }
 
