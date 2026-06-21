@@ -2,10 +2,20 @@
 import { ref, computed, onMounted, onUnmounted } from 'vue'
 import { useI18n } from 'vue-i18n'
 import { geoCategories, allGeoTools, featuredGeoTools, type GeoTool, type GeoCategory } from '../../data/geo-tools'
+import { geoCategoriesZh, geoToolsZh } from '../../data/geo-tools-zh'
+import { toolTagsZh } from '../../data/tool-tags-zh'
 import { usePageSeo } from '../../composables/usePageSeo'
 import ToolFavicon from '../../components/ToolFavicon.vue'
 
-const { t } = useI18n()
+const { t, locale } = useI18n()
+const isZh = computed(() => locale.value === 'zh')
+
+const catName = (c: { id: string; name: string }) => (isZh.value ? geoCategoriesZh[c.id]?.name ?? c.name : c.name)
+const catDesc = (c: { id: string; description: string }) =>
+  isZh.value ? geoCategoriesZh[c.id]?.description ?? c.description : c.description
+const toolDesc = (tl: { id: string; description: string }) =>
+  isZh.value ? geoToolsZh[tl.id] ?? tl.description : tl.description
+const tagLabel = (tag: string) => (isZh.value ? toolTagsZh[tag] ?? tag : tag)
 
 usePageSeo({
   title: t('geoNavPage.seoTitle'),
@@ -298,7 +308,7 @@ const activeSidebarItem = computed(() => (activeCategory.value === 'all' ? scrol
               class="geo-sidebar-icon"
               :style="{ color: activeCategory === cat.id ? cat.color : '' }"
             />
-            <span class="geo-sidebar-name">{{ cat.name }}</span>
+            <span class="geo-sidebar-name">{{ catName(cat) }}</span>
             <span class="geo-sidebar-count">{{ cat.tools.length }}</span>
           </button>
         </div>
@@ -356,7 +366,7 @@ const activeSidebarItem = computed(() => (activeCategory.value === 'all' ? scrol
                     <span>{{ h }}</span>
                   </li>
                 </ul>
-                <p class="geo-featured-desc">{{ tool.description }}</p>
+                <p class="geo-featured-desc">{{ toolDesc(tool) }}</p>
                 <div class="geo-featured-bottom">
                   <div v-if="tool.pricing" class="geo-pricing-tag">
                     <VaIcon name="sell" size="12px" />
@@ -404,10 +414,10 @@ const activeSidebarItem = computed(() => (activeCategory.value === 'all' ? scrol
               </div>
               <div>
                 <div class="geo-cat-name-row">
-                  <h2 class="geo-cat-name">{{ group.name }}</h2>
+                  <h2 class="geo-cat-name">{{ catName(group) }}</h2>
                   <span v-if="group.badge" class="geo-cat-badge">{{ group.badge }}</span>
                 </div>
-                <p class="geo-cat-desc">{{ group.description }}</p>
+                <p class="geo-cat-desc">{{ catDesc(group) }}</p>
               </div>
             </div>
             <span class="geo-cat-count" :style="{ background: group.color + '18', color: group.color }">
@@ -460,7 +470,7 @@ const activeSidebarItem = computed(() => (activeCategory.value === 'all' ? scrol
                 </li>
               </ul>
 
-              <p class="geo-tool-desc">{{ tool.description }}</p>
+              <p class="geo-tool-desc">{{ toolDesc(tool) }}</p>
 
               <!-- GitHub Stats -->
               <div v-if="tool.github" class="geo-tool-github">
@@ -487,7 +497,7 @@ const activeSidebarItem = computed(() => (activeCategory.value === 'all' ? scrol
               <!-- Footer -->
               <div class="geo-tool-footer">
                 <div class="geo-tool-tags">
-                  <span v-for="tag in tool.tags.slice(0, 2)" :key="tag" class="geo-tag geo-tag-sm">{{ tag }}</span>
+                  <span v-for="tag in tool.tags.slice(0, 2)" :key="tag" class="geo-tag geo-tag-sm">{{ tagLabel(tag) }}</span>
                 </div>
                 <div class="geo-tool-meta">
                   <span v-if="tool.pricing" class="geo-pricing-inline">{{ tool.pricing }}</span>

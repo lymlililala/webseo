@@ -2,10 +2,21 @@
 import { ref, computed, onMounted, onUnmounted } from 'vue'
 import { useI18n } from 'vue-i18n'
 import { seoCategories, allTools, featuredTools, type SeoTool, type SeoCategory } from '../../data/seo-tools'
+import { seoCategoriesZh, seoToolsZh } from '../../data/seo-tools-zh'
+import { toolTagsZh } from '../../data/tool-tags-zh'
 import { usePageSeo } from '../../composables/usePageSeo'
 import ToolFavicon from '../../components/ToolFavicon.vue'
 
-const { t } = useI18n()
+const { t, locale } = useI18n()
+const isZh = computed(() => locale.value === 'zh')
+
+// 中文模式下用 override 数据,缺失则回退英文原文(品牌名不译)
+const catName = (c: { id: string; name: string }) => (isZh.value ? seoCategoriesZh[c.id]?.name ?? c.name : c.name)
+const catDesc = (c: { id: string; description: string }) =>
+  isZh.value ? seoCategoriesZh[c.id]?.description ?? c.description : c.description
+const toolDesc = (tl: { id: string; description: string }) =>
+  isZh.value ? seoToolsZh[tl.id] ?? tl.description : tl.description
+const tagLabel = (tag: string) => (isZh.value ? toolTagsZh[tag] ?? tag : tag)
 
 usePageSeo({
   title: t('seoNavPage.seoTitle'),
@@ -237,7 +248,7 @@ const activeSidebarItem = computed(() => (activeCategory.value === 'all' ? scrol
               class="sidebar-item-icon"
               :style="{ color: activeCategory === cat.id ? cat.color : '' }"
             />
-            <span class="sidebar-item-name">{{ cat.name }}</span>
+            <span class="sidebar-item-name">{{ catName(cat) }}</span>
             <span class="sidebar-item-count">{{ cat.tools.length }}</span>
           </button>
         </div>
@@ -286,9 +297,9 @@ const activeSidebarItem = computed(() => (activeCategory.value === 'all' ? scrol
                     <span v-if="tool.isAiFriendly" class="badge badge-ai">{{ t('seoNavPage.badgeAi') }}</span>
                   </div>
                 </div>
-                <p class="featured-card-desc">{{ tool.description }}</p>
+                <p class="featured-card-desc">{{ toolDesc(tool) }}</p>
                 <div class="featured-card-tags">
-                  <span v-for="tag in tool.tags.slice(0, 3)" :key="tag" class="tag">{{ tag }}</span>
+                  <span v-for="tag in tool.tags.slice(0, 3)" :key="tag" class="tag">{{ tagLabel(tag) }}</span>
                 </div>
               </div>
               <div class="featured-card-arrow">
@@ -325,8 +336,8 @@ const activeSidebarItem = computed(() => (activeCategory.value === 'all' ? scrol
                   <VaIcon :name="group.icon" :style="{ color: group.color }" size="24px" />
                 </div>
                 <div>
-                  <h2 class="category-name">{{ group.name }}</h2>
-                  <p class="category-desc">{{ group.description }}</p>
+                  <h2 class="category-name">{{ catName(group) }}</h2>
+                  <p class="category-desc">{{ catDesc(group) }}</p>
                 </div>
               </div>
               <span class="category-count" :style="{ background: group.color + '18', color: group.color }">
@@ -356,11 +367,11 @@ const activeSidebarItem = computed(() => (activeCategory.value === 'all' ? scrol
                 </div>
 
                 <h3 class="tool-name">{{ tool.name }}</h3>
-                <p class="tool-desc">{{ tool.description }}</p>
+                <p class="tool-desc">{{ toolDesc(tool) }}</p>
 
                 <div class="tool-footer">
                   <div class="tool-tags">
-                    <span v-for="tag in tool.tags.slice(0, 2)" :key="tag" class="tag tag-small">{{ tag }}</span>
+                    <span v-for="tag in tool.tags.slice(0, 2)" :key="tag" class="tag tag-small">{{ tagLabel(tag) }}</span>
                   </div>
                   <div class="tool-link-hint">
                     <VaIcon name="open_in_new" size="13px" />
