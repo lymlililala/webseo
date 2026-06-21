@@ -807,8 +807,9 @@ const activeSidebarItem = computed(() => (activeCategory.value === 'all' ? scrol
 
 .featured-card {
   display: flex;
-  align-items: center;
-  gap: 16px;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 12px;
   padding: 18px 20px;
   background: var(--va-background-secondary);
   border: none;

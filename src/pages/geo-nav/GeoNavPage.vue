@@ -989,7 +989,8 @@ const activeSidebarItem = computed(() => (activeCategory.value === 'all' ? scrol
 
 .geo-featured-card {
   display: flex;
-  align-items: flex-start;
+  flex-direction: column;
+  align-items: stretch;
   gap: 14px;
   padding: 18px 20px;
   background: var(--va-background-secondary);

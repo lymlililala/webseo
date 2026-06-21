@@ -919,7 +919,8 @@ const activeSidebarItem = computed(() => (activeCategory.value === 'all' ? scrol
 
 .aeo-featured-card {
   display: flex;
-  align-items: flex-start;
+  flex-direction: column;
+  align-items: stretch;
   gap: 14px;
   padding: 18px 20px;
   border-radius: 14px;
