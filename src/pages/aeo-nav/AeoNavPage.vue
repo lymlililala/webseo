@@ -4,6 +4,7 @@ import { useI18n } from 'vue-i18n'
 import { aeoCategories, allAeoTools, featuredAeoTools, type AeoTool, type AeoCategory } from '../../data/aeo-tools'
 import { aeoCategoriesZh, aeoToolsZh } from '../../data/aeo-tools-zh'
 import { toolTagsZh } from '../../data/tool-tags-zh'
+import { highlightsZh, pricingZh } from '../../data/tool-extras-zh'
 import { usePageSeo } from '../../composables/usePageSeo'
 import ToolFavicon from '../../components/ToolFavicon.vue'
 
@@ -16,6 +17,8 @@ const catDesc = (c: { id: string; description: string }) =>
 const toolDesc = (tl: { id: string; description: string }) =>
   isZh.value ? aeoToolsZh[tl.id] ?? tl.description : tl.description
 const tagLabel = (tag: string) => (isZh.value ? toolTagsZh[tag] ?? tag : tag)
+const hlLabel = (h: string) => (isZh.value ? highlightsZh[h] ?? h : h)
+const priceLabel = (p?: string) => (p && isZh.value ? pricingZh[p] ?? p : p)
 
 usePageSeo({
   title: t('aeoNavPage.seoTitle'),
@@ -341,14 +344,14 @@ const activeSidebarItem = computed(() => (activeCategory.value === 'all' ? scrol
                 <ul v-if="tool.highlights?.length" class="aeo-featured-highlights">
                   <li v-for="h in tool.highlights" :key="h">
                     <VaIcon name="check_circle" size="12px" color="success" />
-                    <span>{{ h }}</span>
+                    <span>{{ hlLabel(h) }}</span>
                   </li>
                 </ul>
                 <p class="aeo-featured-desc">{{ toolDesc(tool) }}</p>
                 <div class="aeo-featured-bottom">
                   <div v-if="tool.pricing" class="aeo-pricing-tag">
                     <VaIcon name="sell" size="12px" />
-                    {{ tool.pricing }}
+                    {{ priceLabel(tool.pricing) }}
                   </div>
                   <div v-if="tool.github" class="aeo-github-info">
                     <VaIcon name="star_border" size="12px" />
@@ -442,7 +445,7 @@ const activeSidebarItem = computed(() => (activeCategory.value === 'all' ? scrol
               <ul v-if="tool.highlights?.length" class="aeo-tool-highlights">
                 <li v-for="h in tool.highlights.slice(0, 3)" :key="h">
                   <VaIcon name="check" size="11px" />
-                  <span>{{ h }}</span>
+                  <span>{{ hlLabel(h) }}</span>
                 </li>
               </ul>
 
@@ -476,7 +479,7 @@ const activeSidebarItem = computed(() => (activeCategory.value === 'all' ? scrol
                   <span v-for="tag in tool.tags.slice(0, 2)" :key="tag" class="aeo-tag aeo-tag-sm">{{ tagLabel(tag) }}</span>
                 </div>
                 <div class="aeo-tool-meta">
-                  <span v-if="tool.pricing" class="aeo-pricing-inline">{{ tool.pricing }}</span>
+                  <span v-if="tool.pricing" class="aeo-pricing-inline">{{ priceLabel(tool.pricing) }}</span>
                   <div class="aeo-tool-visit">
                     <VaIcon name="open_in_new" size="11px" />
                     <span>{{ t('aeoNavPage.visitHint') }}</span>
