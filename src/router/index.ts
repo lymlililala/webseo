@@ -14,6 +14,7 @@ import { setLocale } from '../i18n/useLocale'
 function makeChildren(suffix = ''): RouteRecordRaw[] {
   const n = (name: string) => name + suffix
   return [
+    { name: n('home'), path: '', component: () => import('../pages/home/HomePage.vue') },
     { name: n('seo-nav'), path: 'seo-nav', component: () => import('../pages/seo-nav/SeoNavPage.vue') },
     { name: n('geo-nav'), path: 'geo-nav', component: () => import('../pages/geo-nav/GeoNavPage.vue') },
     { name: n('aeo-nav'), path: 'aeo-nav', component: () => import('../pages/aeo-nav/AeoNavPage.vue') },
@@ -77,7 +78,6 @@ const routes: Array<RouteRecordRaw> = [
     name: 'admin',
     path: '/',
     component: AppLayout,
-    redirect: { name: 'seo-nav' },
     children: makeChildren(),
   },
   // 中文(/zh 前缀)
@@ -85,7 +85,6 @@ const routes: Array<RouteRecordRaw> = [
     name: 'admin:zh',
     path: '/zh',
     component: AppLayout,
-    redirect: { name: 'seo-nav:zh' },
     children: makeChildren(':zh'),
   },
   {

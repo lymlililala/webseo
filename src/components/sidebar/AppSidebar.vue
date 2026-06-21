@@ -7,7 +7,7 @@
       <VaCollapse v-for="(route, index) in navigationRoutes.routes" :key="index">
         <template #header="{ value: isCollapsed }">
           <VaSidebarItem
-            :to="route.children ? undefined : localePath('/' + route.name)"
+            :to="route.children ? undefined : localePath(route.link ?? '/' + route.name)"
             :active="routeHasActiveChild(route)"
             :active-color="activeColor"
             :text-color="textColor(route)"
@@ -87,6 +87,10 @@ export default defineComponent({
 
     const routeHasActiveChild = (section: INavigationRoute) => {
       if (!section.children) {
+        // 首页:仅在根路径(/ 或 /zh)高亮,避免 'home' 后缀匹配不到
+        if (section.name === 'home') {
+          return route.path === '/' || route.path === '/zh' || route.path === '/zh/'
+        }
         return route.path.endsWith(`${section.name}`)
       }
 

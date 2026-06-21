@@ -71,11 +71,11 @@
     },
     {
       "src": "/zh(/)?",
-      "dest": "/zh/seo-nav/index.html"
+      "dest": "/zh/index.html"
     },
     {
       "src": "^/$",
-      "dest": "/seo-nav/index.html"
+      "dest": "/index.html"
     },
     {
       "src": "/(.*)",

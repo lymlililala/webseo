@@ -248,11 +248,11 @@ function writeHtml(routePath, html) {
 const staticRoutes = [
   {
     path: '/',
-    title: 'SGAIndex — SEO/GEO/AEO Tools Directory | AI Search Optimization',
+    title: 'SGAIndex — SEO/GEO/AEO Platform | AI Search Optimization',
     description:
-      'A tools directory for the AI search era: 100+ curated SEO, GEO (Generative Engine Optimization) and AEO (Answer Engine Optimization) tools to improve your visibility in Google and AI engines like ChatGPT and Perplexity.',
-    h1: 'SEO/GEO/AEO Tools Directory',
-    keywords: 'SEO tools,GEO optimization,AEO tools,AI search optimization,Schema structured data,llms.txt',
+      'SGAIndex is an all-in-one platform for the AI search era: SEO/GEO/AEO tool directories, llms.txt generation, AI visibility checks, Schema markup, a glossary, articles, tutorials, news and a backlink service.',
+    h1: 'SEO, GEO & AEO — all in one place',
+    keywords: 'SEO,GEO,AEO,AI search optimization,Schema structured data,llms.txt,AI visibility,backlink service',
     jsonld: {
       '@context': 'https://schema.org',
       '@type': 'WebSite',
@@ -523,6 +523,12 @@ const staticRoutes = [
 
 // ── 中文版静态路由 meta（/zh/...，title/description/h1 用中文，canonical 自指）──
 const zhMeta = {
+  '/': {
+    title: 'SGAIndex — SEO/GEO/AEO 全功能平台 | AI 搜索优化',
+    description:
+      'SGAIndex 是面向 AI 搜索时代的一站式平台:SEO/GEO/AEO 工具导航、llms.txt 生成、AI 可见度体检、Schema 标记、术语库、文章教程资讯与外链发布服务。',
+    h1: '一站搞定 SEO、GEO 与 AEO',
+  },
   '/seo-nav': {
     title: 'SEO 工具导航 — 100+ 精选 SEO 工具 | SGAIndex',
     description: '精选 100+ 款 SEO 工具,涵盖关键词研究、外链分析、技术 SEO 与内容优化,助你在 Google 获得更高排名。',
@@ -632,7 +638,7 @@ async function main() {
     // 同时生成中文版（/zh/...）：中文 title/description/h1 + 自指 canonical + 互指 hreflang
     const zh = zhMeta[route.path]
     if (zh) {
-      const zhPath = `/zh${route.path}`
+      const zhPath = route.path === '/' ? '/zh' : `/zh${route.path}`
       writeHtml(
         zhPath,
         buildHtml({

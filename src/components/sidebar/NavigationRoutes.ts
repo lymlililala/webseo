@@ -2,6 +2,8 @@ export interface INavigationRoute {
   name: string
   displayName: string
   meta: { icon: string }
+  /** 可选:显式链接(用于首页等 name 与路径不一致的项) */
+  link?: string
   children?: INavigationRoute[]
 }
 
@@ -11,6 +13,14 @@ export default {
     displayName: 'navigationRoutes.home',
   },
   routes: [
+    {
+      name: 'home',
+      displayName: 'menu.home',
+      link: '/',
+      meta: {
+        icon: 'home',
+      },
+    },
     {
       name: 'seo-nav',
       displayName: 'menu.seo-nav',
