@@ -6,7 +6,7 @@
       <h1 class="bl-title">{{ t.heroTitle }}</h1>
       <p class="bl-subtitle">{{ t.heroSubtitle }}</p>
       <div class="bl-hero-actions">
-        <a class="bl-btn bl-btn--primary" :href="mailtoFor()">{{ t.heroCta }}</a>
+        <button type="button" class="bl-btn bl-btn--primary" @click="openContact()">{{ t.heroCta }}</button>
         <a class="bl-btn bl-btn--ghost" href="#packages">{{ t.heroCta2 }}</a>
       </div>
       <ul class="bl-trust">
@@ -49,13 +49,14 @@
               <span>{{ f }}</span>
             </li>
           </ul>
-          <a
+          <button
+            type="button"
             class="bl-btn"
             :class="pkg.featured ? 'bl-btn--primary' : 'bl-btn--outline'"
-            :href="mailtoFor(pkg.name)"
+            @click="openContact(pkg.name)"
           >
             {{ t.packageCta }}
-          </a>
+          </button>
         </article>
       </div>
 
@@ -65,7 +66,9 @@
           <h3>{{ t.customTitle }}</h3>
           <p>{{ t.customDesc }}</p>
         </div>
-        <a class="bl-btn bl-btn--primary" :href="mailtoFor(t.customSubject)">{{ t.customCta }}</a>
+        <button type="button" class="bl-btn bl-btn--primary" @click="openContact(t.customSubject)">
+          {{ t.customCta }}
+        </button>
       </div>
     </section>
 
@@ -101,16 +104,30 @@
     <section class="bl-cta">
       <h2>{{ t.finalTitle }}</h2>
       <p>{{ t.finalDesc }}</p>
-      <a class="bl-btn bl-btn--primary bl-btn--lg" :href="mailtoFor()">{{ t.finalCta }}</a>
+      <button type="button" class="bl-btn bl-btn--primary bl-btn--lg" @click="openContact()">{{ t.finalCta }}</button>
       <p class="bl-cta-email">
         {{ t.orEmail }} <a :href="`mailto:${CONTACT}`">{{ CONTACT }}</a>
       </p>
     </section>
+
+    <!-- ═══ 咨询弹窗:邮箱 + 一键复制 + 可选 mailto ═══ -->
+    <VaModal v-model="showContact" hide-default-actions max-width="430px" close-button>
+      <h3 class="bl-modal-title">{{ t.modalTitle }}</h3>
+      <p class="bl-modal-desc">{{ t.modalDesc }}</p>
+      <div class="bl-modal-email">
+        <span class="bl-modal-addr">{{ CONTACT }}</span>
+        <button type="button" class="bl-btn bl-btn--outline bl-modal-copy" @click="copyEmail">
+          {{ copied ? t.copied : t.copy }}
+        </button>
+      </div>
+      <a class="bl-btn bl-btn--primary bl-modal-mailto" :href="mailtoFor(activePlan)">{{ t.openMail }}</a>
+      <p class="bl-modal-hint">{{ t.modalHint }}</p>
+    </VaModal>
   </div>
 </template>
 
 <script setup lang="ts">
-import { computed } from 'vue'
+import { computed, ref } from 'vue'
 import { useI18n } from 'vue-i18n'
 import { usePageSeo } from '../../composables/usePageSeo'
 
@@ -119,7 +136,41 @@ const isZh = computed(() => locale.value === 'zh')
 
 const CONTACT = 'contact@sgaindex.com'
 
-// 邮件 CTA：预填主题与正文，便于用户一键发起咨询、便于我们识别套餐
+// 咨询弹窗状态：不直接跳 mailto(很多访客没配桌面邮件客户端,会卡在系统"添加账户"),
+// 改为弹出卡片 → 展示邮箱 + 一键复制 + 可选"用邮件客户端打开(预填主题/正文)"
+const showContact = ref(false)
+const activePlan = ref<string | undefined>(undefined)
+const copied = ref(false)
+
+const openContact = (plan?: string) => {
+  activePlan.value = plan
+  copied.value = false
+  showContact.value = true
+}
+
+const copyEmail = async () => {
+  try {
+    await navigator.clipboard.writeText(CONTACT)
+  } catch {
+    // 兜底:clipboard API 不可用时用临时 textarea
+    const ta = document.createElement('textarea')
+    ta.value = CONTACT
+    ta.style.position = 'fixed'
+    ta.style.opacity = '0'
+    document.body.appendChild(ta)
+    ta.select()
+    try {
+      document.execCommand('copy')
+    } catch {
+      /* 忽略 */
+    }
+    document.body.removeChild(ta)
+  }
+  copied.value = true
+  setTimeout(() => (copied.value = false), 1600)
+}
+
+// 邮件 CTA：预填主题与正文,便于用户一键发起咨询、便于我们识别套餐
 const mailtoFor = (plan?: string) => {
   const subject = plan
     ? isZh.value
@@ -239,6 +290,12 @@ const en = {
   finalDesc: 'Get a free, no-obligation quote tailored to your site and goals.',
   finalCta: 'Email us for a free quote',
   orEmail: 'Or write to us directly at',
+  modalTitle: 'Contact us about backlinks',
+  modalDesc: 'Copy the email below and send us your details, or open your mail app with a pre-filled message.',
+  copy: 'Copy email',
+  copied: 'Copied!',
+  openMail: 'Open in mail app',
+  modalHint: 'We typically reply within 1–2 business days.',
 }
 
 const zh = {
@@ -339,6 +396,12 @@ const zh = {
   finalDesc: '获取一份针对你网站与目标的免费报价，无需任何承诺。',
   finalCta: '邮件获取免费报价',
   orEmail: '或直接写信至',
+  modalTitle: '外链发布咨询',
+  modalDesc: '复制下方邮箱把需求发给我们,或直接打开邮件客户端(已为你预填好主题与正文)。',
+  copy: '复制邮箱',
+  copied: '已复制!',
+  openMail: '用邮件客户端打开',
+  modalHint: '我们通常在 1–2 个工作日内回复。',
 }
 
 const t = computed(() => (isZh.value ? zh : en))
@@ -401,8 +464,14 @@ usePageSeo(
   border-radius: 10px;
   font-weight: 600;
   font-size: 0.95rem;
+  font-family: inherit;
+  line-height: 1.2;
+  text-align: center;
   text-decoration: none;
   cursor: pointer;
+  appearance: none;
+  -webkit-appearance: none;
+  background: transparent;
   transition:
     transform 0.12s ease,
     box-shadow 0.12s ease,
@@ -795,6 +864,59 @@ usePageSeo(
       text-decoration: underline;
     }
   }
+}
+
+/* ── 咨询弹窗 ── */
+.bl-modal-title {
+  font-size: 1.3rem;
+  font-weight: 800;
+  margin: 0 0 0.4rem;
+}
+
+.bl-modal-desc {
+  margin: 0 0 1.1rem;
+  color: var(--va-secondary, #6b7280);
+  font-size: 0.95rem;
+  line-height: 1.6;
+}
+
+.bl-modal-email {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  flex-wrap: wrap;
+  padding: 0.85rem 1rem;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-radius: 12px;
+  background: var(--va-background-element, #f8fafc);
+  margin-bottom: 1rem;
+}
+
+.bl-modal-addr {
+  flex: 1;
+  min-width: 180px;
+  font-weight: 700;
+  font-size: 1.05rem;
+  word-break: break-all;
+}
+
+.bl-modal-copy {
+  padding: 0.5rem 1rem;
+  font-size: 0.88rem;
+  white-space: nowrap;
+}
+
+.bl-modal-mailto {
+  display: block;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.bl-modal-hint {
+  margin: 0.9rem 0 0;
+  font-size: 0.82rem;
+  color: var(--va-secondary, #6b7280);
+  text-align: center;
 }
 
 @media (max-width: 640px) {
