@@ -229,7 +229,10 @@ function buildHtml({ title, description, canonicalUrl, h1, jsonld, ogType = 'web
 /**
  * 写入 HTML 文件，自动创建目录
  */
+// sitemap：收集每个实际预渲染的路径，build 末尾据此生成 dist/sitemap.xml（URL 与页面完全一致）
+const sitemapPaths = []
 function writeHtml(routePath, html) {
+  sitemapPaths.push(routePath)
   if (routePath === '/') {
     fs.writeFileSync(path.join(distDir, 'index.html'), html, 'utf-8')
     console.log('  ✅ dist/index.html  (/)')
@@ -947,7 +950,42 @@ async function main() {
   console.log('  ✅ dist/404.html')
   totalCount++
 
+  // 生成 sitemap.xml：用实际预渲染的 URL（slug + /zh 双语，与页面一致），
+  // 覆盖 vite 从 public/ 拷来的旧静态版。失败不阻断部署。
+  try {
+    writeSitemap()
+  } catch (e) {
+    console.error('  ⚠️  sitemap 生成失败（不影响部署）:', e.message)
+  }
+
   console.log(`\n🎉 预渲染完成：共生成 ${totalCount} 个 HTML 文件\n`)
+}
+
+// 按路径前缀给 sitemap 条目分配 priority/changefreq
+function sitemapMeta(p) {
+  if (p === '/') return { pr: '1.0', cf: 'weekly' }
+  const isZh = p.startsWith('/zh/') || p === '/zh'
+  const base = isZh ? (p.slice(3) || '/') : p
+  let pr = '0.8', cf = 'weekly' // 默认：静态工具页/列表页
+  if (/^\/articles\/.+/.test(base)) { pr = '0.7'; cf = 'monthly' }
+  else if (/^\/tutorials\/.+/.test(base)) { pr = '0.6'; cf = 'monthly' }
+  else if (/^\/news\/.+/.test(base)) { pr = '0.6'; cf = 'monthly' }
+  if (isZh) pr = Math.max(0.1, parseFloat(pr) - 0.1).toFixed(1) // 中文页略低
+  return { pr, cf }
+}
+
+// 用 sitemapPaths 生成 dist/sitemap.xml
+function writeSitemap() {
+  const today = new Date().toISOString().slice(0, 10)
+  const uniq = [...new Set(sitemapPaths)].sort()
+  const body = uniq.map((p) => {
+    const { pr, cf } = sitemapMeta(p)
+    const loc = SITE + (p === '/' ? '' : p)
+    return `  <url>\n    <loc>${loc}</loc>\n    <lastmod>${today}</lastmod>\n    <changefreq>${cf}</changefreq>\n    <priority>${pr}</priority>\n  </url>`
+  }).join('\n')
+  const xml = `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${body}\n</urlset>\n`
+  fs.writeFileSync(path.join(distDir, 'sitemap.xml'), xml, 'utf-8')
+  console.log(`  ✅ dist/sitemap.xml  (${uniq.length} URLs)`)
 }
 
 main().catch((err) => {
