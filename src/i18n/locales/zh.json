@@ -104,6 +104,7 @@
     "articles": "文章",
     "tutorials": "教程",
     "news": "新闻",
+    "backlinks": "外链发布",
     "auth": "授权",
     "buttons": "按钮",
     "timelines": "时间线",
@@ -131,6 +132,7 @@
     "contact": "联系我们",
     "privacy": "隐私政策",
     "terms": "服务条款",
+    "backlinks": "外链发布",
     "rights": "保留所有权利。",
     "tagline": "面向 AI 搜索时代的 SEO/GEO/AEO 工具导航与知识平台。",
     "lastUpdated": "最后更新"

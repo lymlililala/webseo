@@ -417,6 +417,24 @@ const staticRoutes = [
     },
   },
   {
+    path: '/backlinks',
+    title: 'Backlink Publishing Service — High-DA Guest Posts & Link Building | SGAIndex',
+    description:
+      'Get dofollow backlinks on real, high-authority websites: guest posts, niche edits and digital PR. White-hat manual outreach, DA/DR-filtered domains, full reporting. Email us for a free quote.',
+    h1: 'Backlink Publishing on Real, High-Authority Sites',
+    keywords:
+      'backlink service,buy backlinks,link building service,guest posting service,niche edits,high DA backlinks,white hat link building',
+    jsonld: {
+      '@context': 'https://schema.org',
+      '@type': 'Service',
+      name: 'SGAIndex Backlink Publishing Service',
+      serviceType: 'Link Building / Backlink Service',
+      url: `${SITE}/backlinks`,
+      provider: { '@type': 'Organization', name: SITE_NAME, url: SITE, email: 'contact@sgaindex.com' },
+      areaServed: 'Worldwide',
+    },
+  },
+  {
     path: '/faq',
     title: 'FAQ — SEO/GEO/AEO Frequently Asked Questions | SGAIndex',
     description:
@@ -559,6 +577,12 @@ const zhMeta = {
     title: '常见问题 — SEO/GEO/AEO 问答 | SGAIndex',
     description: '关于 SEO、GEO(生成式引擎优化)与 AEO(答案引擎优化)在 AI 搜索时代的常见问题解答。',
     h1: '常见问题 — SEO/GEO/AEO',
+  },
+  '/backlinks': {
+    title: '外链发布服务 — 高权重网站软文与外链建设 | SGAIndex',
+    description:
+      '在真实高权重网站上发布 Dofollow 外链:软文投放、niche edit、数字公关。白帽人工外联,DA/DR 筛选,提供完整交付报告。邮件咨询免费报价。',
+    h1: '在真实高权重网站上发布外链',
   },
   '/about': {
     title: '关于我们 — SGAIndex 简介与编辑原则 | SGAIndex',

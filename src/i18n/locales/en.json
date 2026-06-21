@@ -50,6 +50,7 @@
     "articles": "Articles",
     "tutorials": "Tutorials",
     "news": "News",
+    "backlinks": "Backlink Service",
     "auth": "Auth",
     "buttons": "Buttons",
     "timelines": "Timelines",
@@ -75,6 +76,7 @@
     "contact": "Contact Us",
     "privacy": "Privacy Policy",
     "terms": "Terms of Service",
+    "backlinks": "Backlink Service",
     "rights": "All rights reserved.",
     "tagline": "A tools directory and knowledge hub for the AI search era — SEO, GEO and AEO.",
     "lastUpdated": "Last updated"

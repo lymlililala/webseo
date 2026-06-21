@@ -7,6 +7,7 @@
       </div>
 
       <nav class="app-footer__links" aria-label="Footer">
+        <RouterLink :to="localePath('/backlinks')">{{ t('footer.backlinks') }}</RouterLink>
         <RouterLink :to="localePath('/about')">{{ t('footer.about') }}</RouterLink>
         <RouterLink :to="localePath('/contact')">{{ t('footer.contact') }}</RouterLink>
         <RouterLink :to="localePath('/privacy')">{{ t('footer.privacy') }}</RouterLink>

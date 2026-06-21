@@ -39,6 +39,7 @@ function makeChildren(suffix = ''): RouteRecordRaw[] {
     },
     { name: n('news'), path: 'news', component: () => import('../pages/news/NewsPage.vue') },
     { name: n('news-detail'), path: 'news/:id', component: () => import('../pages/news/NewsDetailPage.vue') },
+    { name: n('backlinks'), path: 'backlinks', component: () => import('../pages/backlinks/BacklinksPage.vue') },
     { name: n('dashboard'), path: 'dashboard', component: () => import('../pages/admin/dashboard/Dashboard.vue') },
     { name: n('settings'), path: 'settings', component: () => import('../pages/settings/Settings.vue') },
     { name: n('preferences'), path: 'preferences', component: () => import('../pages/preferences/Preferences.vue') },

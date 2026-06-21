@@ -81,5 +81,12 @@ export default {
         icon: 'newspaper',
       },
     },
+    {
+      name: 'backlinks',
+      displayName: 'menu.backlinks',
+      meta: {
+        icon: 'link',
+      },
+    },
   ] as INavigationRoute[],
 }
