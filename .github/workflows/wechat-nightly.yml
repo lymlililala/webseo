@@ -31,9 +31,9 @@ on:
         required: true
         default: '6'
       max_publish:
-        description: '本次最多发布几篇（其余留草稿）'
+        description: '本次最多发布几篇（0=不限制，过线全发）'
         required: true
-        default: '3'
+        default: '0'
       max_pages:
         description: '每个公众号采集多少页历史'
         required: true
@@ -86,7 +86,7 @@ jobs:
           UNSPLASH_ACCESS_KEY: ${{ secrets.UNSPLASH_ACCESS_KEY }}
           DAYS: ${{ github.event.inputs.days || '14' }}
           MAX_CLUSTERS: ${{ github.event.inputs.max_clusters || '6' }}
-          MAX_PUBLISH: ${{ github.event.inputs.max_publish || '3' }}
+          MAX_PUBLISH: ${{ github.event.inputs.max_publish || '0' }}
           MAX_PAGES: ${{ github.event.inputs.max_pages || '1' }}
           THRESHOLD: ${{ github.event.inputs.threshold || '80' }}
         run: |

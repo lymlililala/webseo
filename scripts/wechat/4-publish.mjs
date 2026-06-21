@@ -21,7 +21,9 @@ function arg(name, def) {
 }
 const DRY = arg('--dry-run', false) === true
 const THRESHOLD = Number(arg('--threshold', 82))
-const MAX_PUBLISH = Number(arg('--max-publish', 4)) // 单次最多发布几篇（防一次灌水伤 SEO）
+// 单次发布上限：默认 0 = 不限制（过线即全部发布）；传正数则限制，防一次灌水
+const rawMax = arg('--max-publish', 0)
+const MAX_PUBLISH = (!rawMax || Number(rawMax) <= 0) ? Infinity : Number(rawMax)
 
 const AUTHOR = 'SGA Index'
 
