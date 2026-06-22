@@ -11,6 +11,7 @@ const isZh = computed(() => locale.value === 'zh')
 
 // 中文 override(缺失回退英文;Schema 类型名/字段属性名/品牌名保留英文)
 const typeDesc = (ty: SchemaType) => (isZh.value ? schemaTypesZh[ty.id]?.description ?? ty.description : ty.description)
+const typeName = (ty: SchemaType) => (isZh.value ? schemaTypesZh[ty.id]?.name ?? ty.name : ty.name)
 const typeAeoTip = (ty: SchemaType) => (isZh.value ? schemaTypesZh[ty.id]?.aeoTip ?? ty.aeoTip : ty.aeoTip)
 const typeLinkLabel = (ty: SchemaType) =>
   isZh.value ? schemaTypesZh[ty.id]?.internalLinkLabel ?? ty.internalLinkLabel : ty.internalLinkLabel
@@ -154,7 +155,7 @@ function getLevelColor(level: SchemaTool['level']): string {
           @click="selectType(type.id)"
         >
           <VaIcon :name="type.icon" size="14px" :style="{ color: activeTypeId === type.id ? type.color : '' }" />
-          <span>{{ type.name }}</span>
+          <span>{{ typeName(type) }}</span>
           <span class="schema-type-stars">{{ renderStars(type.stars) }}</span>
         </button>
       </div>
@@ -173,7 +174,7 @@ function getLevelColor(level: SchemaTool['level']): string {
               </div>
               <div>
                 <div class="schema-detail-name-row">
-                  <h2 class="schema-detail-name">{{ activeType.name }} {{ t('schemaGeneratorPage.schemaSuffix') }}</h2>
+                  <h2 class="schema-detail-name">{{ typeName(activeType) }} {{ t('schemaGeneratorPage.schemaSuffix') }}</h2>
                   <span class="schema-detail-stars">{{ renderStars(activeType.stars) }}</span>
                 </div>
                 <p class="schema-detail-desc">{{ typeDesc(activeType) }}</p>

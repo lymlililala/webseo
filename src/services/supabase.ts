@@ -58,7 +58,9 @@ export { SUPABASE_CONFIGURED }
 // ============================================================================
 
 // 当前语言为 zh 时，用 *_zh 列覆盖基础字段（译文非空才覆盖，未译则回退英文）
-const LOCALIZED_FIELDS = ['title', 'description', 'content']
+// 注：tags 也参与本地化——zh 模式用 tags_zh(JSON 字符串)，随后由 parseTags 解析为数组。
+// 前提：DB 已建 tags_zh 列并由翻译流水线填充；tags 规整为英文(en 模式直接用)。列缺失时安全跳过。
+const LOCALIZED_FIELDS = ['title', 'description', 'content', 'tags']
 function localizeRow(row: any): any {
   if (!row || currentLocale() !== 'zh') return row
   for (const f of LOCALIZED_FIELDS) {

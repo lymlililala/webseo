@@ -19,9 +19,10 @@ export const schemaToolsZh: Record<string, string> = {
 
 export const schemaTypesZh: Record<
   string,
-  { description: string; fields: string[]; aeoTip?: string; internalLinkLabel?: string }
+  { name?: string; description: string; fields: string[]; aeoTip?: string; internalLinkLabel?: string }
 > = {
   article: {
+    name: '文章',
     description: '面向文章、博客与新闻页的结构化标记。帮搜索引擎识别发布日期、作者与内容类型——内容站 SEO 的基础。',
     fields: [
       '文章标题(必填,建议 50–60 字符)',
@@ -31,6 +32,7 @@ export const schemaTypesZh: Record<
     ],
   },
   faq: {
+    name: 'FAQ 问答',
     description: '面向 FAQ 页的结构化标记——在 Google 结果中展示可展开的问答,也是 AI 引擎(ChatGPT、Perplexity)最直接引用的格式。',
     aeoTip: 'FAQ Schema 是最有效的 AEO 手段之一——问答格式完美契合 AI 搜索的"直接回答"需求,大幅提升被引用概率。',
     internalLinkLabel: '查看 AEO 优化工具 →',
@@ -41,14 +43,17 @@ export const schemaTypesZh: Record<
     ],
   },
   product: {
+    name: '商品',
     description: '面向商品页的结构化标记——在结果中展示价格、评分与库存,提升电商点击率。',
     fields: ['商品名称(必填)', '价格与库存信息,使用 Offer 类型', '商品图片 URL', '评分数据,需有真实评价支撑'],
   },
   breadcrumb: {
+    name: '面包屑',
     description: '面向面包屑导航的结构化标记——在结果中展示清晰的页面层级路径,提升定位与点击率。',
     fields: ['面包屑层级数组,按顺序排列', '位置序号,从 1 开始', '该层级的页面名称', '该层级的页面 URL'],
   },
   howto: {
+    name: '操作指南',
     description: '面向教程与操作类内容的结构化标记——在结果中展示步骤列表,适合"如何做某事"的内容,并有资格获得特殊富结果。',
     fields: [
       '教程标题(必填)',
@@ -57,10 +62,12 @@ export const schemaTypesZh: Record<
     ],
   },
   localbusiness: {
+    name: '本地商户',
     description: '面向本地商户信息的结构化标记——展示地址、电话、营业时间与评分;影响 Google 地图与本地结果的核心本地 SEO 配置。',
     fields: ['商户名称(必填)', '完整地址,使用 PostalAddress 类型', '联系电话', '营业时间,影响 Google 本地展示面板'],
   },
   video: {
+    name: '视频',
     description: '面向视频内容的结构化标记——在 Google 结果中展示缩略图、时长与上传日期;适合有视频的媒体与教育类站点。',
     fields: [
       '视频标题(必填)',
@@ -70,6 +77,7 @@ export const schemaTypesZh: Record<
     ],
   },
   recipe: {
+    name: '菜谱',
     description: '面向菜谱的结构化标记——在结果中展示烹饪时间、热量与评分;美食博客与菜谱站的必备 Schema。',
     fields: ['菜谱名称(必填)', '菜品图片(必填,影响富结果展示)', '食材列表数组', '烹饪步骤,使用 HowToStep 数组'],
   },
