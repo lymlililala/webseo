@@ -1,9 +1,10 @@
 <script setup lang="ts">
-import { ref } from 'vue'
+import { ref, computed } from 'vue'
 import { useI18n } from 'vue-i18n'
 import { usePageSeo } from '../../composables/usePageSeo'
 
-const { t } = useI18n()
+const { t, locale } = useI18n()
+const isZh = computed(() => locale.value === 'zh')
 
 usePageSeo({
   title: t('llmsTxtPage.seoTitle'),
@@ -30,6 +31,7 @@ const activeTab = ref<'tools' | 'templates' | 'guide'>('tools')
 const toolGroups = [
   {
     label: 'Auto-generate (enter a URL)',
+    labelZh: '自动生成(输入网址)',
     color: '#6366F1',
     icon: 'auto_awesome',
     tools: [
@@ -37,13 +39,16 @@ const toolGroups = [
         name: 'LLMrefs generator',
         url: 'https://llmrefs.com/llms-txt-generator',
         desc: 'Paste a site URL to fetch and generate llms.txt in one click; supports online hosting and auto-updates',
+        descZh: '粘贴网址即可一键抓取并生成 llms.txt;支持在线托管与自动更新',
         badge: 'Recommended',
+        badgeZh: '推荐',
         badgeColor: '#6366F1',
       },
     ],
   },
   {
     label: 'Fill-in generator',
+    labelZh: '填表生成',
     color: '#10B981',
     icon: 'edit_note',
     tools: [
@@ -51,14 +56,18 @@ const toolGroups = [
         name: 'Geordy.ai',
         url: 'https://geordy.ai',
         desc: 'GEO optimization platform with a built-in llms.txt editor; use alongside an AI content strategy',
+        descZh: 'GEO 优化平台,内置 llms.txt 编辑器;配合 AI 内容策略使用',
         badge: '',
+        badgeZh: '',
         badgeColor: '',
       },
       {
         name: 'SiteSpeakAI llms.txt',
         url: 'https://sitespeak.ai/tools/llms-txt-generator',
         desc: 'Online form-based generator; fill in your site info and export in one click',
+        descZh: '在线表单式生成器;填写站点信息即可一键导出',
         badge: '',
+        badgeZh: '',
         badgeColor: '',
       },
     ],
@@ -70,47 +79,67 @@ const templates = [
   {
     id: 'saas',
     label: 'SaaS Product',
+    labelZh: 'SaaS 产品',
     icon: 'cloud',
     color: '#6366F1',
     desc: 'For SaaS platforms and web apps',
+    descZh: '适用于 SaaS 平台与 Web 应用',
     preview:
       '# Product name\n\n> Describe your SaaS product’s core value in one sentence\n\n## Core features\n- [Feature A](https://example.com/features/a): primary feature description\n- [Feature B](https://example.com/features/b): secondary feature description\n\n## Pricing\n- [pricing page](https://example.com/pricing): free vs paid comparison\n\n## Docs\n- [Quick start](https://example.com/docs/start): 5-minute quick start\n- [API reference](https://example.com/docs/api): full API docs\n\n## Optional\n- [Blog](https://example.com/blog): product updates and industry insight',
+    previewZh:
+      '# 产品名称\n\n> 用一句话描述你 SaaS 产品的核心价值\n\n## 核心功能\n- [功能 A](https://example.com/features/a):主要功能说明\n- [功能 B](https://example.com/features/b):次要功能说明\n\n## 定价\n- [定价页](https://example.com/pricing):免费与付费对比\n\n## 文档\n- [快速上手](https://example.com/docs/start):5 分钟快速上手\n- [API 参考](https://example.com/docs/api):完整 API 文档\n\n## 可选\n- [博客](https://example.com/blog):产品更新与行业洞察',
   },
   {
     id: 'ecommerce',
     label: 'E-commerce / Retail',
+    labelZh: '电商 / 零售',
     icon: 'shopping_cart',
     color: '#10B981',
     desc: 'For e-commerce and brand sites',
+    descZh: '适用于电商与品牌站点',
     preview:
       '# Brand name\n\n> brand positioning and core value proposition\n\n## best sellers\n- [Product A](https://example.com/products/a): product key selling point\n- [Product B](https://example.com/products/b): product key selling point\n\n## brand story\n- [about us](https://example.com/about): brand history and philosophy\n\n## service guarantees\n- [after-sales](https://example.com/service): return policy\n- [contact us](https://example.com/contact): customer support\n\n## Optional\n- [new arrivals](https://example.com/new): latest products',
+    previewZh:
+      '# 品牌名称\n\n> 品牌定位与核心价值主张\n\n## 热销商品\n- [商品 A](https://example.com/products/a):商品核心卖点\n- [商品 B](https://example.com/products/b):商品核心卖点\n\n## 品牌故事\n- [关于我们](https://example.com/about):品牌历史与理念\n\n## 服务保障\n- [售后](https://example.com/service):退换货政策\n- [联系我们](https://example.com/contact):客户支持\n\n## 可选\n- [新品](https://example.com/new):最新商品',
   },
   {
     id: 'content',
     label: 'Content / Media',
+    labelZh: '内容 / 媒体',
     icon: 'article',
     color: '#F59E0B',
     desc: 'For blogs, content sites and media',
+    descZh: '适用于博客、内容站与媒体',
     preview:
       '# Site name\n\n> content positioning: focus area, audience, core value\n\n## featured content\n- [Article A](https://example.com/article-a): content summary\n- [Article B](https://example.com/article-b): content summary\n\n## topic categories\n- [Topic 1](https://example.com/topic/1): topic note\n\n## About\n- [about the author](https://example.com/about): author background and expertise\n\n## Optional\n- [Newsletter](https://example.com/newsletter): weekly newsletter',
+    previewZh:
+      '# 站点名称\n\n> 内容定位:聚焦领域、受众、核心价值\n\n## 精选内容\n- [文章 A](https://example.com/article-a):内容摘要\n- [文章 B](https://example.com/article-b):内容摘要\n\n## 主题分类\n- [主题 1](https://example.com/topic/1):主题说明\n\n## 关于\n- [关于作者](https://example.com/about):作者背景与专长\n\n## 可选\n- [订阅](https://example.com/newsletter):每周通讯',
   },
   {
     id: 'enterprise',
     label: 'Company sites',
+    labelZh: '企业官网',
     icon: 'business',
     color: '#0EA5E9',
     desc: 'For B2B companies and organizations',
+    descZh: '适用于 B2B 企业与组织',
     preview:
       '# Company name\n\n> company business description: audience, core capabilities, market position\n\n## core business\n- [Service A](https://example.com/services/a): service description\n- [Service B](https://example.com/services/b): service description\n\n## Solutions\n- [industry solutions](https://example.com/solutions): solutions for specific industries\n\n## about the company\n- [company profile](https://example.com/about): founding date, size, awards\n- [Team](https://example.com/team): core team intro\n\n## Optional\n- [Cases](https://example.com/cases): case studies',
+    previewZh:
+      '# 公司名称\n\n> 公司业务描述:受众、核心能力、市场定位\n\n## 核心业务\n- [服务 A](https://example.com/services/a):服务说明\n- [服务 B](https://example.com/services/b):服务说明\n\n## 解决方案\n- [行业解决方案](https://example.com/solutions):针对特定行业的方案\n\n## 关于公司\n- [公司简介](https://example.com/about):成立时间、规模、荣誉\n- [团队](https://example.com/team):核心团队介绍\n\n## 可选\n- [客户案例](https://example.com/cases):案例研究',
   },
   {
     id: 'tool',
     label: 'Tools / Open Source',
+    labelZh: '工具 / 开源',
     icon: 'build_circle',
     color: '#EC4899',
     desc: 'For developer tools and open-source projects',
+    descZh: '适用于开发者工具与开源项目',
     preview:
       '# Tool name\n\n> one-sentence description of the tool: what problem it solves and who it’s for\n\n## Quick start\n- [install guide](https://example.com/install): 5-step install\n- [basic usage](https://example.com/usage): basic usage example\n\n## Docs\n- [API docs](https://example.com/api): full API reference\n- [config](https://example.com/config): all config options\n\n## Community\n- [GitHub](https://github.com/user/repo): source, Issue, PR\n\n## Optional\n- [changelog](https://example.com/changelog): version history',
+    previewZh:
+      '# 工具名称\n\n> 一句话描述工具:解决什么问题、面向谁\n\n## 快速上手\n- [安装指南](https://example.com/install):5 步安装\n- [基础用法](https://example.com/usage):基础用法示例\n\n## 文档\n- [API 文档](https://example.com/api):完整 API 参考\n- [配置](https://example.com/config):全部配置项\n\n## 社区\n- [GitHub](https://github.com/user/repo):源码、Issue、PR\n\n## 可选\n- [更新日志](https://example.com/changelog):版本历史',
   },
 ]
 
@@ -118,7 +147,7 @@ const templates = [
 const copyingId = ref('')
 async function copyTemplate(tpl: (typeof templates)[0]) {
   copyingId.value = tpl.id
-  await navigator.clipboard.writeText(tpl.preview)
+  await navigator.clipboard.writeText(isZh.value ? tpl.previewZh : tpl.preview)
   setTimeout(() => (copyingId.value = ''), 2000)
 }
 </script>
@@ -188,7 +217,7 @@ async function copyTemplate(tpl: (typeof templates)[0]) {
           <div class="llms-group-icon" :style="{ background: group.color + '18' }">
             <VaIcon :name="group.icon" size="16px" :style="{ color: group.color }" />
           </div>
-          <span class="llms-group-label">{{ group.label }}</span>
+          <span class="llms-group-label">{{ isZh ? group.labelZh : group.label }}</span>
           <span class="llms-group-count">{{ group.tools.length }}</span>
         </div>
         <div class="llms-tool-grid">
@@ -210,10 +239,9 @@ async function copyTemplate(tpl: (typeof templates)[0]) {
                   color: tool.badgeColor,
                   borderColor: tool.badgeColor + '40',
                 }"
-                >{{ tool.badge }}</span
-              >
+                >{{ isZh ? tool.badgeZh : tool.badge }}</span              >
             </div>
-            <p class="llms-tool-desc">{{ tool.desc }}</p>
+            <p class="llms-tool-desc">{{ isZh ? tool.descZh : tool.desc }}</p>
             <div class="llms-tool-footer">
               <span class="llms-tool-link">{{ tool.url.replace(/^https?:\/\//, '').split('/')[0] }}</span>
               <VaIcon name="open_in_new" size="12px" />
@@ -236,11 +264,11 @@ async function copyTemplate(tpl: (typeof templates)[0]) {
               <VaIcon :name="tpl.icon" size="20px" :style="{ color: tpl.color }" />
             </div>
             <div>
-              <h3 class="llms-tpl-name">{{ tpl.label }}</h3>
-              <p class="llms-tpl-desc">{{ tpl.desc }}</p>
+              <h3 class="llms-tpl-name">{{ isZh ? tpl.labelZh : tpl.label }}</h3>
+              <p class="llms-tpl-desc">{{ isZh ? tpl.descZh : tpl.desc }}</p>
             </div>
           </div>
-          <pre class="llms-tpl-preview">{{ tpl.preview }}</pre>
+          <pre class="llms-tpl-preview">{{ isZh ? tpl.previewZh : tpl.preview }}</pre>
           <button
             class="llms-tpl-btn"
             :style="{ background: copyingId === tpl.id ? '#10B981' : tpl.color }"

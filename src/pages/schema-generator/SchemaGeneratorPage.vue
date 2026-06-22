@@ -3,9 +3,21 @@ import { ref, computed } from 'vue'
 import { useRouter } from 'vue-router'
 import { useI18n } from 'vue-i18n'
 import { schemaTypes, schemaTools, getToolsForType, type SchemaType, type SchemaTool } from '../../data/schema-tools'
+import { schemaToolsZh, schemaTypesZh, schemaLabelsZh } from '../../data/schema-tools-zh'
 import { usePageSeo } from '../../composables/usePageSeo'
 
-const { t } = useI18n()
+const { t, locale } = useI18n()
+const isZh = computed(() => locale.value === 'zh')
+
+// 中文 override(缺失回退英文;Schema 类型名/字段属性名/品牌名保留英文)
+const typeDesc = (ty: SchemaType) => (isZh.value ? schemaTypesZh[ty.id]?.description ?? ty.description : ty.description)
+const typeAeoTip = (ty: SchemaType) => (isZh.value ? schemaTypesZh[ty.id]?.aeoTip ?? ty.aeoTip : ty.aeoTip)
+const typeLinkLabel = (ty: SchemaType) =>
+  isZh.value ? schemaTypesZh[ty.id]?.internalLinkLabel ?? ty.internalLinkLabel : ty.internalLinkLabel
+const fieldDesc = (ty: SchemaType, i: number, fallback: string) =>
+  isZh.value ? schemaTypesZh[ty.id]?.fields?.[i] ?? fallback : fallback
+const toolDesc = (tl: SchemaTool) => (isZh.value ? schemaToolsZh[tl.id] ?? tl.description : tl.description)
+const labelZh = (s?: string) => (s && isZh.value ? schemaLabelsZh[s] ?? s : s)
 
 usePageSeo({
   title: t('schemaGeneratorPage.seoTitle'),
@@ -164,7 +176,7 @@ function getLevelColor(level: SchemaTool['level']): string {
                   <h2 class="schema-detail-name">{{ activeType.name }} {{ t('schemaGeneratorPage.schemaSuffix') }}</h2>
                   <span class="schema-detail-stars">{{ renderStars(activeType.stars) }}</span>
                 </div>
-                <p class="schema-detail-desc">{{ activeType.description }}</p>
+                <p class="schema-detail-desc">{{ typeDesc(activeType) }}</p>
               </div>
             </div>
           </div>
@@ -175,14 +187,14 @@ function getLevelColor(level: SchemaTool['level']): string {
               <VaIcon name="auto_awesome" size="15px" color="#10B981" />
               <strong>{{ t('schemaGeneratorPage.aeoTipTitle') }}</strong>
             </div>
-            <p>{{ activeType.aeoTip }}</p>
+            <p>{{ typeAeoTip(activeType) }}</p>
             <button
               v-if="activeType.internalLink"
               class="schema-aeo-link"
               @click="router.push(activeType.internalLink!)"
             >
               <VaIcon name="open_in_new" size="12px" />
-              {{ activeType.internalLinkLabel }}
+              {{ typeLinkLabel(activeType) }}
             </button>
           </div>
 
@@ -193,9 +205,9 @@ function getLevelColor(level: SchemaTool['level']): string {
               {{ t('schemaGeneratorPage.requiredFields') }}
             </div>
             <div class="schema-fields-list">
-              <div v-for="field in activeType.requiredFields" :key="field.name" class="schema-field-item">
+              <div v-for="(field, fi) in activeType.requiredFields" :key="field.name" class="schema-field-item">
                 <code class="schema-field-name">{{ field.name }}</code>
-                <span class="schema-field-desc">{{ field.desc }}</span>
+                <span class="schema-field-desc">{{ fieldDesc(activeType, fi, field.desc) }}</span>
               </div>
             </div>
           </div>
@@ -237,7 +249,7 @@ function getLevelColor(level: SchemaTool['level']): string {
                       color: tool.isOfficial ? '#059669' : '#d97706',
                     }"
                   >
-                    {{ tool.badge }}
+                    {{ labelZh(tool.badge) }}
                   </span>
                 </div>
                 <span
@@ -251,16 +263,16 @@ function getLevelColor(level: SchemaTool['level']): string {
                   {{ getLevelLabel(tool.level) }}
                 </span>
               </div>
-              <p class="schema-tool-desc">{{ tool.description }}</p>
+              <p class="schema-tool-desc">{{ toolDesc(tool) }}</p>
               <div class="schema-tool-highlights">
                 <span v-for="h in tool.highlights" :key="h" class="schema-highlight-tag">
-                  <VaIcon name="check" size="10px" />{{ h }}
+                  <VaIcon name="check" size="10px" />{{ labelZh(h) }}
                 </span>
               </div>
               <div class="schema-tool-footer">
                 <div class="schema-price-tag">
                   <VaIcon name="sell" size="11px" />
-                  {{ tool.isFree ? t('schemaGeneratorPage.priceFree') : tool.pricing || t('schemaGeneratorPage.pricePaid') }}
+                  {{ tool.isFree ? t('schemaGeneratorPage.priceFree') : labelZh(tool.pricing) || t('schemaGeneratorPage.pricePaid') }}
                 </div>
                 <div class="schema-visit-btn">
                   <VaIcon name="open_in_new" size="11px" />
@@ -304,13 +316,13 @@ function getLevelColor(level: SchemaTool['level']): string {
               >
                 <div class="schema-sidebar-tool-top">
                   <span class="schema-sidebar-tool-name">{{ tool.name }}</span>
-                  <span v-if="tool.badge" class="schema-sidebar-badge">{{ tool.badge }}</span>
+                  <span v-if="tool.badge" class="schema-sidebar-badge">{{ labelZh(tool.badge) }}</span>
                 </div>
                 <div class="schema-sidebar-tool-meta">
                   <span class="schema-level-tag-sm" :style="{ color: getLevelColor(tool.level) }">{{
                     getLevelLabel(tool.level)
                   }}</span>
-                  <span class="schema-sidebar-free">{{ tool.isFree ? t('schemaGeneratorPage.priceFree') : tool.pricing }}</span>
+                  <span class="schema-sidebar-free">{{ tool.isFree ? t('schemaGeneratorPage.priceFree') : labelZh(tool.pricing) }}</span>
                 </div>
                 <div class="schema-sidebar-tool-visit">
                   <VaIcon name="open_in_new" size="10px" />
@@ -333,13 +345,13 @@ function getLevelColor(level: SchemaTool['level']): string {
               <div v-for="tool in autoTools" :key="tool.id" class="schema-sidebar-tool" @click="openTool(tool.url)">
                 <div class="schema-sidebar-tool-top">
                   <span class="schema-sidebar-tool-name">{{ tool.name }}</span>
-                  <span v-if="tool.badge" class="schema-sidebar-badge schema-sidebar-badge-auto">{{ tool.badge }}</span>
+                  <span v-if="tool.badge" class="schema-sidebar-badge schema-sidebar-badge-auto">{{ labelZh(tool.badge) }}</span>
                 </div>
                 <div class="schema-sidebar-tool-meta">
                   <span class="schema-level-tag-sm" :style="{ color: getLevelColor(tool.level) }">{{
                     getLevelLabel(tool.level)
                   }}</span>
-                  <span class="schema-sidebar-free">{{ tool.hasFreeplan ? t('schemaGeneratorPage.hasFreeTier') : tool.pricing }}</span>
+                  <span class="schema-sidebar-free">{{ tool.hasFreeplan ? t('schemaGeneratorPage.hasFreeTier') : labelZh(tool.pricing) }}</span>
                 </div>
                 <div class="schema-sidebar-tool-visit">
                   <VaIcon name="open_in_new" size="10px" />
