@@ -2,6 +2,7 @@ name: WeChat → SEO content pipeline (nightly)
 
 # 每晚自动：采集 SEO/营销公众号原文 → DeepSeek 聚类 → 合成英文原创(含对 wseo_articles 判重)
 # → 质量闸门 + AI 评分发布(过线写入 Supabase wseo_articles，不过线留草稿不入库)
+# → 补译(DeepSeek 把缺中文正文的文章译为简体中文，回写 *_zh，新文当晚自动双语)
 # → 触发 Vercel 重新构建（prerender-static 拉库重渲染详情页 + 自动重生成 sitemap.xml）。
 #
 # 内容存 Supabase（不在 git），故本流水线**不 commit**；新文在 SPA 立即可见，
@@ -42,6 +43,10 @@ on:
         description: 'AI 评分发布阈值'
         required: true
         default: '80'
+      max_translate:
+        description: '本次最多补译几篇缺中文的文章（防首轮积压一次灌爆）'
+        required: true
+        default: '12'
 
 concurrency:
   group: wechat-seo-nightly
@@ -89,6 +94,7 @@ jobs:
           MAX_PUBLISH: ${{ github.event.inputs.max_publish || '3' }}
           MAX_PAGES: ${{ github.event.inputs.max_pages || '1' }}
           THRESHOLD: ${{ github.event.inputs.threshold || '80' }}
+          MAX_TRANSLATE: ${{ github.event.inputs.max_translate || '12' }}
         run: |
           set -euo pipefail
           # 必填密钥自检
@@ -107,6 +113,11 @@ jobs:
 
           echo "==> 4) 发布（质量闸门 + AI 评分阈值 $THRESHOLD + 单次上限 $MAX_PUBLISH；过线写 wseo_articles）"
           node scripts/wechat/4-publish.mjs --threshold "$THRESHOLD" --max-publish "$MAX_PUBLISH"
+
+          echo "==> 5) 补译（DeepSeek 把缺中文正文的文章译为简体中文，回写 *_zh；幂等，单次上限 $MAX_TRANSLATE）"
+          # 放在部署前：本轮新发英文文章当晚补出中文，随同一次 Vercel 构建预渲染 /zh 详情页。
+          # 幂等（只挑 content_zh 为空的行），部分失败不阻断；空跑成本可忽略。
+          node scripts/wechat/5-translate.mjs --limit "$MAX_TRANSLATE"
 
       # 触发 Vercel 生产构建：build:ci 会 prerender-static 拉库重渲染 + 重生成 sitemap，
       # 让新文章进入预渲染快照与 sitemap（SEO 收录）。每天一次，空跑成本可忽略。
