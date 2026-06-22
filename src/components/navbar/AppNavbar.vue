@@ -11,7 +11,7 @@
             @click="isSidebarMinimized = !isSidebarMinimized"
           />
         </Transition>
-        <RouterLink to="/" aria-label="Visit home page">
+        <RouterLink :to="localePath('/')" aria-label="Visit home page">
           <VuesticLogo />
         </RouterLink>
       </div>
@@ -27,6 +27,7 @@ import { storeToRefs } from 'pinia'
 import { useGlobalStore } from '../../stores/global-store'
 import AppNavbarActions from './components/AppNavbarActions.vue'
 import VuesticLogo from '../VuesticLogo.vue'
+import { localePath } from '../../i18n/useLocale'
 
 defineProps({
   isMobile: { type: Boolean, default: false },
