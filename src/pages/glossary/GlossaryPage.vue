@@ -3,8 +3,18 @@ import { ref, computed, nextTick } from 'vue'
 import { useRouter } from 'vue-router'
 import { useI18n } from 'vue-i18n'
 import { usePageSeo } from '../../composables/usePageSeo'
+import { glossaryTermsZh, glossaryCategoriesZh } from '../../data/glossary-zh'
 
-const { t } = useI18n()
+const { t, locale } = useI18n()
+const isZh = computed(() => locale.value === 'zh')
+
+// 中文 override(缺失回退英文;术语英文名/缩写保留原文)
+const catName = (c: { id: string; name: string }) => (isZh.value ? glossaryCategoriesZh[c.id] ?? c.name : c.name)
+const termDef = (tm: { id: string; definition: string }) =>
+  isZh.value ? glossaryTermsZh[tm.id]?.definition ?? tm.definition : tm.definition
+const termUsage = (tm: { id: string; usage: string }) =>
+  isZh.value ? glossaryTermsZh[tm.id]?.usage ?? tm.usage : tm.usage
+const catNameById = (id: string) => (isZh.value ? glossaryCategoriesZh[id] ?? id : getCategoryById(id)?.name ?? id)
 
 usePageSeo({
   title: t('glossaryPage.seoTitle'),
@@ -178,7 +188,7 @@ const hasFilter = computed(() => searchQuery.value || activeCategory.value !== '
         <div class="glossary-stats">
           <div v-for="cat in glossaryCategories" :key="cat.id" class="glossary-stat">
             <span class="glossary-stat-num" :style="{ color: cat.color }">{{ categoryCount(cat.id) }}</span>
-            <span class="glossary-stat-label">{{ cat.name }}</span>
+            <span class="glossary-stat-label">{{ catName(cat) }}</span>
           </div>
         </div>
       </div>
@@ -207,7 +217,7 @@ const hasFilter = computed(() => searchQuery.value || activeCategory.value !== '
             @click="selectCategory(cat.id)"
           >
             <VaIcon :name="cat.icon" size="14px" :style="{ color: activeCategory === cat.id ? cat.color : '' }" />
-            <span>{{ cat.name }}</span>
+            <span>{{ catName(cat) }}</span>
             <span class="glossary-cat-count">{{ categoryCount(cat.id) }}</span>
           </button>
 
@@ -300,7 +310,7 @@ const hasFilter = computed(() => searchQuery.value || activeCategory.value !== '
                         borderColor: (getCategoryById(term.category)?.color || '#6366F1') + '28',
                       }"
                     >
-                      {{ getCategoryById(term.category)?.name }}
+                      {{ catNameById(term.category) }}
                     </span>
                   </div>
                 </div>
@@ -313,12 +323,12 @@ const hasFilter = computed(() => searchQuery.value || activeCategory.value !== '
               </div>
 
               <!-- 定义 -->
-              <p class="glossary-term-def">{{ term.definition }}</p>
+              <p class="glossary-term-def">{{ termDef(term) }}</p>
 
               <!-- 使用场景 -->
               <div class="glossary-term-usage">
                 <VaIcon name="lightbulb" size="12px" color="warning" />
-                <span>{{ term.usage }}</span>
+                <span>{{ termUsage(term) }}</span>
               </div>
 
               <!-- 相关术语 -->
