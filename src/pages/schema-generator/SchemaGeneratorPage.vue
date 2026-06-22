@@ -319,6 +319,7 @@ function getLevelColor(level: SchemaTool['level']): string {
                   <span class="schema-sidebar-tool-name">{{ tool.name }}</span>
                   <span v-if="tool.badge" class="schema-sidebar-badge">{{ labelZh(tool.badge) }}</span>
                 </div>
+                <p class="schema-sidebar-tool-desc">{{ toolDesc(tool) }}</p>
                 <div class="schema-sidebar-tool-meta">
                   <span class="schema-level-tag-sm" :style="{ color: getLevelColor(tool.level) }">{{
                     getLevelLabel(tool.level)
@@ -348,6 +349,7 @@ function getLevelColor(level: SchemaTool['level']): string {
                   <span class="schema-sidebar-tool-name">{{ tool.name }}</span>
                   <span v-if="tool.badge" class="schema-sidebar-badge schema-sidebar-badge-auto">{{ labelZh(tool.badge) }}</span>
                 </div>
+                <p class="schema-sidebar-tool-desc">{{ toolDesc(tool) }}</p>
                 <div class="schema-sidebar-tool-meta">
                   <span class="schema-level-tag-sm" :style="{ color: getLevelColor(tool.level) }">{{
                     getLevelLabel(tool.level)
@@ -1058,6 +1060,17 @@ function getLevelColor(level: SchemaTool['level']): string {
   align-items: center;
   justify-content: space-between;
   margin-bottom: 5px;
+}
+
+.schema-sidebar-tool-desc {
+  margin: 4px 0 6px;
+  font-size: 11.5px;
+  line-height: 1.5;
+  color: var(--va-text-secondary);
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
 }
 
 .schema-level-tag-sm {
