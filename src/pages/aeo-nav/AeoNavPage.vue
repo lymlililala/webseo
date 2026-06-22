@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { ref, computed, onMounted, onUnmounted, watch } from 'vue'
-import { useRoute, useRouter } from 'vue-router'
+import { useRoute, useRouter, RouterLink } from 'vue-router'
 import { useI18n } from 'vue-i18n'
 import { aeoCategories, allAeoTools, featuredAeoTools, type AeoTool, type AeoCategory } from '../../data/aeo-tools'
 import { aeoCategoriesZh, aeoToolsZh } from '../../data/aeo-tools-zh'
@@ -156,6 +156,8 @@ watch(
 // 「查看全部」切到该分类展开完整列表。搜索/筛选时不限制。
 const PREVIEW_PER_CATEGORY = 3
 const isBrowseAll = computed(() => activeCategory.value === 'all' && !searchQuery.value.trim())
+// 纯浏览态:展示分类作用导览而非罗列工具
+const showCategoryOverview = computed(() => isBrowseAll.value && !showOpenSourceOnly.value && !showFreeOnly.value)
 function visibleTools(group: { tools: AeoTool[] }) {
   return isBrowseAll.value ? group.tools.slice(0, PREVIEW_PER_CATEGORY) : group.tools
 }
@@ -332,8 +334,8 @@ const activeSidebarItem = computed(() => (activeCategory.value === 'all' ? scrol
 
       <!-- Main Content -->
       <main class="aeo-main-content">
-        <!-- Featured (only all + no search) -->
-        <div v-if="activeCategory === 'all' && !searchQuery" class="aeo-section">
+        <!-- Featured (only when filtering, not in the plain browse overview) -->
+        <div v-if="activeCategory === 'all' && !searchQuery && !showCategoryOverview" class="aeo-section">
           <div class="aeo-section-header">
             <VaIcon name="star" color="warning" size="17px" />
             <h2 class="aeo-section-title">{{ t('aeoNavPage.featuredTitle') }}</h2>
@@ -399,8 +401,42 @@ const activeSidebarItem = computed(() => (activeCategory.value === 'all' ? scrol
           </div>
         </div>
 
-        <!-- Result bar -->
-        <div class="aeo-result-bar">
+        <!-- 分类作用导览(纯浏览态) -->
+        <div v-if="showCategoryOverview" class="aeo-overview">
+          <div class="aeo-section-header">
+            <VaIcon name="dashboard" color="primary" size="17px" />
+            <h2 class="aeo-section-title">{{ isZh ? '按方向浏览' : 'Browse by focus area' }}</h2>
+          </div>
+          <p class="aeo-overview-sub">
+            {{
+              isZh
+                ? '下面是 AEO 优化的各个方向,选一个深入即可看到该方向下的精选工具。'
+                : 'Each card is a focus area of AEO. Pick one to see the curated tools inside.'
+            }}
+          </p>
+          <div class="aeo-overview-grid">
+            <RouterLink
+              v-for="cat in aeoCategories"
+              :key="cat.id"
+              :to="localePath(`${AEO_BASE}/${cat.id}`)"
+              class="aeo-ov-card"
+            >
+              <div class="aeo-ov-icon" :style="{ background: cat.color + '18', color: cat.color }">
+                <VaIcon :name="cat.icon" size="22px" />
+              </div>
+              <div class="aeo-ov-body">
+                <h3 class="aeo-ov-name">{{ catName(cat) }}</h3>
+                <p class="aeo-ov-desc">{{ catDesc(cat) }}</p>
+                <span class="aeo-ov-count">{{ cat.tools.length }} {{ t('aeoNavPage.toolsUnit') }}</span>
+              </div>
+              <VaIcon name="arrow_forward" size="16px" class="aeo-ov-arrow" />
+            </RouterLink>
+          </div>
+        </div>
+
+        <template v-if="!showCategoryOverview">
+          <!-- Result bar -->
+          <div class="aeo-result-bar">
           <span class="aeo-result-count">
             <VaIcon name="format_list_bulleted" size="13px" />
             <span v-html="t('aeoNavPage.resultCount', { n: filteredTools.length })"></span>
@@ -534,6 +570,7 @@ const activeSidebarItem = computed(() => (activeCategory.value === 'all' ? scrol
             <VaIcon name="arrow_forward" size="15px" />
           </button>
         </div>
+        </template>
 
         <!-- Tips Section -->
         <div class="aeo-tips-section">
@@ -1103,6 +1140,94 @@ const activeSidebarItem = computed(() => (activeCategory.value === 'all' ? scrol
   opacity: 0.5;
   flex-shrink: 0;
   margin-top: 2px;
+}
+
+/* ── 分类作用导览 ─────────────────────────── */
+.aeo-overview-sub {
+  margin: 4px 0 14px;
+  font-size: 0.86rem;
+  color: var(--va-text-secondary);
+}
+
+.aeo-overview-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 12px;
+}
+
+.aeo-ov-card {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 16px;
+  border-radius: 14px;
+  background: var(--va-background-secondary);
+  border: 1px solid transparent;
+  text-decoration: none;
+  color: inherit;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.05);
+  transition:
+    transform 0.15s ease,
+    box-shadow 0.15s ease,
+    border-color 0.15s ease;
+}
+
+.aeo-ov-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+  border-color: rgba(236, 72, 153, 0.3);
+}
+
+.aeo-ov-card:hover .aeo-ov-arrow {
+  transform: translateX(3px);
+  opacity: 1;
+}
+
+.aeo-ov-icon {
+  flex-shrink: 0;
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.aeo-ov-body {
+  flex: 1;
+  min-width: 0;
+}
+
+.aeo-ov-name {
+  font-size: 1.02rem;
+  font-weight: 700;
+  margin: 0 0 4px;
+}
+
+.aeo-ov-desc {
+  margin: 0 0 8px;
+  font-size: 0.86rem;
+  line-height: 1.5;
+  color: var(--va-text-secondary);
+}
+
+.aeo-ov-count {
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--va-primary);
+  background: rgba(236, 72, 153, 0.1);
+  padding: 2px 8px;
+  border-radius: 999px;
+}
+
+.aeo-ov-arrow {
+  flex-shrink: 0;
+  align-self: center;
+  color: var(--va-primary);
+  opacity: 0.5;
+  transition:
+    transform 0.15s ease,
+    opacity 0.15s ease;
 }
 
 /* ── Result bar ──────────────────────────── */

@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { ref, computed, onMounted, onUnmounted, watch } from 'vue'
-import { useRoute, useRouter } from 'vue-router'
+import { useRoute, useRouter, RouterLink } from 'vue-router'
 import { useI18n } from 'vue-i18n'
 import { seoCategories, allTools, featuredTools, type SeoTool, type SeoCategory } from '../../data/seo-tools'
 import { seoCategoriesZh, seoToolsZh } from '../../data/seo-tools-zh'
@@ -144,6 +144,8 @@ watch(
 // 点击「查看全部」切到该分类即展开完整列表。搜索/筛选时不限制,确保能看到全部匹配结果。
 const PREVIEW_PER_CATEGORY = 3
 const isBrowseAll = computed(() => activeCategory.value === 'all' && !searchQuery.value.trim())
+// 纯浏览态(全部工具+无搜索+无筛选):展示分类作用导览,而非罗列工具
+const showCategoryOverview = computed(() => isBrowseAll.value && !showFreeOnly.value && !showAiOnly.value)
 function visibleTools(group: { tools: SeoTool[] }) {
   return isBrowseAll.value ? group.tools.slice(0, PREVIEW_PER_CATEGORY) : group.tools
 }
@@ -292,8 +294,8 @@ const activeSidebarItem = computed(() => (activeCategory.value === 'all' ? scrol
 
       <!-- Main Content -->
       <main class="main-content">
-        <!-- Featured Tools (only when showing all and no search) -->
-        <div v-if="activeCategory === 'all' && !searchQuery" class="section featured-section">
+        <!-- Featured Tools (only when filtering, not in the plain browse overview) -->
+        <div v-if="activeCategory === 'all' && !searchQuery && !showCategoryOverview" class="section featured-section">
           <div class="section-header">
             <div class="section-title-group">
               <VaIcon name="star" color="warning" size="20px" />
@@ -345,8 +347,43 @@ const activeSidebarItem = computed(() => (activeCategory.value === 'all' ? scrol
           </div>
         </div>
 
+        <!-- 分类作用导览(纯浏览态):介绍每个子功能,点击进入看具体工具 -->
+        <div v-if="showCategoryOverview" class="cat-overview">
+          <div class="section-header">
+            <div class="section-title-group">
+              <VaIcon name="dashboard" color="primary" size="20px" />
+              <h2 class="section-title">{{ isZh ? '按方向浏览' : 'Browse by focus area' }}</h2>
+            </div>
+            <p class="section-desc">
+              {{
+                isZh
+                  ? '下面是 SEO 优化的各个方向,选一个深入即可看到该方向下的精选工具。'
+                  : 'Each card is a focus area of SEO. Pick one to see the curated tools inside.'
+              }}
+            </p>
+          </div>
+          <div class="cat-overview-grid">
+            <RouterLink
+              v-for="cat in seoCategories"
+              :key="cat.id"
+              :to="localePath(`${SEO_BASE}/${cat.id}`)"
+              class="cat-ov-card"
+            >
+              <div class="cat-ov-icon" :style="{ background: cat.color + '18', color: cat.color }">
+                <VaIcon :name="cat.icon" size="22px" />
+              </div>
+              <div class="cat-ov-body">
+                <h3 class="cat-ov-name">{{ catName(cat) }}</h3>
+                <p class="cat-ov-desc">{{ catDesc(cat) }}</p>
+                <span class="cat-ov-count">{{ cat.tools.length }} {{ t('seoNavPage.toolsUnit') }}</span>
+              </div>
+              <VaIcon name="arrow_forward" size="16px" class="cat-ov-arrow" />
+            </RouterLink>
+          </div>
+        </div>
+
         <!-- Result count bar -->
-        <div class="result-bar">
+        <div v-if="!showCategoryOverview" class="result-bar">
           <span class="result-count">
             <VaIcon name="format_list_bulleted" size="15px" />
             <strong>{{ filteredTools.length }}</strong> {{ t('seoNavPage.toolsFound') }}
@@ -358,7 +395,7 @@ const activeSidebarItem = computed(() => (activeCategory.value === 'all' ? scrol
         </div>
 
         <!-- Tools by Category -->
-        <div class="tools-section">
+        <div v-if="!showCategoryOverview" class="tools-section">
           <div v-if="filteredTools.length === 0" class="empty-state">
             <VaIcon name="search_off" size="56px" color="secondary" />
             <p class="empty-text">{{ t('seoNavPage.empty') }}</p>
@@ -939,6 +976,93 @@ const activeSidebarItem = computed(() => (activeCategory.value === 'all' ? scrol
 
 .featured-card:hover .featured-card-arrow {
   opacity: 0.85;
+}
+
+/* ── 分类作用导览 ─────────────────────────── */
+.cat-overview {
+  margin-bottom: 8px;
+}
+
+.cat-overview-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 12px;
+  margin-top: 14px;
+}
+
+.cat-ov-card {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 16px;
+  border-radius: 14px;
+  background: var(--va-background-secondary);
+  border: 1px solid transparent;
+  text-decoration: none;
+  color: inherit;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.05);
+  transition:
+    transform 0.15s ease,
+    box-shadow 0.15s ease,
+    border-color 0.15s ease;
+}
+
+.cat-ov-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+  border-color: rgba(99, 102, 241, 0.3);
+
+  .cat-ov-arrow {
+    transform: translateX(3px);
+    opacity: 1;
+  }
+}
+
+.cat-ov-icon {
+  flex-shrink: 0;
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.cat-ov-body {
+  flex: 1;
+  min-width: 0;
+}
+
+.cat-ov-name {
+  font-size: 1.02rem;
+  font-weight: 700;
+  margin: 0 0 4px;
+}
+
+.cat-ov-desc {
+  margin: 0 0 8px;
+  font-size: 0.86rem;
+  line-height: 1.5;
+  color: var(--va-text-secondary);
+}
+
+.cat-ov-count {
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--va-primary);
+  background: rgba(99, 102, 241, 0.1);
+  padding: 2px 8px;
+  border-radius: 999px;
+}
+
+.cat-ov-arrow {
+  flex-shrink: 0;
+  align-self: center;
+  color: var(--va-primary);
+  opacity: 0.5;
+  transition:
+    transform 0.15s ease,
+    opacity 0.15s ease;
 }
 
 /* ── Result bar ───────────────────────────── */
