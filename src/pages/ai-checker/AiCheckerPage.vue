@@ -1,5 +1,6 @@
 <script setup lang="ts">
-import { ref, computed, onMounted, onUnmounted } from 'vue'
+import { ref, computed, onMounted, onUnmounted, watch } from 'vue'
+import { useRoute, useRouter, RouterLink } from 'vue-router'
 import { useI18n } from 'vue-i18n'
 import {
   aiCheckerCategories,
@@ -8,33 +9,65 @@ import {
   type AiCheckerTool,
   type AiCheckerCategory,
 } from '../../data/ai-checker-tools'
+import { aiCheckerCategoriesZh, aiCheckerToolsZh } from '../../data/ai-checker-tools-zh'
+import { toolTagsZh } from '../../data/tool-tags-zh'
+import { highlightsZh, pricingZh } from '../../data/tool-extras-zh'
 import { usePageSeo } from '../../composables/usePageSeo'
+import { localePath } from '../../i18n/useLocale'
 import ToolFavicon from '../../components/ToolFavicon.vue'
 
-const { t } = useI18n()
+const { t, locale } = useI18n()
+const route = useRoute()
+const router = useRouter()
+const isZh = computed(() => locale.value === 'zh')
 
-usePageSeo({
-  title: t('aiCheckerPage.seoTitle'),
-  description: t('aiCheckerPage.seoDescription'),
-  path: '/ai-checker',
-  keywords: t('aiCheckerPage.seoKeywords'),
-  jsonLd: [
-    {
-      '@context': 'https://schema.org',
-      '@type': 'SoftwareApplication',
-      name: 'AI Visibility Checker',
-      description: 'Check how your content is cited and how visible it is across major AI models',
-      url: 'https://sgaindex.com/ai-checker',
-      applicationCategory: 'BusinessApplication',
-      operatingSystem: 'Web',
-    },
-  ],
-})
+const catName = (c: { id: string; name: string }) =>
+  isZh.value ? aiCheckerCategoriesZh[c.id]?.name ?? c.name : c.name
+const catDesc = (c: { id: string; description: string }) =>
+  isZh.value ? aiCheckerCategoriesZh[c.id]?.description ?? c.description : c.description
+const toolDesc = (tl: { id: string; description: string }) =>
+  isZh.value ? aiCheckerToolsZh[tl.id] ?? tl.description : tl.description
+const tagLabel = (tag: string) => (isZh.value ? toolTagsZh[tag] ?? tag : tag)
+const hlLabel = (h: string) => (isZh.value ? highlightsZh[h] ?? h : h)
+const priceLabel = (p?: string) => (p && isZh.value ? pricingZh[p] ?? p : p)
+
+const CHECKER_BASE = '/ai-checker'
+const catIds = new Set(aiCheckerCategories.map((c) => c.id))
+const validCat = (c: unknown) => (typeof c === 'string' && catIds.has(c) ? c : 'all')
 
 const searchQuery = ref('')
-const activeCategory = ref('all')
+const activeCategory = ref<string>(validCat(route.params.category))
 const activeRegion = ref<'all' | 'cn' | 'global'>('all')
 const showFreeOnly = ref(false)
+
+// 分类专属 SEO:自指 canonical + 唯一 title/description
+const activeCatObj = computed(() => aiCheckerCategories.find((c) => c.id === activeCategory.value))
+usePageSeo(
+  computed(() => {
+    const cat = activeCatObj.value
+    const path = cat ? `${CHECKER_BASE}/${cat.id}` : CHECKER_BASE
+    return {
+      title: cat
+        ? isZh.value
+          ? `${catName(cat)} — AI 可见度体检 | SGAIndex`
+          : `${catName(cat)} — AI Visibility Checker | SGAIndex`
+        : t('aiCheckerPage.seoTitle'),
+      description: cat ? catDesc(cat) : t('aiCheckerPage.seoDescription'),
+      path,
+      keywords: t('aiCheckerPage.seoKeywords'),
+      jsonLd: [
+        {
+          '@context': 'https://schema.org',
+          '@type': 'CollectionPage',
+          name: cat ? catName(cat) : 'AI Visibility Checker',
+          description: cat ? catDesc(cat) : 'Check how your content is cited and how visible it is across major AI models',
+          url: `https://sgaindex.com${path}`,
+          isPartOf: { '@type': 'WebSite', name: 'SGAIndex', url: 'https://sgaindex.com' },
+        },
+      ],
+    }
+  }),
+)
 
 const filteredTools = computed(() => {
   let tools: AiCheckerTool[] = []
@@ -87,10 +120,32 @@ function getToolCategory(tool: AiCheckerTool): AiCheckerCategory | undefined {
 }
 
 function selectCategory(catId: string) {
-  activeCategory.value = catId
+  const target = localePath(catId === 'all' ? CHECKER_BASE : `${CHECKER_BASE}/${catId}`)
+  if (route.path !== target) router.push(target)
+  else scrollContentTop()
+}
+
+function scrollContentTop() {
   const el = document.querySelector('.checker-main-content')
   if (el) el.scrollTo({ top: 0, behavior: 'smooth' })
 }
+
+watch(
+  () => route.params.category,
+  (c) => {
+    activeCategory.value = validCat(c)
+    scrollContentTop()
+  },
+)
+
+// 纯浏览态:展示分类作用导览而非罗列工具
+const showCategoryOverview = computed(
+  () =>
+    activeCategory.value === 'all' &&
+    !searchQuery.value.trim() &&
+    activeRegion.value === 'all' &&
+    !showFreeOnly.value,
+)
 
 function clearFilters() {
   searchQuery.value = ''
@@ -271,7 +326,7 @@ const activeSidebarItem = computed(() => (activeCategory.value === 'all' ? scrol
               class="checker-sidebar-icon"
               :style="{ color: activeCategory === cat.id ? cat.color : '' }"
             />
-            <span class="checker-sidebar-name">{{ cat.name }}</span>
+            <span class="checker-sidebar-name">{{ catName(cat) }}</span>
             <span class="checker-sidebar-count">{{ cat.tools.length }}</span>
           </button>
         </div>
@@ -279,8 +334,11 @@ const activeSidebarItem = computed(() => (activeCategory.value === 'all' ? scrol
 
       <!-- Main -->
       <main class="checker-main-content">
-        <!-- ── 精选推荐 ─── -->
-        <div v-if="activeCategory === 'all' && !searchQuery && activeRegion === 'all'" class="checker-section">
+        <!-- ── 精选推荐(筛选态显示,纯浏览态让位于分类导览) ─── -->
+        <div
+          v-if="activeCategory === 'all' && !searchQuery && activeRegion === 'all' && !showCategoryOverview"
+          class="checker-section"
+        >
           <div class="checker-section-header">
             <VaIcon name="star" color="warning" size="17px" />
             <h2 class="checker-section-title">{{ t('aiCheckerPage.featuredTitle') }}</h2>
@@ -328,13 +386,13 @@ const activeSidebarItem = computed(() => (activeCategory.value === 'all' ? scrol
                 <ul v-if="tool.highlights?.length" class="checker-featured-highlights">
                   <li v-for="h in tool.highlights" :key="h">
                     <VaIcon name="check_circle" size="12px" color="success" />
-                    <span>{{ h }}</span>
+                    <span>{{ hlLabel(h) }}</span>
                   </li>
                 </ul>
-                <p class="checker-featured-desc">{{ tool.description }}</p>
+                <p class="checker-featured-desc">{{ toolDesc(tool) }}</p>
                 <div v-if="tool.pricing" class="checker-pricing-tag">
                   <VaIcon name="sell" size="12px" />
-                  {{ tool.pricing }}
+                  {{ priceLabel(tool.pricing) }}
                 </div>
               </div>
               <VaIcon name="open_in_new" size="14px" class="checker-featured-arrow" />
@@ -343,7 +401,41 @@ const activeSidebarItem = computed(() => (activeCategory.value === 'all' ? scrol
         </div>
 
         <!-- ── 结果栏 ─── -->
-        <div class="checker-result-bar">
+        <!-- 分类作用导览(纯浏览态) -->
+        <div v-if="showCategoryOverview" class="checker-overview">
+          <div class="checker-section-header">
+            <VaIcon name="dashboard" color="primary" size="17px" />
+            <h2 class="checker-section-title">{{ isZh ? '按方向浏览' : 'Browse by focus area' }}</h2>
+          </div>
+          <p class="checker-overview-sub">
+            {{
+              isZh
+                ? '下面是 AI 可见度体检的几类工具,选一类深入即可看到该方向下的工具。'
+                : 'Each card is a category of AI-visibility tools. Pick one to see the tools inside.'
+            }}
+          </p>
+          <div class="checker-overview-grid">
+            <RouterLink
+              v-for="cat in aiCheckerCategories"
+              :key="cat.id"
+              :to="localePath(`${CHECKER_BASE}/${cat.id}`)"
+              class="checker-ov-card"
+            >
+              <div class="checker-ov-icon" :style="{ background: cat.color + '18', color: cat.color }">
+                <VaIcon :name="cat.icon" size="22px" />
+              </div>
+              <div class="checker-ov-body">
+                <h3 class="checker-ov-name">{{ catName(cat) }}</h3>
+                <p class="checker-ov-desc">{{ catDesc(cat) }}</p>
+                <span class="checker-ov-count">{{ cat.tools.length }} {{ t('aiCheckerPage.toolsUnit') }}</span>
+              </div>
+              <VaIcon name="arrow_forward" size="16px" class="checker-ov-arrow" />
+            </RouterLink>
+          </div>
+        </div>
+
+        <template v-if="!showCategoryOverview">
+          <div class="checker-result-bar">
           <span class="checker-result-count">
             <VaIcon name="format_list_bulleted" size="13px" />
             <span v-html="t('aiCheckerPage.resultCount', { n: filteredTools.length })"></span>
@@ -379,10 +471,10 @@ const activeSidebarItem = computed(() => (activeCategory.value === 'all' ? scrol
               </div>
               <div>
                 <div class="checker-cat-name-row">
-                  <h2 class="checker-cat-name">{{ group.name }}</h2>
+                  <h2 class="checker-cat-name">{{ catName(group) }}</h2>
                   <span v-if="group.badge" class="checker-cat-badge">{{ group.badge }}</span>
                 </div>
-                <p class="checker-cat-desc">{{ group.description }}</p>
+                <p class="checker-cat-desc">{{ catDesc(group) }}</p>
               </div>
             </div>
             <span class="checker-cat-count" :style="{ background: group.color + '18', color: group.color }">
@@ -427,18 +519,18 @@ const activeSidebarItem = computed(() => (activeCategory.value === 'all' ? scrol
               <ul v-if="tool.highlights?.length" class="checker-tool-highlights">
                 <li v-for="h in tool.highlights.slice(0, 3)" :key="h">
                   <VaIcon name="check" size="11px" />
-                  <span>{{ h }}</span>
+                  <span>{{ hlLabel(h) }}</span>
                 </li>
               </ul>
 
-              <p class="checker-tool-desc">{{ tool.description }}</p>
+              <p class="checker-tool-desc">{{ toolDesc(tool) }}</p>
 
               <div class="checker-tool-footer">
                 <div class="checker-tool-tags">
-                  <span v-for="tag in tool.tags.slice(0, 2)" :key="tag" class="checker-tag">{{ tag }}</span>
+                  <span v-for="tag in tool.tags.slice(0, 2)" :key="tag" class="checker-tag">{{ tagLabel(tag) }}</span>
                 </div>
                 <div class="checker-tool-meta">
-                  <span v-if="tool.pricing" class="checker-pricing-inline">{{ tool.pricing }}</span>
+                  <span v-if="tool.pricing" class="checker-pricing-inline">{{ priceLabel(tool.pricing) }}</span>
                   <div class="checker-tool-visit">
                     <VaIcon name="open_in_new" size="11px" />
                     <span>{{ t('aiCheckerPage.visitHint') }}</span>
@@ -448,6 +540,7 @@ const activeSidebarItem = computed(() => (activeCategory.value === 'all' ? scrol
             </a>
           </div>
         </div>
+        </template>
 
         <!-- ── 用户旅程指引 ─── -->
         <div class="checker-tips-section">
@@ -1015,6 +1108,94 @@ const activeSidebarItem = computed(() => (activeCategory.value === 'all' ? scrol
 }
 
 /* ── Result bar ──────────────────────────────────── */
+/* ── 分类作用导览 ─────────────────────────── */
+.checker-overview-sub {
+  margin: 4px 0 14px;
+  font-size: 0.86rem;
+  color: var(--va-text-secondary);
+}
+
+.checker-overview-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 12px;
+}
+
+.checker-ov-card {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 16px;
+  border-radius: 14px;
+  background: var(--va-background-secondary);
+  border: 1px solid transparent;
+  text-decoration: none;
+  color: inherit;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.05);
+  transition:
+    transform 0.15s ease,
+    box-shadow 0.15s ease,
+    border-color 0.15s ease;
+}
+
+.checker-ov-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+  border-color: rgba(16, 185, 129, 0.3);
+}
+
+.checker-ov-card:hover .checker-ov-arrow {
+  transform: translateX(3px);
+  opacity: 1;
+}
+
+.checker-ov-icon {
+  flex-shrink: 0;
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.checker-ov-body {
+  flex: 1;
+  min-width: 0;
+}
+
+.checker-ov-name {
+  font-size: 1.02rem;
+  font-weight: 700;
+  margin: 0 0 4px;
+}
+
+.checker-ov-desc {
+  margin: 0 0 8px;
+  font-size: 0.86rem;
+  line-height: 1.5;
+  color: var(--va-text-secondary);
+}
+
+.checker-ov-count {
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--va-primary);
+  background: rgba(16, 185, 129, 0.12);
+  padding: 2px 8px;
+  border-radius: 999px;
+}
+
+.checker-ov-arrow {
+  flex-shrink: 0;
+  align-self: center;
+  color: var(--va-primary);
+  opacity: 0.5;
+  transition:
+    transform 0.15s ease,
+    opacity 0.15s ease;
+}
+
 .checker-result-bar {
   display: flex;
   align-items: center;

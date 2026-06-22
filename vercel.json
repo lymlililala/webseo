@@ -62,7 +62,7 @@
       "dest": "/$1/$2/index.html"
     },
     {
-      "src": "/(seo-nav|geo-nav|aeo-nav)/([^/]+)",
+      "src": "/(seo-nav|geo-nav|aeo-nav|ai-checker)/([^/]+)",
       "dest": "/$1/$2/index.html"
     },
     {
@@ -70,7 +70,7 @@
       "dest": "/zh/$1/$2/index.html"
     },
     {
-      "src": "/zh/(seo-nav|geo-nav|aeo-nav)/([^/]+)",
+      "src": "/zh/(seo-nav|geo-nav|aeo-nav|ai-checker)/([^/]+)",
       "dest": "/zh/$1/$2/index.html"
     },
     {

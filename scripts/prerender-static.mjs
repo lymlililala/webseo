@@ -650,6 +650,7 @@ const navDatasets = [
   { base: '/seo-nav', src: 'seo-tools.ts', zh: 'seo-tools-zh.ts', marker: 'seoCategoriesZh', listEn: 'SEO Tools', listZh: 'SEO 工具' },
   { base: '/geo-nav', src: 'geo-tools.ts', zh: 'geo-tools-zh.ts', marker: 'geoCategoriesZh', listEn: 'GEO Tools', listZh: 'GEO 工具' },
   { base: '/aeo-nav', src: 'aeo-tools.ts', zh: 'aeo-tools-zh.ts', marker: 'aeoCategoriesZh', listEn: 'AEO Tools', listZh: 'AEO 工具' },
+  { base: '/ai-checker', src: 'ai-checker-tools.ts', zh: 'ai-checker-tools-zh.ts', marker: 'aiCheckerCategoriesZh', listEn: 'AI Visibility Checker', listZh: 'AI 可见度体检' },
 ]
 
 // 生成同组分类互链(可见,供爬虫):首页 + 列表页 + 同组其它分类
