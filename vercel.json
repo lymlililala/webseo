@@ -62,7 +62,15 @@
       "dest": "/$1/$2/index.html"
     },
     {
+      "src": "/(seo-nav|geo-nav|aeo-nav)/([^/]+)",
+      "dest": "/$1/$2/index.html"
+    },
+    {
       "src": "/zh/(articles|tutorials|news)/([^/]+)",
+      "dest": "/zh/$1/$2/index.html"
+    },
+    {
+      "src": "/zh/(seo-nav|geo-nav|aeo-nav)/([^/]+)",
       "dest": "/zh/$1/$2/index.html"
     },
     {

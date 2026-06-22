@@ -15,9 +15,9 @@ function makeChildren(suffix = ''): RouteRecordRaw[] {
   const n = (name: string) => name + suffix
   return [
     { name: n('home'), path: '', component: () => import('../pages/home/HomePage.vue') },
-    { name: n('seo-nav'), path: 'seo-nav', component: () => import('../pages/seo-nav/SeoNavPage.vue') },
-    { name: n('geo-nav'), path: 'geo-nav', component: () => import('../pages/geo-nav/GeoNavPage.vue') },
-    { name: n('aeo-nav'), path: 'aeo-nav', component: () => import('../pages/aeo-nav/AeoNavPage.vue') },
+    { name: n('seo-nav'), path: 'seo-nav/:category?', component: () => import('../pages/seo-nav/SeoNavPage.vue') },
+    { name: n('geo-nav'), path: 'geo-nav/:category?', component: () => import('../pages/geo-nav/GeoNavPage.vue') },
+    { name: n('aeo-nav'), path: 'aeo-nav/:category?', component: () => import('../pages/aeo-nav/AeoNavPage.vue') },
     { name: n('llms-txt'), path: 'llms-txt', component: () => import('../pages/llms-txt/LlmsTxtPage.vue') },
     { name: n('ai-checker'), path: 'ai-checker', component: () => import('../pages/ai-checker/AiCheckerPage.vue') },
     { name: n('glossary'), path: 'glossary', component: () => import('../pages/glossary/GlossaryPage.vue') },

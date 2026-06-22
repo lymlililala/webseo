@@ -91,7 +91,8 @@ export default defineComponent({
         if (section.name === 'home') {
           return route.path === '/' || route.path === '/zh' || route.path === '/zh/'
         }
-        return route.path.endsWith(`${section.name}`)
+        // 命中本身或其子路径(如 /seo-nav/keyword-research、/articles/<slug>)
+        return route.path.endsWith(`${section.name}`) || route.path.includes(`/${section.name}/`)
       }
 
       return section.children.some(({ name }) => route.path.endsWith(`${name}`))

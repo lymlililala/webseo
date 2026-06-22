@@ -1,13 +1,17 @@
 <script setup lang="ts">
-import { ref, computed, onMounted, onUnmounted } from 'vue'
+import { ref, computed, onMounted, onUnmounted, watch } from 'vue'
+import { useRoute, useRouter } from 'vue-router'
 import { useI18n } from 'vue-i18n'
 import { seoCategories, allTools, featuredTools, type SeoTool, type SeoCategory } from '../../data/seo-tools'
 import { seoCategoriesZh, seoToolsZh } from '../../data/seo-tools-zh'
 import { toolTagsZh } from '../../data/tool-tags-zh'
 import { usePageSeo } from '../../composables/usePageSeo'
+import { localePath } from '../../i18n/useLocale'
 import ToolFavicon from '../../components/ToolFavicon.vue'
 
 const { t, locale } = useI18n()
+const route = useRoute()
+const router = useRouter()
 const isZh = computed(() => locale.value === 'zh')
 
 // 中文模式下用 override 数据,缺失则回退英文原文(品牌名不译)
@@ -18,27 +22,45 @@ const toolDesc = (tl: { id: string; description: string }) =>
   isZh.value ? seoToolsZh[tl.id] ?? tl.description : tl.description
 const tagLabel = (tag: string) => (isZh.value ? toolTagsZh[tag] ?? tag : tag)
 
-usePageSeo({
-  title: t('seoNavPage.seoTitle'),
-  description: t('seoNavPage.seoDescription'),
-  path: '/seo-nav',
-  keywords: t('seoNavPage.seoKeywords'),
-  jsonLd: [
-    {
-      '@context': 'https://schema.org',
-      '@type': 'CollectionPage',
-      name: 'SEO Tools Directory',
-      description: 'A curated directory of 100+ SEO tools across keyword research, backlink analysis and technical SEO',
-      url: 'https://sgaindex.com/seo-nav',
-      isPartOf: { '@type': 'WebSite', name: 'SGAIndex', url: 'https://sgaindex.com' },
-    },
-  ],
-})
+const SEO_BASE = '/seo-nav'
+const catIds = new Set(seoCategories.map((c) => c.id))
+const validCat = (c: unknown) => (typeof c === 'string' && catIds.has(c) ? c : 'all')
 
 const searchQuery = ref('')
-const activeCategory = ref('all')
+const activeCategory = ref<string>(validCat(route.params.category))
 const showAiOnly = ref(false)
 const showFreeOnly = ref(false)
+
+// 分类专属 SEO:自指 canonical + 唯一 title/description(利于分类页单独收录)
+const activeCatObj = computed(() => seoCategories.find((c) => c.id === activeCategory.value))
+usePageSeo(
+  computed(() => {
+    const cat = activeCatObj.value
+    const path = cat ? `${SEO_BASE}/${cat.id}` : SEO_BASE
+    return {
+      title: cat
+        ? isZh.value
+          ? `${catName(cat)} 工具导航 — SGAIndex`
+          : `${catName(cat)} Tools — SGAIndex`
+        : t('seoNavPage.seoTitle'),
+      description: cat ? catDesc(cat) : t('seoNavPage.seoDescription'),
+      path,
+      keywords: t('seoNavPage.seoKeywords'),
+      jsonLd: [
+        {
+          '@context': 'https://schema.org',
+          '@type': 'CollectionPage',
+          name: cat ? catName(cat) : 'SEO Tools Directory',
+          description: cat
+            ? catDesc(cat)
+            : 'A curated directory of 100+ SEO tools across keyword research, backlink analysis and technical SEO',
+          url: `https://sgaindex.com${path}`,
+          isPartOf: { '@type': 'WebSite', name: 'SGAIndex', url: 'https://sgaindex.com' },
+        },
+      ],
+    }
+  }),
+)
 
 const filteredTools = computed(() => {
   let tools: SeoTool[] = []
@@ -98,11 +120,25 @@ function getToolCategory(tool: SeoTool): SeoCategory | undefined {
 }
 
 function selectCategory(catId: string) {
-  activeCategory.value = catId
-  // scroll content area to top
+  // 走路由,让分类拥有可分享/可收录的独立 URL;activeCategory 由 route 监听同步
+  const target = localePath(catId === 'all' ? SEO_BASE : `${SEO_BASE}/${catId}`)
+  if (route.path !== target) router.push(target)
+  else scrollContentTop()
+}
+
+function scrollContentTop() {
   const el = document.querySelector('.main-content')
   if (el) el.scrollTo({ top: 0, behavior: 'smooth' })
 }
+
+// URL 分类参数变化(点击/前进后退/直接访问)→ 同步选中分类并回到顶部
+watch(
+  () => route.params.category,
+  (c) => {
+    activeCategory.value = validCat(c)
+    scrollContentTop()
+  },
+)
 
 // 「全部工具」浏览视图(无搜索)下,每个分类只预览前 N 个,避免首页一次铺开 100+ 卡片导致页面过长;
 // 点击「查看全部」切到该分类即展开完整列表。搜索/筛选时不限制,确保能看到全部匹配结果。

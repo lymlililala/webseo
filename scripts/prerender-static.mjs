@@ -612,6 +612,57 @@ const zhMeta = {
   },
 }
 
+// ── 工具导航分类页提取(从 TS 数据文件正则提取分类,构建时自动同步)──────────
+const dataDir = path.join(__dirname, '..', 'src', 'data')
+
+// 从 *-tools.ts 提取英文分类 [{ id, name, description }](分类块含 icon: 与 color:)
+function extractEnCategories(srcFile) {
+  const text = fs.readFileSync(path.join(dataDir, srcFile), 'utf8')
+  const idRe = /\bid:\s*'([^']+)'/g
+  const matches = [...text.matchAll(idRe)]
+  const cats = []
+  for (let i = 0; i < matches.length; i++) {
+    const chunk = text.slice(matches[i].index, i + 1 < matches.length ? matches[i + 1].index : text.length)
+    const isCat = /\bicon:\s*'/.test(chunk) && /\bcolor:\s*'/.test(chunk)
+    if (!isCat) continue
+    cats.push({
+      id: matches[i][1],
+      name: (chunk.match(/\bname:\s*'([^']*)'/) || [])[1] || '',
+      description: (chunk.match(/\bdescription:\s*'([^']*)'/) || [])[1] || '',
+    })
+  }
+  return cats
+}
+
+// 从 *-tools-zh.ts 提取中文分类 Map(id -> { name, description })
+function extractZhCategories(zhFile, marker) {
+  const text = fs.readFileSync(path.join(dataDir, zhFile), 'utf8')
+  const start = text.indexOf(marker)
+  const end = text.indexOf('export const', start + marker.length)
+  const sub = text.slice(start, end < 0 ? text.length : end)
+  const map = new Map()
+  const re = /(?:'([^']+)'|([A-Za-z0-9_-]+)):\s*\{\s*name:\s*'([^']*)',\s*description:\s*'([^']*)'/g
+  for (const m of sub.matchAll(re)) map.set(m[1] || m[2], { name: m[3], description: m[4] })
+  return map
+}
+
+const navDatasets = [
+  { base: '/seo-nav', src: 'seo-tools.ts', zh: 'seo-tools-zh.ts', marker: 'seoCategoriesZh', listEn: 'SEO Tools', listZh: 'SEO 工具' },
+  { base: '/geo-nav', src: 'geo-tools.ts', zh: 'geo-tools-zh.ts', marker: 'geoCategoriesZh', listEn: 'GEO Tools', listZh: 'GEO 工具' },
+  { base: '/aeo-nav', src: 'aeo-tools.ts', zh: 'aeo-tools-zh.ts', marker: 'aeoCategoriesZh', listEn: 'AEO Tools', listZh: 'AEO 工具' },
+]
+
+// 生成同组分类互链(可见,供爬虫):首页 + 列表页 + 同组其它分类
+function buildCatNav(base, listName, cats, currentId, lang) {
+  const pfx = lang === 'zh' ? '/zh' : ''
+  let html = `<a href="${pfx || '/'}">${lang === 'zh' ? '首页' : 'Home'}</a><a href="${pfx}${base}">${escapeHtml(listName)}</a>`
+  html += cats
+    .filter((c) => c.id !== currentId)
+    .map((c) => `<a href="${pfx}${base}/${escapeAttr(c.id)}">${escapeHtml(c.name)}</a>`)
+    .join('')
+  return html
+}
+
 // ── 主逻辑 ──────────────────────────────────────────────────────────────────
 async function main() {
   let totalCount = 0
@@ -959,6 +1010,83 @@ async function main() {
     })
     console.log(`  → 共生成 ${list.length} 条资讯`)
   }
+
+  // 4.5 工具导航分类页:/seo-nav/<cat>、/geo-nav/<cat>、/aeo-nav/<cat>(中英双语,独立可收录)
+  console.log('\n🗂  生成工具导航分类页...')
+  let catCount = 0
+  for (const ds of navDatasets) {
+    let enCats, zhMap
+    try {
+      enCats = extractEnCategories(ds.src)
+      zhMap = extractZhCategories(ds.zh, ds.marker)
+    } catch (e) {
+      console.error(`  ⚠️  ${ds.src} 分类提取失败:`, e.message, '— 跳过')
+      continue
+    }
+    for (const cat of enCats) {
+      const routePath = `${ds.base}/${cat.id}`
+      const canonicalUrl = `${SITE}${routePath}`
+      const zh = zhMap.get(cat.id)
+      const collectionLd = (name, description, url) => ({
+        '@context': 'https://schema.org',
+        '@type': 'CollectionPage',
+        name,
+        description,
+        url,
+        isPartOf: { '@type': 'WebSite', name: SITE_NAME, url: SITE },
+      })
+      // 英文
+      writeHtml(
+        routePath,
+        buildHtml({
+          title: `${cat.name} Tools — ${SITE_NAME}`,
+          description: cat.description || `${cat.name} tools curated by ${SITE_NAME}`,
+          canonicalUrl,
+          h1: cat.name,
+          keywords: `${cat.name},SEO tools,GEO,AEO`,
+          lang: 'en',
+          altPath: zh ? routePath : undefined,
+          bodyHtml: `<h2>${escapeHtml(cat.name)}</h2><p>${escapeHtml(cat.description)}</p>`,
+          internalLinks: buildCatNav(ds.base, ds.listEn, enCats, cat.id, 'en'),
+          breadcrumbJsonld: buildBreadcrumbJsonld([
+            { name: 'Home', path: '/' },
+            { name: ds.listEn, path: ds.base },
+            { name: cat.name },
+          ]),
+          jsonld: collectionLd(cat.name, cat.description, canonicalUrl),
+        }),
+      )
+      catCount++
+      // 中文
+      if (zh) {
+        const zhPath = `/zh${routePath}`
+        const zhCanonical = `${SITE}${zhPath}`
+        writeHtml(
+          zhPath,
+          buildHtml({
+            title: `${zh.name} 工具 — ${SITE_NAME}`,
+            description: zh.description || `${zh.name}——${SITE_NAME} 精选工具`,
+            canonicalUrl: zhCanonical,
+            h1: zh.name,
+            keywords: `${zh.name},SEO 工具,GEO,AEO`,
+            lang: 'zh',
+            altPath: routePath,
+            bodyHtml: `<h2>${escapeHtml(zh.name)}</h2><p>${escapeHtml(zh.description)}</p>`,
+            internalLinks: buildCatNav(ds.base, ds.listZh, [...zhMap].map(([id, v]) => ({ id, name: v.name })), cat.id, 'zh'),
+            breadcrumbJsonld: buildBreadcrumbJsonld([
+              { name: '首页', path: '/zh' },
+              { name: ds.listZh, path: `/zh${ds.base}` },
+              { name: zh.name },
+            ]),
+            jsonld: { ...collectionLd(zh.name, zh.description, zhCanonical), inLanguage: 'zh-CN' },
+          }),
+        )
+        catCount++
+      }
+    }
+  }
+  console.log(`  → 共生成 ${catCount} 个分类页`)
+  totalCount += catCount
 
   // 5. 生成 404.html
   console.log('\n🚫 生成 404.html...')

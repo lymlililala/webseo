@@ -1,14 +1,18 @@
 <script setup lang="ts">
-import { ref, computed, onMounted, onUnmounted } from 'vue'
+import { ref, computed, onMounted, onUnmounted, watch } from 'vue'
+import { useRoute, useRouter } from 'vue-router'
 import { useI18n } from 'vue-i18n'
 import { aeoCategories, allAeoTools, featuredAeoTools, type AeoTool, type AeoCategory } from '../../data/aeo-tools'
 import { aeoCategoriesZh, aeoToolsZh } from '../../data/aeo-tools-zh'
 import { toolTagsZh } from '../../data/tool-tags-zh'
 import { highlightsZh, pricingZh } from '../../data/tool-extras-zh'
 import { usePageSeo } from '../../composables/usePageSeo'
+import { localePath } from '../../i18n/useLocale'
 import ToolFavicon from '../../components/ToolFavicon.vue'
 
 const { t, locale } = useI18n()
+const route = useRoute()
+const router = useRouter()
 const isZh = computed(() => locale.value === 'zh')
 
 const catName = (c: { id: string; name: string }) => (isZh.value ? aeoCategoriesZh[c.id]?.name ?? c.name : c.name)
@@ -20,27 +24,45 @@ const tagLabel = (tag: string) => (isZh.value ? toolTagsZh[tag] ?? tag : tag)
 const hlLabel = (h: string) => (isZh.value ? highlightsZh[h] ?? h : h)
 const priceLabel = (p?: string) => (p && isZh.value ? pricingZh[p] ?? p : p)
 
-usePageSeo({
-  title: t('aeoNavPage.seoTitle'),
-  description: t('aeoNavPage.seoDescription'),
-  path: '/aeo-nav',
-  keywords: t('aeoNavPage.seoKeywords'),
-  jsonLd: [
-    {
-      '@context': 'https://schema.org',
-      '@type': 'CollectionPage',
-      name: 'AEO Tools Directory',
-      description: 'A directory of 50+ AEO tools to help content appear in Google featured snippets and AI answers',
-      url: 'https://sgaindex.com/aeo-nav',
-      isPartOf: { '@type': 'WebSite', name: 'SGAIndex', url: 'https://sgaindex.com' },
-    },
-  ],
-})
+const AEO_BASE = '/aeo-nav'
+const catIds = new Set(aeoCategories.map((c) => c.id))
+const validCat = (c: unknown) => (typeof c === 'string' && catIds.has(c) ? c : 'all')
 
 const searchQuery = ref('')
-const activeCategory = ref('all')
+const activeCategory = ref<string>(validCat(route.params.category))
 const showOpenSourceOnly = ref(false)
 const showFreeOnly = ref(false)
+
+// 分类专属 SEO:自指 canonical + 唯一 title/description
+const activeCatObj = computed(() => aeoCategories.find((c) => c.id === activeCategory.value))
+usePageSeo(
+  computed(() => {
+    const cat = activeCatObj.value
+    const path = cat ? `${AEO_BASE}/${cat.id}` : AEO_BASE
+    return {
+      title: cat
+        ? isZh.value
+          ? `${catName(cat)} 工具 — SGAIndex`
+          : `${catName(cat)} Tools — SGAIndex`
+        : t('aeoNavPage.seoTitle'),
+      description: cat ? catDesc(cat) : t('aeoNavPage.seoDescription'),
+      path,
+      keywords: t('aeoNavPage.seoKeywords'),
+      jsonLd: [
+        {
+          '@context': 'https://schema.org',
+          '@type': 'CollectionPage',
+          name: cat ? catName(cat) : 'AEO Tools Directory',
+          description: cat
+            ? catDesc(cat)
+            : 'A directory of 50+ AEO tools to help content appear in Google featured snippets and AI answers',
+          url: `https://sgaindex.com${path}`,
+          isPartOf: { '@type': 'WebSite', name: 'SGAIndex', url: 'https://sgaindex.com' },
+        },
+      ],
+    }
+  }),
+)
 
 const filteredTools = computed(() => {
   let tools: AeoTool[] = []
@@ -112,10 +134,23 @@ function getToolCategory(tool: AeoTool): AeoCategory | undefined {
 }
 
 function selectCategory(catId: string) {
-  activeCategory.value = catId
+  const target = localePath(catId === 'all' ? AEO_BASE : `${AEO_BASE}/${catId}`)
+  if (route.path !== target) router.push(target)
+  else scrollContentTop()
+}
+
+function scrollContentTop() {
   const el = document.querySelector('.aeo-main-content')
   if (el) el.scrollTo({ top: 0, behavior: 'smooth' })
 }
+
+watch(
+  () => route.params.category,
+  (c) => {
+    activeCategory.value = validCat(c)
+    scrollContentTop()
+  },
+)
 
 // 「全部」浏览态(无搜索)下每分类只预览前 N 个,避免一次铺开全部工具导致页面过长;
 // 「查看全部」切到该分类展开完整列表。搜索/筛选时不限制。

@@ -1,14 +1,18 @@
 <script setup lang="ts">
-import { ref, computed, onMounted, onUnmounted } from 'vue'
+import { ref, computed, onMounted, onUnmounted, watch } from 'vue'
+import { useRoute, useRouter } from 'vue-router'
 import { useI18n } from 'vue-i18n'
 import { geoCategories, allGeoTools, featuredGeoTools, type GeoTool, type GeoCategory } from '../../data/geo-tools'
 import { geoCategoriesZh, geoToolsZh } from '../../data/geo-tools-zh'
 import { toolTagsZh } from '../../data/tool-tags-zh'
 import { highlightsZh, pricingZh } from '../../data/tool-extras-zh'
 import { usePageSeo } from '../../composables/usePageSeo'
+import { localePath } from '../../i18n/useLocale'
 import ToolFavicon from '../../components/ToolFavicon.vue'
 
 const { t, locale } = useI18n()
+const route = useRoute()
+const router = useRouter()
 const isZh = computed(() => locale.value === 'zh')
 
 const catName = (c: { id: string; name: string }) => (isZh.value ? geoCategoriesZh[c.id]?.name ?? c.name : c.name)
@@ -20,28 +24,46 @@ const tagLabel = (tag: string) => (isZh.value ? toolTagsZh[tag] ?? tag : tag)
 const hlLabel = (h: string) => (isZh.value ? highlightsZh[h] ?? h : h)
 const priceLabel = (p?: string) => (p && isZh.value ? pricingZh[p] ?? p : p)
 
-usePageSeo({
-  title: t('geoNavPage.seoTitle'),
-  description: t('geoNavPage.seoDescription'),
-  path: '/geo-nav',
-  keywords: t('geoNavPage.seoKeywords'),
-  jsonLd: [
-    {
-      '@context': 'https://schema.org',
-      '@type': 'CollectionPage',
-      name: 'GEO Tools Directory',
-      description: 'A directory of 60+ GEO tools to help your content get cited by AI search engines',
-      url: 'https://sgaindex.com/geo-nav',
-      isPartOf: { '@type': 'WebSite', name: 'SGAIndex', url: 'https://sgaindex.com' },
-    },
-  ],
-})
+const GEO_BASE = '/geo-nav'
+const catIds = new Set(geoCategories.map((c) => c.id))
+const validCat = (c: unknown) => (typeof c === 'string' && catIds.has(c) ? c : 'all')
 
 const searchQuery = ref('')
-const activeCategory = ref('all')
+const activeCategory = ref<string>(validCat(route.params.category))
 const showOpenSourceOnly = ref(false)
 const showFreeOnly = ref(false)
 const activeRegion = ref<'all' | 'cn' | 'global'>('all')
+
+// 分类专属 SEO:自指 canonical + 唯一 title/description
+const activeCatObj = computed(() => geoCategories.find((c) => c.id === activeCategory.value))
+usePageSeo(
+  computed(() => {
+    const cat = activeCatObj.value
+    const path = cat ? `${GEO_BASE}/${cat.id}` : GEO_BASE
+    return {
+      title: cat
+        ? isZh.value
+          ? `${catName(cat)} 工具 — SGAIndex`
+          : `${catName(cat)} Tools — SGAIndex`
+        : t('geoNavPage.seoTitle'),
+      description: cat ? catDesc(cat) : t('geoNavPage.seoDescription'),
+      path,
+      keywords: t('geoNavPage.seoKeywords'),
+      jsonLd: [
+        {
+          '@context': 'https://schema.org',
+          '@type': 'CollectionPage',
+          name: cat ? catName(cat) : 'GEO Tools Directory',
+          description: cat
+            ? catDesc(cat)
+            : 'A directory of 60+ GEO tools to help your content get cited by AI search engines',
+          url: `https://sgaindex.com${path}`,
+          isPartOf: { '@type': 'WebSite', name: 'SGAIndex', url: 'https://sgaindex.com' },
+        },
+      ],
+    }
+  }),
+)
 
 const filteredTools = computed(() => {
   let tools: GeoTool[] = []
@@ -112,10 +134,23 @@ function getToolCategory(tool: GeoTool): GeoCategory | undefined {
 }
 
 function selectCategory(catId: string) {
-  activeCategory.value = catId
+  const target = localePath(catId === 'all' ? GEO_BASE : `${GEO_BASE}/${catId}`)
+  if (route.path !== target) router.push(target)
+  else scrollContentTop()
+}
+
+function scrollContentTop() {
   const el = document.querySelector('.geo-main-content')
   if (el) el.scrollTo({ top: 0, behavior: 'smooth' })
 }
+
+watch(
+  () => route.params.category,
+  (c) => {
+    activeCategory.value = validCat(c)
+    scrollContentTop()
+  },
+)
 
 // 「全部」浏览态(无搜索、无地区筛选)下每分类只预览前 N 个,避免一次铺开全部工具导致页面过长;
 // 「查看全部」切到该分类展开完整列表。搜索/筛选时不限制。
