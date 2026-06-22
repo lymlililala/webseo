@@ -1,4 +1,5 @@
-// 5) 补译：把缺中文译文的 wseo_articles 用 DeepSeek 译成简体中文，回写 title_zh/description_zh/content_zh。
+// 5) 补译：把缺中文译文的 wseo_articles 用 DeepSeek 译成简体中文，回写 title_zh/description_zh/content_zh，
+//    并把标签双语化（tags 规整为英文、tags_zh 填中文）。
 //    判定口径与预渲染一致：以 content_zh 是否为空作为「未译」标准（title_zh 单独译标题不算齐活）。
 //    幂等：只挑 content_zh 为空的行，跑多少次都安全；每晚 CI 跑一次即可持续追平新发文章。
 //
@@ -64,6 +65,37 @@ async function translateContent(ds, content) {
   return raw.replace(/^\s*```(?:markdown|md)?\s*\n?/i, '').replace(/\n?\s*```\s*$/i, '').trim()
 }
 
+// 一个 tags 字段 → 干净原子标签数组（拆开逗号拼接的脏数据）
+function cleanTags(raw) {
+  let arr = raw
+  if (typeof raw === 'string') {
+    try {
+      arr = JSON.parse(raw)
+    } catch {
+      arr = [raw]
+    }
+  }
+  if (!Array.isArray(arr)) arr = []
+  const out = []
+  for (const x of arr) String(x).split(/[,，]/).map((s) => s.trim()).filter(Boolean).forEach((s) => out.push(s))
+  return [...new Set(out)]
+}
+
+/** 标签双语：返回 { en:[英文], zh:[中文] }，品牌名/缩写两语保持原样 */
+async function translateTags(ds, tags) {
+  if (!tags.length) return { en: [], zh: [] }
+  const sys =
+    '你是 SEO/数字营销领域的术语翻译。给定一批标签,为每个标签同时给出英文(en)与中文(zh)两种写法。' +
+    `规则:品牌名/产品名、通用缩写(${KEEP} 等)在两种语言中均保持原样;其余描述性短语给出地道翻译。` +
+    '只输出一个 JSON 对象,key 为原标签,value 为 {"en":"...","zh":"..."}。不要任何解释。'
+  const map = await ds.chatJSON([
+    { role: 'system', content: sys },
+    { role: 'user', content: JSON.stringify(tags) },
+  ])
+  const pick = (k) => [...new Set(tags.map((t) => (map?.[t]?.[k] || t).trim()).filter(Boolean))]
+  return { en: pick('en'), zh: pick('zh') }
+}
+
 async function main() {
   const sb = getSupabase()
   const ds = new DeepSeek()
@@ -71,10 +103,10 @@ async function main() {
   // 选出缺中文正文的文章（content_zh 为 null 或空串），最新优先
   let q = sb
     .from(ARTICLES_TABLE)
-    .select('id,slug,title,description,content,date')
+    .select('id,slug,title,description,content,tags,date')
     .or('content_zh.is.null,content_zh.eq.')
     .order('date', { ascending: false })
-  if (SLUG) q = sb.from(ARTICLES_TABLE).select('id,slug,title,description,content,date').eq('slug', SLUG)
+  if (SLUG) q = sb.from(ARTICLES_TABLE).select('id,slug,title,description,content,tags,date').eq('slug', SLUG)
 
   const { data: rows, error } = await q
   if (error) throw error
@@ -103,19 +135,32 @@ async function main() {
       const content_zh = await translateContent(ds, a.content)
       if (!meta.title_zh || !content_zh) throw new Error('译文为空（title_zh 或 content_zh 缺失）')
 
+      // 标签双语：tags 规整为英文、tags_zh 填中文（失败不阻断正文翻译）
+      let tagsUpdate = {}
+      const cleaned = cleanTags(a.tags)
+      if (cleaned.length) {
+        try {
+          const { en, zh } = await translateTags(ds, cleaned)
+          tagsUpdate = { tags: JSON.stringify(en), tags_zh: JSON.stringify(zh) }
+        } catch (te) {
+          console.warn(`   ⚠️  ${a.slug} 标签翻译失败（保留原标签）：${te.message}`)
+        }
+      }
+
       const { error: upErr } = await sb
         .from(ARTICLES_TABLE)
         .update({
           title_zh: meta.title_zh,
           description_zh: meta.description_zh || null,
           content_zh,
+          ...tagsUpdate,
           updated_at: new Date().toISOString(),
         })
         .eq('id', a.id)
       if (upErr) throw upErr
 
       done++
-      console.log(`🟢 已译 ${a.slug}  (正文 ${content_zh.length} 字)`)
+      console.log(`🟢 已译 ${a.slug}  (正文 ${content_zh.length} 字${tagsUpdate.tags_zh ? '，标签已双语' : ''})`)
     } catch (e) {
       console.error(`🔴 失败 ${a.slug}：${e.message}`)
       failed.push({ slug: a.slug, reason: e.message })
