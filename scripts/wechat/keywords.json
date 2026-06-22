@@ -1,0 +1,80 @@
+{
+  "_comment": "GSC 驱动的关键词扩充选题清单（源：gsc/0622 性能导出）。每簇含 english_targets（站点要顶上去的英文目标词，来自 GSC 有展示但卡第6-10页的词）与 cn_terms（喂给次幂 searchArticles 的中文检索词）。供 1b-crawl-keywords.mjs 采集中文源 → 2→3→4 合成英文深度长文。priority 越小越先做。",
+  "clusters": [
+    {
+      "cluster": "naver",
+      "priority": 1,
+      "note": "GSC: 'naver search ranking' 176展示/第14名(第2页,离首页最近)、多条 naver blog 词已在前10。性价比最高的快赢簇。",
+      "english_targets": ["naver seo", "naver search ranking", "naver blog seo", "naver smartstore seo", "naver seo 2026"],
+      "cn_terms": ["Naver SEO", "Naver 优化", "韩国 SEO", "Naver 博客 排名", "Naver smartstore", "韩国搜索引擎优化"],
+      "article": {
+        "topic": "Naver SEO",
+        "working_title": "Naver SEO: The Complete Guide to Ranking on Korea's Top Search Engine",
+        "angle": "How international brands and exporters win visibility on Naver — blog, SmartStore and integrated search — and how it differs from Google SEO.",
+        "category": "seo",
+        "tags": ["international seo", "naver", "korea seo", "keyword research"],
+        "level": "intermediate"
+      }
+    },
+    {
+      "cluster": "seo-dashboard",
+      "priority": 2,
+      "note": "GSC: 主力页 seo-dashboard-design 2428展示/第81名;seo monitoring dashboard 401、seo dashboard 324、analytics/reporting/reports-sharing 120+。展示池最大,做主题集群顶权重。",
+      "english_targets": ["seo dashboard", "seo monitoring dashboard", "seo analytics dashboard", "seo reporting dashboard", "seo reports sharing"],
+      "cn_terms": ["SEO 数据看板", "SEO 监控工具", "SEO 报告", "Looker Studio SEO", "Google Data Studio SEO", "SEO 数据可视化"],
+      "article": {
+        "topic": "SEO Dashboard",
+        "working_title": "Building an SEO Dashboard: Metrics, Tools and Automated Reporting That Drive Decisions",
+        "angle": "A practical blueprint for designing an SEO monitoring dashboard (Looker Studio/GA4/Search Console) that turns raw data into shareable, decision-ready reports.",
+        "category": "tools",
+        "tags": ["seo tools", "google analytics", "search console", "seo reporting"],
+        "level": "intermediate"
+      }
+    },
+    {
+      "cluster": "multilingual-international-seo",
+      "priority": 3,
+      "note": "GSC: multilingual seo 140、international-seo/multilingual 页 339+321展示/第85名。源极丰富(出海/外贸内容池)。",
+      "english_targets": ["multilingual seo", "international seo", "hreflang", "multilingual seo best practices"],
+      "cn_terms": ["多语言 SEO", "国际化 SEO", "外贸独立站 SEO", "hreflang 标签", "出海 多语言 网站", "谷歌 多语言 优化"],
+      "article": {
+        "topic": "Multilingual & International SEO",
+        "working_title": "Multilingual SEO Best Practices: Hreflang, Site Structure and Global Keyword Strategy",
+        "angle": "An end-to-end playbook for ranking a website in multiple languages and regions — hreflang, URL structure, localized content and common pitfalls.",
+        "category": "seo",
+        "tags": ["international seo", "hreflang", "keyword research", "content marketing"],
+        "level": "intermediate"
+      }
+    },
+    {
+      "cluster": "ga4-seo",
+      "priority": 4,
+      "note": "GSC: ga4 seo 136、ga4 完整指南页 491展示/第77名。",
+      "english_targets": ["ga4 seo", "google analytics 4 seo", "ga4 for seo"],
+      "cn_terms": ["GA4 SEO", "Google Analytics 4", "GA4 数据分析", "GA4 报告", "GA4 谷歌分析 教程"],
+      "article": {
+        "topic": "GA4 for SEO",
+        "working_title": "Google Analytics 4 for SEO: Reports, Events and Metrics That Actually Matter",
+        "angle": "How to use GA4 specifically for SEO — the reports, events and conversions that reveal organic performance, plus how to pair it with Search Console.",
+        "category": "tools",
+        "tags": ["GA4", "google analytics", "search console", "seo tools"],
+        "level": "intermediate"
+      }
+    },
+    {
+      "cluster": "local-keyword-research",
+      "priority": 5,
+      "note": "GSC: local-keyword-research 页 357展示/第83名。",
+      "english_targets": ["local keyword research", "local seo keywords", "keyword research for local business"],
+      "cn_terms": ["本地 SEO 关键词", "本地搜索优化", "谷歌本地 SEO", "Google My Business 优化"],
+      "article": {
+        "topic": "Local Keyword Research",
+        "working_title": "Local Keyword Research: Finding the Right Terms to Win Local Search",
+        "angle": "A step-by-step method for uncovering high-intent local keywords and mapping them to pages, Google Business Profile and local content.",
+        "category": "seo",
+        "tags": ["local SEO", "keyword research", "content marketing"],
+        "level": "beginner"
+      }
+    }
+  ]
+}

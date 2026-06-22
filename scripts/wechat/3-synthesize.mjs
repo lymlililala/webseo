@@ -41,6 +41,24 @@ const ds = new DeepSeek()
 
 const VALID_CATS = new Set(['seo', 'geo', 'aeo', 'tools'])
 
+// 站内内链兜底：质量闸门要求 ≥1 条站内内链（见 lib/quality.mjs 同款路径前缀）。
+// 模型偶尔（尤其 Naver 这类"站外平台"主题）只产图片占位、漏插内链 → 在 FAQ 前自然补 2 条。
+const LINK_RE = /\]\(\/(seo-nav|geo-nav|aeo-nav|glossary|llms-txt|ai-checker|schema-generator|articles|tutorials|news)\b[^)]*\)/gi
+function ensureInternalLinks(content, category) {
+  if (!content) return content
+  if ((content.match(LINK_RE) || []).length >= 2) return content
+  const byCat = {
+    geo: '[AI-search tools directory](/geo-nav)',
+    aeo: '[answer-engine optimization tools](/aeo-nav)',
+    tools: '[SEO tools directory](/seo-nav)'
+  }
+  const primary = byCat[category] || '[SEO tools directory](/seo-nav)'
+  const related = `\n\n**Related on sgaindex:** browse our ${primary}, look up terms in the [SEO glossary](/glossary), or read more [in-depth guides](/articles).\n`
+  const faqAt = content.search(/^##\s*(?:FAQ|Frequently Asked Questions)/m)
+  return faqAt === -1 ? content + related : content.slice(0, faqAt) + related.trimStart() + '\n\n' + content.slice(faqAt)
+}
+
+
 const SYS = `You are a senior SEO & digital-marketing writer for sgaindex — an English-language site for an international audience of marketers, founders and SEOs (US/UK/EU).
 You will be given several Chinese WeChat articles on one topic as REFERENCE MATERIAL. Synthesize them into a brand-new, well-structured, ORIGINAL ENGLISH article.
 
@@ -110,6 +128,7 @@ for (const c of clusters) {
     d.level = d.level || c.suggested_level || 'intermediate'
     d.tags = Array.isArray(d.tags) && d.tags.length ? d.tags : (c.suggested_tags || [])
     d.estimated_minutes = d.estimated_minutes || Math.max(5, Math.round((d.content || '').split(/\s+/).length / 200))
+    d.content = ensureInternalLinks(d.content, d.category) // 内链兜底：模型偶尔漏插站内链，缺则补 2 条
     // provenance：记录来源，备查与合规追溯（不入文章，仅留 data/）
     d._topic = c.topic
     d._sources = members.map(m => ({ sn: m.sn, account: m.account, title: m.title, url: m.content_url }))
