@@ -39,7 +39,8 @@ const { data: art, error } = await sb.from('wseo_articles')
   .select('id,slug,title,description,content,tags,read_time,category').eq('slug', SLUG).single()
 if (error || !art) { console.error('找不到文章:', SLUG, error?.message); process.exit(1) }
 const origWords = (art.content || '').split(/\s+/).length
-console.log(`原文：${art.title}\n  ${origWords} 词 / ${(art.content||'').length} 字符 / meta ${art.description?.length||0} 字`)
+const origH2 = (art.content || '').match(/^##\s+/gm)?.length || 0
+console.log(`原文：${art.title}\n  ${origWords} 词 / ${(art.content||'').length} 字符 / meta ${art.description?.length||0} 字 / H2 ${origH2}`)
 
 // 取该簇中文源（manifest 命中 ∩ 有正文，按正文长度取前 8）
 let material = ''
@@ -60,7 +61,7 @@ You are given an EXISTING published article (Markdown) that ranks but is too THI
 Task: EXPAND and DEEPEN the existing article into a comprehensive, genuinely useful evergreen guide of at least ${MIN_WORDS} words — WITHOUT losing what already works.
 
 IRON RULES:
-1. PRESERVE the article's existing structure, section order, voice, title focus, any ASCII diagrams/tables and existing internal links. Do NOT rewrite from scratch or reorder. Expand IN PLACE: turn terse bullet lists into explained prose, add the "why it matters", concrete real-world examples, step-by-step detail, comparison tables, common mistakes, and a short checklist. Keep all factual claims defensible — never invent specific stats, prices, or URLs.
+1. PRESERVE the article's existing structure, section order, voice, title focus, any ASCII diagrams/tables and existing internal links. Do NOT rewrite from scratch or reorder. Expand IN PLACE: turn terse bullet lists into explained prose, add the "why it matters", concrete real-world examples, step-by-step detail, comparison tables, common mistakes, and a short checklist. Keep all factual claims defensible — never invent specific stats, prices, or URLs.${origH2 < 3 ? '\n   ⚠️ This article currently has NO section headings. You MUST reorganize the expanded content into 5-8 clear `##` sections with descriptive, keyword-relevant headings (and `###` subsections where useful). A wall of prose with no headings is unacceptable.' : ''}
 2. Use the Chinese reference material ONLY as source insight to add depth; synthesize and translate into native English. Absolutely no leftover Chinese, no "本文/小编/公众号".
 3. Naturally cover keyword variants the page should rank for (e.g. for an SEO dashboard page: "seo dashboard", "seo monitoring dashboard", "seo analytics dashboard", "custom seo dashboard", "seo reporting dashboard") — woven into headings/prose, never stuffed.
 4. Internal links: keep existing ones and ADD 3-5 contextual Markdown links. Allowed targets = these on-site paths ONLY: ${WHITELIST}${EXTRA_LINKS.length ? `, plus these related cluster articles (link to them with descriptive anchors): ${EXTRA_LINKS.join(', ')}` : ''}.
@@ -87,6 +88,25 @@ ${material ? `\n\nCHINESE REFERENCE MATERIAL (for depth only):\n\n${material}` :
 const ds = new DeepSeek()
 console.log('\n扩写中（DeepSeek）…')
 const d = await ds.chatJSON([{ role: 'system', content: SYS }, { role: 'user', content: userMsg }], { maxTokens: 14000, temperature: 0.5 })
+
+// FAQ 兜底：大扩写常漏 FAQ → 缺则单独生成 N 对追加（窄任务更可靠）。
+const faqCount = txt => (txt.match(/^##\s*(?:FAQ|Frequently)/im)
+  ? (txt.split(/^##\s*(?:FAQ|Frequently)/im)[1].match(/^\*\*.+\?\*\*/gm) || []).length : 0)
+async function ensureFaq(content, title) {
+  if (faqCount(content) >= MIN_FAQ) return content
+  const n = Math.max(MIN_FAQ, 4)
+  const out = await ds.chatJSON([
+    { role: 'system', content: `Generate exactly ${n} concise, genuinely useful FAQ pairs for an English SEO guide. Questions must be real things an international reader would search; answers 2-4 sentences, specific, no fluff, no Chinese. Return ONLY JSON: {"faqs":[{"q":"...?","a":"..."}]}` },
+    { role: 'user', content: `Article title: ${title}\n\nArticle body (for context):\n${truncate(content, 4000)}` }
+  ], { maxTokens: 1500, temperature: 0.5 })
+  const faqs = (out.faqs || []).filter(f => f.q && f.a).slice(0, n)
+  if (faqs.length < MIN_FAQ) return content // 生成失败就原样返回，交给体检拦截
+  const block = `\n\n## FAQ\n\n${faqs.map(f => `**${f.q.replace(/\?*$/, '?')}**\n${f.a}`).join('\n\n')}\n`
+  // 若正文已有残缺 FAQ 标题则替换其后内容，否则直接追加到末尾
+  const at = content.search(/^##\s*(?:FAQ|Frequently)/im)
+  return at === -1 ? content + block : content.slice(0, at).trimEnd() + block
+}
+d.content = await ensureFaq(d.content || '', d.title || art.title)
 
 // 取集群互链文章的真实标题做锚文本（用于内链兜底）
 const NAV_ANCHORS = {
@@ -130,8 +150,10 @@ const navLinks = (c.match(/\]\(\/(seo-nav|geo-nav|aeo-nav|glossary|llms-txt|ai-c
 let desc = (d.description || '').trim()
 if (desc.length > 160) desc = desc.slice(0, 155).replace(/[\s,;:.\-–—]+$/, '')
 console.log(`\n=== 扩写结果体检 ===`)
+// 正文分节标题数（排除注入的 Related Guides / FAQ）
+const bodyH2 = (c.match(/^##\s+(.+)/gm) || []).filter(h => !/^##\s*(Related Guides|FAQ|Frequently)/i.test(h)).length
 console.log(`  词数: ${origWords} → ${words}  (目标≥${MIN_WORDS})`)
-console.log(`  中文残留: ${cjk}   FAQ对: ${faq}   站内链接: ${navLinks}   meta: ${desc.length}字`)
+console.log(`  中文残留: ${cjk}   FAQ对: ${faq}   正文H2: ${bodyH2}   站内链接: ${navLinks}   meta: ${desc.length}字`)
 console.log(`  新标题: ${d.title}`)
 console.log(`  新meta: ${desc}`)
 
@@ -141,6 +163,7 @@ if (words < origWords) problems.push('比原文还短(扩写失败)')
 if (cjk > 5) problems.push(`中文残留 ${cjk}`)
 if (faq < MIN_FAQ) problems.push(`FAQ ${faq}<${MIN_FAQ}`)
 if (navLinks < 2) problems.push(`内链 ${navLinks}<2`)
+if (bodyH2 < 3) problems.push(`正文分节 ${bodyH2}<3`)
 if (desc.length < 120 || desc.length > 160) problems.push(`meta 长度 ${desc.length}`)
 if (problems.length) console.log('  ⚠️ 问题:', problems.join('; '))
 else console.log('  ✅ 体检通过')
