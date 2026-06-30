@@ -1,7 +1,7 @@
 <script setup lang="ts">
 // navbar 账户入口 —— 登录态/积分余额的全站可见处。
 // 未登录:显示"登录"按钮(开弹窗);已登录:显示积分余额 chip + 下拉(邮箱/余额/购买/退出)。
-import { ref, onMounted } from 'vue'
+import { ref, onMounted, watch } from 'vue'
 import { useI18n } from 'vue-i18n'
 import { useToast } from 'vuestic-ui'
 import { useAuthStore } from '../../../stores/auth-store'
@@ -13,6 +13,23 @@ const { init: toast } = useToast()
 const auth = useAuthStore()
 const showLogin = ref(false)
 const showBuy = ref(false)
+const authMode = ref<'login' | 'signup' | 'forgot' | 'reset'>('login')
+
+function openLogin() {
+  authMode.value = 'login'
+  showLogin.value = true
+}
+
+// 重置密码邮件回跳 → 自动弹出"设置新密码"
+watch(
+  () => auth.recoveryMode,
+  (on) => {
+    if (on) {
+      authMode.value = 'reset'
+      showLogin.value = true
+    }
+  },
+)
 
 // Stripe 付款跳回处理:success_url/cancel_url 带 ?credits=success|cancel。
 // 成功 → 刷新余额(webhook 异步发放,稍后再补刷一次)+ 提示,并清掉 URL 参数。
@@ -61,13 +78,13 @@ onMounted(() => {
     </template>
 
     <template v-else>
-      <button class="account-login" type="button" @click="showLogin = true">
+      <button class="account-login" type="button" @click="openLogin">
         <VaIcon name="login" size="16px" />
         <span>{{ t('account.login') }}</span>
       </button>
     </template>
 
-    <AuthModal v-model="showLogin" />
+    <AuthModal v-model="showLogin" :initial-mode="authMode" />
     <BuyCreditsModal v-model="showBuy" />
   </div>
 </template>

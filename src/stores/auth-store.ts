@@ -1,5 +1,5 @@
 // 通用钱包 —— 登录态 + 积分余额(全站共享)。
-// 登录用 Supabase Auth(邮箱魔法链接,免密);余额读 wseo_credit_balance。
+// 登录用 Supabase Auth(邮箱+密码,含注册/重置密码);余额读 wseo_credit_balance。
 // 这是"通用钱包"的前端单一事实源:navbar、域名工具、将来任何付费页都读这个 store。
 import { defineStore } from 'pinia'
 import { ref, computed } from 'vue'
@@ -12,11 +12,12 @@ export const useAuthStore = defineStore('auth', () => {
   const balance = ref(0)
   const ready = ref(false) // 首次会话恢复是否完成(避免登录态闪烁)
   const loadingBalance = ref(false)
+  const recoveryMode = ref(false) // 用户点了重置密码邮件链接 → 需弹"设置新密码"
 
   const isLoggedIn = computed(() => !!user.value)
   const email = computed(() => user.value?.email ?? '')
 
-  // 应用启动时调用一次:恢复已有会话 + 订阅后续登录/登出/魔法链接回跳。
+  // 应用启动时调用一次:恢复已有会话 + 订阅后续登录/登出/重置密码回跳。
   async function init() {
     if (!SUPABASE_CONFIGURED) {
       ready.value = true
@@ -25,8 +26,10 @@ export const useAuthStore = defineStore('auth', () => {
     try {
       const { data } = await supabase.auth.getSession()
       await setSession(data.session)
-      supabase.auth.onAuthStateChange((_event, s) => {
+      supabase.auth.onAuthStateChange((event, s) => {
         setSession(s)
+        // 点击重置密码邮件回跳时,Supabase 会建一个临时会话并触发此事件
+        if (event === 'PASSWORD_RECOVERY') recoveryMode.value = true
       })
     } catch (e) {
       // 恢复会话失败也要让 UI 进入可用态(显示"登录"),不能卡死
@@ -59,17 +62,37 @@ export const useAuthStore = defineStore('auth', () => {
     }
   }
 
-  // 邮箱魔法链接登录(免密)。点击邮件里的链接后回跳本页,supabase-js 自动接管会话。
-  async function signInWithEmail(emailAddr: string) {
-    return supabase.auth.signInWithOtp({
+  // 注册:邮箱+密码。若 Supabase 开了"Confirm email",返回的 session 为 null,需用户点确认邮件;
+  // 关闭确认则直接返回 session(立即登录)。emailRedirectTo 决定确认后回跳地址。
+  async function signUp(emailAddr: string, password: string) {
+    return supabase.auth.signUp({
       email: emailAddr,
-      options: { emailRedirectTo: window.location.href },
+      password,
+      options: { emailRedirectTo: window.location.origin },
     })
   }
 
-  // 预留:将来要邮箱+密码登录,直接用这个,UI 不用大改。
+  // 登录:邮箱+密码。
   async function signInWithPassword(emailAddr: string, password: string) {
     return supabase.auth.signInWithPassword({ email: emailAddr, password })
+  }
+
+  // 发送重置密码邮件。点击链接回跳 origin 后会触发 PASSWORD_RECOVERY → recoveryMode。
+  async function sendPasswordReset(emailAddr: string) {
+    return supabase.auth.resetPasswordForEmail(emailAddr, {
+      redirectTo: window.location.origin,
+    })
+  }
+
+  // 在恢复模式下设置新密码(此时已有临时会话)。
+  async function updatePassword(password: string) {
+    const r = await supabase.auth.updateUser({ password })
+    if (!r.error) recoveryMode.value = false
+    return r
+  }
+
+  function clearRecovery() {
+    recoveryMode.value = false
   }
 
   async function signOut() {
@@ -83,12 +106,16 @@ export const useAuthStore = defineStore('auth', () => {
     balance,
     ready,
     loadingBalance,
+    recoveryMode,
     isLoggedIn,
     email,
     init,
     refreshBalance,
-    signInWithEmail,
+    signUp,
     signInWithPassword,
+    sendPasswordReset,
+    updatePassword,
+    clearRecovery,
     signOut,
   }
 })
