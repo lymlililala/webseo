@@ -24,6 +24,9 @@ const THRESHOLD = Number(arg('--threshold', 82))
 // 单次发布上限：默认 0 = 不限制（过线即全部发布）；传正数则限制，防一次灌水
 const rawMax = arg('--max-publish', 0)
 const MAX_PUBLISH = (!rawMax || Number(rawMax) <= 0) ? Infinity : Number(rawMax)
+// 强制重判：清掉 published.json 里 slug 命中该子串的旧判定，让重合成的草稿被重新评分/发布。
+// 与 3-synthesize 的 --redo 配套（先重合成再重判）。
+const REDO = arg('--redo', null)
 
 const AUTHOR = 'SGA Index'
 
@@ -65,6 +68,16 @@ const SCORE_SYS = `You are a strict content quality reviewer for an English SEO 
 Return ONLY JSON: {"originality":int,"depth":int,"accuracy":int,"readability":int,"overall":int,"issues":["short issue"]}`
 
 const results = existsSync(OUT) ? JSON.parse(readFileSync(OUT, 'utf8')) : []
+if (REDO) {
+  const sub = String(REDO).toLowerCase()
+  const kept = results.filter((r) => !(r.slug && r.slug.toLowerCase().includes(sub)))
+  if (kept.length < results.length) {
+    console.log(`↻ --redo "${REDO}"：清掉 ${results.length - kept.length} 条旧判定，将重新评分`)
+    results.length = 0
+    results.push(...kept)
+    writeFileSync(OUT, JSON.stringify(results, null, 2))
+  }
+}
 const donePub = new Set(results.filter(r => r.action && r.action !== 'error').map(r => r.slug))
 
 const sb = DRY ? null : getSupabase()

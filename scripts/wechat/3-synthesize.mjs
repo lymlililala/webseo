@@ -27,6 +27,11 @@ function clampDesc(s, max = 160) {
 }
 const LIMIT = arg('--limit', null) ? Number(arg('--limit', null)) : null
 const DAYS = Number(arg('--days', 60))
+// 强制重做：丢弃 drafts.json 里 _topic/slug/working_title 命中该子串的旧草稿，
+// 让本轮用更新更全的源重新合成（修薄稿/THIN 失败的簇）。配合 4-publish 同名 --redo。
+const REDO = arg('--redo', null)
+const redoHit = (d) => REDO && [d._topic, d.slug, d.working_title].some(
+  (s) => typeof s === 'string' && s.toLowerCase().includes(String(REDO).toLowerCase()))
 
 const CLU = join(DATA_DIR, 'clusters.json')
 const OUT = join(DATA_DIR, 'drafts.json')
@@ -93,7 +98,15 @@ Return ONLY JSON:
  "category":"seo|geo|aeo|tools"
 }`
 
-const drafts = existsSync(OUT) ? JSON.parse(readFileSync(OUT, 'utf8')) : []
+let drafts = existsSync(OUT) ? JSON.parse(readFileSync(OUT, 'utf8')) : []
+if (REDO) {
+  const before = drafts.length
+  drafts = drafts.filter((d) => !redoHit(d))
+  if (drafts.length < before) {
+    writeFileSync(OUT, JSON.stringify(drafts, null, 2))
+    console.log(`↻ --redo "${REDO}"：丢弃 ${before - drafts.length} 篇旧草稿，将重新合成`)
+  }
+}
 const doneTopics = new Set(drafts.map(d => d._topic))
 
 // 库内已有文章（wseo_articles）——判重 + slug 唯一性的依据。无库则 null。

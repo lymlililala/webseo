@@ -51,6 +51,10 @@ on:
         description: '本次最多补译几篇缺中文的文章'
         required: true
         default: '12'
+      redo:
+        description: '强制重做：丢弃 drafts/published 里 slug/标题命中该子串的旧记录(改薄稿/THIN 失败重跑用，留空=不重做)'
+        required: false
+        default: ''
 
 concurrency:
   group: keyword-seo-pipeline
@@ -100,6 +104,7 @@ jobs:
           THRESHOLD: ${{ github.event.inputs.threshold || '80' }}
           MAX_PUBLISH: ${{ github.event.inputs.max_publish || '0' }}
           MAX_TRANSLATE: ${{ github.event.inputs.max_translate || '12' }}
+          REDO: ${{ github.event.inputs.redo }}
         run: |
           set -euo pipefail
           # 必填密钥自检
@@ -125,11 +130,15 @@ jobs:
           echo "==> 2b) 确定性聚类（每簇取正文最长前 $PER 篇 → data/clusters.json）"
           node scripts/wechat/2b-cluster-keywords.mjs "${SEL[@]}" --per "$PER" --days "$DAYS"
 
+          # 强制重做（可选）：清掉旧草稿/旧判定，让薄稿/THIN 失败的簇用更全的源重合成+重判。
+          REDO_ARG=()
+          if [ -n "${REDO:-}" ]; then REDO_ARG=(--redo "$REDO"); echo "↻ 重做命中子串：$REDO"; fi
+
           echo "==> 3) 合成英文长文（含对 wseo_articles 判重 + 内链兜底）"
-          node scripts/wechat/3-synthesize.mjs --days "$DAYS"
+          node scripts/wechat/3-synthesize.mjs --days "$DAYS" "${REDO_ARG[@]}"
 
           echo "==> 4) 发布（质量闸门 + AI 评分阈值 $THRESHOLD + 单次上限 $MAX_PUBLISH）"
-          node scripts/wechat/4-publish.mjs --threshold "$THRESHOLD" --max-publish "$MAX_PUBLISH"
+          node scripts/wechat/4-publish.mjs --threshold "$THRESHOLD" --max-publish "$MAX_PUBLISH" "${REDO_ARG[@]}"
 
           echo "==> 5) 补译（缺中文正文的文章译简体回写 *_zh；幂等，单次上限 $MAX_TRANSLATE）"
           node scripts/wechat/5-translate.mjs --limit "$MAX_TRANSLATE"
