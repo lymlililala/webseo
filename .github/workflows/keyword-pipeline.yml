@@ -1,0 +1,149 @@
+name: Keyword → SEO content pipeline (manual)
+
+# 关键词驱动的内容流水线（手动触发）：按 scripts/wechat/keywords.json 的目标词簇，
+# 用次幂 v3「关键词搜文章」采集中文源 → 确定性聚类(2b) → DeepSeek 合成英文长文
+# → 质量闸门 + AI 评分发布 → 补译 → 触发 Vercel 重建。
+#
+# 与 wechat-nightly 的区别：nightly 是“公众号驱动”(1→2)，本流水线是“关键词驱动”(1b→2b)，
+# 目标词信号不被通用聚类稀释，适合给某个工具/落地页配套深度内容（如 /domain-namer 的域名选题）。
+#
+# 前置 Secrets（同 nightly，仓库 Settings → Secrets and variables → Actions）：
+#   CIMIDATA_APP_ID, CIMIDATA_APP_SECRET   采集凭证（必填）
+#   DEEPSEEK_API_KEY                       合成/聚类辅助/评分（必填）；可选 DEEPSEEK_BASE_URL / DEEPSEEK_MODEL
+#   VITE_SUPABASE_URL, SUPABASE_SECRET_KEY 写库 + 判重（必填）
+#   PEXELS_API_KEY                         配图主源（可选）；可选 UNSPLASH_ACCESS_KEY
+#   VERCEL_DEPLOY_HOOK                     触发生产构建（可选但强烈建议）
+#
+# ⚠️ 次幂关键词搜文每次约 0.05 单位、按页计；先用单簇 + max_pages=2 试跑确认余额与质量。
+
+on:
+  workflow_dispatch:
+    inputs:
+      cluster:
+        description: '只跑指定簇（keywords.json 的 cluster 名，留空=按 priority_max 跑多簇）'
+        required: false
+        default: 'domain-availability'
+      priority_max:
+        description: '当 cluster 留空时，跑 priority<=N 的所有簇（留空=全部）'
+        required: false
+        default: ''
+      max_pages:
+        description: '每个中文检索词翻几页（1-5，越多源越全也越费余额）'
+        required: true
+        default: '2'
+      per:
+        description: '2b 每簇取多少篇正文最长的源组成一簇'
+        required: true
+        default: '6'
+      days:
+        description: '合成回看天数（关键词搜到的源常偏旧，放宽到 400）'
+        required: true
+        default: '400'
+      threshold:
+        description: 'AI 评分发布阈值'
+        required: true
+        default: '80'
+      max_publish:
+        description: '本次最多发布几篇（0=不限制）'
+        required: true
+        default: '0'
+      max_translate:
+        description: '本次最多补译几篇缺中文的文章'
+        required: true
+        default: '12'
+
+concurrency:
+  group: keyword-seo-pipeline
+  cancel-in-progress: false
+
+jobs:
+  pipeline:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        # Node 22+：@supabase/supabase-js 的 realtime 客户端需原生 WebSocket
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      # 复用 wechat-nightly 的同一份 data/ 缓存（sources.json 增量去重 + image-cache.json 省配额）。
+      - name: Restore pipeline data cache
+        uses: actions/cache@v4
+        with:
+          path: scripts/wechat/data
+          key: wechat-data-${{ github.run_id }}
+          restore-keys: |
+            wechat-data-
+
+      - name: Install pipeline dependencies
+        run: npm install --prefix scripts/wechat --no-audit --no-fund
+
+      - name: Run keyword pipeline
+        env:
+          CIMIDATA_APP_ID: ${{ secrets.CIMIDATA_APP_ID }}
+          CIMIDATA_APP_SECRET: ${{ secrets.CIMIDATA_APP_SECRET }}
+          DEEPSEEK_API_KEY: ${{ secrets.DEEPSEEK_API_KEY }}
+          DEEPSEEK_BASE_URL: ${{ secrets.DEEPSEEK_BASE_URL }}
+          DEEPSEEK_MODEL: ${{ secrets.DEEPSEEK_MODEL }}
+          VITE_SUPABASE_URL: ${{ secrets.VITE_SUPABASE_URL }}
+          SUPABASE_SECRET_KEY: ${{ secrets.SUPABASE_SECRET_KEY }}
+          PEXELS_API_KEY: ${{ secrets.PEXELS_API_KEY }}
+          UNSPLASH_ACCESS_KEY: ${{ secrets.UNSPLASH_ACCESS_KEY }}
+          CLUSTER: ${{ github.event.inputs.cluster }}
+          PRIORITY_MAX: ${{ github.event.inputs.priority_max }}
+          MAX_PAGES: ${{ github.event.inputs.max_pages || '2' }}
+          PER: ${{ github.event.inputs.per || '6' }}
+          DAYS: ${{ github.event.inputs.days || '400' }}
+          THRESHOLD: ${{ github.event.inputs.threshold || '80' }}
+          MAX_PUBLISH: ${{ github.event.inputs.max_publish || '0' }}
+          MAX_TRANSLATE: ${{ github.event.inputs.max_translate || '12' }}
+        run: |
+          set -euo pipefail
+          # 必填密钥自检
+          for k in CIMIDATA_APP_ID CIMIDATA_APP_SECRET DEEPSEEK_API_KEY VITE_SUPABASE_URL SUPABASE_SECRET_KEY; do
+            if [ -z "${!k:-}" ]; then echo "::error::缺少 Secret $k"; exit 1; fi
+          done
+
+          # 簇选择：优先 --cluster，其次 --priority-max，都空=全部有 manifest 的簇。
+          SEL=()
+          if [ -n "${CLUSTER:-}" ]; then
+            SEL=(--cluster "$CLUSTER")
+            echo "选题范围：单簇 $CLUSTER"
+          elif [ -n "${PRIORITY_MAX:-}" ]; then
+            SEL=(--priority-max "$PRIORITY_MAX")
+            echo "选题范围：priority <= $PRIORITY_MAX"
+          else
+            echo "选题范围：全部簇"
+          fi
+
+          echo "==> 1b) 次幂关键词采集（按 cn_terms 拉中文源+正文，写 data/sources.json + keyword-manifest.json）"
+          node scripts/wechat/1b-crawl-keywords.mjs "${SEL[@]}" --max-pages "$MAX_PAGES"
+
+          echo "==> 2b) 确定性聚类（每簇取正文最长前 $PER 篇 → data/clusters.json）"
+          node scripts/wechat/2b-cluster-keywords.mjs "${SEL[@]}" --per "$PER" --days "$DAYS"
+
+          echo "==> 3) 合成英文长文（含对 wseo_articles 判重 + 内链兜底）"
+          node scripts/wechat/3-synthesize.mjs --days "$DAYS"
+
+          echo "==> 4) 发布（质量闸门 + AI 评分阈值 $THRESHOLD + 单次上限 $MAX_PUBLISH）"
+          node scripts/wechat/4-publish.mjs --threshold "$THRESHOLD" --max-publish "$MAX_PUBLISH"
+
+          echo "==> 5) 补译（缺中文正文的文章译简体回写 *_zh；幂等，单次上限 $MAX_TRANSLATE）"
+          node scripts/wechat/5-translate.mjs --limit "$MAX_TRANSLATE"
+
+      # 触发 Vercel 生产构建：build:ci 会 prerender-static 拉库重渲染 + 重生成 sitemap。
+      - name: Trigger Vercel deploy
+        env:
+          HOOK: ${{ secrets.VERCEL_DEPLOY_HOOK }}
+        run: |
+          set -euo pipefail
+          if [ -z "${HOOK:-}" ]; then
+            echo "未配置 VERCEL_DEPLOY_HOOK，跳过（新文已在 SPA 可见，但预渲染/sitemap 需手动部署刷新）。"
+            exit 0
+          fi
+          code=$(curl -sS -X POST -o /tmp/hook_resp.json -w '%{http_code}' "$HOOK")
+          echo "HTTP $code"; cat /tmp/hook_resp.json || true
+          case "$code" in 2*) echo "✅ 已触发部署";; *) echo "::warning::Deploy Hook 返回 $code";; esac
