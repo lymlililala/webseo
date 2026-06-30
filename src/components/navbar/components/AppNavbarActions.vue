@@ -1,7 +1,12 @@
 <template>
   <div class="app-navbar-actions">
     <!-- Theme toggle (light / dark) -->
-    <button class="nav-icon-btn" type="button" :aria-label="isDark ? 'Switch to light theme' : 'Switch to dark theme'" @click="toggleTheme">
+    <button
+      class="nav-icon-btn"
+      type="button"
+      :aria-label="isDark ? 'Switch to light theme' : 'Switch to dark theme'"
+      @click="toggleTheme"
+    >
       <VaIcon :name="isDark ? 'light_mode' : 'dark_mode'" size="18px" />
     </button>
 
@@ -10,6 +15,9 @@
       <VaIcon name="language" size="18px" />
       <span class="lang-label">{{ current === 'zh' ? 'EN' : '中文' }}</span>
     </button>
+
+    <!-- Account / 积分余额(全站可见) -->
+    <AccountButton />
   </div>
 </template>
 
@@ -18,6 +26,7 @@ import { computed, onMounted } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 import { useColors } from 'vuestic-ui'
 import { currentLocale, setLocale, stripLocale, localePath, type AppLocale } from '../../../i18n/useLocale'
+import AccountButton from './AccountButton.vue'
 
 defineProps({
   isMobile: { type: Boolean, default: false },

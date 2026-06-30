@@ -11,10 +11,13 @@ import { inject } from '@vercel/analytics'
 import stores from './stores'
 import router from './router'
 import vuesticGlobalConfig from './services/vuestic-ui/global-config'
+import { useAuthStore } from './stores/auth-store'
 
 const app = createApp(App)
 
 app.use(stores)
+// 启动即恢复登录态 + 订阅魔法链接回跳(异步,不阻塞挂载)
+useAuthStore().init()
 app.use(router)
 app.use(i18n)
 // 初始语言:localStorage > URL 前缀 > 浏览器语言 > en(同步 <html lang>)

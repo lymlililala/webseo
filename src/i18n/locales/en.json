@@ -15,6 +15,21 @@
     "termsOfUse": "Terms of Use.",
     "reset_password": "Reset password"
   },
+  "account": {
+    "login": "Log in",
+    "logout": "Log out",
+    "credits": "credits",
+    "balance": "Balance",
+    "loginTitle": "Log in / Sign up",
+    "loginDesc": "Passwordless — we'll email you a one-click login link.",
+    "emailLabel": "Email",
+    "sendLink": "Send login link",
+    "linkSent": "Check your inbox",
+    "linkSentDesc": "We emailed a login link to {email}. Click it to finish signing in.",
+    "invalidEmail": "Please enter a valid email address.",
+    "close": "Close",
+    "buyCredits": "Buy credits"
+  },
   "404": {
     "title": "This page’s gone fishing.",
     "text": "If you feel that it’s not right, please send us a message at ",

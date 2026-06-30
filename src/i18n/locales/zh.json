@@ -15,6 +15,21 @@
     "termsOfUse": "使用条款",
     "reset_password": "重置密码"
   },
+  "account": {
+    "login": "登录",
+    "logout": "退出登录",
+    "credits": "积分",
+    "balance": "余额",
+    "loginTitle": "登录 / 注册",
+    "loginDesc": "免密登录 —— 我们会把一键登录链接发到你的邮箱。",
+    "emailLabel": "邮箱",
+    "sendLink": "发送登录链接",
+    "linkSent": "请查收邮箱",
+    "linkSentDesc": "已向 {email} 发送登录链接,点击即可完成登录。",
+    "invalidEmail": "请输入有效的邮箱地址。",
+    "close": "关闭",
+    "buyCredits": "购买积分"
+  },
   "404": {
     "title": "此页面已去钓鱼",
     "text": "如果您觉得这不对，请给我们发送消息",
