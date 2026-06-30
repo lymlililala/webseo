@@ -71,6 +71,13 @@ export default {
       },
     },
     {
+      name: 'domain-namer',
+      displayName: 'menu.domain-namer',
+      meta: {
+        icon: 'dns',
+      },
+    },
+    {
       name: 'articles',
       displayName: 'menu.articles',
       meta: {

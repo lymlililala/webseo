@@ -19,12 +19,21 @@ function makeChildren(suffix = ''): RouteRecordRaw[] {
     { name: n('geo-nav'), path: 'geo-nav/:category?', component: () => import('../pages/geo-nav/GeoNavPage.vue') },
     { name: n('aeo-nav'), path: 'aeo-nav/:category?', component: () => import('../pages/aeo-nav/AeoNavPage.vue') },
     { name: n('llms-txt'), path: 'llms-txt', component: () => import('../pages/llms-txt/LlmsTxtPage.vue') },
-    { name: n('ai-checker'), path: 'ai-checker/:category?', component: () => import('../pages/ai-checker/AiCheckerPage.vue') },
+    {
+      name: n('ai-checker'),
+      path: 'ai-checker/:category?',
+      component: () => import('../pages/ai-checker/AiCheckerPage.vue'),
+    },
     { name: n('glossary'), path: 'glossary', component: () => import('../pages/glossary/GlossaryPage.vue') },
     {
       name: n('schema-generator'),
       path: 'schema-generator',
       component: () => import('../pages/schema-generator/SchemaGeneratorPage.vue'),
+    },
+    {
+      name: n('domain-namer'),
+      path: 'domain-namer',
+      component: () => import('../pages/domain-namer/DomainNamerPage.vue'),
     },
     { name: n('articles'), path: 'articles', component: () => import('../pages/articles/ArticlesPage.vue') },
     {

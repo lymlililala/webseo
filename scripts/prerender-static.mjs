@@ -326,6 +326,23 @@ const staticRoutes = [
     },
   },
   {
+    path: '/domain-namer',
+    title: 'AI Domain Namer — Generate Brand Names & Check Availability | SGAIndex',
+    description:
+      'A free AI domain name generator: describe your product, get brandable English names, and instantly check domain availability and Google brand collisions.',
+    h1: 'AI Domain Namer',
+    keywords: 'AI domain generator,domain name generator,brand name generator,domain availability check,startup naming',
+    jsonld: {
+      '@context': 'https://schema.org',
+      '@type': 'SoftwareApplication',
+      name: 'SGAIndex AI Domain Namer',
+      url: `${SITE}/domain-namer`,
+      applicationCategory: 'DeveloperApplication',
+      operatingSystem: 'Web',
+      offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
+    },
+  },
+  {
     path: '/ai-checker',
     title: 'AI Visibility Checker — Analyze AI Citations of Your Content | SGAIndex',
     description:
@@ -548,6 +565,11 @@ const zhMeta = {
     title: 'Schema 结构化数据生成器 — 免费 JSON-LD 工具 | SGAIndex',
     description: '免费的 Schema 结构化数据工具,支持 Article、FAQ、Product、HowTo 等 20+ 种 JSON-LD 类型的生成与校验。',
     h1: 'Schema 结构化数据生成器',
+  },
+  '/domain-namer': {
+    title: 'AI 域名起名 — 智能生成品牌名并查询域名可注册 | SGAIndex',
+    description: '免费的 AI 域名起名工具:一句话描述产品,AI 生成适合做品牌的英文名,并即时查询域名能否注册与 Google 撞名风险。',
+    h1: 'AI 域名起名',
   },
   '/ai-checker': {
     title: 'AI 可见度检测 — 分析内容的 AI 引用情况 | SGAIndex',

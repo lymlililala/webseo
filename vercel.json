@@ -54,7 +54,11 @@
       "dest": "/$1"
     },
     {
-      "src": "/(seo-nav|geo-nav|aeo-nav|schema-generator|ai-checker|llms-txt|glossary|articles|tutorials|news|backlinks|faq|about|contact|privacy|terms)",
+      "src": "/api/(.*)",
+      "dest": "/api/$1"
+    },
+    {
+      "src": "/(seo-nav|geo-nav|aeo-nav|schema-generator|domain-namer|ai-checker|llms-txt|glossary|articles|tutorials|news|backlinks|faq|about|contact|privacy|terms)",
       "dest": "/$1/index.html"
     },
     {
@@ -74,7 +78,7 @@
       "dest": "/zh/$1/$2/index.html"
     },
     {
-      "src": "/zh/(seo-nav|geo-nav|aeo-nav|schema-generator|ai-checker|llms-txt|glossary|articles|tutorials|news|backlinks|faq|about|contact|privacy|terms)",
+      "src": "/zh/(seo-nav|geo-nav|aeo-nav|schema-generator|domain-namer|ai-checker|llms-txt|glossary|articles|tutorials|news|backlinks|faq|about|contact|privacy|terms)",
       "dest": "/zh/$1/index.html"
     },
     {

@@ -104,6 +104,15 @@ const modules = [
     descZh: '生成并校验 JSON-LD 结构化数据——Article、FAQ、Product、HowTo 等 20+ 类型。',
   },
   {
+    to: '/domain-namer',
+    icon: 'dns',
+    color: '#A855F7',
+    titleEn: 'AI Domain Namer',
+    titleZh: 'AI 域名起名',
+    descEn: 'Describe your idea, let AI name it, and instantly check domain availability and brand collisions.',
+    descZh: '一句话描述需求,AI 起名并即时查询域名能否注册与 Google 撞名风险。',
+  },
+  {
     to: '/articles',
     icon: 'article',
     color: '#EF4444',
