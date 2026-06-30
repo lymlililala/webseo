@@ -2,9 +2,30 @@
 import { ref, computed } from 'vue'
 import { useI18n } from 'vue-i18n'
 import { usePageSeo } from '../../composables/usePageSeo'
+import { getLimits } from '../../config/plans'
 
 const { t, locale } = useI18n()
 const isZh = computed(() => locale.value === 'zh')
+
+// 当前套餐限额(单一事实源见 src/config/plans.js)。现阶段 = default 档,全部放开。
+// 所有"可收费"动作都从这里读上限,不在本文件写死数字。
+const limits = getLimits()
+
+// 按 tldMax 夹住实际查询的后缀数(Infinity 时不变)
+function usableTlds(): string[] {
+  return limits.tldMax === Infinity ? selectedTlds.value : selectedTlds.value.slice(0, limits.tldMax)
+}
+
+// 每日"起名"次数闸门 —— 结构占位。dailyRuns=Infinity 时直接放行。
+// 无登录态时用 localStorage 粗略计数(可被绕过;真正限制需后端 + 登录,见 plans.js 的 resolvePlanId)。
+function takeDailyRun(): boolean {
+  if (limits.dailyRuns === Infinity) return true
+  const key = 'dn_runs_' + new Date().toISOString().slice(0, 10)
+  const used = parseInt(localStorage.getItem(key) || '0', 10)
+  if (used >= limits.dailyRuns) return false
+  localStorage.setItem(key, String(used + 1))
+  return true
+}
 
 usePageSeo({
   title: t('domainNamerPage.seoTitle'),
@@ -334,7 +355,7 @@ function intakeCandidate(name: string, reason: string, pending: Promise<unknown>
   if (seen.has(key)) return false
   seen.add(key)
 
-  const sel = selectedTlds.value
+  const sel = usableTlds()
   const domains: Record<string, DomStatus> = {}
   sel.forEach((tld) => (domains[(name + tld).toLowerCase()] = 'checking'))
   const rec: Rec = {
@@ -561,10 +582,12 @@ ${lines}`
 }
 
 async function finishRound() {
-  try {
-    await summarize()
-  } catch {
-    /* 推荐失败不影响结果 */
+  if (limits.aiSummary) {
+    try {
+      await summarize()
+    } catch {
+      /* 推荐失败不影响结果 */
+    }
   }
   arranged.value = true
   showMore.value = true
@@ -593,10 +616,15 @@ function resetRun() {
 async function run() {
   if (!need.value.trim()) return setStatus(isZh.value ? '请先描述你的需求' : 'Please describe your need first', 'err')
   if (!selectedTlds.value.length) return setStatus(isZh.value ? '至少选一个后缀' : 'Pick at least one TLD', 'err')
+  if (!takeDailyRun())
+    return setStatus(
+      isZh.value ? `今日起名次数已用完(上限 ${limits.dailyRuns} 次)` : `Daily naming limit reached (${limits.dailyRuns})`,
+      'err',
+    )
 
   running.value = true
   resetRun()
-  const targetN = Math.max(1, Math.min(30, autofillN.value || 6))
+  const targetN = Math.max(1, Math.min(limits.autofillMax, autofillN.value || 6))
   setStatus(
     autofill.value
       ? isZh.value
@@ -655,20 +683,24 @@ async function continueRecommend() {
 }
 
 async function rankUserNames() {
-  const names = parseUserNames(myNames.value || '')
-  if (!names.length)
+  const all = parseUserNames(myNames.value || '')
+  if (!all.length)
     return setStatus(
       isZh.value ? '没解析出合法候选名(仅支持字母开头、字母或数字,2~30 位)' : 'No valid candidate names parsed',
       'err',
     )
   if (!selectedTlds.value.length) return setStatus(isZh.value ? '至少选一个后缀' : 'Pick at least one TLD', 'err')
 
+  // 按套餐上限截断排名数量 M
+  const names = limits.rankMax === Infinity ? all : all.slice(0, limits.rankMax)
+  const truncated = names.length < all.length
+
   running.value = true
   resetRun()
   setStatus(
     isZh.value
-      ? `正在查询你的 ${names.length} 个候选(域名 + 撞名)…`
-      : `Checking your ${names.length} candidates (domains + collision)…`,
+      ? `正在查询你的 ${names.length} 个候选(域名 + 撞名)…${truncated ? `(已按上限 ${limits.rankMax} 个截断)` : ''}`
+      : `Checking your ${names.length} candidates (domains + collision)…${truncated ? ` (capped at ${limits.rankMax})` : ''}`,
     'run',
   )
   const pending: Promise<unknown>[] = []
@@ -761,7 +793,7 @@ function openLink(url: string) {
         </label>
         <div v-if="autofill" class="dn-autofill">
           <label class="dn-label">{{ t('domainNamerPage.autofillTargetLabel') }}</label>
-          <input v-model.number="autofillN" class="dn-input dn-num" type="number" min="1" max="30" />
+          <input v-model.number="autofillN" class="dn-input dn-num" type="number" min="1" :max="limits.autofillMax" />
           <div class="dn-hint">{{ t('domainNamerPage.autofillHint') }}</div>
         </div>
 
@@ -794,7 +826,13 @@ function openLink(url: string) {
           {{ t('domainNamerPage.recoTitle') }}
         </div>
         <div class="dn-reco-body">{{ recoText }}</div>
-        <VaButton v-if="showMore" class="dn-go" preset="secondary" :disabled="running" @click="continueRecommend">
+        <VaButton
+          v-if="showMore && limits.continueRecommend"
+          class="dn-go"
+          preset="secondary"
+          :disabled="running"
+          @click="continueRecommend"
+        >
           {{ t('domainNamerPage.moreBtn') }}
         </VaButton>
       </div>
