@@ -28,7 +28,16 @@
     "linkSentDesc": "已向 {email} 发送登录链接,点击即可完成登录。",
     "invalidEmail": "请输入有效的邮箱地址。",
     "close": "关闭",
-    "buyCredits": "购买积分"
+    "buyCredits": "购买积分",
+    "buyTitle": "购买积分",
+    "buyDesc": "为钱包充值。积分全站工具通用。",
+    "popular": "热门",
+    "bonusSuffix": "+{n} 赠送",
+    "buyAction": "购买",
+    "buyNote": "由 Stripe 安全支付,付款后积分立即到账。",
+    "checkoutError": "发起支付失败,请重试。",
+    "paySuccess": "支付成功,积分已到账。",
+    "payCancel": "已取消支付。"
   },
   "404": {
     "title": "此页面已去钓鱼",

@@ -1,14 +1,36 @@
 <script setup lang="ts">
 // navbar 账户入口 —— 登录态/积分余额的全站可见处。
-// 未登录:显示"登录"按钮(开弹窗);已登录:显示积分余额 chip + 下拉(邮箱/余额/退出)。
-import { ref } from 'vue'
+// 未登录:显示"登录"按钮(开弹窗);已登录:显示积分余额 chip + 下拉(邮箱/余额/购买/退出)。
+import { ref, onMounted } from 'vue'
 import { useI18n } from 'vue-i18n'
+import { useToast } from 'vuestic-ui'
 import { useAuthStore } from '../../../stores/auth-store'
 import AuthModal from '../../auth/AuthModal.vue'
+import BuyCreditsModal from '../../billing/BuyCreditsModal.vue'
 
 const { t } = useI18n()
+const { init: toast } = useToast()
 const auth = useAuthStore()
 const showLogin = ref(false)
+const showBuy = ref(false)
+
+// Stripe 付款跳回处理:success_url/cancel_url 带 ?credits=success|cancel。
+// 成功 → 刷新余额(webhook 异步发放,稍后再补刷一次)+ 提示,并清掉 URL 参数。
+onMounted(() => {
+  const params = new URLSearchParams(window.location.search)
+  const status = params.get('credits')
+  if (!status) return
+  params.delete('credits')
+  const qs = params.toString()
+  window.history.replaceState({}, '', window.location.pathname + (qs ? '?' + qs : ''))
+  if (status === 'success') {
+    toast({ message: t('account.paySuccess'), color: 'success' })
+    auth.refreshBalance()
+    window.setTimeout(() => auth.refreshBalance(), 3000)
+  } else if (status === 'cancel') {
+    toast({ message: t('account.payCancel'), color: 'warning' })
+  }
+})
 </script>
 
 <template>
@@ -28,6 +50,9 @@ const showLogin = ref(false)
             <span>{{ t('account.balance') }}</span>
             <strong>{{ auth.balance }} {{ t('account.credits') }}</strong>
           </div>
+          <button class="account-menu__buy" type="button" @click="showBuy = true">
+            {{ t('account.buyCredits') }}
+          </button>
           <button class="account-menu__logout" type="button" @click="auth.signOut()">
             {{ t('account.logout') }}
           </button>
@@ -43,6 +68,7 @@ const showLogin = ref(false)
     </template>
 
     <AuthModal v-model="showLogin" />
+    <BuyCreditsModal v-model="showBuy" />
   </div>
 </template>
 
@@ -114,6 +140,24 @@ const showLogin = ref(false)
     font-weight: 600;
     cursor: pointer;
     transition: all 0.15s;
+  }
+
+  &__buy {
+    width: 100%;
+    margin-top: 10px;
+    padding: 8px 0;
+    border-radius: 8px;
+    border: none;
+    background: var(--va-primary);
+    color: #fff;
+    font-size: 13px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: filter 0.15s;
+  }
+
+  &__buy:hover {
+    filter: brightness(1.08);
   }
 
   &__logout:hover {

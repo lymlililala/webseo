@@ -46,7 +46,7 @@ returns trigger
 language plpgsql
 security definer set search_path = public
 as $$
-declare bonus integer := 0;            -- 注册赠送积分,0 = 不送(将来想拉新就改这里)
+declare bonus integer := 10;           -- 注册赠送积分,10 = 新用户送 10 分试用(够试 10 次起名)
 begin
   insert into public.wseo_credit_balance (user_id, balance)
     values (new.id, bonus)
@@ -126,3 +126,57 @@ $$;
 grant execute on function public.consume_credits(integer, text, text) to authenticated;
 -- grant:严禁前端,仅 service_role(Stripe webhook 用 service_role key 调用)
 revoke execute on function public.grant_credits(uuid, integer, text, text) from anon, authenticated;
+
+
+-- ════════════════════════════════════════════════════════════
+-- Step 2:Stripe 充值 —— 订单表 + 幂等发放
+-- ════════════════════════════════════════════════════════════
+
+-- 订单表:checkout 创建时写 pending,webhook 收到付款回调置 paid。
+-- stripe_session_id 唯一 ⇒ 天然幂等(重复回调不会重复发分)。
+create table if not exists public.wseo_orders (
+  id                bigint generated always as identity primary key,
+  user_id           uuid not null references auth.users (id) on delete cascade,
+  stripe_session_id text not null unique,
+  pack_id           text not null,
+  credits           integer not null,        -- 本单应发放的总积分(含赠送)
+  amount_cents      integer not null,
+  currency          text not null default 'usd',
+  status            text not null default 'pending',  -- pending | paid
+  created_at        timestamptz not null default now(),
+  paid_at           timestamptz
+);
+
+alter table public.wseo_orders enable row level security;
+
+drop policy if exists "own orders read" on public.wseo_orders;
+create policy "own orders read" on public.wseo_orders
+  for select using (auth.uid() = user_id);
+-- 无 insert/update 策略 ⇒ 仅 service_role / 下面的 SECURITY DEFINER 函数能写。
+
+-- 幂等履约:把 pending 订单置 paid 并发放积分,二者在同一事务内完成。
+-- 已 paid 或不存在 ⇒ 返回 0(无副作用),保证 webhook 重放安全。仅 service_role 调用。
+create or replace function public.fulfill_order(p_session_id text)
+returns integer
+language plpgsql
+security definer set search_path = public
+as $$
+declare
+  v_user    uuid;
+  v_credits integer;
+begin
+  update public.wseo_orders
+    set status = 'paid', paid_at = now()
+    where stripe_session_id = p_session_id and status = 'pending'
+    returning user_id, credits into v_user, v_credits;
+
+  if not found then
+    return 0;  -- 重复回调或未知 session:幂等空操作
+  end if;
+
+  perform public.grant_credits(v_user, v_credits, 'purchase', p_session_id);
+  return v_credits;
+end;
+$$;
+
+revoke execute on function public.fulfill_order(text) from anon, authenticated;

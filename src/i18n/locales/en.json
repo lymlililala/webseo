@@ -28,7 +28,16 @@
     "linkSentDesc": "We emailed a login link to {email}. Click it to finish signing in.",
     "invalidEmail": "Please enter a valid email address.",
     "close": "Close",
-    "buyCredits": "Buy credits"
+    "buyCredits": "Buy credits",
+    "buyTitle": "Buy credits",
+    "buyDesc": "Top up your wallet. Credits are shared across all tools.",
+    "popular": "Popular",
+    "bonusSuffix": "+{n} bonus",
+    "buyAction": "Buy",
+    "buyNote": "Secure payment via Stripe. Credits are added right after payment.",
+    "checkoutError": "Could not start checkout. Please try again.",
+    "paySuccess": "Payment successful — credits added.",
+    "payCancel": "Payment canceled."
   },
   "404": {
     "title": "This page’s gone fishing.",

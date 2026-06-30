@@ -55,7 +55,7 @@ export function getLimits(planId = DEFAULT_PLAN) {
 
 // 后端:从请求解析当前用户套餐 —— 现在恒为 default。
 // TODO(收费阶段):解析登录态/JWT → 查用户套餐 → 返回 'free' | 'pro' | ...
-// eslint-disable-next-line no-unused-vars
+// eslint-disable-next-line no-unused-vars, @typescript-eslint/no-unused-vars
 export function resolvePlanId(_req) {
   return DEFAULT_PLAN
 }
@@ -63,4 +63,38 @@ export function resolvePlanId(_req) {
 // 把数值夹到上限内(Infinity 表示不限)
 export function clampToLimit(value, max) {
   return max === Infinity ? value : Math.min(value, max)
+}
+
+// ════════════════════════════════════════════════════════════
+// 积分付费(Step 2 起)—— 价目表单一事实源
+// 改价/加档只动这里;前端购买页与 api/stripe/* 都从这里取。
+// ════════════════════════════════════════════════════════════
+
+// 计价货币(Stripe 用),小写,符合 Stripe currency 规范。
+export const CURRENCY = 'usd'
+
+// 每个动作消耗几分(Step 3 接入扣费时由后端读取,key 用 "功能.动作")。
+// 通用钱包:将来别的页面加付费功能,在这里加一行 + 该页调用扣费 API 即可。
+export const COSTS = {
+  'domain.naming': 1, // 一次"AI 起名"(返回一批候选 + 域名/撞名查询)
+  'domain.rank': 1, // 一次"已有候选排名"批量查询
+  'domain.autofill': 1, // 一次"自动凑满"
+}
+
+// 积分包:priceCents 是该档支付金额(美分);credits 为基础分,bonus 为赠送分,
+// 实际发放 = credits + bonus(见 grantedCredits)。popular=true 给该档加高亮徽章。
+export const PACKS = [
+  { id: 'starter', priceCents: 500, credits: 100, bonus: 0 },
+  { id: 'popular', priceCents: 2000, credits: 500, bonus: 100, popular: true },
+  { id: 'pro', priceCents: 5000, credits: 1500, bonus: 500 },
+]
+
+// 某个积分包实际发放的总分(基础 + 赠送)。
+export function grantedCredits(pack) {
+  return (pack?.credits || 0) + (pack?.bonus || 0)
+}
+
+// 按 id 取积分包(后端校验用,未知 id 返回 undefined)。
+export function getPack(id) {
+  return PACKS.find((p) => p.id === id)
 }
