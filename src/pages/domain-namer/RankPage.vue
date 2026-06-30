@@ -3,7 +3,6 @@ import { useI18n } from 'vue-i18n'
 import { usePageSeo } from '../../composables/usePageSeo'
 import { useDomainNamer } from './useDomainNamer'
 import DomainTabs from './DomainTabs.vue'
-import TldField from './TldField.vue'
 import ResultPanel from './ResultPanel.vue'
 import './domain-namer.css'
 
@@ -58,8 +57,6 @@ usePageSeo({
           :placeholder="t('domainNamerPage.myNamesPlaceholder')"
           rows="4"
         />
-
-        <TldField :ctx="ctx" />
 
         <VaButton class="dn-go" :loading="ctx.running" :disabled="ctx.running" @click="ctx.startRank()">
           {{ t('domainNamerPage.rankBtn') }}
