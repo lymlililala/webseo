@@ -11,17 +11,17 @@ const { t } = useI18n()
 const ctx = useDomainNamer()
 
 usePageSeo({
-  title: t('domainNamerPage.seoTitle'),
-  description: t('domainNamerPage.seoDescription'),
-  path: '/domain-namer',
-  keywords: t('domainNamerPage.seoKeywords'),
+  title: t('domainNamerAutofillPage.seoTitle'),
+  description: t('domainNamerAutofillPage.seoDescription'),
+  path: '/domain-namer/autofill',
+  keywords: t('domainNamerAutofillPage.seoKeywords'),
   jsonLd: [
     {
       '@context': 'https://schema.org',
       '@type': 'SoftwareApplication',
-      name: 'SGAIndex AI Domain Namer',
-      description: 'AI-powered domain name generator with live registration and brand-collision checks',
-      url: 'https://sgaindex.com/domain-namer',
+      name: 'SGAIndex AI Domain Namer — Auto-fill',
+      description: 'Auto-generate multiple registrable, collision-free domain names until a target count is reached',
+      url: 'https://sgaindex.com/domain-namer/autofill',
       applicationCategory: 'DeveloperApplication',
       operatingSystem: 'Web',
       offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
@@ -36,14 +36,14 @@ usePageSeo({
       <div class="dn-hero-bg" />
       <div class="dn-hero-content">
         <div class="dn-hero-badge">
-          <VaIcon name="dns" size="14px" />
+          <VaIcon name="auto_mode" size="14px" />
           <span>{{ t('domainNamerPage.badge') }}</span>
         </div>
         <h1 class="dn-hero-title">
           {{ t('domainNamerPage.heroTitleMain') }}<br />
-          <span class="dn-hero-accent">{{ t('domainNamerPage.heroTitleAccent') }}</span>
+          <span class="dn-hero-accent">{{ t('domainNamerAutofillPage.heroAccent') }}</span>
         </h1>
-        <p class="dn-hero-subtitle">{{ t('domainNamerPage.heroSubtitle') }}</p>
+        <p class="dn-hero-subtitle">{{ t('domainNamerAutofillPage.heroSubtitle') }}</p>
       </div>
     </div>
 
@@ -61,8 +61,12 @@ usePageSeo({
 
         <TldField :ctx="ctx" />
 
-        <VaButton class="dn-go" :loading="ctx.running" :disabled="ctx.running" @click="ctx.startNaming()">
-          {{ t('domainNamerPage.runBtn') }}
+        <label class="dn-label">{{ t('domainNamerPage.autofillTargetLabel') }}</label>
+        <input v-model.number="ctx.autofillN" class="dn-input dn-num" type="number" min="1" :max="ctx.limits.autofillMax" />
+        <div class="dn-hint">{{ t('domainNamerPage.autofillHint') }}</div>
+
+        <VaButton class="dn-go" :loading="ctx.running" :disabled="ctx.running" @click="ctx.startAutofill()">
+          {{ t('domainNamerAutofillPage.runBtn') }}
         </VaButton>
 
         <div v-if="ctx.statusMsg" class="dn-status" :class="ctx.statusCls">{{ ctx.statusMsg }}</div>

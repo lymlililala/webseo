@@ -343,6 +343,40 @@ const staticRoutes = [
     },
   },
   {
+    path: '/domain-namer/autofill',
+    title: 'AI Domain Auto-fill — Batch Generate Registrable Domain Names | SGAIndex',
+    description:
+      'Set a target count and let AI auto-generate that many registrable, collision-free domain names across multiple rounds.',
+    h1: 'AI Domain Auto-fill',
+    keywords: 'bulk domain name generator,batch domain names,auto domain generator,available domain finder',
+    jsonld: {
+      '@context': 'https://schema.org',
+      '@type': 'SoftwareApplication',
+      name: 'SGAIndex AI Domain Namer — Auto-fill',
+      url: `${SITE}/domain-namer/autofill`,
+      applicationCategory: 'DeveloperApplication',
+      operatingSystem: 'Web',
+      offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
+    },
+  },
+  {
+    path: '/domain-namer/rank',
+    title: 'Domain Candidate Ranker — Check Availability & Collisions | SGAIndex',
+    description:
+      'Paste your own candidate names and check domain availability and Google brand collisions for each, then rank them by usability.',
+    h1: 'Domain Candidate Ranker',
+    keywords: 'domain availability checker,bulk domain check,brand collision check,domain name ranking',
+    jsonld: {
+      '@context': 'https://schema.org',
+      '@type': 'SoftwareApplication',
+      name: 'SGAIndex Domain Candidate Ranker',
+      url: `${SITE}/domain-namer/rank`,
+      applicationCategory: 'DeveloperApplication',
+      operatingSystem: 'Web',
+      offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
+    },
+  },
+  {
     path: '/ai-checker',
     title: 'AI Visibility Checker — Analyze AI Citations of Your Content | SGAIndex',
     description:
@@ -570,6 +604,16 @@ const zhMeta = {
     title: 'AI 域名起名 — 智能生成品牌名并查询域名可注册 | SGAIndex',
     description: '免费的 AI 域名起名工具:一句话描述产品,AI 生成适合做品牌的英文名,并即时查询域名能否注册与 Google 撞名风险。',
     h1: 'AI 域名起名',
+  },
+  '/domain-namer/autofill': {
+    title: 'AI 域名批量生成 — 自动凑满可注册域名 | SGAIndex',
+    description: '设定目标个数,让 AI 多轮自动生成这么多个可注册、不撞名的域名,自动跳过被占用和撞名的名字。',
+    h1: 'AI 域名批量生成',
+  },
+  '/domain-namer/rank': {
+    title: '域名候选排名 — 批量查可注册与撞名 | SGAIndex',
+    description: '粘贴你自己的候选名,即时逐个查询域名可注册情况(RDAP)与 Google 撞名风险,再按可用度排序。',
+    h1: '域名候选排名',
   },
   '/ai-checker': {
     title: 'AI 可见度检测 — 分析内容的 AI 引用情况 | SGAIndex',

@@ -49,6 +49,9 @@
     "glossary": "AI SEO Glossary",
     "schema-generator": "Schema Generator",
     "domain-namer": "AI Domain Namer",
+    "domain-namer-naming": "AI Naming",
+    "domain-namer-autofill": "Auto-fill Names",
+    "domain-namer-rank": "Rank Candidates",
     "articles": "Articles",
     "tutorials": "Tutorials",
     "news": "News",
@@ -727,5 +730,21 @@
     "seoTitle": "AI Domain Namer — Generate Brand Names & Check Availability",
     "seoDescription": "A free AI domain name generator: describe your product, get brandable English names, and instantly check domain availability and Google brand collisions. Built for founders and indie developers.",
     "seoKeywords": "AI domain generator,domain name generator,brand name generator,domain availability check,startup naming,business name ideas"
+  },
+  "domainNamerAutofillPage": {
+    "heroAccent": "Auto-fill until you have enough",
+    "heroSubtitle": "Set a target number of usable candidates — AI keeps generating across multiple rounds, automatically skipping taken or colliding names, until it reaches your goal.",
+    "runBtn": "Start auto-fill",
+    "seoTitle": "AI Domain Auto-fill — Batch Generate Registrable Domain Names",
+    "seoDescription": "Set a target count and let AI auto-generate that many registrable, collision-free domain names across multiple rounds. Skips taken and colliding names automatically.",
+    "seoKeywords": "bulk domain name generator,batch domain names,auto domain generator,available domain finder,startup naming"
+  },
+  "domainNamerRankPage": {
+    "heroMain": "Rank Your Candidates",
+    "heroAccent": "Domains + collisions, sorted",
+    "heroSubtitle": "Already have a shortlist? Paste your candidate names and we'll check domain availability and Google brand collisions for each, then rank them by how usable they are.",
+    "seoTitle": "Domain Candidate Ranker — Check Availability & Collisions",
+    "seoDescription": "Paste your own candidate names and instantly check domain availability (RDAP) and Google brand collisions for each, then rank them by usability. Free.",
+    "seoKeywords": "domain availability checker,bulk domain check,brand collision check,domain name ranking,check domain names"
   }
 }

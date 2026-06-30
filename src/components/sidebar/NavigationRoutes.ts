@@ -76,6 +76,11 @@ export default {
       meta: {
         icon: 'dns',
       },
+      children: [
+        { name: 'domain-namer', displayName: 'menu.domain-namer-naming', meta: { icon: 'dns' } },
+        { name: 'domain-namer/autofill', displayName: 'menu.domain-namer-autofill', meta: { icon: 'auto_mode' } },
+        { name: 'domain-namer/rank', displayName: 'menu.domain-namer-rank', meta: { icon: 'leaderboard' } },
+      ],
     },
     {
       name: 'articles',

@@ -35,6 +35,16 @@ function makeChildren(suffix = ''): RouteRecordRaw[] {
       path: 'domain-namer',
       component: () => import('../pages/domain-namer/DomainNamerPage.vue'),
     },
+    {
+      name: n('domain-namer-autofill'),
+      path: 'domain-namer/autofill',
+      component: () => import('../pages/domain-namer/AutofillPage.vue'),
+    },
+    {
+      name: n('domain-namer-rank'),
+      path: 'domain-namer/rank',
+      component: () => import('../pages/domain-namer/RankPage.vue'),
+    },
     { name: n('articles'), path: 'articles', component: () => import('../pages/articles/ArticlesPage.vue') },
     {
       name: n('article-detail'),

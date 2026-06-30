@@ -66,7 +66,7 @@
       "dest": "/$1/$2/index.html"
     },
     {
-      "src": "/(seo-nav|geo-nav|aeo-nav|ai-checker)/([^/]+)",
+      "src": "/(seo-nav|geo-nav|aeo-nav|ai-checker|domain-namer)/([^/]+)",
       "dest": "/$1/$2/index.html"
     },
     {
@@ -74,7 +74,7 @@
       "dest": "/zh/$1/$2/index.html"
     },
     {
-      "src": "/zh/(seo-nav|geo-nav|aeo-nav|ai-checker)/([^/]+)",
+      "src": "/zh/(seo-nav|geo-nav|aeo-nav|ai-checker|domain-namer)/([^/]+)",
       "dest": "/zh/$1/$2/index.html"
     },
     {

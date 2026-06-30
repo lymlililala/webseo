@@ -11,17 +11,17 @@ const { t } = useI18n()
 const ctx = useDomainNamer()
 
 usePageSeo({
-  title: t('domainNamerPage.seoTitle'),
-  description: t('domainNamerPage.seoDescription'),
-  path: '/domain-namer',
-  keywords: t('domainNamerPage.seoKeywords'),
+  title: t('domainNamerRankPage.seoTitle'),
+  description: t('domainNamerRankPage.seoDescription'),
+  path: '/domain-namer/rank',
+  keywords: t('domainNamerRankPage.seoKeywords'),
   jsonLd: [
     {
       '@context': 'https://schema.org',
       '@type': 'SoftwareApplication',
-      name: 'SGAIndex AI Domain Namer',
-      description: 'AI-powered domain name generator with live registration and brand-collision checks',
-      url: 'https://sgaindex.com/domain-namer',
+      name: 'SGAIndex Domain Candidate Ranker',
+      description: 'Check domain availability and brand collisions for your own candidate names, then rank them',
+      url: 'https://sgaindex.com/domain-namer/rank',
       applicationCategory: 'DeveloperApplication',
       operatingSystem: 'Web',
       offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
@@ -36,14 +36,14 @@ usePageSeo({
       <div class="dn-hero-bg" />
       <div class="dn-hero-content">
         <div class="dn-hero-badge">
-          <VaIcon name="dns" size="14px" />
+          <VaIcon name="leaderboard" size="14px" />
           <span>{{ t('domainNamerPage.badge') }}</span>
         </div>
         <h1 class="dn-hero-title">
-          {{ t('domainNamerPage.heroTitleMain') }}<br />
-          <span class="dn-hero-accent">{{ t('domainNamerPage.heroTitleAccent') }}</span>
+          {{ t('domainNamerRankPage.heroMain') }}<br />
+          <span class="dn-hero-accent">{{ t('domainNamerRankPage.heroAccent') }}</span>
         </h1>
-        <p class="dn-hero-subtitle">{{ t('domainNamerPage.heroSubtitle') }}</p>
+        <p class="dn-hero-subtitle">{{ t('domainNamerRankPage.heroSubtitle') }}</p>
       </div>
     </div>
 
@@ -51,18 +51,18 @@ usePageSeo({
       <DomainTabs />
 
       <div class="dn-card">
-        <label class="dn-label">{{ t('domainNamerPage.needLabel') }}</label>
+        <label class="dn-label">{{ t('domainNamerPage.myNamesLabel') }}</label>
         <textarea
-          v-model="ctx.need"
+          v-model="ctx.myNames"
           class="dn-textarea"
-          :placeholder="t('domainNamerPage.needPlaceholder')"
-          rows="3"
+          :placeholder="t('domainNamerPage.myNamesPlaceholder')"
+          rows="4"
         />
 
         <TldField :ctx="ctx" />
 
-        <VaButton class="dn-go" :loading="ctx.running" :disabled="ctx.running" @click="ctx.startNaming()">
-          {{ t('domainNamerPage.runBtn') }}
+        <VaButton class="dn-go" :loading="ctx.running" :disabled="ctx.running" @click="ctx.startRank()">
+          {{ t('domainNamerPage.rankBtn') }}
         </VaButton>
 
         <div v-if="ctx.statusMsg" class="dn-status" :class="ctx.statusCls">{{ ctx.statusMsg }}</div>
