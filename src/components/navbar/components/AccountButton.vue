@@ -5,6 +5,7 @@ import { ref, onMounted, watch } from 'vue'
 import { useI18n } from 'vue-i18n'
 import { useToast } from 'vuestic-ui'
 import { useAuthStore } from '../../../stores/auth-store'
+import { PAYMENT_ENABLED } from '../../../config/plans'
 import AuthModal from '../../auth/AuthModal.vue'
 import BuyCreditsModal from '../../billing/BuyCreditsModal.vue'
 
@@ -67,7 +68,7 @@ onMounted(() => {
             <span>{{ t('account.balance') }}</span>
             <strong>{{ auth.balance }} {{ t('account.credits') }}</strong>
           </div>
-          <button class="account-menu__buy" type="button" @click="showBuy = true">
+          <button v-if="PAYMENT_ENABLED" class="account-menu__buy" type="button" @click="showBuy = true">
             {{ t('account.buyCredits') }}
           </button>
           <button class="account-menu__logout" type="button" @click="auth.signOut()">
@@ -85,7 +86,7 @@ onMounted(() => {
     </template>
 
     <AuthModal v-model="showLogin" :initial-mode="authMode" />
-    <BuyCreditsModal v-model="showBuy" />
+    <BuyCreditsModal v-if="PAYMENT_ENABLED" v-model="showBuy" />
   </div>
 </template>
 

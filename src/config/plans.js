@@ -73,6 +73,10 @@ export function clampToLimit(value, max) {
 // 计价货币(Stripe 用),小写,符合 Stripe currency 规范。
 export const CURRENCY = 'usd'
 
+// 支付总开关:false = 隐藏"购买积分"入口(支付渠道未就绪时)。
+// 积分仍可通过注册赠送 / 后台 grant_credits 发放。将来接通 PayPal 等改 true 即可。
+export const PAYMENT_ENABLED = false
+
 // 每个动作消耗几分(Step 3 接入扣费时由后端读取,key 用 "功能.动作")。
 // 通用钱包:将来别的页面加付费功能,在这里加一行 + 该页调用扣费 API 即可。
 export const COSTS = {
