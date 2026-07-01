@@ -1,6 +1,7 @@
 // api/namer.js — AI 域名起名:把前端请求转发给 deepseek(OpenAI 兼容),SSE 流式回传。
 // DEEPSEEK_API_KEY 只在服务端读取,绝不下发前端、绝不进 Git。
 // 部署:Vercel 环境变量 DEEPSEEK_API_KEY(标记 Sensitive);本地:.env.local(被 .gitignore 屏蔽)。
+import { verifyRunToken, creditsEnforced } from './_runToken.js'
 
 const DEEPSEEK_URL = 'https://api.deepseek.com/chat/completions'
 const MODEL = 'deepseek-chat'
@@ -48,6 +49,12 @@ export default async function handler(req, res) {
   const ip = (req.headers['x-forwarded-for'] || '').split(',')[0].trim() || 'unknown'
   if (rateLimited(ip)) {
     res.status(429).json({ error: 'too many requests' })
+    return
+  }
+
+  // 扣费闸门:启用时必须带有效运行令牌(由 /api/run/start 扣分后签发)。
+  if (creditsEnforced() && !verifyRunToken(req.headers['x-run-token'])) {
+    res.status(402).json({ error: 'run token required' })
     return
   }
 

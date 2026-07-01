@@ -4,6 +4,7 @@
 //   2) 环境变量 SERPER_KEYS(逗号分隔多个) → 单个 SERPER_KEY(本地/简单部署)
 // 某个 key 配额用尽/失效(401/403/429)或上游故障时,自动切换到下一个。
 import { get } from '@vercel/edge-config'
+import { verifyRunToken, creditsEnforced } from './_runToken.js'
 
 const SERPER_URL = 'https://google.serper.dev/search'
 // 触发"换下一个 key"的状态:401 未授权、403 配额耗尽/无效、429 限频
@@ -69,6 +70,12 @@ export default async function handler(req, res) {
   const ip = (req.headers['x-forwarded-for'] || '').split(',')[0].trim() || 'unknown'
   if (rateLimited(ip)) {
     res.status(429).json({ error: 'too many requests' })
+    return
+  }
+
+  // 扣费闸门:启用时必须带有效运行令牌(由 /api/run/start 扣分后签发)。
+  if (creditsEnforced() && !verifyRunToken(req.headers['x-run-token'])) {
+    res.status(402).json({ error: 'run token required' })
     return
   }
 

@@ -13,6 +13,7 @@ export const useAuthStore = defineStore('auth', () => {
   const ready = ref(false) // 首次会话恢复是否完成(避免登录态闪烁)
   const loadingBalance = ref(false)
   const recoveryMode = ref(false) // 用户点了重置密码邮件链接 → 需弹"设置新密码"
+  const promptLogin = ref(false) // 其它页面(如域名工具)请求弹出登录框
 
   const isLoggedIn = computed(() => !!user.value)
   const email = computed(() => user.value?.email ?? '')
@@ -95,6 +96,14 @@ export const useAuthStore = defineStore('auth', () => {
     recoveryMode.value = false
   }
 
+  // 供其它页面调用:请求弹出登录框(navbar 的 AccountButton 监听 promptLogin)。
+  function requireLogin() {
+    promptLogin.value = true
+  }
+  function clearLoginPrompt() {
+    promptLogin.value = false
+  }
+
   async function signOut() {
     await supabase.auth.signOut()
     await setSession(null)
@@ -107,6 +116,7 @@ export const useAuthStore = defineStore('auth', () => {
     ready,
     loadingBalance,
     recoveryMode,
+    promptLogin,
     isLoggedIn,
     email,
     init,
@@ -116,6 +126,8 @@ export const useAuthStore = defineStore('auth', () => {
     sendPasswordReset,
     updatePassword,
     clearRecovery,
+    requireLogin,
+    clearLoginPrompt,
     signOut,
   }
 })

@@ -4,7 +4,9 @@
 // 返回 reactive(ctx),组件通过 :ctx 直接读写(模板里无需 .value)。
 import { ref, reactive, computed } from 'vue'
 import { useI18n } from 'vue-i18n'
-import { getLimits } from '../../config/plans'
+import { getLimits, runCost, CREDITS_ENABLED } from '../../config/plans'
+import { useAuthStore } from '../../stores/auth-store'
+import { supabase } from '../../services/supabase'
 
 type DomStatus = 'checking' | 'available' | 'registered' | 'unknown'
 export interface Rec {
@@ -25,7 +27,7 @@ interface RdapInfo {
 }
 
 export function useDomainNamer() {
-  const { t, locale } = useI18n()
+  const { locale } = useI18n()
   const isZh = computed(() => locale.value === 'zh')
 
   // 当前套餐限额(单一事实源见 src/config/plans.js)。现阶段 default 档全部放开。
@@ -73,15 +75,56 @@ export function useDomainNamer() {
     return limits.tldMax === Infinity ? selectedTlds.value : selectedTlds.value.slice(0, limits.tldMax)
   }
 
-  // 每日"起名"次数闸门(结构占位)。dailyRuns=Infinity 直接放行;
-  // 无登录态时用 localStorage 粗略计数(可被绕过;真限制需后端+登录,见 plans.js)。
-  function takeDailyRun(): boolean {
-    if (limits.dailyRuns === Infinity) return true
-    const key = 'dn_runs_' + new Date().toISOString().slice(0, 10)
-    const used = parseInt(localStorage.getItem(key) || '0', 10)
-    if (used >= limits.dailyRuns) return false
-    localStorage.setItem(key, String(used + 1))
-    return true
+  // 积分扣费:开始一次运行前调用。服务端扣分并签发运行令牌,namer/serper 凭令牌放行。
+  // CREDITS_ENABLED 关闭时直接放行(免登录、免扣费,灰度期行为不变)。
+  const auth = useAuthStore()
+  let runToken = ''
+
+  type RunAction = 'naming' | 'autofill' | 'rank' | 'continue'
+  async function charge(action: RunAction, n = 1): Promise<boolean> {
+    if (!CREDITS_ENABLED) return true
+    if (!auth.isLoggedIn) {
+      auth.requireLogin()
+      setStatus(
+        isZh.value ? '请先登录后再使用(新用户注册送 10 积分)' : 'Please log in first (new users get 10 free credits)',
+        'err',
+      )
+      return false
+    }
+    const { data } = await supabase.auth.getSession()
+    const at = data.session?.access_token
+    if (!at) {
+      auth.requireLogin()
+      return false
+    }
+    const cost = runCost(action, n)
+    try {
+      const resp = await fetch('/api/run/start', {
+        method: 'POST',
+        headers: { 'content-type': 'application/json', authorization: `Bearer ${at}` },
+        body: JSON.stringify({ action, n }),
+      })
+      if (resp.status === 402) {
+        setStatus(
+          isZh.value
+            ? `积分不足:本次需 ${cost} 分,当前余额 ${auth.balance} 分`
+            : `Not enough credits: needs ${cost}, balance ${auth.balance}`,
+          'err',
+        )
+        return false
+      }
+      if (!resp.ok) {
+        setStatus(isZh.value ? '扣费失败,请稍后重试' : 'Charge failed, please retry', 'err')
+        return false
+      }
+      const j = await resp.json()
+      runToken = j.token || ''
+      auth.refreshBalance()
+      return true
+    } catch {
+      setStatus(isZh.value ? '网络错误,请重试' : 'Network error, please retry', 'err')
+      return false
+    }
   }
 
   // ---------------- 运行状态 ----------------
@@ -139,7 +182,7 @@ export function useDomainNamer() {
   ): Promise<string> {
     const resp = await fetch('/api/namer', {
       method: 'POST',
-      headers: { 'content-type': 'application/json' },
+      headers: { 'content-type': 'application/json', 'x-run-token': runToken },
       body: JSON.stringify({ messages }),
     })
     if (!resp.ok || !resp.body) {
@@ -277,7 +320,7 @@ export function useDomainNamer() {
   async function checkBrand(name: string) {
     const resp = await fetch('/api/serper', {
       method: 'POST',
-      headers: { 'content-type': 'application/json' },
+      headers: { 'content-type': 'application/json', 'x-run-token': runToken },
       body: JSON.stringify({ q: name, num: 10 }),
     })
     if (!resp.ok) throw new Error(`serper HTTP ${resp.status}`)
@@ -588,7 +631,7 @@ ${lines}`
     idx = 0
   }
 
-  // 校验需求 + 后缀 + 每日次数;通过返回 true
+  // 校验需求 + 后缀;通过返回 true(扣费在各 start 函数里单独做)
   function preflight(): boolean {
     if (!need.value.trim()) {
       setStatus(isZh.value ? '请先描述你的需求' : 'Please describe your need first', 'err')
@@ -598,19 +641,13 @@ ${lines}`
       setStatus(isZh.value ? '至少选一个后缀' : 'Pick at least one TLD', 'err')
       return false
     }
-    if (!takeDailyRun()) {
-      setStatus(
-        isZh.value ? `今日起名次数已用完(上限 ${limits.dailyRuns} 次)` : `Daily naming limit reached (${limits.dailyRuns})`,
-        'err',
-      )
-      return false
-    }
     return true
   }
 
   // ① 起名(单轮)
   async function startNaming() {
     if (!preflight()) return
+    if (!(await charge('naming'))) return
     running.value = true
     resetRun()
     setStatus(isZh.value ? 'AI 正在起名…名字会陆续出现' : 'AI is naming… names will appear shortly', 'run')
@@ -633,9 +670,10 @@ ${lines}`
   // ② 自动凑满 N 个可用候选(多轮)
   async function startAutofill() {
     if (!preflight()) return
+    const targetN = Math.max(1, Math.min(limits.autofillMax, autofillN.value || 6))
+    if (!(await charge('autofill', targetN))) return
     running.value = true
     resetRun()
-    const targetN = Math.max(1, Math.min(limits.autofillMax, autofillN.value || 6))
     setStatus(
       isZh.value ? `自动凑满模式:目标 ${targetN} 个可用候选…` : `Auto-fill mode: target ${targetN} usable candidates…`,
       'run',
@@ -670,6 +708,7 @@ ${lines}`
     const names = limits.rankMax === Infinity ? all : all.slice(0, limits.rankMax)
     const truncated = names.length < all.length
 
+    if (!(await charge('rank'))) return
     running.value = true
     resetRun()
     setStatus(
@@ -690,6 +729,7 @@ ${lines}`
   }
 
   async function continueRecommend() {
+    if (!(await charge('continue'))) return
     running.value = true
     qdQueue.reset()
     serperQueue.reset()

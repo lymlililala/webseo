@@ -32,6 +32,17 @@ watch(
   },
 )
 
+// 其它页面(域名工具扣费需登录时)请求登录 → 弹登录框
+watch(
+  () => auth.promptLogin,
+  (on) => {
+    if (on) {
+      openLogin()
+      auth.clearLoginPrompt()
+    }
+  },
+)
+
 // Stripe 付款跳回处理:success_url/cancel_url 带 ?credits=success|cancel。
 // 成功 → 刷新余额(webhook 异步发放,稍后再补刷一次)+ 提示,并清掉 URL 参数。
 onMounted(() => {

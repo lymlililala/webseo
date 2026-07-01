@@ -77,12 +77,30 @@ export const CURRENCY = 'usd'
 // 积分仍可通过注册赠送 / 后台 grant_credits 发放。将来接通 PayPal 等改 true 即可。
 export const PAYMENT_ENABLED = false
 
-// 每个动作消耗几分(Step 3 接入扣费时由后端读取,key 用 "功能.动作")。
-// 通用钱包:将来别的页面加付费功能,在这里加一行 + 该页调用扣费 API 即可。
+// 积分扣费总开关:false = 域名工具照旧免费、无需登录(灰度关闭态)。
+// true = 使用域名工具需登录并按 runCost 扣分(需后端配好 RUN_TOKEN_SECRET)。
+export const CREDITS_ENABLED = false
+
+// 每个动作消耗几分。前后端共用(前端预估/提示,后端 /api/run/start 真正扣)。
+//   naming   起名一轮 = 1
+//   rank     已有候选排名 = 1
+//   continue 继续推荐(新一批)= 2
+//   autofill 自动凑满 = 目标可用数 N × perUnit(凑几个扣几分),见 runCost()
 export const COSTS = {
-  'domain.naming': 1, // 一次"AI 起名"(返回一批候选 + 域名/撞名查询)
-  'domain.rank': 1, // 一次"已有候选排名"批量查询
-  'domain.autofill': 1, // 一次"自动凑满"
+  'domain.naming': 1,
+  'domain.rank': 1,
+  'domain.continue': 2,
+  'domain.autofill.perUnit': 1,
+}
+
+// 计算某次运行应扣的积分。autofill 按目标数 N 计,并夹到 autofillMax 上限内。
+export function runCost(action, n = 1) {
+  if (action === 'autofill') {
+    const max = getLimits().autofillMax
+    const capped = max === Infinity ? Math.max(1, n || 1) : Math.max(1, Math.min(n || 1, max))
+    return capped * (COSTS['domain.autofill.perUnit'] ?? 1)
+  }
+  return COSTS['domain.' + action] ?? 1
 }
 
 // 积分包:priceCents 是该档支付金额(美分);credits 为基础分,bonus 为赠送分,
