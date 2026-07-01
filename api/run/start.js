@@ -5,7 +5,11 @@ import { runCost } from '../../src/config/plans.js'
 import { signRunToken, creditsEnforced } from '../_runToken.js'
 
 const SUPABASE_URL = process.env.SUPABASE_URL || process.env.VITE_SUPABASE_URL || ''
-const PUBLISHABLE = process.env.VITE_SUPABASE_PUBLISHABLE_KEY || process.env.SUPABASE_ANON_KEY || ''
+const PUBLISHABLE =
+  process.env.SUPABASE_PUBLISHABLE_KEY ||
+  process.env.VITE_SUPABASE_PUBLISHABLE_KEY ||
+  process.env.SUPABASE_ANON_KEY ||
+  ''
 
 const VALID_ACTIONS = new Set(['naming', 'autofill', 'rank', 'continue'])
 

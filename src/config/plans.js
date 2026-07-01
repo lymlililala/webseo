@@ -79,7 +79,7 @@ export const PAYMENT_ENABLED = false
 
 // 积分扣费总开关:false = 域名工具照旧免费、无需登录(灰度关闭态)。
 // true = 使用域名工具需登录并按 runCost 扣分(需后端配好 RUN_TOKEN_SECRET)。
-export const CREDITS_ENABLED = false
+export const CREDITS_ENABLED = true
 
 // 每个动作消耗几分。前后端共用(前端预估/提示,后端 /api/run/start 真正扣)。
 //   naming   起名一轮 = 1
